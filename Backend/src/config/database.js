@@ -1,9 +1,11 @@
 import mysql2 from "mysql2";
-
+import "dotenv/config";
 const connection = mysql2.createConnection({
-  host: "localhost",
-  user: process.env.USER,
+  host: "161.97.144.27",
+  port: "8003",
+  user: "root",
   password: process.env.PASSWORD,
+  database: "cinema",
   multipleStatements: true,
   timezone: "+00:00",
 });
@@ -15,3 +17,5 @@ connection.connect((error) => {
     console.log("Connection to database established");
   }
 });
+
+export default connection;
