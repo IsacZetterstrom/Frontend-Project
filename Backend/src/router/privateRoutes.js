@@ -4,7 +4,7 @@ import bookingController from "../controllers/bookingController.js";
 const privateRoutes = Router();
 
 privateRoutes.get("/user", userController.GetAll);
-privateRoutes.patch("/user");
+privateRoutes.patch("/user", userController.editUser);
 privateRoutes.get("/user/bookings");
 privateRoutes.delete("/user/bookings/:booking_id",bookingController.delBooking);
 
