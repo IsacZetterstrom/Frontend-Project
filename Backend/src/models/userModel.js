@@ -1,13 +1,12 @@
 import connection from "../config/database.js";
 
 const User = {};
-
-User.GetAll = async () => {
+//Get userprofile ( including password to use at login)
+User.getProfile = async (Email) => {
   try {
-    const result = await connection.promise().query("Select * from User");
+    const result = await connection.promise().query('CALL User(?,?,?,?,?,?,?)', ["Select",Email, null,null,null,null,null]);
     return result;
   } catch (error) {
-    // console.error('Error', error);
     throw error;
   }
 };

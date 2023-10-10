@@ -1,13 +1,13 @@
 import User from "../models/userModel.js";
 
-const GetAll = async (req, res) => {
+const getProfile = async (req, res) => {
   try {
-    const users = await User.GetAll();
-    console.log(users[0]);
-    res.json(users[0]);
+    const {Email} = req.body
+    const userInfo = await User.getProfile(Email);
+    res.json(userInfo[0][0]);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-export default { GetAll };
+export default {getProfile};
