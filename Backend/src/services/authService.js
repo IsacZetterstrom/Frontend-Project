@@ -12,7 +12,8 @@ AuthService.login = async (email, password) => {
         if (userInfo && userInfo.length > 0 && userInfo[0][0]) {
             const storedPassword = userInfo[0][0].Password;
             if(AuthService.validatePassword(storedPassword, password)){
-                delete userInfo[0][0].Password 
+                delete userInfo[0][0].Password
+                delete userInfo[0][0].User_id 
                 //Add jwt token to userinfo here
 
                 return userInfo;
