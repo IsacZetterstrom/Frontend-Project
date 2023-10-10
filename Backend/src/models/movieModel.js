@@ -1,9 +1,7 @@
 import connection from "../config/database.js";
 
-const Movie = {};
-
 // Fetch all screenings for a specific movie
-Movie.getScreenings = async function getScreenings(movieID) {
+async function getScreenings(movieID) {
   try {
     
     const result = await connection.promise().query(`
@@ -23,4 +21,4 @@ Movie.getScreenings = async function getScreenings(movieID) {
   }
 };
 
-export default Movie;
+export default { getScreenings };
