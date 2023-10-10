@@ -1,5 +1,6 @@
 import mysql2 from "mysql2";
 import "dotenv/config";
+
 const connection = mysql2.createConnection({
   host: "161.97.144.27",
   port: "8003",
@@ -9,7 +10,6 @@ const connection = mysql2.createConnection({
   multipleStatements: true,
   timezone: "+00:00",
 });
-
 connection.connect((error) => {
   if (error) {
     console.log(error);
