@@ -1,5 +1,6 @@
 import { Router } from "express";
 import userController from "../controllers/userController.js";
+
 const privateRoutes = Router();
 
 privateRoutes.get("/user", userController.getProfile);

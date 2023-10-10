@@ -1,7 +1,7 @@
-import e, { json } from "express";
+
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt"
-
+import jwtService from "./jwtService.js";
 
 const AuthService ={}
 
@@ -15,8 +15,8 @@ AuthService.login = async (email, password) => {
                 delete userInfo[0][0].Password
                 delete userInfo[0][0].User_id 
                 //Add jwt token to userinfo here
-
-                return userInfo;
+                const token = jwtService.generate(userInfo[0][0].Email)
+                return token;
             }
       } 
     }
@@ -27,16 +27,14 @@ AuthService.login = async (email, password) => {
       
 }
 
-AuthService.validatePassword = (password1,password2) =>{
+AuthService.validatePassword = (hashedPassword,password) =>{
     //Passsword handling (We will use bcrypt,add it later)
-    console.log(password1,password2)
-    if(password1 === password2){
+
+    if(hashedPassword === password){
 
         return true;
     }
     return false;
-
-
 }
 
 export default AuthService;
