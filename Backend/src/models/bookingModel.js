@@ -2,14 +2,21 @@ import connection from "../config/database.js";
 
 
  async function deleteBooking(bookingId){
+    const ticket = `DELETE FROM Ticket
+       WHERE Ticket.Booking_id =?`
+    const booking = `DELETE FROM Booking
+        WHERE Booking.Booking_id =?`
 
-    const sql = `DELETE Booking,Ticket
-    FROM Ticket
-    JOIN Booking 
-    ON Booking.Booking_id = Ticket.Booking_id
-    WHERE Ticket.Booking_id =?`
+    return await Promise.all([connection.promise().query(ticket, [bookingId]),
+        connection.promise().query(booking, [bookingId])])
+     
+   
 
-    return await connection.promise().query(sql, [bookingId])
+
+ 
+
+
+    
 }
 
 export default {deleteBooking}
