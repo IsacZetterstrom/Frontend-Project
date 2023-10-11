@@ -1,5 +1,5 @@
 import { Router } from "express";
-import movieController from "../controllers/movieController.js";
+import screeningController from "../controllers/screeningController.js";
 
 const publicRoutes = Router();
 
@@ -9,7 +9,7 @@ publicRoutes.get("/movies/:movie_id");
 publicRoutes.get("/movies/:query");
 
 //SCREENING ROUTES
-publicRoutes.get("/movies/:movie_id/screenings", movieController.getScreenings);
+publicRoutes.get("/movies/:movie_id/screenings", screeningController.getScreenings);
 publicRoutes.get("/movies/:movie_id/screenings/:query");
 publicRoutes.get("/movies/:movie_id/screenings/:screening_id");
 
