@@ -1,8 +1,8 @@
 import connection from "../config/database.js";
 
-const User = {};
+
 //Get userprofile ( including password to use)
-User.getProfile = async (Email) => {
+async function getProfile  (Email)  {
   try {
     const [result] = await connection.promise().query('CALL User(?,?,?,?,?,?,?)', ["Select",Email, null,null,null,null,null]);
     return result;
@@ -11,4 +11,4 @@ User.getProfile = async (Email) => {
   }
 };
 
-export default User;
+export default {getProfile};

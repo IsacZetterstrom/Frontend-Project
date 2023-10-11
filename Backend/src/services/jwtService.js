@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import "dotenv/config";
 
-const generateToken = (email) =>{
+
+async function generateToken(email){
     let payload = {
       Email: email
     }
@@ -11,7 +12,7 @@ const generateToken = (email) =>{
       return token;
   }
 
-  const verifyToken = (req, res, next) => {
+  async function verifyToken(req, res, next) {
     const token =
       req.body.token || req.query.token || req.headers["x-access-token"];
   
@@ -26,4 +27,4 @@ const generateToken = (email) =>{
     return next();
   };
 
-  export default {generateToken,verifyToken}
+  export default  {generateToken,verifyToken}

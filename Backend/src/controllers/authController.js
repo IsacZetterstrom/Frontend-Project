@@ -1,6 +1,5 @@
 import AuthService from "../services/authService.js";
-import User from "../models/userModel.js";
-const authUser = async (req, res) =>{
+async function authUser (req, res) {
     try {
         const { Email, Password } = req.body;
         const login = await AuthService.login(Email,Password)

@@ -1,17 +1,16 @@
 
-import User from "../models/userModel.js";
+import userModel from "../models/userModel.js";
 import bcrypt from "bcrypt"
 import jwtService from "./jwtService.js";
 
-const AuthService ={}
 
-AuthService.login = async (email, password) => {
+async function login  (email, password) {
     //Get current userinformation
     try {
-        const userInfo = await User.getProfile(email);
+        const userInfo = await userModel.getProfile(email);
         if (userInfo && userInfo.length > 0 && userInfo[0][0]) {
             const storedPassword = userInfo[0][0].Password;
-            if(AuthService.validatePassword(storedPassword, password)){
+            if(validatePassword(storedPassword, password)){
                 delete userInfo[0][0].Password
                 delete userInfo[0][0].User_id 
                 //Add jwt token to userinfo here
@@ -27,7 +26,7 @@ AuthService.login = async (email, password) => {
       
 }
 
-AuthService.validatePassword = (hashedPassword,password) =>{
+async function validatePassword  (hashedPassword,password) {
     //Passsword handling (We will use bcrypt,add it later)
 
     if(hashedPassword === password){
@@ -37,4 +36,4 @@ AuthService.validatePassword = (hashedPassword,password) =>{
     return false;
 }
 
-export default AuthService;
+export default {login, validatePassword};
