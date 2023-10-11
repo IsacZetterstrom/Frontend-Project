@@ -10,7 +10,7 @@ async function login  (email, password) {
         const userInfo = await userModel.getProfile(email);
         if (userInfo && userInfo.length > 0 && userInfo[0][0]) {
             const storedPassword = userInfo[0][0].Password;
-            if(validatePassword(storedPassword, password)){
+            if(await validatePassword(storedPassword, password)){
                 delete userInfo[0][0].Password
                 delete userInfo[0][0].User_id 
                 //Add jwt token to userinfo here
@@ -26,11 +26,10 @@ async function login  (email, password) {
       
 }
 
-function validatePassword  (hashedPassword,password) {
+async function validatePassword  (hashedPassword,password) {
     //Passsword handling (We will use bcrypt,add it later)
-
-    if(hashedPassword === password){
-
+    const isMatch = await bcrypt.compare(password,hashedPassword);
+    if(isMatch){
         return true;
     }
     return false;
