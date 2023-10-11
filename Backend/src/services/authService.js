@@ -15,7 +15,7 @@ AuthService.login = async (email, password) => {
                 delete userInfo[0][0].Password
                 delete userInfo[0][0].User_id 
                 //Add jwt token to userinfo here
-                const token = jwtService.generate(userInfo[0][0].Email)
+                const token = jwtService.generateToken(userInfo[0][0].Email)
                 return token;
             }
       } 
