@@ -1,3 +1,4 @@
+
 import userModel from "../models/userModel.js";
 
 async function getProfile  (req, res) {
@@ -11,4 +12,24 @@ async function getProfile  (req, res) {
   }
 };
 
-export default {getProfile};
+
+async function editUser(req, res) {
+  const { userid, email, firstname, lastname, phone } = req.body;
+  try {
+    const result = await userModel.editUser(
+      userid,
+      email,
+      firstname,
+      lastname,
+      phone
+    );
+    res.status(200).send({ message: "Information edited!" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "A problem when editing users credentials occured" });
+  }
+}
+
+export default { getProfile, editUser };
+
