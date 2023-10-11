@@ -8,15 +8,7 @@ import connection from "../config/database.js";
         WHERE Booking.Booking_id =?`
 
     return await Promise.all([connection.promise().query(ticket, [bookingId]),
-        connection.promise().query(booking, [bookingId])])
-     
-   
-
-
- 
-
-
-    
+        connection.promise().query(booking, [bookingId])]) 
 }
 
 export default { deleteBooking };
