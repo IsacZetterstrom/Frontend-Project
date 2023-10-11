@@ -8,7 +8,7 @@ async function getUserBookings(req, res) {
     if (bookings.length > 0) {
       res.json(bookings[0]);
     } else {
-      res.json("No bookings found");
+      res.json("Could not find your booking");
     }
   } catch (error) {
     console.error("Error in getUserBookings:", error);
