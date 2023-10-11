@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
-const SUPER_SECRET = 'catsareawesomebutdogsareawesometoo';
+import "dotenv/config";
 
 const generateToken = (email) =>{
     let payload = {
       Email: email
     }
-    let token = jwt.sign(payload, SUPER_SECRET,{
+    let token = jwt.sign(payload, process.env.SUPER_SECRET,{
       expiresIn: "15m",});
       console.log(token)
       return token;
@@ -19,7 +19,7 @@ const generateToken = (email) =>{
       return res.status(403).send("A token is required for authentication");
     }
     try {
-      req.decoded = jwt.verify(token, SUPER_SECRET);
+      req.decoded = jwt.verify(token, process.env.SUPER_SECRET);
     } catch (err) {
       return res.status(401).send("Invalid Token");
     }
