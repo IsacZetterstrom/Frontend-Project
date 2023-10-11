@@ -1,5 +1,7 @@
 import userModel from "../models/userModel.js";
 
+
+// Function to handle the retrieval of bookings for a user
 async function getUserBookings(req, res) {
   try {
     const user_id = 1;
@@ -8,7 +10,7 @@ async function getUserBookings(req, res) {
     if (bookings.length > 0) {
       res.json(bookings[0]);
     } else {
-      res.json("Could not find your booking");
+      res.json("Could not find your booking!");
     }
   } catch (error) {
     console.error("Error in getUserBookings:", error);
