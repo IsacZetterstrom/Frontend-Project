@@ -1,4 +1,5 @@
 import authModel from "../models/authModel.js";
+import AuthService from "../services/authService.js";
 import bcrypt from "bcrypt";
 
 async function registerUser(req, res) {
@@ -12,4 +13,19 @@ async function registerUser(req, res) {
   }
 }
 
-export default { registerUser };
+async function authUser(req, res) {
+  try {
+    const { Email, Password } = req.body;
+    const login = await AuthService.login(Email, Password);
+
+    if (!login) {
+      // Authentication failed
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+    res.status(200).json(login);
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+export default { authUser, registerUser };
