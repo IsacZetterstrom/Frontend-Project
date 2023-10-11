@@ -19,4 +19,4 @@ import connection from "../config/database.js";
     
 }
 
-export default {deleteBooking}
+export default { deleteBooking };
