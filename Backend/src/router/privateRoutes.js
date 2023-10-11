@@ -1,10 +1,11 @@
 import { Router } from "express";
-import userController from "../controllers/userController.js";
+import usercontroller from "../controllers/userController.js";
+
 const privateRoutes = Router();
 
-privateRoutes.get("/user", userController.GetAll);
+privateRoutes.get("/user");
 privateRoutes.patch("/user");
-privateRoutes.get("/user/bookings");
+privateRoutes.get("/user/bookings", usercontroller.getUserBookings);
 privateRoutes.delete("/user/bookings/:booking_id");
 
 export default privateRoutes;

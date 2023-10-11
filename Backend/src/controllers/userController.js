@@ -1,13 +1,24 @@
-import User from "../models/userModel.js";
+import userModel from "../models/userModel.js";
 
-const GetAll = async (req, res) => {
+async function getUserBookings(req, res) {
   try {
-    const users = await User.GetAll();
-    console.log(users[0]);
-    res.json(users[0]);
+    const user_id = 1;
+    const bookings = await userModel.getUserBookings(user_id);
+
+    if (bookings.length > 0) {
+      res.json(bookings[0]);
+    } else {
+      res.json("No bookings found");
+    }
   } catch (error) {
+    console.error("Error in getUserBookings:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-export default { GetAll };
+export default { getUserBookings };
+
+
+
+
+
