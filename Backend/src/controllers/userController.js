@@ -1,6 +1,5 @@
 import userModel from "../models/userModel.js";
 
-
 // Function to handle the retrieval of bookings for a user
 async function getUserBookings(req, res) {
   try {
@@ -13,14 +12,8 @@ async function getUserBookings(req, res) {
       res.json("Could not find your booking!");
     }
   } catch (error) {
-    console.error("Error in getUserBookings:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
 export default { getUserBookings };
-
-
-
-
-
