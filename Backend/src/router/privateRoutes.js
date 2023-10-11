@@ -1,6 +1,6 @@
 import { Router } from "express";
 import userController from "../controllers/userController.js";
-import bookingController from "../controllers/bookingController.js
+import bookingController from "../controllers/bookingController.js";
 
 const privateRoutes = Router();
 

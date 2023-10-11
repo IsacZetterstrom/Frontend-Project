@@ -26,7 +26,7 @@ async function login  (email, password) {
       
 }
 
-async function validatePassword  (hashedPassword,password) {
+function validatePassword  (hashedPassword,password) {
     //Passsword handling (We will use bcrypt,add it later)
 
     if(hashedPassword === password){
