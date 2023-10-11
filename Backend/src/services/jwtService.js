@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 const SUPER_SECRET = 'catsareawesomebutdogsareawesometoo';
 
-const generate = (email) =>{
+const generateToken = (email) =>{
     let payload = {
       Email: email
     }
@@ -26,4 +26,4 @@ const generate = (email) =>{
     return next();
   };
 
-  export default {generate,verifyToken}
+  export default {generateToken,verifyToken}
