@@ -12,7 +12,10 @@ async function getScreenings(req, res) {
   }
 };
 
-// Function to handle return of get specific Screenings by date model
+/*
+Author: Louise Johansson
+Description: Controller to handle return of getScreeningsByDate model
+*/
 async function getScreeningsByDate(req, res) {
   try {
     const movieID = req.params.movie_id;
