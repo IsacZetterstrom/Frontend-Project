@@ -1,9 +1,15 @@
 import userModel from "../models/userModel.js";
 
-// Function to handle the retrieval of bookings for a user
+
+
+/**
+* Author*: Sara Johansson
+* Desciption: Function to handle the retrieval of bookings for a user
+*/
+
 async function getUserBookings(req, res) {
   try {
-    const user_id = 1;
+   
     const bookings = await userModel.getUserBookings(user_id);
 
     if (bookings.length > 0) {

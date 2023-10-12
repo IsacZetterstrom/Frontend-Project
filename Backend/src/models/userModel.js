@@ -1,6 +1,11 @@
 import connection from "../config/database.js";
 
-// Function to retrieve user bookings based on user_id
+
+/**
+* Author*: Sara Johansson
+* Desciption: Function to retrieve user bookings based on user_id
+*/
+
 async function getUserBookings (user_id) {
   try {
     const query = 
