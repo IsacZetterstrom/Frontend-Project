@@ -1,7 +1,6 @@
 import connection from "../config/database.js";
 
 /*
-Author: Oliver Andersson
 Description:
 Models for fetching screening data from database
 */
