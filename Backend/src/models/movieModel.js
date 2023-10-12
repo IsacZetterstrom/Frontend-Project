@@ -1,6 +1,9 @@
 import connection from "../config/database.js";
 
-// Fetch information about a specific movie
+/*
+Author: Louise Johansson
+Description: Model to get information about a specific movie
+*/
 async function getMovieInformation(movie_id) {
   try {
     const query = `

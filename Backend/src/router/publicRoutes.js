@@ -11,7 +11,7 @@ publicRoutes.get("/movies/:query");
 
 //SCREENING ROUTES
 publicRoutes.get("/movies/:movie_id/screenings", screeningController.getScreenings);
-publicRoutes.get("/movies/:movie_id/screenings/:query");
+publicRoutes.get("/movies/:movie_id/screenings/:query", screeningController.getScreeningsByDate);
 publicRoutes.get("/movies/:movie_id/screenings/:screening_id");
 
 //BOOKING ROUTES 
