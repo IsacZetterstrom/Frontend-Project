@@ -1,6 +1,6 @@
 import { Router } from "express";
 import screeningController from "../controllers/screeningController.js";
-
+import userController from "../controllers/userController.js";
 const publicRoutes = Router();
 
 //MOVIE ROUTES
