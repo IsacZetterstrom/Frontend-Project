@@ -21,7 +21,10 @@ async function getScreenings(movieID) {
   }
 };
 
-// Fetch screenings for a specific movie on a given date
+/*
+Author: Louise Johansson
+Description: Model to get specific screening based on date
+*/
 async function getScreeningsByDate(movieID, date) {
   try {
     const result = await connection.promise().query(`
