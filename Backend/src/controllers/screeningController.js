@@ -1,11 +1,11 @@
 import screeningModel from "../models/screeningModel.js";
 
 /*
-Author: Oliver Andersson
 Description:
 Controllers for handling screening requests
 */
 
+// Author: Oliver Andersson
 // Handle route /movies/:movie_id/screenings
 async function getScreenings(req, res) {
   try {

@@ -6,6 +6,7 @@ Description:
 Models for fetching screening data from database
 */
 
+// Author: Oliver Andersson
 // Fetch all screenings for a specific movie using movieID
 async function getScreenings(movieID) {
   try {
