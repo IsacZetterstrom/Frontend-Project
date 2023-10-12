@@ -12,6 +12,7 @@ async function getScreenings(req, res) {
   }
 };
 
+// Function to handle return of get specific Screenings by date model
 async function getScreeningsByDate(req, res) {
   try {
     const movieID = req.params.movie_id;
