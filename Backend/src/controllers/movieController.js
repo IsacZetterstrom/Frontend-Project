@@ -20,4 +20,23 @@ async function getOneMovie(req, res) {
     }
   }
 
-export default { getOneMovie };
+/**
+ * @author Niklas Nguyen
+ * @Description Controller to handle return of currentMovies model
+ */
+
+  async function getCurrentMovies(req,res){
+    try {
+      const movies = await movieModel.currentMovies()
+      if (movies.length > 0) {
+        res.send(movies).status(200)
+      } else {
+        res.status(404).json({ error: "No movies for screening" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+export default { getOneMovie,getCurrentMovies };
