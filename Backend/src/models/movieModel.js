@@ -48,15 +48,69 @@ async function getMovieInformation(movie_id) {
  */
 
 async function currentMovies() {
-const query = `SELECT Screening.Movie_id,
+const query = `SELECT Movie.Movie_id,
 Movie.*
-FROM Screening,
-Movie
-WHERE Screening.Movie_id = Movie.Movie_id`
+FROM Movie 
+WHERE Movie.Movie_id IN (
+    SELECT DISTINCT Screening.Movie_id
+    FROM Screening
+);`
 
 const [movies] = await connection.execute(query)
 
 return movies
 }
 
-export default { getMovieInformation, currentMovies }
+/**
+ * @Author Niklas Nguyen, isac Zetterström
+ * @Description Model to get filtered movies from each screening.
+ * @returns an array with filterd movies data that has a screening
+ */
+
+async function filterAllMovies(filter, sort, search) {
+
+ if(sort === 'dateHigh'){
+  sort = {
+    name: 'Screening.Screening_date',
+    by: 'DESC'
+  }
+ }else if (sort === 'dateLow'){
+  sort = {
+    name: 'Screening.Screening_date',
+    by: 'ASC'
+  }
+ }else if (sort === 'ratingHigh'){
+  sort = {
+    name: 'Movie.Rating',
+    by: 'DESC'
+  }
+ }else if (sort === 'ratingLow'){
+  sort = {
+    name: 'Movie.Rating',
+    by: 'ASC'
+  }
+ }
+
+
+  const query = `SELECT DISTINCT Movie.Movie_id,
+  MAX(Screening.Screening_date) AS Screening_date,
+  Movie.Title,
+  Movie.Genre,
+  Movie.Rating,
+  Movie.Adult
+  FROM Screening
+  JOIN Movie ON Screening.Movie_id = Movie.Movie_id
+  WHERE Movie.Title LIKE '${search}%'
+  GROUP BY Movie.Movie_id,
+  Movie.Title,
+  Movie.Genre,
+  Movie.Rating,
+  Movie.Adult
+  ${sort === '' ? '' : "ORDER BY " + 'MAX('+ sort.name + ") " + sort.by}`;
+
+  const [movies] = await connection.execute(query)
+
+  return movies
+}
+
+export default { getMovieInformation, currentMovies, filterAllMovies }
