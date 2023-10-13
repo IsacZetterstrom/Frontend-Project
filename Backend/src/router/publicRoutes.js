@@ -5,7 +5,7 @@ import movieController from "../controllers/movieController.js";
 const publicRoutes = Router();
 
 //MOVIE ROUTES
-publicRoutes.get("/movies");
+publicRoutes.get("/movies", movieController.getCurrentMovies);
 publicRoutes.get("/movies/:movie_id", movieController.getOneMovie);
 publicRoutes.get("/movies/:query");
 
