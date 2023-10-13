@@ -28,7 +28,7 @@ async function getScreenings(movieID) {
 };
 
 // Author: Oliver Andersson
-// Fetch a single screening using screeningID
+// Fetch a single screening, and all information about the seats using screeningID
 async function getScreening(screeningID) {
   try {
     
@@ -62,16 +62,35 @@ async function getScreening(screeningID) {
         WHERE Screening.Screening_id=? AND Ticket.Seat_id IS NULL;
       `, [screeningID]);
 
+      const allSeats = await connection.promise().query(`
+        SELECT Seat.Number_row, Seat.Number_seat
+        FROM Seat
+        INNER JOIN Screening ON Seat.Theater_id = Screening.Theater_id
+        WHERE Screening.Screening_id=?
+      `, [screeningID]);
+
+
+      screeningInfo[0][0].freeSeats = freeSeats[0].length;
+      screeningInfo[0][0].totalSeats = allSeats[0].length;
+
       screeningInfo[0][0].bookedSeats = bookedSeats[0]
-      screeningInfo[0][0].freeSeats = freeSeats[0]
+      screeningInfo[0][0].allSeats = allSeats[0]
+
+       
+      screeningInfo[0][0].allSeats.forEach(seat => {
+        // Check if seat exists in bookedSeat, if so, add booked boolean
+        seat.Booked = bookedSeats[0].some(bookedSeat => bookedSeat.Number_seat === seat.Number_seat);
+      });
+
     }
 
     return screeningInfo;
 
   } catch (error) {
-    console.error('Error in getScreenings model', error);
+    console.error('Error in getScreening model', error);
     throw error;
   }
+
 };
 
 /*
