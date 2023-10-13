@@ -41,4 +41,22 @@ async function getMovieInformation(movie_id) {
   }
 };
 
-export default { getMovieInformation }
+/**
+ * @Author Niklas Nguyen
+ * @Description Model to get the movie from each screening
+ * @returns an array with movies data that has a screening
+ */
+
+async function currentMovies() {
+const query = `SELECT Screening.Movie_id,
+Movie.*
+FROM Screening,
+Movie
+WHERE Screening.Movie_id = Movie.Movie_id`
+
+const [movies] = await connection.execute(query)
+
+return movies
+}
+
+export default { getMovieInformation, currentMovies }
