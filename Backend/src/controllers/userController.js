@@ -1,15 +1,14 @@
 import userModel from "../models/userModel.js";
 
-
-
 /**
 * Author*: Sara Johansson
 * Desciption: Function to handle the retrieval of bookings for a user
 */
-
 async function getUserBookings(req, res) {
   try {
-   
+    const Email = req.decoded.Email
+    const userInfo = await userModel.getProfile(Email);
+    const user_id = userInfo[0][0].User_id;
     const bookings = await userModel.getUserBookings(user_id);
 
     if (bookings.length > 0) {
@@ -19,7 +18,7 @@ async function getUserBookings(req, res) {
     }
 
   }catch (error) {
-    res.status(500).json({ error: "Problem fetching" });
+    res.status(500).json({ error: "Problem fetching bookings" });
   }
 }
 
@@ -33,8 +32,6 @@ async function getProfile  (req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-
 
 async function editUser(req, res) {
   const { userid, email, firstname, lastname, phone } = req.body;
