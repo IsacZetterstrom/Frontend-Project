@@ -5,8 +5,11 @@ Description:
 Controllers for handling screening requests
 */
 
-// Author: Oliver Andersson
-// Handle route /movies/:movie_id/screenings
+/*
+Author: Oliver Andersson
+Handle route /movies/:movie_id/screenings
+Returns all screenings for one movie
+*/
 async function getScreenings(req, res) {
   try {
     const movieID = req.params.movie_id;
@@ -20,8 +23,11 @@ async function getScreenings(req, res) {
   }
 };
 
-// Author: Oliver Andersson
-// Handle route /movies/:movie_id/screenings/:ID
+/*
+Author: Oliver Andersson
+Handle route /movies/:movie_id/screenings/:ID
+Returns a single screening and its seat information
+ */
 async function getScreening(req, res) {
   try {
     const screeningID = req.params.screening_id;

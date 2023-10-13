@@ -32,6 +32,7 @@ async function getScreenings(movieID) {
 async function getScreening(screeningID) {
   try {
     
+    // Basic information about screening
     const screeningInfo = await connection.promise().query(`
       SELECT Screening.Screening_id, Theater.Theater_id, Movie.Title, Theater.Theater_name,
       Screening.Screening_startime, Screening.Screening_date
@@ -42,9 +43,10 @@ async function getScreening(screeningID) {
       WHERE Screening.Screening_id=?
     `, [screeningID]);
 
-    // If screening is found, fetch seats
+    // If screening is found, proceed to fetch seats information
     if(screeningInfo[0][0]) {
      
+      // Only the booked seats for correct screening and theater
       const bookedSeats = await connection.promise().query(`
         SELECT Seat.Number_row, Seat.Number_seat
         FROM Screening
@@ -54,6 +56,7 @@ async function getScreening(screeningID) {
         WHERE Screening.Screening_id=?
       `, [screeningID]);
 
+      // All free seats for correct screening and theater
       const freeSeats = await connection.promise().query(`
         SELECT Seat.Number_row, Seat.Number_seat
         FROM Seat
@@ -62,6 +65,7 @@ async function getScreening(screeningID) {
         WHERE Screening.Screening_id=? AND Ticket.Seat_id IS NULL;
       `, [screeningID]);
 
+      // ALL seats in correct screening and theater
       const allSeats = await connection.promise().query(`
         SELECT Seat.Number_row, Seat.Number_seat
         FROM Seat
@@ -70,9 +74,12 @@ async function getScreening(screeningID) {
       `, [screeningID]);
 
 
+      
+      // Total seats and free seats
       screeningInfo[0][0].freeSeats = freeSeats[0].length;
       screeningInfo[0][0].totalSeats = allSeats[0].length;
 
+      // bookedSeats, and allSeats array
       screeningInfo[0][0].bookedSeats = bookedSeats[0]
       screeningInfo[0][0].allSeats = allSeats[0]
 
