@@ -9,8 +9,8 @@ Models for fetching screening data from database
 // Fetch all screenings for a specific movie using movieID
 async function getScreenings(movieID) {
   try {
-    
-    const result = await connection.promise().query(`
+    const [rows] = await connection.execute(
+      `
       SELECT Screening.Screening_id, Movie.Title, Theater.Theater_name,
       Screening.Screening_startime, Screening.Screening_date
       
@@ -18,9 +18,10 @@ async function getScreenings(movieID) {
       INNER JOIN Theater ON Theater.Theater_id = Screening.Theater_id
       INNER JOIN Movie ON Movie.Movie_id = Screening.Movie_id
       WHERE Screening.movie_id=?
-    `, [movieID]);
-
-    return result;
+    `,
+      [movieID]
+  );
+    return rows;
   } catch (error) {
     console.error('Error in getScreenings model', error);
     throw error;
