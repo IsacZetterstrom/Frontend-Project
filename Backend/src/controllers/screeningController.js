@@ -13,9 +13,25 @@ async function getScreenings(req, res) {
 
     const screenings = await screeningModel.getScreenings(movieID);
     
+    
     res.json(screenings[0]);
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "No screenings found for the specified movie" });
+  }
+};
+
+// Author: Oliver Andersson
+// Handle route /movies/:movie_id/screenings/:ID
+async function getScreening(req, res) {
+  try {
+    const screeningID = req.params.screening_id;
+
+    const screening = await screeningModel.getScreening(screeningID);
+    
+    res.json(screening[0]);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "No screenings found by the specified screening_id" });
   }
 };
 
@@ -39,4 +55,6 @@ async function getScreeningsByDate(req, res) {
   }
 }
 
-export default { getScreenings, getScreeningsByDate };
+
+
+export default { getScreenings, getScreeningsByDate, getScreening };
