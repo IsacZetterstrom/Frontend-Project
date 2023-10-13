@@ -15,9 +15,9 @@ async function getProfile  (req, res) {
 
 async function editUser(req, res) {
   const Email = req.decoded.Email
-  const userInfo = await userModel.getProfile(Email);
   const { email, firstname, lastname, phone } = req.body;
   try {
+    const userInfo = await userModel.getProfile(Email);
     const result = await userModel.editUser(
       userInfo[0][0].User_id,
       email,
