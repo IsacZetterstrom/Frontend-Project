@@ -1,25 +1,49 @@
-
 import userModel from "../models/userModel.js";
 
-async function getProfile  (req, res) {
+/**
+ * Author*: Sara Johansson
+ * Desciption: Function to handle the retrieval of bookings for a user
+ */
+async function getUserBookings(req, res) {
   try {
-      //the email in the jwt token
-    const Email = req.decoded.Email
-    const userInfo = await userModel.getProfile(Email);
-    res.json(userInfo[0][0]);
+    const email = req.decoded.Email;
+    const userInfo = await userModel.getProfile(email);
+    const userId = userInfo[0].User_id;
+
+    const bookings = (await userModel.getUserBookings(userId))[0];
+
+    if (bookings.length > 0) {
+      res.json(bookings);
+    } else {
+      res.json("Could not find your booking!");
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Problem fetching bookings" });
+  }
+}
+
+async function getProfile(req, res) {
+  try {
+    //the email in the jwt token
+    const email = req.decoded.email;
+    const userInfo = await userModel.getProfile(email);
+    res.json(userInfo[0]);
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
-};
+}
 
-
+/**
+ * @Author Isac Zetterström
+ * @Description Controller for editing userInfo
+ */
 async function editUser(req, res) {
-  const Email = req.decoded.Email
+  const jwt = req.decoded.email;
   const { email, firstname, lastname, phone } = req.body;
   try {
-    const userInfo = await userModel.getProfile(Email);
+    const userInfo = await userModel.getProfile(jwt);
     const result = await userModel.editUser(
-      userInfo[0][0].User_id,
+      userInfo[0].User_id,
       email,
       firstname,
       lastname,
@@ -33,5 +57,4 @@ async function editUser(req, res) {
   }
 }
 
-export default { getProfile, editUser };
-
+export default { getProfile, editUser, getUserBookings };

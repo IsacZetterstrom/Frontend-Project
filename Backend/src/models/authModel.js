@@ -1,16 +1,16 @@
 import connection from "../config/database.js";
 
-async function registerUser(email, pass) {
+/**
+ * @Author Isac Zetterström
+ * @Description model for registering a user
+ */
 
-  try{
-    const [rows, fields] =  await connection.execute(
-    'INSERT INTO User (Email, Password) VALUES (?, ?)',
-    [email,pass]);
-    return [rows]
-    }
-    catch(error){
-    throw error;
-  }
+async function registerUser(email, pass) {
+  const [rows] = await connection.execute(
+    "INSERT INTO User (Email, Password) VALUES (?, ?)",
+    [email, pass]
+  );
+  return rows;
 }
 
 export default { registerUser };

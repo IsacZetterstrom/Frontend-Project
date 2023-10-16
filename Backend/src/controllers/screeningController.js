@@ -1,8 +1,7 @@
 import screeningModel from "../models/screeningModel.js";
 
 /*
-Description:
-Controllers for handling screening requests
+Description: Controllers for handling screening requests
 */
 
 /*
@@ -12,14 +11,16 @@ Returns all screenings for one movie
 */
 async function getScreenings(req, res) {
   try {
-    const movieID = req.params.movie_id;
+    const movieId = req.params.movieId;
 
-    const screenings = await screeningModel.getScreenings(movieID);
+    const screenings = await screeningModel.getScreenings(movieId);
     res.json(screenings);
   } catch (error) {
-    res.status(500).json({ error: "No screenings found for the specified movie" });
+    res
+      .status(500)
+      .json({ error: "No screenings found for the specified movie" });
   }
-};
+}
 
 /*
 Author: Oliver Andersson
@@ -28,16 +29,18 @@ Returns a single screening and its seat information
  */
 async function getScreening(req, res) {
   try {
-    const screeningID = req.params.screening_id;
+    const screeningId = req.params.screeningId;
 
-    const screening = await screeningModel.getScreening(screeningID);
-    
+    const screening = await screeningModel.getScreening(screeningId);
+
     res.json(screening[0]);
   } catch (error) {
-    console.log(error)
-    res.status(500).json({ error: "No screenings found by the specified screening_id" });
+    console.log(error);
+    res
+      .status(500)
+      .json({ error: "No screenings found by the specified screening_id" });
   }
-};
+}
 
 /*
 Author: Louise Johansson
@@ -45,12 +48,14 @@ Description: Controller to handle return of getScreeningsByDate model
 */
 async function getScreeningsByDate(req, res) {
   try {
-    const movieID = req.params.movie_id;
+    const movieId = req.params.movieId;
     const query = req.params.query;
-    const screenings = await screeningModel.getScreeningsByDate(movieID, query);
+    const screenings = await screeningModel.getScreeningsByDate(movieId, query);
 
     if (screenings.length === 0) {
-      return res.status(404).json({ error: "No screenings found for the specified date" });
+      return res
+        .status(404)
+        .json({ error: "No screenings found for the specified date" });
     }
 
     res.json(screenings);
@@ -58,7 +63,5 @@ async function getScreeningsByDate(req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
-
-
 
 export default { getScreenings, getScreeningsByDate, getScreening };
