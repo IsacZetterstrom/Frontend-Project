@@ -8,11 +8,12 @@ async function getUserBookings(req, res) {
   try {
     const Email = req.decoded.Email
     const userInfo = await userModel.getProfile(Email);
-    const user_id = userInfo[0][0].User_id;
-    const bookings = await userModel.getUserBookings(user_id);
+    const user_id = userInfo[0][0].User_id; 
+    
+    const bookings = (await userModel.getUserBookings(user_id))[0];
 
     if (bookings.length > 0) {
-      res.json(bookings[0]);
+      res.json(bookings);
     } else {
       res.json("Could not find your booking!");
     }
