@@ -9,8 +9,7 @@ async function getOneMovie(req, res) {
       const { movie_id } = req.params;
       const movieData = await movieModel.getMovieInformation(movie_id);
       const movie = movieData[0];
-
-      if (movie.length > 0) {
+      if (movie) {
         res.json({ status: 200, message: "Movie found", movie });
       } else {
         res.status(404).json({ error: "Movie not found" });
