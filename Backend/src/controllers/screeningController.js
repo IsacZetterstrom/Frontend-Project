@@ -15,9 +15,7 @@ async function getScreenings(req, res) {
     const movieID = req.params.movie_id;
 
     const screenings = await screeningModel.getScreenings(movieID);
-    
-    
-    res.json(screenings[0]);
+    res.json(screenings);
   } catch (error) {
     res.status(500).json({ error: "No screenings found for the specified movie" });
   }
