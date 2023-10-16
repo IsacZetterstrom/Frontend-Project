@@ -7,6 +7,6 @@ const privateRoutes = Router();
 privateRoutes.get("/user", userController.getProfile);
 privateRoutes.patch("/user", userController.editUser);
 privateRoutes.get("/user/bookings");
-privateRoutes.delete("/user/bookings/:booking_id",bookingController.delBooking);
+privateRoutes.delete("/user/bookings/:bookingId", bookingController.delBooking);
 
 export default privateRoutes;

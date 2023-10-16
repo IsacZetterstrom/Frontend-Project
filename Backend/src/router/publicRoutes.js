@@ -6,15 +6,23 @@ const publicRoutes = Router();
 
 //MOVIE ROUTES
 publicRoutes.get("/movies", movieController.getMovies);
-publicRoutes.get("/movies/:movie_id", movieController.getOneMovie);
-
+publicRoutes.get("/movies/:movieId", movieController.getOneMovie);
 
 //SCREENING ROUTES
-publicRoutes.get("/movies/:movie_id/screenings", screeningController.getScreenings);
-publicRoutes.get("/movies/:movie_id/screenings/:query", screeningController.getScreeningsByDate);
-publicRoutes.get("/movies/screenings/:screening_id", screeningController.getScreening);
+publicRoutes.get(
+  "/movies/:movieId/screenings",
+  screeningController.getScreenings
+);
+publicRoutes.get(
+  "/movies/:movieId/screenings/:query",
+  screeningController.getScreeningsByDate
+);
+publicRoutes.get(
+  "/movies/screenings/:screeningId",
+  screeningController.getScreening
+);
 
-//BOOKING ROUTES 
-publicRoutes.post("/movies/:movie_id/screenings/:screening_id/booking");
+//BOOKING ROUTES
+publicRoutes.post("/movies/:movieId/screenings/:screening_id/booking");
 
 export default publicRoutes;

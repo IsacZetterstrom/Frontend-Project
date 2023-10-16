@@ -2,6 +2,10 @@ import authModel from "../models/authModel.js";
 import AuthService from "../services/authService.js";
 import bcrypt from "bcrypt";
 
+/**
+ * @Author Isac Zetterström
+ * @Description Controller for registering a user
+ */
 async function registerUser(req, res) {
   const { email, password } = req.body;
   const hashedPass = await bcrypt.hash(password, 12);
@@ -13,10 +17,10 @@ async function registerUser(req, res) {
   }
 }
 
-async function authUser(req, res) {
+async function login(req, res) {
   try {
-    const { Email, Password } = req.body;
-    const login = await AuthService.login(Email, Password);
+    const { email, password } = req.body;
+    const login = await AuthService.authenticate(email, password);
 
     if (!login) {
       // Authentication failed
@@ -28,4 +32,4 @@ async function authUser(req, res) {
   }
 }
 
-export default { authUser, registerUser };
+export default { login, registerUser };

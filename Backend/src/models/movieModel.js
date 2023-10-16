@@ -4,10 +4,9 @@ import connection from "../config/database.js";
 Author: Louise Johansson
 Description: Model to get information about a specific movie
 */
-async function getMovieInformation(movie_id) {
-  try {
-    const [rows] = await connection.execute(
-      `
+async function getMovieInformation(movieId) {
+  const [rows] = await connection.execute(
+    `
       SELECT 
           M.Movie_id,
           M.Title,
@@ -34,12 +33,9 @@ async function getMovieInformation(movie_id) {
           M.Movie_id = ?
       GROUP BY M.Movie_id, M.Title, M.Release_date, M.Genre, M.Rating, Director_name, MI.About, MI.Runtime, MI.Poster, MI.Image, MI.Lang, MI.Trailer;
       `,
-      [movie_id]
-    );
-    return rows;
-  } catch (error) {
-    throw error;
-  }
+    [movieId]
+  );
+  return rows;
 }
 
 /**
@@ -96,23 +92,24 @@ async function filterAllMovies(filter, sort, search) {
   }
 
   const query = `SELECT DISTINCT Movie.Movie_id,
-  ${sort.order}(Screening.Screening_date) AS Screening_date,
+  ${
+    sort === "" ? "MAX" : sort.order
+  }(Screening.Screening_date) AS Screening_date,
   Movie.Title,
   Movie.Genre,
   Movie.Rating,
   Movie.Age
   FROM Screening
   JOIN Movie ON Screening.Movie_id = Movie.Movie_id
-  WHERE Movie.Title LIKE '${search}%'
+  WHERE Movie.Title LIKE ?
   ${filter === "" ? "" : `AND Movie.Age <= ${filter}`}
   GROUP BY Movie.Movie_id,
   Movie.Title,
   Movie.Genre,
   Movie.Rating,
   Movie.Age
-  ${sort === "" ? "" : `ORDER BY ${sort.order}(${sort.name}) ${sort.by}`}`;
-
-  const [movies] = await connection.execute(query);
+  ${sort === "" ? "" : `ORDER BY ${sort.order} (${sort.name}) ${sort.by} `}`;
+  const [movies] = await connection.execute(query, [`${search}%`]);
 
   return movies;
 }
