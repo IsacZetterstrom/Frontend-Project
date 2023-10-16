@@ -1,13 +1,11 @@
 import connection from "../config/database.js";
 
-
 /**
-* Author*: Sara Johansson
-* Desciption: Function to retrieve user bookings based on user_id
-*/
-async function getUserBookings (userId) {
-  
-    const [rows, fields] =  await connection.execute(
+ * Author*: Sara Johansson
+ * Desciption: Function to retrieve user bookings based on user_id
+ */
+async function getUserBookings(userId) {
+  const [bookings] = await connection.execute(
     `
     SELECT Movie.Title AS MovieTitle,
     Theater.Theater_name AS TheaterName,
@@ -24,39 +22,40 @@ async function getUserBookings (userId) {
     JOIN Ticket_Type ON Ticket.Ticket_Type_id = Ticket_Type.Ticket_type_id
     JOIN Seat ON Ticket.Seat_id = Seat.Seat_id
     WHERE Booking.User_id = ?;
-    `, [userId]);    
-    return [rows];
-  
-};
-
+    `,
+    [userId]
+  );
+  return bookings;
+}
 
 //Get userprofile (promise wrapper på mysql connection)
- async function getProfile  (Email)  {
-  try{
-    const [rows, fields] =  await connection.execute(
-    'SELECT * FROM User WHERE Email = ?',
-    [Email]);
-    return [rows]
-    }catch(error){
+async function getProfile(Email) {
+  try {
+    const [rows, fields] = await connection.execute(
+      "SELECT * FROM User WHERE Email = ?",
+      [Email]
+    );
+    return [rows];
+  } catch (error) {
     throw error;
   }
-};
-
+}
 
 async function editUser(userid, email, firstname, lastname, phone) {
-  try{
-    const [rows, fields] =  await connection.execute(
+  try {
+    const [rows, fields] = await connection.execute(
       `UPDATE User SET
       Email = IFNULL(?, email),
       Firstname = IFNULL(?, firstName),
       Lastname = IFNULL(?, lastname),
       Phone = IFNULL(?, phone)
       WHERE User_id = ?`,
-      [email,firstname,lastname,phone,userid]);
-    return [rows]
-    }catch(error){
+      [email, firstname, lastname, phone, userid]
+    );
+    return [rows];
+  } catch (error) {
     throw error;
   }
 }
 
-export default { editUser,getProfile, getUserBookings };
+export default { editUser, getProfile, getUserBookings };
