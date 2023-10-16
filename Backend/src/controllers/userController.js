@@ -6,11 +6,11 @@ import userModel from "../models/userModel.js";
 */
 async function getUserBookings(req, res) {
   try {
-    const Email = req.decoded.Email
-    const userInfo = await userModel.getProfile(Email);
-    const user_id = userInfo[0][0].User_id; 
+    const email = req.decoded.Email
+    const userInfo = await userModel.getProfile(email);
+    const userId = userInfo[0][0].User_id; 
     
-    const bookings = (await userModel.getUserBookings(user_id))[0];
+    const bookings = (await userModel.getUserBookings(userId))[0];
 
     if (bookings.length > 0) {
       res.json(bookings);

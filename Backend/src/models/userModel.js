@@ -5,10 +5,8 @@ import connection from "../config/database.js";
 * Author*: Sara Johansson
 * Desciption: Function to retrieve user bookings based on user_id
 */
-
-async function getUserBookings (user_id) {
-  console.log(user_id)
-  try {
+async function getUserBookings (userId) {
+  
     const [rows, fields] =  await connection.execute(
     `
     SELECT Movie.Title AS MovieTitle,
@@ -26,12 +24,11 @@ async function getUserBookings (user_id) {
     JOIN Ticket_Type ON Ticket.Ticket_Type_id = Ticket_Type.Ticket_type_id
     JOIN Seat ON Ticket.Seat_id = Seat.Seat_id
     WHERE Booking.User_id = ?;
-    `, [user_id]);    
+    `, [userId]);    
     return [rows];
-  } catch (error) {
-    throw error;
-  }
+  
 };
+
 
 //Get userprofile (promise wrapper på mysql connection)
  async function getProfile  (Email)  {
