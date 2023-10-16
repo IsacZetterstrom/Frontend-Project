@@ -34,7 +34,9 @@ async function getScreening(screeningID) {
   try {
     
     // Basic information about screening
-    const screeningInfo = await connection.promise().query(`
+
+    const [screeningInfo] = await connection.execute(
+      `
       SELECT Screening.Screening_id, Theater.Theater_id, Movie.Title, Theater.Theater_name,
       Screening.Screening_startime, Screening.Screening_date
       
@@ -42,52 +44,69 @@ async function getScreening(screeningID) {
       INNER JOIN Theater ON Theater.Theater_id = Screening.Theater_id
       INNER JOIN Movie ON Movie.Movie_id = Screening.Movie_id
       WHERE Screening.Screening_id=?
-    `, [screeningID]);
+    `,
+      [screeningID]
+    );
+    
+    console.log(screeningInfo)
 
     // If screening is found, proceed to fetch seats information
-    if(screeningInfo[0][0]) {
-     
+    if(screeningInfo[0]) {
+
       // Only the booked seats for correct screening and theater
-      const bookedSeats = await connection.promise().query(`
+      const [bookedSeats] = await connection.execute(
+        `
         SELECT Seat.Number_row, Seat.Number_seat
         FROM Screening
         INNER JOIN Ticket ON Ticket.Screening_id = Screening.Screening_id
         INNER JOIN Seat ON Seat.Seat_id = Ticket.Seat_id
         AND Seat.Theater_id = Screening.Theater_id
         WHERE Screening.Screening_id=?
-      `, [screeningID]);
+      `,
+        [screeningID]
+      );
 
       // All free seats for correct screening and theater
-      const freeSeats = await connection.promise().query(`
+
+      const [freeSeats] = await connection.execute(
+        `
         SELECT Seat.Number_row, Seat.Number_seat
         FROM Seat
         INNER JOIN Screening ON Seat.Theater_id = Screening.Theater_id
         LEFT JOIN Ticket ON Ticket.Seat_id = Seat.Seat_id AND Ticket.Screening_id = Screening.Screening_id
         WHERE Screening.Screening_id=? AND Ticket.Seat_id IS NULL;
-      `, [screeningID]);
+      `,
+        [screeningID]
+      );
 
       // ALL seats in correct screening and theater
-      const allSeats = await connection.promise().query(`
+
+      const [allSeats] = await connection.execute(
+        `
         SELECT Seat.Number_row, Seat.Number_seat
         FROM Seat
         INNER JOIN Screening ON Seat.Theater_id = Screening.Theater_id
         WHERE Screening.Screening_id=?
-      `, [screeningID]);
+      `,
+        [screeningID]
+      );
+
+      
 
 
       
       // Total seats and free seats
-      screeningInfo[0][0].freeSeats = freeSeats[0].length;
-      screeningInfo[0][0].totalSeats = allSeats[0].length;
+      screeningInfo[0].freeSeats = freeSeats.length;
+      screeningInfo[0].totalSeats = allSeats.length;
 
       // bookedSeats, and allSeats array
-      screeningInfo[0][0].bookedSeats = bookedSeats[0]
-      screeningInfo[0][0].allSeats = allSeats[0]
+      screeningInfo[0].bookedSeats = bookedSeats
+      screeningInfo[0].allSeats = allSeats
 
        
-      screeningInfo[0][0].allSeats.forEach(seat => {
+      screeningInfo[0].allSeats.forEach(seat => {
         // Check if seat exists in bookedSeat, if so, add booked boolean
-        seat.Booked = bookedSeats[0].some(bookedSeat => bookedSeat.Number_seat === seat.Number_seat);
+        seat.Booked = bookedSeats.some(bookedSeat => bookedSeat.Number_seat === seat.Number_seat);
       });
 
     }
