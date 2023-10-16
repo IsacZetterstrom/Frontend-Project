@@ -5,8 +5,6 @@ Author: Louise Johansson
 Description: Model to get information about a specific movie
 */
 async function getMovieInformation(movie_id) {
-
-  
   try {
     const [rows] = await connection.execute(
       `
@@ -35,12 +33,14 @@ async function getMovieInformation(movie_id) {
       WHERE 
           M.Movie_id = ?
       GROUP BY M.Movie_id, M.Title, M.Release_date, M.Genre, M.Rating, Director_name, MI.About, MI.Runtime, MI.Poster, MI.Image, MI.Lang, MI.Trailer;
-      `,[movie_id]);
+      `,
+      [movie_id]
+    );
     return rows;
   } catch (error) {
     throw error;
   }
-};
+}
 
 /**
  * @Author Niklas Nguyen
@@ -49,17 +49,17 @@ async function getMovieInformation(movie_id) {
  */
 
 async function currentMovies() {
-const query = `SELECT Movie.Movie_id,
+  const query = `SELECT Movie.Movie_id,
 Movie.*
 FROM Movie 
 WHERE Movie.Movie_id IN (
     SELECT DISTINCT Screening.Movie_id
     FROM Screening
-);`
+);`;
 
-const [movies] = await connection.execute(query)
+  const [movies] = await connection.execute(query);
 
-return movies
+  return movies;
 }
 
 /**
@@ -69,49 +69,52 @@ return movies
  */
 
 async function filterAllMovies(filter, sort, search) {
-
- if(sort === 'dateHigh'){
-  sort = {
-    name: 'Screening.Screening_date',
-    by: 'DESC'
+  if (sort === "dateHigh") {
+    sort = {
+      name: "Screening.Screening_date",
+      by: "DESC",
+      order: "MAX",
+    };
+  } else if (sort === "dateLow") {
+    sort = {
+      name: "Screening.Screening_date",
+      by: "ASC",
+      order: "MIN",
+    };
+  } else if (sort === "ratingHigh") {
+    sort = {
+      name: "Movie.Rating",
+      by: "DESC",
+      order: "MAX",
+    };
+  } else if (sort === "ratingLow") {
+    sort = {
+      name: "Movie.Rating",
+      by: "ASC",
+      order: "MIN",
+    };
   }
- }else if (sort === 'dateLow'){
-  sort = {
-    name: 'Screening.Screening_date',
-    by: 'ASC'
-  }
- }else if (sort === 'ratingHigh'){
-  sort = {
-    name: 'Movie.Rating',
-    by: 'DESC'
-  }
- }else if (sort === 'ratingLow'){
-  sort = {
-    name: 'Movie.Rating',
-    by: 'ASC'
-  }
- }
-
 
   const query = `SELECT DISTINCT Movie.Movie_id,
-  MAX(Screening.Screening_date) AS Screening_date,
+  ${sort.order}(Screening.Screening_date) AS Screening_date,
   Movie.Title,
   Movie.Genre,
   Movie.Rating,
-  Movie.Adult
+  Movie.Age
   FROM Screening
   JOIN Movie ON Screening.Movie_id = Movie.Movie_id
   WHERE Movie.Title LIKE '${search}%'
+  ${filter === "" ? "" : `AND Movie.Age <= ${filter}`}
   GROUP BY Movie.Movie_id,
   Movie.Title,
   Movie.Genre,
   Movie.Rating,
-  Movie.Adult
-  ${sort === '' ? '' : "ORDER BY " + 'MAX('+ sort.name + ") " + sort.by}`;
+  Movie.Age
+  ${sort === "" ? "" : `ORDER BY ${sort.order}(${sort.name}) ${sort.by}`}`;
 
-  const [movies] = await connection.execute(query)
+  const [movies] = await connection.execute(query);
 
-  return movies
+  return movies;
 }
 
-export default { getMovieInformation, currentMovies, filterAllMovies }
+export default { getMovieInformation, currentMovies, filterAllMovies };
