@@ -48,7 +48,6 @@ async function getScreening(screeningID) {
       [screeningID]
     );
     
-    console.log(screeningInfo)
 
     // If screening is found, proceed to fetch seats information
     if(screeningInfo[0]) {
