@@ -66,13 +66,13 @@ async function createBooking(totalPrice, userInfo) {
 
 async function deleteBooking(bookingId, userId) {
   //Get user id from booking,
-  const [userData] = await connection.execute(
+  const [bookingData] = await connection.execute(
     "SELECT Booking.User_id FROM Booking WHERE Booking.Booking_id = ?",
     [bookingId]
   );
 
-    if(userData.length === 0) return userData
-  if (userData[0].User_id !== userId)
+    if(bookingData.length === 0) return bookingData
+  if (bookingData[0].User_id !== userId)
     throw new Error("You dont have permission to remove this booking");
 
   //Delete tickets based on booking id
