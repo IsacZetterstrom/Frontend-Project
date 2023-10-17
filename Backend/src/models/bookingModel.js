@@ -4,6 +4,19 @@ import connection from "../config/database.js";
  * @Author Niklas Nguyen, Isac Zetterström, Oliver Andersson, Louise Johansson, Oskar Dahlberg
  * @Descriptions model handle bookings
  */
+async function getBooking(bookingId) {
+  const [rows] = await connection.execute(
+    "SELECT * from Booking WHERE Booking.id = ?",
+    [bookingId]
+  );
+  return rows;
+}
+
+/**
+ * @Author Niklas Nguyen, Isac Zetterström, Oliver Andersson, Louise Johansson, Oskar Dahlberg
+ * @Descriptions model handle bookings
+ */
+
 async function createBooking(totalPrice, userInfo) {
   //Add total price later
   if (userInfo) {
@@ -12,6 +25,7 @@ async function createBooking(totalPrice, userInfo) {
       "INSERT INTO Booking (User_id,Total_price,Ref_num) VALUES (?,?,(HEX(RANDOM_BYTES(3))))",
       [userInfo, totalPrice]
     );
+
     return rows;
   } else {
     //if not logged in
@@ -50,4 +64,4 @@ async function deleteBooking(bookingId, userInfo) {
   return [ticketRows, bookingRows];
 }
 
-export default { deleteBooking, createBooking };
+export default { deleteBooking, createBooking, getBooking };
