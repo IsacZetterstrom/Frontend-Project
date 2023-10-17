@@ -1,33 +1,38 @@
 import connection from "../config/database.js";
 
+/**
+ * @Author Niklas Nguyen, Isac Zetterström, Oliver Andersson, Louise Johansson, Oskar Dahlberg
+ * @Descriptions model to create a ticket for a specific booking id
+ */
+
 async function createTicket(tickets, bookingId) {
   //Calculate total price later
   const ticketsArray = [];
   for (const ticket of tickets) {
-    console.log(ticket);
-    const [rows] = await connection.execute(
+    const [bookedTicket] = await connection.execute(
       "INSERT INTO Ticket (Screening_id, Booking_id, Seat_id, Ticket_Type_id) VALUES (?,?,?,?)",
       [ticket.Screening_id, bookingId, ticket.Seat_id, ticket.Ticket_Type_id]
     );
-    console.log(bookingId);
-    ticketsArray.push(rows);
+    ticketsArray.push(bookedTicket);
   }
   return ticketsArray;
 }
 
+/**
+ * @Author Niklas Nguyen, Isac Zetterström, Oliver Andersson, Louise Johansson, Oskar Dahlberg
+ * @Descriptions model to calc the sum price of all the tickets that gets send in though a body
+ */
+
 async function getTotalPrice(tickets) {
   //Calculate total price later
-  let totalPrice = 0;
+  let priceSum = 0;
   for (const ticket of tickets) {
-    console.log(ticket);
-    const [rows] = await connection.execute(
+    const [ticketsPrice] = await connection.execute(
       "SELECT Ticket_Type.Price FROM Ticket_Type WHERE Ticket_Type_id = ?",
       [ticket.Ticket_Type_id]
     );
-    console.log(rows[0].Price);
-    const price = rows[0].Price;
-    totalPrice += price;
+    priceSum += ticketsPrice[0].Price;
   }
-  return totalPrice;
+  return priceSum;
 }
 export default { createTicket, getTotalPrice };
