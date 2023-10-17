@@ -42,9 +42,9 @@ async function getScreening(req, res) {
   }
 }
 
-/*
-Author: Louise Johansson
-Description: Controller to handle return of getScreeningsByDate model
+/**
+* @Author: Louise Johansson
+*@Description: Controller to handle return of getScreeningsByDate model
 */
 async function getScreeningsByDate(req, res) {
   try {
