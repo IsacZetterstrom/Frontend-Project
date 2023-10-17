@@ -15,7 +15,7 @@ async function createTicket(tickets, bookingId) {
   return ticketsArray;
 }
 
-async function GetTotalPrice(tickets) {
+async function getTotalPrice(tickets) {
   //Calculate total price later
   let totalPrice = 0;
   for (const ticket of tickets) {
@@ -30,4 +30,4 @@ async function GetTotalPrice(tickets) {
   }
   return totalPrice;
 }
-export default { createTicket, GetTotalPrice };
+export default { createTicket, getTotalPrice };
