@@ -1,5 +1,11 @@
 import nodemailer from "nodemailer";
 
+/**
+ * @Author  Louise Johansson
+ * @Descriptions model to send booking confirmation email using Nodemailer. The function takes in user specific booking details and the users email. 
+ */
+
+// Nodemailer transporter 
 const transporter = nodemailer.createTransport({
   service: "hotmail",
   auth: {
@@ -8,22 +14,31 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function sendBookingConfirmationEmail(bookingData) {
+async function sendBookingConfirmationEmail(bookingData, email) {
+  // Format date string to swedish format
+  const formattedDateTime = new Date(bookingData.dateAndTime).toLocaleString('sv-SE', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
   return new Promise((resolve, reject) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: bookingData.email,
+      to: email,
       subject: "Här kommer dina biobiljetter",
       html: `
         <html>
         <body>
           <h1 style="font-weight: bold;">Tack för din bokning</h1>
-          <p>${bookingData.movie}</p>
-          <p>${bookingData.screeningDate}, ${bookingData.screeningStartTime}</p>
+          <p>${bookingData.title}</p>
+          <p>${formattedDateTime}</p>
           <p>Stolar: ${bookingData.seats}</p>
           <p>Salong: ${bookingData.saloon}</p>
-          <p>${bookingData.price}</p>
-          <p style="font-weight: bold; font-size: 20px;">Referens nummer: ${bookingData.RefNumber}</p>
+          <p>${bookingData.priceSum} Kr</p>
+          <p style="font-weight: bold; font-size: 20px;">Referens nummer: ${bookingData.bookingRef}</p>
         </body>
         </html>
         `,
@@ -41,4 +56,4 @@ async function sendBookingConfirmationEmail(bookingData) {
   });
 }
 
-export { sendBookingConfirmationEmail };
+export default { sendBookingConfirmationEmail };
