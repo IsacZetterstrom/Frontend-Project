@@ -7,21 +7,32 @@ import connection from "../config/database.js";
 async function getUserBookings(userId) {
   const [bookings] = await connection.execute(
     `
-    SELECT Movie.Title AS MovieTitle,
-    Theater.Theater_name AS TheaterName,
-    Seat.Number_row AS RowNumber,
-    Seat.Number_seat AS SeatNumber,
-    Booking.Ref_num AS ReferenceNumber,
-    Screening.Screening_date AS ScreeningDate,
-    Screening.Screening_startime AS ScreeningStartTime
-    FROM Booking
+    SELECT Movie.Title AS movieTitle,
+    Theater.Theater_name AS theaterName,
+    Booking.Ref_num AS referenceNumber,
+    Screening.Screening_date AS screeningDate,
+    Screening.Screening_startime AS screeningStartTime,
+    Booking.Total_price AS priceSum,
+    GROUP_CONCAT(
+        Seat.Number_row,
+        '-',
+        Seat.Number_seat
+        ORDER BY Seat.Seat_id ASC
+    ) AS seats
+FROM Booking
     JOIN Ticket ON Booking.Booking_id = Ticket.Booking_id
     JOIN Screening ON Ticket.Screening_id = Screening.Screening_id
     JOIN Theater ON Screening.Theater_id = Theater.Theater_id
     JOIN Movie ON Screening.Movie_id = Movie.Movie_id
     JOIN Ticket_Type ON Ticket.Ticket_Type_id = Ticket_Type.Ticket_type_id
     JOIN Seat ON Ticket.Seat_id = Seat.Seat_id
-    WHERE Booking.User_id = ?;
+WHERE Booking.User_id = ?
+GROUP BY Movie.Title,
+    Screening.Screening_startime,
+    Booking.Total_price,
+    Booking.Ref_num,
+    Screening.Screening_date,
+    Theater.Theater_name;
     `,
     [userId]
   );

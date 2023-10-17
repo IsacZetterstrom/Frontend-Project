@@ -1,8 +1,8 @@
 import movieModel from "../models/movieModel.js";
 
-/*
-Author: Louise Johansson
-Description: Controller to handle return of getMovieInformation model
+/**
+* @author Louise Johansson
+* @Description Controller to handle return of getMovieInformation model
 */
 async function getOneMovie(req, res) {
   try {

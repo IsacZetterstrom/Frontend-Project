@@ -1,6 +1,7 @@
 import { Router } from "express";
 import screeningController from "../controllers/screeningController.js";
 import movieController from "../controllers/movieController.js";
+import bookingController from "../controllers/bookingController.js";
 
 const publicRoutes = Router();
 
@@ -23,6 +24,9 @@ publicRoutes.get(
 );
 
 //BOOKING ROUTES
-publicRoutes.post("/movies/:movieId/screenings/:screening_id/booking");
+publicRoutes.post(
+  "/movies/:movieId/screenings/:screeningId/booking",
+  bookingController.createBooking
+);
 
 export default publicRoutes;

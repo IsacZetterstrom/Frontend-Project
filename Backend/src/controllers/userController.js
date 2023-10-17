@@ -6,10 +6,7 @@ import userModel from "../models/userModel.js";
  */
 async function getUserBookings(req, res) {
   try {
-    const email = req.decoded.email;
-    const userInfo = await userModel.getProfile(email);
-    const userId = userInfo[0].User_id;
-
+    const userId = req.decoded.id;
     const bookings = await userModel.getUserBookings(userId);
 
     if (bookings.length > 0) {
@@ -38,12 +35,12 @@ async function getProfile(req, res) {
  * @Description Controller for editing userInfo
  */
 async function editUser(req, res) {
-  const jwt = req.decoded.email;
+  const userId = req.decoded.id;
   const { email, firstname, lastname, phone } = req.body;
   try {
-    const userInfo = await userModel.getProfile(jwt);
-    const result = await userModel.editUser(
-      userInfo[0].User_id,
+   
+    await userModel.editUser(
+      userId,
       email,
       firstname,
       lastname,
