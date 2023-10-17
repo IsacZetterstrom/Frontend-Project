@@ -1,6 +1,6 @@
 import bookingModel from "../models/bookingModel.js";
-import userModel from "../models/userModel.js";
 import ticketModel from "../models/ticketModel.js";
+import mailService from "../services/mailService.js";
 
 /**
  * @Author Niklas Nguyen
@@ -9,60 +9,44 @@ import ticketModel from "../models/ticketModel.js";
 
 async function delBooking(req, res) {
   const bookingId = req.params.bookingId;
-  const email = req.decoded.email;
+  const userId = req.decoded.id;
 
   try {
-    const userInfo = await userModel.getProfile(email);
-    const result = await bookingModel.deleteBooking(bookingId, userInfo);
+    const result = await bookingModel.deleteBooking(bookingId, userId);
 
-    res.send(result);
-  } catch (error) {
-    res.status(400).json({ error: "Booking does not exist" });
+    if(result.length === 0) return res.status(400).json({ error: "Booking does not exist" })
+
+    return res.status(200).json({ error: `The booking been deleted` })
+  } catch (error) { 
+    return res.status(400).json(error.message);
   }
 }
 
 /**
  * @Author Niklas Nguyen, Isac Zetterström, Oliver Andersson, Louise Johansson, Oskar Dahlberg
- * @Descriptions Controller to handle bookings
+ * @Descriptions Controller to handle when a user books
  */
 async function createBooking(req, res) {
-  console.log(req.decoded);
-  // ScreeningID kommer från params
-  // MovieID kommer från params
-  const { movieId, screeningId } = req.params;
 
-  // Ta mail från req.decoded om den finns
-  // annars från body
+  let {tickets,email} = req.body
 
-  const tickets = [
-    {
-      Screening_id: 1,
-      Seat_id: 1,
-      Ticket_Type_id: 1,
-    },
-    {
-      Screening_id: 1,
-      Seat_id: 2,
-      Ticket_Type_id: 1,
-    },
-  ];
   try {
     //Get the total price for all tickets combined
     const totalPrice = await ticketModel.getTotalPrice(tickets);
-    console.log(totalPrice);
     //Create one booking for all the tickets
-    const bookingId = await bookingModel.createBooking(totalPrice);
-
-    console.log(bookingId.insertId);
+    const bookingId = await bookingModel.createBooking(totalPrice,req.decoded);
     //Create the individual tickets for the booking
-    const result = await ticketModel.createTicket(tickets, bookingId.insertId);
+    await ticketModel.createTicket(tickets, bookingId);
 
-    const bookingData = await bookingModel.getBooking(bookingId.insertId);
+    const bookingData = (await bookingModel.getBooking(bookingId))[0];
 
-    return result;
-    // res.json()
+    if(email == undefined && req.decoded == undefined) return res.status(500).json({ error: "no email or account provided" });
+    if(email == undefined) email = req.decoded.email
+
+    await mailService.sendBookingConfirmationEmail(bookingData,email)
+
+    res.status(200).json(bookingData)
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
