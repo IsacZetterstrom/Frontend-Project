@@ -24,7 +24,8 @@ async function getProfile(req, res) {
     //the email in the jwt token
     const email = req.decoded.email;
     const userInfo = await userModel.getProfile(email);
-    res.json(userInfo[0]);
+    
+    res.json({email:userInfo[0].Email,firstName: userInfo[0].Firstname,lastName: userInfo[0].Lastname,phone: userInfo[0].Phone});
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
