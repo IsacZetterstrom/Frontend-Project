@@ -1,5 +1,5 @@
 import screeningModel from "../models/screeningModel.js";
-
+import clientsHandler from "../services/clientsHandler.js";
 /*
 Description: Controllers for handling screening requests
 */
@@ -28,18 +28,32 @@ Handle route /movies/:movie_id/screenings/:ID
 Returns a single screening and its seat information
  */
 async function getScreening(req, res) {
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+    'Access-Control-Allow-Origin': '*'
+  });
+
   try {
     const screeningId = req.params.screeningId;
+    
+    clientsHandler.clients.push({
+      res,
+      screeningId
+    });
 
     const screening = await screeningModel.getScreening(screeningId);
+    res.write("data: " + JSON.stringify(screening[0]) + "\n\n");
 
-    res.json(screening[0]);
   } catch (error) {
-    console.log(error);
     res
       .status(500)
       .json({ error: "No screenings found by the specified screening_id" });
   }
+
+
+  req.on('close', () => clientsHandler.closeConnection(res));
 }
 
 /**

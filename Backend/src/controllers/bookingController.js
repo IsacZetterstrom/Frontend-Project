@@ -1,5 +1,7 @@
 import bookingModel from "../models/bookingModel.js";
+import screeningModel from "../models/screeningModel.js";
 import ticketModel from "../models/ticketModel.js";
+import clientsHandler from "../services/clientsHandler.js";
 import mailService from "../services/mailService.js";
 
 /**
@@ -29,6 +31,7 @@ async function delBooking(req, res) {
 async function createBooking(req, res) {
 
   let {tickets,email} = req.body
+  const screeningId = req.params.screeningId
 
   try {
     //Get the total price for all tickets combined
@@ -44,6 +47,8 @@ async function createBooking(req, res) {
     if(email == undefined) email = req.decoded.email
 
     await mailService.sendBookingConfirmationEmail(bookingData,email)
+
+    clientsHandler.broadcastTo(screeningId)
 
     res.status(200).json(bookingData)
   } catch (error) {
