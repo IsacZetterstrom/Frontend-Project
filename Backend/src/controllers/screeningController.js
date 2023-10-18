@@ -38,10 +38,7 @@ async function getScreening(req, res) {
   try {
     const screeningId = req.params.screeningId;
     
-    clientsHandler.clients.push({
-      res,
-      screeningId
-    });
+    clientsHandler.addClient(res, screeningId);
 
     const screening = await screeningModel.getScreening(screeningId);
     res.write("data: " + JSON.stringify(screening[0]) + "\n\n");
