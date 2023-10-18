@@ -47,7 +47,6 @@ async function getScreening(req, res) {
     res.write("data: " + JSON.stringify(screening[0]) + "\n\n");
 
   } catch (error) {
-    console.log(error);
     res
       .status(500)
       .json({ error: "No screenings found by the specified screening_id" });
