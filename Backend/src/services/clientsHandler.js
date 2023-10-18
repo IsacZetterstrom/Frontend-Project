@@ -15,6 +15,14 @@ function broadcastTo(screeningId) {
   })
 }
 
+function addClient(res, screeningId) {
+  clients.push({
+    res,
+    screeningId
+  });
+}
+
+
 /**
 * @Author: Oliver Andersson
 *@Description: Removes a connection from clients array
@@ -24,4 +32,4 @@ function closeConnection(res) {
 }
 
 
-export default {clients, broadcastTo, closeConnection}
+export default {clients, broadcastTo, addClient, closeConnection}
