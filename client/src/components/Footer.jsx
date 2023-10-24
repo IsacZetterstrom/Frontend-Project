@@ -4,6 +4,7 @@ import { BsLinkedin } from 'react-icons/bs';
 import { BsTwitter } from 'react-icons/bs';
 import { BsTelephone } from 'react-icons/bs';
 import '../styling/components/_footer.scss';
+import'../styling/main.scss'
 
 /**
 * @author Sara Johansson
