@@ -1,6 +1,7 @@
+@use "./abstract/variables" as *;
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 body {
-    background-color: #252525;
+    background-color: $mainColor;
     color: white;
 }
