@@ -98,16 +98,19 @@ async function filterAllMovies(filter, sort, search) {
   Movie.Title,
   Movie.Genre,
   Movie.Rating,
-  Movie.Age
+  Movie.Age,
+  Movie_Information.Poster
   FROM Screening
   JOIN Movie ON Screening.Movie_id = Movie.Movie_id
+  JOIN Movie_Information ON Screening.Movie_id = Movie_Information.Movie_id
   WHERE Movie.Title LIKE ?
   ${filter === "" ? "" : `AND Movie.Age <= ${filter}`}
   GROUP BY Movie.Movie_id,
   Movie.Title,
   Movie.Genre,
   Movie.Rating,
-  Movie.Age
+  Movie.Age,
+  Movie_Information.Poster
   ${sort === "" ? "" : `ORDER BY ${sort.order} (${sort.name}) ${sort.by} `}`;
   const [movies] = await connection.execute(query, [`${search}%`]);
 

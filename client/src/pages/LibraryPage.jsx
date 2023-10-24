@@ -3,6 +3,7 @@ import { useState,useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 import { Link } from 'react-router-dom';
 
 function LibraryPage() {
@@ -30,8 +31,10 @@ function LibraryPage() {
     <Container>
       <Row>
         {data.map((movie) => (
-          <Col sm={4} key={movie.id}>
+          <Col xs={6} md={4} key={movie.id}>
                  <Link to={`/film/${movie.Movie_id}`}>
+                           {/* Use card later */} 
+                        <Image src={`${movie.Poster}`} fluid rounded  />
                         {movie.Title} 
                  </Link>
   
