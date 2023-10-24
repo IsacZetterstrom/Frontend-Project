@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FetchService from "../service/FetchService";
+import fetchService from "../service/FetchService";
 
 /**
  * @author Niklas Nguyen
@@ -16,7 +16,7 @@ function useFetchData(url) {
     (async function () {
       try {
         setloading(true);
-        const response = await FetchService.fetchJson(url, "GET");
+        const response = await fetchService.fetchJson(url, "GET");
         setData(response);
       } catch (err) {
         setErr(true);
