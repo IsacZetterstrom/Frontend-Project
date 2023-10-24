@@ -3,20 +3,26 @@
  * @description this service exports a finnish fetch build for json or a server response
  */
 
-async function fetchOptions (url, method, data) {
+import cacheService from "./CacheService";
 
-    // "authorization": `Bearer ${sessionStorage.getItem("jwtToken")}`,
-    
+async function fetchOptions (url, method, data) {
+    const token = cacheService.getLocalValue("jwtToken")
+
     const options = {
         method: method,
         headers: {
         "Content-Type": "application/json",
         },
         };
-        
-    if (method !== "GET") {
-        fetchOptions.body = JSON.stringify(data);
-    }
+
+  
+    if(token !== undefined) options.headers = {
+        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        };
+
+    if (method !== "GET") fetchOptions.body = JSON.stringify(data);
+    
       
     return await fetch(url, options);
 };
@@ -29,5 +35,5 @@ async function fetchRes(url,method,data){
     return await fetchOptions(url,method,data)
 }
 
-const FetchService = {fetchJson,fetchRes}
-  export default FetchService
+const fetchService = {fetchJson,fetchRes}
+  export default fetchService
