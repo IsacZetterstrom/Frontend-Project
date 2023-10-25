@@ -11,7 +11,7 @@ import RegisterPage from "../pages/RegisterPage";
 
 export const pages = [
   { path: "/", label: "Hem", inNav: true, rightNav: false, element: <LandingPage /> },
-  { path: "/film/:movieId/boka/:screenId", label: "Boka", rightNav: false, inNav: false, element: <BookingPage /> },
+  { path: "/film/:movieId/boka/:screeningId", label: "Boka", rightNav: false, inNav: false, element: <BookingPage /> },
   { path: "/film/:movieId", label: "Detaljer", inNav: false, rightNav: false, element: <DetailPage /> },
   { path: "/redigera-profil", label: "Redigera", inNav: false, rightNav: false, element: <EditUserPage /> },
   { path: "/filmer", label: "Filmer", inNav: true, rightNav: false, element: <LibraryPage /> },
