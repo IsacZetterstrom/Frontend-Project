@@ -1,6 +1,8 @@
 @use "./abstract/variables" as *;
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "./components/formPage";
 @import "./components/navbar";
+
 
 body {
     background-color: $mainColor;
