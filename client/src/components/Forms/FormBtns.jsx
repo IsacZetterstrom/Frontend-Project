@@ -1,14 +1,14 @@
 import React from "react";
-import { Container, Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 function FormBtns({ submitBtn, cancelBtn, showCancelBtn, setFormData }) {
   return (
-    <Container>
-      <Button className="form-control mt-3" type="submit">
+    <Container className="d-flex flex-column justify-content-center align-items-center">
+      <Button className=" mt-3 submit-btn" type="submit">
         {submitBtn}
       </Button>
       {showCancelBtn && (
-        <Button onClick={() => setFormData({})} className="form-control mt-3" type="reset">
+        <Button onClick={() => setFormData({})} className=" mt-3 cancel-btn" type="reset">
           {cancelBtn}
         </Button>
       )}
