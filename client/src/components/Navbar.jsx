@@ -5,44 +5,46 @@ import BootStrapNav from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Logotype from "../assets/Logotype.svg";
+import cacheService from "../service/CacheService";
+import { useNavigate } from "react-router-dom";
 function Navbar() {
-  const [isLoggedIn, SetIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(cacheService.isLoggedIn());
+  const navigate = useNavigate();
 
-  function checkUser() {
-    if (localStorage.getItem(ref)) {
-      SetIsLoggedIn(true);
+  function logoutUser() {
+    setToken(null);
+    cacheService.removeLocalValue("token");
+    navigate("/");
+  }
+
+  function renderUserMenu() {
+    if (token) {
+      return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
+        if (!loggedIn) {
+          return (
+            inNav &&
+            rightNav && (
+              <NavLink key={path} className="nav-link text-nowrap" to={path}>
+                {label}
+              </NavLink>
+            )
+          );
+        }
+      });
     } else {
-      SetIsLoggedIn(false);
+      return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
+        if (loggedIn) {
+          return (
+            inNav &&
+            rightNav && (
+              <NavLink key={path} className="nav-link text-nowrap" to={path}>
+                {label}
+              </NavLink>
+            )
+          );
+        }
+      });
     }
-  }
-
-  function renderLoggedIn() {
-    return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
-      if (loggedIn) {
-        return (
-          inNav &&
-          rightNav && (
-            <NavLink key={path} className="nav-link text-nowrap" to={path}>
-              {label}
-            </NavLink>
-          )
-        );
-      }
-    });
-  }
-  function renderGuest() {
-    return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
-      if (!loggedIn) {
-        return (
-          inNav &&
-          rightNav && (
-            <NavLink key={path} className="nav-link text-nowrap" to={path}>
-              {label}
-            </NavLink>
-          )
-        );
-      }
-    });
   }
 
   return (
@@ -53,8 +55,8 @@ function Navbar() {
             <img src={Logotype} alt="" width="100px" />
           </BootStrapNav.Brand>
           <BootStrapNav.Toggle aria-controls="navbar-nav"></BootStrapNav.Toggle>
-          <BootStrapNav.Collapse id="basic-navbar-nav" style={{ width: "50%" }}>
-            <Nav>
+          <BootStrapNav.Collapse id="navbar-fixed-top" style={{ width: "50%" }}>
+            <Nav className="navbar-fixed-top">
               {pages.map(({ label, path, inNav, rightNav }) => {
                 return (
                   inNav &&
@@ -78,7 +80,17 @@ function Navbar() {
                 <Container className="navline d-none d-md-block" />
               </Container>
 
-              {isLoggedIn ? renderLoggedIn() : renderGuest()}
+              {renderUserMenu()}
+              {token && (
+                <NavLink
+                  key={"logout"}
+                  onClick={() => {
+                    logoutUser;
+                  }}
+                  className="nav-link text-nowrap logout-btn">
+                  Logout
+                </NavLink>
+              )}
             </Nav>
           </BootStrapNav.Collapse>
         </Container>
