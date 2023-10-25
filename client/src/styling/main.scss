@@ -1,5 +1,7 @@
 @use "./abstract/variables" as *;
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "./components/trailer";
+@import "./components/movieDesc";
 
 body {
     background-color: $mainColor;
