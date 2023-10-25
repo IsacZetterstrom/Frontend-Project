@@ -1,16 +1,18 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
 
-function FilterForm() {
+function FilterForm({ setFilter }) {
+    const handleFilter = (event) => {
+        setFilter(event.target.value)
+    };
     return (
         <>
-            <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <Form.Select aria-label="Default select example" onChange={handleFilter}>
+                <option value="">Välj åldersgräns</option>
+                <option value="7">7</option>
+                <option value="12">12</option>
+                <option value="15">15</option>
             </Form.Select>
-
         </>
     )
 }

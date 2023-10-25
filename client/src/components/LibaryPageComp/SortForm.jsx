@@ -1,14 +1,19 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
 
-function SortForm() {
+function SortForm({setSort}) {
+    
+    const handleSort = (event) => {
+        setSort(event.target.value)
+      };
     return (
-        <>
-            <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+        <>  
+            <Form.Select aria-label="sort movies" onChange={handleSort}>
+                <option value="" >Sortera</option>
+                <option value="dateLow" >Datum nya</option>
+                <option value="dateHigh"  >Datum äldre</option>
+                <option value="ratingHigh">Betyg högt</option>
+                <option value="ratingLow">Betyg lågt</option>
             </Form.Select>
 
         </>
