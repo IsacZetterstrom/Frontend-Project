@@ -3,6 +3,7 @@ import TrailerComponent from '../components/DetailPage/TrailerComponent';
 import MovieDesc from '../components/DetailPage/MovieDesc';
 import { useParams } from 'react-router-dom';
 import useFetchData from '../hooks/useFetchData';
+import { Container } from 'react-bootstrap';
 
 function DetailPage() {
   const { movieId } = useParams();
@@ -10,7 +11,7 @@ function DetailPage() {
 
   return (
     <>
-      <div className="detailPageContainer">
+      <Container fluid className="detailPageContainer m-0 p-0">
       {err && <p>404 could not be found</p>}
       {loading ? <p>loading...</p> : (
         <>
@@ -18,7 +19,7 @@ function DetailPage() {
           <MovieDesc movie={data?.movie} />
         </>
       )}
-    </div>
+    </Container>
     </>
   );
 }
