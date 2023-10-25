@@ -1,47 +1,50 @@
-import React from 'react'
-import { BsInstagram } from 'react-icons/bs';
-import { BsLinkedin } from 'react-icons/bs';
-import { BsTwitter } from 'react-icons/bs';
-import { BsTelephone } from 'react-icons/bs';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { BsInstagram, BsLinkedin, BsTwitter, BsTelephone } from 'react-icons/bs';
 import '../styling/components/_footer.scss';
 
-
 /**
-* @author Sara Johansson
-* @Description Footer with adress and social media links
-*/
+ * @author Sara Johansson
+ * @Description Footer with address and social media links
+ */
 
 function Footer() {
   return (
-    <footer className="custom-footer">
-      <div className="footer">
-        <div className="row justify-content-center">
-          <div className="col-1 mb-1">
-            <a href="https://www.twitter.com/" className="icon">
-              <BsTwitter/>
-            </a>
-          </div>
-          <div className="col-1 mb-3">
-            <a href="https://www.linkedin.com/" className="icon">
-            <BsLinkedin/>
-            </a>
-          </div>
-          <div className="col-1 mb-3">
-          <a href="https://www.instagram.com/" className="icon">
-          <BsInstagram/> 
-            </a>
-          </div>
-          <div className="mobile-icon">
-          <a href="https://www.instagram.com/" className="icon">
-          <BsTelephone/> 12-34 56 78 91
-            </a> 
-            <div className='footer-adress'><a>Springavägen 420, 133 37 Rymden</a></div>
-          </div>
-          <div className='footer-text'><p>&copy; 2023 Filmvisarna</p></div>
-        </div>
-      </div>
-    </footer>
-  )
+    <Container fluid className="customFooter">
+      <Row className="iconRow text-center">
+        <Col xs={1} className="iconCol"> 
+          <a href="https://www.twitter.com/" className="icon fs-3">
+            <BsTwitter />
+          </a>
+        </Col>
+        <Col xs={1} className="iconCol"> 
+          <a href="https://www.linkedin.com/" className="icon fs-3">
+            <BsLinkedin />
+          </a>
+        </Col>
+        <Col xs={1} className="iconCol"> 
+          <a href="https://www.instagram.com/" className="icon fs-3">
+            <BsInstagram />
+          </a>
+        </Col>
+      </Row>
+      <Row className="justify-content-center text-center mt-4">
+        <Col md={12} className="phoneCol"> 
+          <a href="tel:+1234567891" className="icon">
+            <BsTelephone /> 12-34 56 78 91
+          </a>
+        </Col>
+        <Col md={12} className=''>
+          <a>Springavägen 420, 133 37 Rymden</a>
+        </Col>
+      </Row>
+      <Row className="justify-content-center mt-2">
+        <Col className="footerText text-center">
+          <p>&copy; 2023 Filmvisarna</p>
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
-export default Footer
+export default Footer;
