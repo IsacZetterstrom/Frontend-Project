@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
+import { BsPlayCircleFill } from 'react-icons/bs';
+
 
 function TrailerComponent({ movie }) {
     const { Image, Title, Trailer } = movie;
@@ -20,7 +22,7 @@ function TrailerComponent({ movie }) {
             <div className="overlay"></div>
             <img src={Image} alt={Title} onClick={openVideo} />
             <div className="play-button" onClick={openVideo}>
-                <span className="play-button-icon">▶</span>
+                <BsPlayCircleFill className='play-button-icon'/>
             </div>
             {showVideo && (
                 <div className="video-modal" onClick={closeVideo}>
