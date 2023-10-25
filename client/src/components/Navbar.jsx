@@ -7,6 +7,12 @@ import Container from "react-bootstrap/Container";
 import Logotype from "../assets/Logotype.svg";
 import cacheService from "../service/CacheService";
 import { useNavigate } from "react-router-dom";
+
+/**
+ * @author Isac Zetterström
+ * @description logic and render of the navbar.
+ */
+
 function Navbar() {
   const [token, setToken] = useState(cacheService.isLoggedIn());
   const navigate = useNavigate();
