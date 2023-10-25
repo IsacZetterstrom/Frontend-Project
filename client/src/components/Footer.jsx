@@ -4,7 +4,7 @@ import { BsLinkedin } from 'react-icons/bs';
 import { BsTwitter } from 'react-icons/bs';
 import { BsTelephone } from 'react-icons/bs';
 import '../styling/components/_footer.scss';
-import'../styling/main.scss'
+
 
 /**
 * @author Sara Johansson
@@ -16,17 +16,17 @@ function Footer() {
     <footer className="custom-footer">
       <div className="footer">
         <div className="row justify-content-center">
-          <div className="col-2 mb-3">
+          <div className="col-1 mb-1">
             <a href="https://www.twitter.com/" className="icon">
               <BsTwitter/>
             </a>
           </div>
-          <div className="col-2 mb-3">
+          <div className="col-1 mb-3">
             <a href="https://www.linkedin.com/" className="icon">
             <BsLinkedin/>
             </a>
           </div>
-          <div className="col-2 mb-3">
+          <div className="col-1 mb-3">
           <a href="https://www.instagram.com/" className="icon">
           <BsInstagram/> 
             </a>

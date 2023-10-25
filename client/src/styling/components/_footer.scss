@@ -7,9 +7,9 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: #2B3D5B;
-    padding: 10px;
+    background-color: #15253F;
     text-align: center;
+    padding-top: 1em;
     
    
     
@@ -17,10 +17,12 @@
       color: #fff;
       text-decoration: none;
       font-size: 12px;
+      
     }
     
     .footer-adress {
         font-size: 12px;
+        margin-top: 1em;
        
     }
     
@@ -28,6 +30,7 @@
       margin-top: 12px;
       color: #f8f3f383;
       font-size: 12px;
+      margin: 10px;
       
     }
   }
@@ -37,10 +40,11 @@
     color: white;
     text-decoration: none;
     justify-content: center;
+   
     svg {
         font-size: 20px; 
     }
-
+    
 }
 
 .mobile-icon {
@@ -50,6 +54,12 @@
     }
 }
 
+.navline {
+  content: ' ';
+  color: red;
+  height: 2px;
+  width: 10em;
+}
 
 
 
