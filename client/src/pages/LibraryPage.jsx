@@ -6,8 +6,6 @@ import LibaryForm from '../components/LibaryPageComp/LibaryForm';
 import GlobalMovieCard from '../components/GlobalMovieCard';
 function LibraryPage() {
 
-
-  //http://localhost:3050/api/movies?filter=&sort=&search=
   const [data, setData] = useState([]);
   const [query, setSearch] = useState('');
   const [sort, setSort] = useState('');
