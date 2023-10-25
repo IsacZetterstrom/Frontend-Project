@@ -20,7 +20,7 @@ function Navbar() {
   function renderUserMenu() {
     if (token) {
       return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
-        if (!loggedIn) {
+        if (loggedIn) {
           return (
             inNav &&
             rightNav && (
@@ -33,7 +33,7 @@ function Navbar() {
       });
     } else {
       return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
-        if (loggedIn) {
+        if (!loggedIn) {
           return (
             inNav &&
             rightNav && (
@@ -51,7 +51,7 @@ function Navbar() {
     <>
       <BootStrapNav expand="md" className="navbar">
         <Container>
-          <BootStrapNav.Brand className="d-md-none" href="#home">
+          <BootStrapNav.Brand className="d-md-none" href="/">
             <img src={Logotype} alt="" width="100px" />
           </BootStrapNav.Brand>
           <BootStrapNav.Toggle aria-controls="navbar-nav"></BootStrapNav.Toggle>
@@ -73,7 +73,7 @@ function Navbar() {
               <Container className="d-flex flex-row justify-content-center align-items-center">
                 <Container className="navline d-none d-md-block" />
                 <BootStrapNav.Brand
-                  href="#home"
+                  href="/"
                   className="d-none d-md-block mx-auto px-2">
                   <img className="logo" src={Logotype} alt="" />
                 </BootStrapNav.Brand>
