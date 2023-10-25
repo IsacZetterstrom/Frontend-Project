@@ -2,19 +2,21 @@
     background: rgba(8, 23, 46, 0.5);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    // backdrop-filter: blur(5px);
-    // -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(8, 23, 46, 0.3);
     position: absolute;
     bottom: 0;
-
     h2 {
         font-size: 25px;
         font-weight: bold;
+        font-family: 'Playfair Display';
     }
     .movieTitle {
         font-size: 40px;
         font-weight: bold;
+    }
+    p {
+        font-size: 14px;
+        font-family: 'Noto Sans', sans-serif;
     }
 }
 
