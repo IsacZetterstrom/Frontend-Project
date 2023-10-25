@@ -17,5 +17,12 @@ export default defineConfig({
         secure: false,
       },
     },
+    proxy: {
+      "/user": {
+        target: "http://localhost:3050/",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });
