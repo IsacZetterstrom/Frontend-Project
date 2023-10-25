@@ -5,8 +5,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import { Link } from 'react-router-dom';
-
+import useFetchData from '../hooks/useFetchData';
+import SearchBar from '../components/SearchBar';
+import SelectForm from '../components/FilterForm';
 function LibraryPage() {
+
+
 //http://localhost:3050/api/movies?filter=&sort=&search=
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -28,6 +32,9 @@ function LibraryPage() {
   return (
     <>
     <h1>Libarypage</h1>
+    <Container >
+    <SearchBar ></SearchBar>
+    </Container>
     <Container>
       <Row>
         {data.map((movie) => (
@@ -35,7 +42,7 @@ function LibraryPage() {
                  <Link to={`/film/${movie.Movie_id}`}>
                            {/* Use card later */} 
                         <Image src={`${movie.Poster}`} fluid rounded  />
-                        {movie.Title} 
+                        <p>{movie.Title} </p>
                  </Link>
   
           </Col>
