@@ -3,6 +3,16 @@
 @import "./components/trailer";
 @import "./components/movieDesc";
 
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('../fonts/NotoSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+
 body {
     background-color: $mainColor;
     color: white;
