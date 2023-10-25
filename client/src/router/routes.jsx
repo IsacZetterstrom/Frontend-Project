@@ -18,7 +18,7 @@ export const pages = [
     element: <LandingPage />,
   },
   {
-    path: "/film/:movieId/boka/:screenId",
+    path: "/film/:movieId/boka/:screeningId",
     label: "Boka",
     rightNav: false,
     inNav: false,
