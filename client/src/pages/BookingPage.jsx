@@ -3,6 +3,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SeatPicker from "../components/SeatPicker";
 
+/**
+ * @author Oliver Andersson
+ * @description Page for chosing tickets, selecting seats and booking a screening
+ */
+
 function BookingPage() {
   
   const { screeningId } = useParams();
@@ -14,7 +19,6 @@ function BookingPage() {
 
 
 
-  // Flytta ut denna useEffect?
   useEffect(() => {
     const eventSource = new EventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
 
@@ -27,7 +31,7 @@ function BookingPage() {
 
 
 
-  function handleSeatClick(seat) {
+  function addOneSeat(seat) {
     if(selectedSeats.includes(seat)) {
       setSelectedSeats(selectedSeats.filter((x) => x !== seat))
     } else {
@@ -41,13 +45,18 @@ function BookingPage() {
     }
   }
 
-  console.log(selectedSeats)
+  function addSeveralSeats(seats) {
+    setSelectedSeats(seats);
+  }
+
 
   return <>
     <SeatPicker
       screeningData={screeningData}
-      handleSeatClick={handleSeatClick}
+      addOneSeat={addOneSeat}
+      addSeveralSeats={addSeveralSeats}
       selectedSeats={selectedSeats}
+      maxSeats={maxSeats}
     />
   </>;
 }
