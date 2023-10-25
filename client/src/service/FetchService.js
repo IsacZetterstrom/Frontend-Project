@@ -5,35 +5,33 @@
 
 import cacheService from "./CacheService";
 
-async function fetchOptions (url, method, data) {
-    const token = cacheService.getLocalValue("jwtToken")
+async function fetchOptions(url, method, data) {
+  // const token = cacheService.getLocalValue("jwtToken")
 
-    const options = {
-        method: method,
-        headers: {
-        "Content-Type": "application/json",
-        },
-        };
+  const options = {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-  
-    if(token !== undefined) options.headers = {
-        "authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
-        };
+  // if(token !== undefined) options.headers = {
+  //     "authorization": `Bearer ${token}`,
+  //     "Content-Type": "application/json",
+  //     };
 
-    if (method !== "GET") fetchOptions.body = JSON.stringify(data);
-    
-      
-    return await fetch(url, options);
-};
+  if (method !== "GET") fetchOptions.body = JSON.stringify(data);
 
-async function fetchJson(url,method,data){
-    return await (await fetchOptions(url,method,data)).json()
+  return await fetch(url, options);
 }
 
-async function fetchRes(url,method,data){
-    return await fetchOptions(url,method,data)
+async function fetchJson(url, method, data) {
+  return await (await fetchOptions(url, method, data)).json();
 }
 
-const fetchService = {fetchJson,fetchRes}
-  export default fetchService
+async function fetchRes(url, method, data) {
+  return await fetchOptions(url, method, data);
+}
+
+const fetchService = { fetchJson, fetchRes };
+export default fetchService;
