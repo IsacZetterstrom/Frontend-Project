@@ -8,9 +8,8 @@ function MovieDesc({ movie }) {
             <Col xs={6} md={6} className='d-lg-none'>
                 <Image src={movie.Poster} alt={movie.Title} fluid className="max-200 max-300" />
             </Col>
-            <Col xs={6} md={6}>
-                <h2>Titel</h2>
-                <p>{movie.Title}</p>
+            <Col xs={6} md={6} lg={12}>
+                <h2 className='movieTitle'>{movie.Title}</h2>
                 <h2>Genre</h2>
                 <p>{movie.Genre}</p>
                 <h2>Beskrivning</h2>
