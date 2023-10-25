@@ -24,12 +24,14 @@ function RegisterPage() {
   };
 
   return (
-    <Container fluid className="form-wrapper">
+    <Container className="form-wrapper">
       <Row>
-        <h1>Bli medlem</h1>
+        <Container className="d-flex justify-content-center align-items-center">
+          <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5">Bli medlem</h1> <Container className="navline d-md-block" />
+        </Container>
         <RegisterForm {...{ defaults, formData, handleSubmit, setFormData }} />
-        {msg !== null && <p>{msg}</p>}
-        <p>
+        {msg !== "" && <p className="text-center">{msg}</p>}
+        <p className="text-center">
           Har du redan ett konto?<Link to={"/logga-in"}>Logga in här!</Link>
         </p>
       </Row>
