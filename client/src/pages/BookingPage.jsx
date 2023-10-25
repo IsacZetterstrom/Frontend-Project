@@ -33,7 +33,6 @@ function BookingPage() {
     } else {
 
       if (selectedSeats.length >= maxSeats) {
-        // Remove the first item from selectedSeats before adding a new one
         const updatedSeats = selectedSeats.slice(1);
         setSelectedSeats([...updatedSeats, seat]);
       } else {
