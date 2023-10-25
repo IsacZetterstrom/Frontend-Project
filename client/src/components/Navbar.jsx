@@ -22,7 +22,7 @@ function Navbar() {
         return (
           inNav &&
           rightNav && (
-            <NavLink key={path} className="nav-link" to={path}>
+            <NavLink key={path} className="nav-link text-nowrap" to={path}>
               {label}
             </NavLink>
           )
@@ -36,7 +36,7 @@ function Navbar() {
         return (
           inNav &&
           rightNav && (
-            <NavLink key={path} className="nav-link" to={path}>
+            <NavLink key={path} className="nav-link text-nowrap" to={path}>
               {label}
             </NavLink>
           )
@@ -59,7 +59,10 @@ function Navbar() {
                 return (
                   inNav &&
                   !rightNav && (
-                    <NavLink key={path} className="nav-link" to={path}>
+                    <NavLink
+                      key={path}
+                      className="nav-link text-nowrap"
+                      to={path}>
                       {label}
                     </NavLink>
                   )
