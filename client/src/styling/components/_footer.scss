@@ -12,40 +12,57 @@
     .footerText {
       color: #f8f3f383;
       font-size: 12px;
-      &:before {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      
+      &:after {
         content: " ";
-        /* add line on top of footer text here*/
+        display: block;
+        height: 2px;
+        width: 120px;
+        position: absolute;
+        top: 75%;
+        background: linear-gradient(#5B4935,#BD9060, #5B4935);
       }
+
     }
     
     .iconRow {
       position: relative;
       justify-content: center;
-      max-width: 500px;
-      &::before {
+      max-width: 100%;
+      margin: 0 auto; // Center the row
+      text-align: center; // Center the child elements
+    
+      &:before,
+      &:after {
         content: " ";
         display: block;
         height: 2px;
-        width: 130px;
+        width: 109px;
         position: absolute;
         top: 50%;
-        left: 0;
-        background: #5B4935;
+        background: linear-gradient(#5B4935, #BD9060, #5B4935);
       }
+    
+      &:before {
+        left: 30px;
+      }
+    
       &:after {
-        content:" ";
-        height: 2px;
-        width: 130px;
-        background: #5B4935;
-        display: block;
-        position: absolute;
-        top: 50%;
-        right: 0;
+        right: 20px;
       }
+    
+      
     }
-  }
+    
+    .icon {
+      color: white;
+      text-decoration: none;
+    }
+    
 
-.icon {
-    color: white;
-    text-decoration: none;
-}
+    
+  }    

@@ -10,7 +10,7 @@ import '../styling/components/_footer.scss';
 
 function Footer() {
   return (
-    <Container fluid className="customFooter">
+    <Container fluid className="customFooter fixed-bottom">
       <Row className="iconRow text-center">
         <Col xs={1} className="iconCol"> 
           <a href="https://www.twitter.com/" className="icon fs-3">
@@ -39,7 +39,7 @@ function Footer() {
         </Col>
       </Row>
       <Row className="justify-content-center mt-2">
-        <Col className="footerText text-center">
+        <Col className="footerText">
           <p>&copy; 2023 Filmvisarna</p>
         </Col>
       </Row>
