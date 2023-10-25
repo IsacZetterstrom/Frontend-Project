@@ -1,11 +1,42 @@
+@use "../abstract/variables" as *;
+
 .form-wrapper{
     display: flex;
     justify-content: center;
-    h1{
-        text-align: center;
-    }
-    p{
+    width: clamp(200px,80%,500px);
 
-        text-align: center;
+
+    .navline {
+        background-image: $lineGradient;
+        height: 2px;
+        margin-left:.5em ;
+    }
+
+    .submit-btn,
+    .cancel-btn{
+        border-radius: 9999999999px;
+        width: 100%;
+        opacity: 95%;
+        color: $mainColor;
+    }
+
+    .submit-btn:hover,
+    .cancel-btn:hover{
+       opacity: 100%;
+    }
+
+    .form-control:focus{
+        box-shadow: none;
+       border-color: $goldColor;
+    }
+
+    .submit-btn{
+        border-color: $goldColor;
+        background-color: $goldColor;
+    }
+
+    .cancel-btn{
+        background-color: #A5A5A5;
+        border-color: #A5A5A5;
     }
 }
