@@ -12,6 +12,11 @@ export default defineConfig({
         timeout: 0,
         secure: false,
       },
+      '/auth': {
+        target: `http://localhost:3050`,
+        changeOrigin: true,
+        secure: false,
+      },
     },
   }
 });
