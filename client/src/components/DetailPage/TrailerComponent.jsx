@@ -17,6 +17,7 @@ function TrailerComponent({ movie }) {
 
     return (
         <Container fluid className="trailer-container">
+            <div className="overlay"></div>
             <img src={Image} alt={Title} onClick={openVideo} />
             <div className="play-button" onClick={openVideo}>
                 <span className="play-button-icon">▶</span>
