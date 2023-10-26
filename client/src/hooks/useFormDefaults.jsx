@@ -21,7 +21,7 @@ export function useFormDefaults() {
         setFormData({ ...formData, [target.name]: target.value });
         target.setCustomValidity(validator(target.value) ? "" : invalidMessage);
       },
-      className: "form-control mt-3",
+      className: "form-control",
       ...override,
     };
   }

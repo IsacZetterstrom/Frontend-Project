@@ -67,13 +67,13 @@ WHERE Movie.Movie_id IN (
 async function filterAllMovies(filter, sort, search) {
   if (sort === "dateHigh") {
     sort = {
-      name: "Screening.Screening_date",
+      name: "Movie.Release_date",
       by: "DESC",
       order: "MAX",
     };
   } else if (sort === "dateLow") {
     sort = {
-      name: "Screening.Screening_date",
+      name: "Movie.Release_date",
       by: "ASC",
       order: "MIN",
     };

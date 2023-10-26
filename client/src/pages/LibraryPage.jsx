@@ -27,7 +27,7 @@ function LibraryPage() {
 
   return (
     <>
-      <h1>Libarypage</h1>
+      <h1>Biblotek</h1>
       <Container >
         <LibaryForm setSearch={setSearch} setSort={setSort} setFilter={setFilter}> </LibaryForm>
       </Container>

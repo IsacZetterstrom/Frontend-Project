@@ -10,7 +10,7 @@ function FilterForm({ setFilter }) {
             <Form.Select aria-label="Default select example" onChange={handleFilter}>
                 <option value="">Välj åldersgräns</option>
                 <option value="7">7</option>
-                <option value="12">12</option>
+                <option value="11">11</option>
                 <option value="15">15</option>
             </Form.Select>
         </>
