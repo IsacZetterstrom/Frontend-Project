@@ -16,8 +16,6 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-    },
-    proxy: {
       "/user": {
         target: "http://localhost:3050/",
         changeOrigin: true,
