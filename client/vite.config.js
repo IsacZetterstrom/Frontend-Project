@@ -11,8 +11,13 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-      '/auth': {
-        target: `http://localhost:3050`,
+      "/auth": {
+        target: "http://localhost:3050/",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/user": {
+        target: "http://localhost:3050/",
         changeOrigin: true,
         secure: false,
       },

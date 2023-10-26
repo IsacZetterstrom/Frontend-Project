@@ -19,8 +19,13 @@ function removeLocalValue(ref) {
   return "You have logged out";
 }
 
+/**
+ * @author Isac Zetterström
+ * @description Checks if token is in localstorage, if not returns false. Used to see if user is logged in.
+ */
 function isLoggedIn() {
   if (!localStorage.getItem("token")) return false;
+  return true
 }
 
 const cacheService = {
