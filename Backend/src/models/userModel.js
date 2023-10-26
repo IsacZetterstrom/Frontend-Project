@@ -14,11 +14,10 @@ async function getUserBookings(userId) {
     Screening.Screening_startime AS screeningStartTime,
     Booking.Total_price AS priceSum,
     Movie_Information.Poster AS poster,
-    Movie_Information.RunTime AS runTime,
+    Movie_Information.Runtime AS runTime,
     GROUP_CONCAT(
-        'Rad ',
         Seat.Number_row,
-        ' Stol ',
+        '-',
         Seat.Number_seat
         ORDER BY Seat.Seat_id ASC
     ) AS seats
@@ -30,7 +29,7 @@ FROM Booking
     JOIN Ticket_Type ON Ticket.Ticket_Type_id = Ticket_Type.Ticket_type_id
     JOIN Seat ON Ticket.Seat_id = Seat.Seat_id
     JOIN Movie_Information ON Movie_Information.Movie_id = Movie.Movie_id
-WHERE Booking.User_id = ?
+WHERE Booking.User_id = 1
 GROUP BY Movie.Title,
     Screening.Screening_startime,
     Booking.Total_price,
@@ -38,7 +37,7 @@ GROUP BY Movie.Title,
     Screening.Screening_date,
     Theater.Theater_name,
     Movie_Information.Poster,
-    Movie_Information.RunTime;
+    Movie_Information.Runtime;
     `,
     [userId]
   );
