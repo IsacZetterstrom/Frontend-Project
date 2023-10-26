@@ -3,7 +3,7 @@
 }
 
 .movieDescContainer {
-    h2 {
+    h2, .movieTitle {
         font-size: 20px;
         font-weight: bold;
         font-family: 'Playfair Display';
@@ -22,18 +22,22 @@
     }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 991px) {
     .movieDescContainer {
       position: absolute;
-      background: rgba(8, 23, 46, 0.9);
+      background: rgba(8, 23, 46, 0.7);
       border-radius: 16px;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       border: 1px solid rgba(7, 18, 35, 0.9);
       border-radius: 20px;
-      bottom: 1em;
+      bottom: 5em;
       left: 1em;
       width: 431px;
       margin: 0;
       padding: 1em;
+
+      .poster {
+        display: none;
+      }
     }
   }
