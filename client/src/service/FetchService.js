@@ -6,7 +6,6 @@
 import cacheService from "./CacheService";
 
 async function fetchOptions (url, method, data) {
-    // const token = cacheService.getLocalValue("jwtToken")
 
     const options = {
         method: method,
@@ -15,16 +14,13 @@ async function fetchOptions (url, method, data) {
         },
         };
 
-  
-    // if(token !== undefined) options.headers = {
-    //     "authorization": `Bearer ${token}`,
-    //     "Content-Type": "application/json",
-    //     };
+    if(cacheService.isLoggedIn("token")) options.headers = {
+        "authorization": `Bearer ${cacheService.getLocalValue("token")}`,
+        "Content-Type": "application/json",
+        };
 
     if (method !== "GET") options.body = JSON.stringify(data);
 
-    console.log(options);
-    
       
     return await fetch(url, options);
 };
