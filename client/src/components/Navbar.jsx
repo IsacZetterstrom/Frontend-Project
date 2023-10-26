@@ -20,6 +20,11 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
   useEffect(() => {
     setHasToken(cacheService.isLoggedIn());
+    if (hasToken) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
   }, [isLoggedIn]);
 
   function logoutUser() {
@@ -96,9 +101,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
               {hasToken && (
                 <NavLink
                   key={"logout"}
-                  onClick={() => {
-                    logoutUser();
-                  }}
+                  onClick={() => logoutUser()}
                   className="nav-link text-nowrap logout-btn">
                   Logga Ut
                 </NavLink>
