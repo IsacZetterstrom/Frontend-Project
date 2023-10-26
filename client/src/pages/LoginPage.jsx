@@ -5,9 +5,11 @@ import LoginForm from "../components/Forms/LoginForm";
 import { useFormDefaults } from "../hooks/useFormDefaults";
 import fetchService from "../service/FetchService";
 import cacheService from "../service/CacheService";
+import { useOutletContext } from "react-router-dom";
 
 function LoginPage() {
   const { defaults, formData, setFormData } = useFormDefaults();
+  const [isLoggedIn, setIsLoggedIn] = useOutletContext();
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
@@ -22,6 +24,7 @@ function LoginPage() {
       const jwt = await res.json();
       cacheService.saveLocalValue("token", jwt);
       setMsg("Du är nu inloggad och kommer nu bli dirigerad till start sidan");
+      setIsLoggedIn((isLoggedIn) => !isLoggedIn);
       setTimeout(() => navigate("/"), 2000);
     }
   };
@@ -30,12 +33,14 @@ function LoginPage() {
     <Container className="form-wrapper">
       <Row>
         <Container className="d-flex justify-content-center align-items-center">
-          <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5">Logga in</h1> <Container className="navline d-md-block" />
+          <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5">Logga in</h1>{" "}
+          <Container className="navline d-md-block" />
         </Container>
         <LoginForm {...{ defaults, handleSubmit, setFormData }} />
         {msg !== "" && <p className="text-center">{msg}</p>}
         <p className="text-center">
-          Har du inte ett konto?<Link to={"/registrera"}>Registrera dig här!</Link>
+          Har du inte ett konto?
+          <Link to={"/registrera"}>Registrera dig här!</Link>
         </p>
       </Row>
     </Container>
