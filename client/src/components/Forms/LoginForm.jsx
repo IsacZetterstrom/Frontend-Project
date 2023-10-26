@@ -2,6 +2,14 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import FormBtns from "./FormBtns";
 
+/**
+ * @author Niklas Nguyen
+ * @param defaults is the object with attributes for inputs
+ * @param handleSubmit is the submit funktion when a user presses the submit btn
+ * @param setFormData is for to in this case reset the useState from the customhook
+ * @description this is a finnished form for login
+ */
+
 function LoginForm({ defaults, handleSubmit, setFormData }) {
   return (
     <form className="p-0" onSubmit={handleSubmit}>

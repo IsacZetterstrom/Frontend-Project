@@ -1,6 +1,11 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 
+/**
+ * @author Niklas Nguyen
+ * @description these form buttons changes names through and if cancel btn should be showing
+ */
+
 function FormBtns({ submitBtn, cancelBtn, showCancelBtn, setFormData }) {
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center">
