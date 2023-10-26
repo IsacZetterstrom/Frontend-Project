@@ -17,8 +17,8 @@ function DetailPage() {
   return (
     <>
       <Container fluid className="detailPageContainer m-0 p-0">
-      {err && <p>404 could not be found</p>}
-      {loading ? <p>loading...</p> : (
+      {err && <p>Ett fel har inträffat</p>}
+      {loading ? <p>laddar...</p> : (
         <>
           <TrailerComponent movie={data?.movie} />
           <MovieDesc movie={data?.movie} />
