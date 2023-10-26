@@ -4,6 +4,7 @@ import MovieDesc from '../components/DetailPage/MovieDesc';
 import { useParams } from 'react-router-dom';
 import useFetchData from '../hooks/useFetchData';
 import { Container } from 'react-bootstrap';
+import ScreeningsList from '../components/DetailPage/ScreeningsList';
 
 function DetailPage() {
   const { movieId } = useParams();
@@ -19,6 +20,7 @@ function DetailPage() {
           <MovieDesc movie={data?.movie} />
         </>
       )}
+      <ScreeningsList movieId={movieId}/>
     </Container>
     </>
   );
