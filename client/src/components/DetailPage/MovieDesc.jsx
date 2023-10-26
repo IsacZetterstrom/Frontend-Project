@@ -10,11 +10,12 @@ function MovieDesc({ movie }) {
   return (
     <Container className='movieDescContainer mt-2'>
         <Row>
-            <Col xs={5} sm={6} md={6}>
+            <Col xs={5} sm={6} md={6} className='d-lg-none'>
                 <Image src={movie.Poster} alt={movie.Title} fluid className="max-200 max-300 poster" />
             </Col>
             <Col xs={7} sm={6} md={6} lg={12}>
-                <h1 className='movieTitle'>{movie.Title}</h1>
+                <h2 className='d-lg-none'>Titel</h2>
+                <p className='movie-title'>{movie.Title}</p>
                 <h2>Genre</h2>
                 <p>{movie.Genre}</p>
                 <h2>Beskrivning</h2>

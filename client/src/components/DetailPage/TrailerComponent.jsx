@@ -31,7 +31,7 @@ function TrailerComponent({ movie }) {
                         src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                        title="Movie Trailer"
+                        title={Title}
                     ></iframe>
                 </div>
             )}

@@ -3,26 +3,21 @@
 }
 
 .movieDescContainer {
-    h2, .movieTitle {
-        font-size: 20px;
+    h2 {
+        font-size: 25px;
         font-weight: bold;
         font-family: 'Playfair Display';
         color: #BD9060;
         margin-top: 0.5em;
     }
-    .movieTitle {
-        font-size: 30px;
-        font-weight: bold;
-        border-bottom: 0.5px solid #BD9060;
-    }
     p {
-        font-size: 12px;
+        font-size: 14px;
         font-family: 'Noto Sans', sans-serif;
         margin: 0.5px;
     }
 }
 
-@media (min-width: 991px) {
+@media (min-width: 992px) {
     .movieDescContainer {
       position: absolute;
       background: rgba(8, 23, 46, 0.7);
@@ -35,9 +30,18 @@
       width: 431px;
       margin: 0;
       padding: 1em;
-
-      .poster {
-        display: none;
-      }
+        .movie-title {
+            color: #BD9060;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Playfair Display';
+            border-bottom: 0.5px solid #BD9060;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        p {
+            font-size: 12px;
+        }
     }
   }

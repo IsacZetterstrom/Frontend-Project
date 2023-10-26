@@ -7,7 +7,7 @@
         width: 100%;
         object-fit: cover;
         object-position: top;
-        height: 578px;
+        height: 209px;
         cursor: pointer;
     }
     
@@ -55,3 +55,26 @@
         }
     }
 }
+
+@media (min-width: 768px) {
+    .trailer-container {    
+        img {
+            height: 327px;
+        }
+    }
+}
+
+@media (min-width: 991px) {
+    .trailer-container {    
+        img {
+            width: 100%;
+            object-fit: cover;
+            object-position: top;
+            height: 578px;
+            cursor: pointer;
+        } 
+    }
+}
+
+
+
