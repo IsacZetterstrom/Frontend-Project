@@ -7,24 +7,30 @@ import Container from "react-bootstrap/Container";
 import Logotype from "../assets/Logotype.svg";
 import cacheService from "../service/CacheService";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 /**
  * @author Isac Zetterström
  * @description logic and render of the navbar.
  */
 
-function Navbar() {
-  const [token, setToken] = useState(cacheService.isLoggedIn());
+function Navbar({ isLoggedIn, setIsLoggedIn }) {
+  const [hasToken, setHasToken] = useState();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setHasToken(cacheService.isLoggedIn());
+  }, [isLoggedIn]);
+
   function logoutUser() {
-    setToken(null);
+    setHasToken(null);
     cacheService.removeLocalValue("token");
+    setIsLoggedIn((isLoggedIn) => !isLoggedIn);
     navigate("/");
   }
 
   function renderUserMenu() {
-    if (token) {
+    if (hasToken) {
       return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
         if (loggedIn) {
           return (
@@ -87,14 +93,14 @@ function Navbar() {
               </Container>
 
               {renderUserMenu()}
-              {token && (
+              {hasToken && (
                 <NavLink
                   key={"logout"}
                   onClick={() => {
-                    logoutUser;
+                    logoutUser();
                   }}
                   className="nav-link text-nowrap logout-btn">
-                  Logout
+                  Logga Ut
                 </NavLink>
               )}
             </Nav>
