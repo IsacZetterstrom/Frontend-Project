@@ -19,7 +19,15 @@ function BookingPage() {
   const [screeningData, setScreeningData] = useState({});
   
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [maxSeats, setMaxSeats] = useState(3);
+  const [maxSeats, setMaxSeats] = useState(2);
+
+
+  // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type 
+  const [tickets, setTickets] = useState({
+    1: 0,
+    2: 0,
+    3: 2
+  });
 
 
 
@@ -53,16 +61,35 @@ function BookingPage() {
     setSelectedSeats(seats);
   }
 
+  function handleTicketChange(action, type) {
+    let newTickets;
+    let ticketCount = 0;
 
-  return <Container className="booking-page-wrapper pt-3">
+    if(action == "+") {
+      newTickets = {...tickets, [type]: tickets[type] + 1}
+    } else if (action === "-" && tickets[type] > 0) {
+      newTickets = {...tickets, [type]: tickets[type] - 1}
+    }
+
+    for (const [key, value] of Object.entries(newTickets)) {
+      ticketCount += value;
+    }
+
+    setTickets(newTickets)
+    setMaxSeats(ticketCount)
+  }
+
+
+  return <Container fluid className="booking-page-wrapper p-4">
   
-    <h2>Välj antal biljetter</h2>
+    <h5>Välj antal biljetter</h5>
 
     <TicketSelector
-
+      tickets={tickets}
+      handleTicketChange={handleTicketChange}
     />
 
-    <h2>Välj platser</h2>
+    <h5>Välj platser</h5>
 
     <SeatPicker
       screeningData={screeningData}
