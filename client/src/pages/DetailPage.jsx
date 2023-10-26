@@ -21,8 +21,8 @@ function DetailPage() {
         </>
       )}
      </Container>
-     {err && <p>404 could not be found</p>}
-      {loading ? <p>loading...</p> : (
+     {err && <p>Ett fel har inträffat</p>}
+      {loading ? <p>laddar...</p> : (
         <ScreeningsList movie={data?.movie} movieId={movieId}/>
       )}
     </>
