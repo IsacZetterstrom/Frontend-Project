@@ -25,14 +25,15 @@ function SeatPicker(props) {
     })
 
 
-    function onHover(seat, row) {
+    // Returns seats if they fit on the row and are not booked 
+    function getSeatsInRow(seat, row) {
         const rowLength = row.length
         const seatIndex = row.indexOf(seat)
         const maxSeats = props.maxSeats
         
         // Check so all seats fit to the right on the row
         if(maxSeats + seatIndex > rowLength || seat.Booked === true) {
-            setHoveringSeats([])
+            return []
         } else {
 
             let newArr = [];
@@ -47,24 +48,37 @@ function SeatPicker(props) {
                 newArr.push(row[seatIndex + i])
             }
             
-            setHoveringSeats(newArr)
+            return newArr
             
         }
     }
 
 
-    function handleSeatClick(seat) {
+    function handleSeatClick(seat, row) {
+
         if (selectSeveralSeats) {
-            props.addSeveralSeats(hoveringSeats)
+            const seats = getSeatsInRow(seat, row);
+            props.addSeveralSeats(seats)
         } else {
             props.addOneSeat(seat)
         }
     }
 
+    function handleHover(seat, row) {
+
+        if(selectSeveralSeats) {
+            const seats = getSeatsInRow(seat, row);
+            setHoveringSeats(seats)
+        } else {
+            setHoveringSeats([seat])
+        } 
+
+    }
+
 
     return (
         
-    <Container className='seat-wrapper d-flex justify-content-center align-items-center'>
+    <div className='seat-wrapper'>
         {rows.map((row,i) => {
             return (
                 <div className='seat-row' key={i}>
@@ -77,8 +91,8 @@ function SeatPicker(props) {
                             ${props.selectedSeats.includes(seat) ? "selected" : ""}
                             ${hoveringSeats.includes(seat) ? "hover" : ""}
                         `}
-                        onClick={!seat.Booked ? () => handleSeatClick(seat) : undefined}
-                        onMouseEnter={selectSeveralSeats ? () => onHover(seat, row) : () => setHoveringSeats([seat])}
+                        onClick={!seat.Booked ? () => handleSeatClick(seat, row) : undefined}
+                        onMouseEnter={!seat.Booked ? () => handleHover(seat, row) : undefined}
                         onMouseLeave={() => setHoveringSeats([])}
                         ></div>
                     ))}
@@ -95,7 +109,7 @@ function SeatPicker(props) {
         id={`reverse-checkbox-1`}
         />
 
-    </Container>
+    </div>
   )
 }
 
