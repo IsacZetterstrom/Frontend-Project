@@ -1,0 +1,39 @@
+.screenig-list {
+    .screening-table{
+        border-bottom: 1px solid #BD9060;
+        th {
+            display: none;
+        }
+        td {
+            padding: 1em;
+        }
+        button {
+            background-color: #BD9060;
+            border: none;
+            border-radius: 20px;
+            padding: 0.5em 2em;
+        }
+    }
+    h2 {
+        color: #BD9060;
+        position: relative;
+        // &:before,
+        // &:after {
+        //   content: " ";
+        //   display: block;
+        //   height: 2px;
+        //   width: 109px;
+        //   position: absolute;
+        //   top: 50%;
+        //   background: linear-gradient(#5B4935, #BD9060, #5B4935);
+        
+        //     &:before {
+        //     left: 500px;
+        //     }
+        
+        //     &:after {
+        //     right: 20px;
+        //     }
+        // }
+    }
+}
