@@ -16,12 +16,15 @@ function DetailPage() {
       {err && <p>404 could not be found</p>}
       {loading ? <p>loading...</p> : (
         <>
-          {/* <TrailerComponent movie={data?.movie} />
-          <MovieDesc movie={data?.movie} /> */}
+          <TrailerComponent movie={data?.movie} />
+          <MovieDesc movie={data?.movie} />
         </>
       )}
      </Container>
-      {/* <ScreeningsList movie={data?.movie} movieId={movieId}/> */}
+     {err && <p>404 could not be found</p>}
+      {loading ? <p>loading...</p> : (
+        <ScreeningsList movie={data?.movie} movieId={movieId}/>
+      )}
     </>
   );
 }
