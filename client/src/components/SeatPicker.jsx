@@ -41,8 +41,7 @@ function SeatPicker(props) {
             for (let i = 0; i < maxSeats; i++) {
                 // Check if any seat to the right is booked
                 if(row[seatIndex + i].Booked) {
-                    setHoveringSeats([])
-                    return
+                    return []
                 }
                 
                 newArr.push(row[seatIndex + i])
