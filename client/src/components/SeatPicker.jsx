@@ -4,6 +4,11 @@ import "../styling/components/_seatPicker.scss"
 
 /**
  * @author Oliver Andersson
+ * @param screeningData data about the select screening, comes from bookingPage
+ * @param addOneSeat function for adding a single seat 
+ * @param addSeveralSeats function for adding several seats
+ * @param selectedSeats state containing the select seats, comes from bookingPage
+ * @param maxSeats state containing the amount of tickets chosen, comes from bookingPage
  * @description Renders seats based on provided screeningData and updates selectedSeats in bookingPage.
  */
 

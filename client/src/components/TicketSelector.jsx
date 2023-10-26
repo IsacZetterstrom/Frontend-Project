@@ -3,9 +3,15 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import { FiPlus, FiMinus } from "react-icons/fi"
 import "../styling/components/_ticketSelector.scss"
 
+/**
+ * @author Oliver Andersson
+ * @param tickets is the object containing the ticket types 
+ * @param handleTicketChange is the function for handling a ticket change
+ * @description component for selecting tickets
+ */
 
 function TicketSelector({ tickets, handleTicketChange }) {
-  
+
   return (
     <Container>
       <Row>
