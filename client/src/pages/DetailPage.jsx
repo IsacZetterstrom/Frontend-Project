@@ -17,7 +17,7 @@ function DetailPage() {
 
   return (
     <>
-      <Container fluid className="detailPageContainer m-0 p-0">
+      <Container fluid className="detail-page-container m-0 p-0">
       {err && <p>Ett fel har inträffat</p>}
       {loading ? <p>laddar...</p> : (
         <>

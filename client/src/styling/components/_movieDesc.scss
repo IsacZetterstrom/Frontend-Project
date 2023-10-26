@@ -1,10 +1,10 @@
-.detailPageContainer {
+.detail-page-container {
     position: relative;
 }
 
-.movieDescContainer {
-    h2, .movieTitle {
-        font-size: 20px;
+.movie-desc-container {
+    h2 {
+        font-size: 25px;
         font-weight: bold;
         font-family: 'Playfair Display';
         color: #BD9060;
@@ -15,14 +15,14 @@
         font-weight: bold;
     }
     p {
-        font-size: 12px;
+        font-size: 14px;
         font-family: 'Noto Sans', sans-serif;
         margin: 0.5px;
     }
 }
 
 @media (min-width: 992px) {
-    .movieDescContainer {
+    .movie-desc-container {
       position: absolute;
       background: rgba(8, 23, 46, 0.7);
       border-radius: 16px;
@@ -38,8 +38,19 @@
         .movieTitle {
             border-bottom: 0.5px solid #BD9060;
         }
-      .poster {
-        display: none;
-      }
+
+        .movie-title {
+            color: #BD9060;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Playfair Display';
+            border-bottom: 0.5px solid #BD9060;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        p {
+            font-size: 12px;
+        }
     }
   }
