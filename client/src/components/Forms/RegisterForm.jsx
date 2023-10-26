@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container } from "react-bootstrap";
+import { Col, Container, Form } from "react-bootstrap";
 import FormBtns from "./FormBtns";
 
 /**
@@ -13,7 +13,7 @@ import FormBtns from "./FormBtns";
 
 export default function RegisterForm({ defaults, formData, handleSubmit, setFormData }) {
   return (
-    <form className="p-0" onSubmit={handleSubmit}>
+    <Form className="p-0" onSubmit={handleSubmit}>
       <Col className="mt-3">
         <div className="d-flex justify-content-center align-items-center p-0">
           <label className="p-0 text-nowrap">E-Post</label> <Container className="navline d-md-block" />
@@ -49,6 +49,6 @@ export default function RegisterForm({ defaults, formData, handleSubmit, setForm
         />
       </Col>
       <FormBtns {...{ submitBtn: "Registrera", cancelBtn: "Avbryt", showCancelBtn: true, setFormData }} />
-    </form>
+    </Form>
   );
 }
