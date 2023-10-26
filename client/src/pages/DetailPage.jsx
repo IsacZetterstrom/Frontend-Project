@@ -5,6 +5,11 @@ import { useParams } from 'react-router-dom';
 import useFetchData from '../hooks/useFetchData';
 import { Container } from 'react-bootstrap';
 
+/**
+ * @author Louise Johansson
+ * @description Renders the information about the film based on the movie id. Movie id comes from params, fetches with useFetchData hook.
+ */
+
 function DetailPage() {
   const { movieId } = useParams();
   const { loading, err, data } = useFetchData(`/api/movies/${movieId}`);

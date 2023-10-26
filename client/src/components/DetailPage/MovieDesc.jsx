@@ -1,6 +1,11 @@
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 
+/**
+ * @author Louise Johansson
+ * @description Renders the information about the film, takes in movie data from parent.
+ */
+
 function MovieDesc({ movie }) {
   return (
     <Container className='movieDescContainer mt-2'>
