@@ -1,8 +1,8 @@
-.detailPageContainer {
+.detail-page-container {
     position: relative;
 }
 
-.movieDescContainer {
+.movie-desc-container {
     h2 {
         font-size: 25px;
         font-weight: bold;
@@ -18,7 +18,7 @@
 }
 
 @media (min-width: 992px) {
-    .movieDescContainer {
+    .movie-desc-container {
       position: absolute;
       background: rgba(8, 23, 46, 0.7);
       border-radius: 16px;
