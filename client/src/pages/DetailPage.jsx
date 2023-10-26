@@ -6,6 +6,11 @@ import useFetchData from '../hooks/useFetchData';
 import { Container } from 'react-bootstrap';
 import ScreeningsList from '../components/DetailPage/ScreeningsList';
 
+/**
+ * @author Louise Johansson
+ * @description Renders the information about the film based on the movie id. Movie id comes from params, fetches with useFetchData hook.
+ */
+
 function DetailPage() {
   const { movieId } = useParams();
   const { loading, err, data } = useFetchData(`/api/movies/${movieId}`);
@@ -13,8 +18,8 @@ function DetailPage() {
   return (
     <>
       <Container fluid className="detailPageContainer m-0 p-0">
-      {err && <p>404 could not be found</p>}
-      {loading ? <p>loading...</p> : (
+      {err && <p>Ett fel har inträffat</p>}
+      {loading ? <p>laddar...</p> : (
         <>
           <TrailerComponent movie={data?.movie} />
           <MovieDesc movie={data?.movie} />
