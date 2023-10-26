@@ -2,6 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SeatPicker from "../components/SeatPicker";
+import TicketSelector from "../components/TicketSelector";
+import { Container } from "react-bootstrap";
+
+import '../styling/components/_bookingPage.scss'
 
 /**
  * @author Oliver Andersson
@@ -50,7 +54,16 @@ function BookingPage() {
   }
 
 
-  return <>
+  return <Container className="booking-page-wrapper pt-3">
+  
+    <h2>Välj antal biljetter</h2>
+
+    <TicketSelector
+
+    />
+
+    <h2>Välj platser</h2>
+
     <SeatPicker
       screeningData={screeningData}
       addOneSeat={addOneSeat}
@@ -58,7 +71,7 @@ function BookingPage() {
       selectedSeats={selectedSeats}
       maxSeats={maxSeats}
     />
-  </>;
+  </Container>;
 }
 
 export default BookingPage;
