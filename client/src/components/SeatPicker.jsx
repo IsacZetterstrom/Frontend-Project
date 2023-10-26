@@ -17,10 +17,10 @@ function SeatPicker(props) {
 
     // Take seats and put them in an array for each row to make rendering them out easier
     props.screeningData.allSeats && props.screeningData.allSeats.forEach((seat) => {
-        if(rows[seat.Number_row] === undefined) {
-            rows[seat.Number_row] = []
+        if(rows[seat.Number_row -1] === undefined) {
+            rows[seat.Number_row - 1] = [seat]
         } else {
-            rows[seat.Number_row].push(seat)
+            rows[seat.Number_row - 1].push(seat)
         };
     })
 
@@ -54,7 +54,6 @@ function SeatPicker(props) {
 
 
     function handleSeatClick(seat, row) {
-
         if (selectSeveralSeats) {
             const seats = getSeatsInRow(seat, row);
             props.addSeveralSeats(seats)
