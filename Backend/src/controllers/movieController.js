@@ -39,4 +39,24 @@ async function getMovies(req, res) {
   }
 }
 
-export default { getOneMovie, getMovies };
+
+async function filterMovies(req, res) {
+  try {
+    const {query} = req.query;
+    if(query === "toplist"){
+      const toplist = await movieModel.getPopular(query)
+      res.send(toplist).status(200);
+    }else if(query == "upcoming"){
+      const upcoming = await movieModel.getUpcoming(query)
+      res.send(upcoming).status(200);
+    }
+    else {
+      const byGenre = await movieModel.getGenre(query)
+      res.send(byGenre).status(200);
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
+export default { getOneMovie, getMovies, filterMovies };
