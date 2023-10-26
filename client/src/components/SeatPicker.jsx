@@ -100,11 +100,10 @@ function SeatPicker(props) {
         
 
         <Form.Check
+        className='pt-2'
         label="Välj enskilda platser"
-        name="group1"
         checked={!selectSeveralSeats}
         onChange={() => setSelectSeveralSeats(!selectSeveralSeats)}
-        id={`reverse-checkbox-1`}
         />
 
     </div>
