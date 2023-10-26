@@ -1,21 +1,25 @@
 .screenig-list {
     .screening-table{
-        border-bottom: 1px solid #BD9060;
         th {
             display: none;
         }
-        td {
-            padding: 1em;
+        tr {
+            padding: 1em 0;
         }
+        td {
+            margin: 2em 0;
+            border-bottom: 1px solid #BD9060;
+        }
+        
         button {
             background-color: #BD9060;
             border: none;
             border-radius: 20px;
-            padding: 0.5em 2em;
+            padding: 0.5em;
         }
     }
     h2 {
-        color: #BD9060;
+        color: #fff;
         position: relative;
         // &:before,
         // &:after {

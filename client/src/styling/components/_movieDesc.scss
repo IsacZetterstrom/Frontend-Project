@@ -13,7 +13,6 @@
     .movieTitle {
         font-size: 30px;
         font-weight: bold;
-        border-bottom: 0.5px solid #BD9060;
     }
     p {
         font-size: 12px;
@@ -22,7 +21,7 @@
     }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 991px) {
     .movieDescContainer {
       position: absolute;
       background: rgba(8, 23, 46, 0.9);
@@ -35,5 +34,9 @@
       width: 431px;
       margin: 0;
       padding: 1em;
+
+        .movieTitle {
+            border-bottom: 0.5px solid #BD9060;
+        }
     }
   }
