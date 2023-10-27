@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useFormDefaults } from "../hooks/useFormDefaults";
 import RegisterForm from "../components/Forms/RegisterForm";
 import fetchService from "../service/FetchService";
-import { Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 function RegisterPage() {
@@ -26,13 +26,11 @@ function RegisterPage() {
   return (
     <Container className="form-wrapper">
       <Row>
-        <Container className="d-flex justify-content-center align-items-center">
-          <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5">Bli medlem</h1> <Container className="navline d-md-block" />
-        </Container>
+        <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5 line pb-2">Bli medlem</h1>
         <RegisterForm {...{ defaults, formData, handleSubmit, setFormData }} />
         {msg !== "" && <p className="text-center">{msg}</p>}
         <p className="text-center">
-          Har du redan ett konto?<Link to={"/logga-in"}>Logga in här!</Link>
+          Har du redan ett konto? <Link to={"/logga-in"}>Logga in här!</Link>
         </p>
       </Row>
     </Container>

@@ -3,7 +3,6 @@ import useFetchData from '../hooks/useFetchData';
 import '../styling/components/_movieInfo.scss'
 import { Container, Row, Col, Image } from 'react-bootstrap';
 
-
 /**
  * @author Sara Johansson
  * @description lalala

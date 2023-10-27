@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import MovieInfo from "./components/MovieInfo";
+import { useState } from "react";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
-      <Navbar />
+      <Navbar {...{ isLoggedIn, setIsLoggedIn }} />
       <main>
-        <Outlet />
+        <Outlet context={[isLoggedIn, setIsLoggedIn]} />
       </main>
       <Footer />
     </>

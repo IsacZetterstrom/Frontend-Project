@@ -1,0 +1,15 @@
+@use "../abstract/variables" as *;
+.line{
+position: relative;
+overflow: hidden;
+
+&::after{
+    position: absolute;
+    top: 50%;
+    content: "";
+    height: 2px;
+    width: 100000%;
+    background-image: $lineGradient;
+    margin-left: .5em;
+}
+}
