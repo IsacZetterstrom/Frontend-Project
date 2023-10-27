@@ -1,47 +1,36 @@
 .screenig-list {
+    h2 {
+        color: #fff;
+        font-size: 48;
+        font-weight: bold;
+        font-family: 'Playfair Display';
+    }
+    .show-more {
+        background-color: transparent;
+        border: none;
+    }
     .screening-table{
         th {
             display: none;
         }
-        tr {
-            padding: 1em 0;
-        }
         td {
-            padding: 0.5em;
+            padding: 1em 0;
             border-bottom: 1px solid #BD9060;
             background-color: transparent;
-            color: #fff;            
+            color: #fff;
+            vertical-align: middle; 
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 12px;     
         }
         
         button {
             background-color: #BD9060;
             border: none;
             border-radius: 999px;
-            padding: 0.5em 1em;
+            padding: 0.1em 0.5em;
             color: #000;
+            font-size: 12px;
         }
-    }
-    h2 {
-        color: #fff;
-        position: relative;
-        // &:before,
-        // &:after {
-        //   content: " ";
-        //   display: block;
-        //   height: 2px;
-        //   width: 109px;
-        //   position: absolute;
-        //   top: 50%;
-        //   background: linear-gradient(#5B4935, #BD9060, #5B4935);
-        
-        //     &:before {
-        //     left: 500px;
-        //     }
-        
-        //     &:after {
-        //     right: 20px;
-        //     }
-        // }
     }
     .date-picker-container {
         input {
@@ -49,9 +38,10 @@
             padding: 0.5em;
             background-color: #BD9060;
             text-align: center;
+            font-size: 12px;
         }
         h3 {
-            font-size: 15px;
+            font-size: 24px;
             color: #BD9060;
             font-family: 'Playfair Display';
         }
@@ -61,14 +51,20 @@
 @media (min-width: 768px) {
     .screenig-list {
         .screening-table{
-            tr {
-                padding: 1em 0;
-            }
             td {
-                padding: 2em 1em;
-                border-bottom: 1px solid #BD9060;
-                background-color: transparent;
-                color: #fff;            
+                padding: 2em 1em; 
+                font-size: 20px;          
+            }
+            button {
+                font-size: 20px;
+            }
+        }
+        .date-picker-container {
+            input {
+                font-size: 20px;
+            }
+            h3 {
+                font-size: 24px;
             }
         }
     }
