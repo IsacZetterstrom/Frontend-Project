@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SeatPicker from "../components/SeatPicker";
 import TicketSelector from "../components/TicketSelector";
+import MovieInfo from "../components/BookingPage/MovieInfo";
 import { Container } from "react-bootstrap";
-
 import '../styling/components/_bookingPage.scss'
 
 /**
@@ -80,25 +80,27 @@ function BookingPage() {
   }
 
 
-  return <Container fluid className="booking-page-wrapper p-4">
-  
-    <h5>Välj antal biljetter</h5>
+  return (
+    <Container fluid className="booking-page-wrapper p-4">
+      <MovieInfo screeningData={screeningData}/>
+      <h5>Välj antal biljetter</h5>
 
-    <TicketSelector
-      tickets={tickets}
-      handleTicketChange={handleTicketChange}
-    />
+      <TicketSelector
+        tickets={tickets}
+        handleTicketChange={handleTicketChange}
+      />
 
-    <h5>Välj platser</h5>
+      <h5>Välj platser</h5>
 
-    <SeatPicker
-      screeningData={screeningData}
-      addOneSeat={addOneSeat}
-      addSeveralSeats={addSeveralSeats}
-      selectedSeats={selectedSeats}
-      maxSeats={maxSeats}
-    />
-  </Container>;
+      <SeatPicker
+        screeningData={screeningData}
+        addOneSeat={addOneSeat}
+        addSeveralSeats={addSeveralSeats}
+        selectedSeats={selectedSeats}
+        maxSeats={maxSeats}
+      />
+    </Container>
+  )
 }
 
 export default BookingPage;
