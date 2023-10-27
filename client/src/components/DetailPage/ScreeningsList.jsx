@@ -78,6 +78,7 @@ function ScreeningsList({ movieId, movie }) {
                     ) : (
                         <p className='text-center mt-4'>Inga spelningar på valt datum.</p>
                     )}
+                    <h2 className='mt-5 line-center text-center'>Liknande filmer</h2>
                 </>
             )}
         </Container>
