@@ -1,0 +1,47 @@
+.detail-page-container {
+    position: relative;
+}
+
+.movie-desc-container {
+    h2 {
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Playfair Display';
+        color: #BD9060;
+        margin-top: 0.5em;
+    }
+    p {
+        font-size: 14px;
+        font-family: 'Noto Sans', sans-serif;
+        margin: 0.5px;
+    }
+}
+
+@media (min-width: 992px) {
+    .movie-desc-container {
+      position: absolute;
+      background: rgba(8, 23, 46, 0.7);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(7, 18, 35, 0.9);
+      border-radius: 20px;
+      bottom: 5em;
+      left: 1em;
+      width: 431px;
+      margin: 0;
+      padding: 1em;
+        .movie-title {
+            color: #BD9060;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Playfair Display';
+            border-bottom: 0.5px solid #BD9060;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        p {
+            font-size: 12px;
+        }
+    }
+  }
