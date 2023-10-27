@@ -39,7 +39,10 @@ async function getMovies(req, res) {
   }
 }
 
-
+/**
+ * @author Oskar dahlberg
+ * @Description Filter on toplist, unreleased and search for genre
+ */
 async function filterMovies(req, res) {
   try {
     const {query} = req.query;

@@ -5,6 +5,11 @@ import Row from 'react-bootstrap/Row';
 import TopList from '../components/LandingPageComp/TopMovies';
 import UpcomingList from '../components/LandingPageComp/UpcomingMovies';
 import Hero from '../components/LandingPageComp/Hero';
+/**
+ * @author Oskar dahlberg
+ * @Description Toplist for most booked movies and unreleased movies. 
+ */
+
 function LandingPage() {
 
   const [TopMovies, setTopMovies] = useState([]);
@@ -29,28 +34,25 @@ function LandingPage() {
         console.error('Failed to fetch data');
       }
     })();
-    console.log(TopMovies[0])
+
   }, [])
   return (
     <>
-    <h1>Landingpage</h1>
-<Container>
-  <Row className="justify-content-center text-center" md={2}>
-  <Hero data={TopMovies[0]}></Hero>
-  </Row>
-</Container>
- 
-    <Container>
-      <h2>Topplistan just nu</h2>
-      <Row className="justify-content-center text-center">
-        <TopList data={TopMovies}></TopList>
-      </Row>
-      <h2>Kommade filmer</h2>
-      <Row className="justify-content-center text-center">
-        <UpcomingList data={UpcomingMovies}></UpcomingList>
-      </Row>
-    </Container>
-
+      <Container>
+        <Row className="justify-content-center text-center mt-4" md={2} >
+          <Hero data={TopMovies[0]}></Hero>
+        </Row>
+      </Container>
+      <Container>
+        <Row className="justify-content-center text-center mt-4">
+          <h2>Topplistan just nu</h2>
+          <TopList data={TopMovies} ></TopList>
+        </Row>
+        <h2>Kommade filmer</h2>
+        <Row>
+          <UpcomingList data={UpcomingMovies}></UpcomingList>
+        </Row>
+      </Container>
     </>
   )
 }

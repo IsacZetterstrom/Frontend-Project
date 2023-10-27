@@ -6,6 +6,10 @@ import LibaryForm from '../components/LibaryPageComp/LibaryForm';
 import GlobalMovieCard from '../components/GlobalMovieCard';
 import useFetchData from '../hooks/useFetchData';
 
+/**
+ * @author Oskar dahlberg
+ * @Description Sort / search/fiter movies that are on screen.
+ */
 function LibraryPage() {
 
   const [data, setData] = useState([]);
@@ -27,18 +31,17 @@ function LibraryPage() {
 
   return (
     <>
-      <h1>Biblotek</h1>
-      <Container >
+      <Container className="mt-5">
         <LibaryForm setSearch={setSearch} setSort={setSort} setFilter={setFilter}> </LibaryForm>
       </Container>
       <Container>
+      <h1>Visas just nu på bio</h1>
         <Row>
           {data.map((movie) => (
             <GlobalMovieCard xs={6} md={4} id={movie.Movie_id} img={movie.Poster} title={movie.Title} />
           ))}
         </Row>
       </Container>
-
     </>
   )
 }
