@@ -5,6 +5,11 @@ import { Container, Row } from "react-bootstrap";
 import useFetchData from "../hooks/useFetchData";
 import fetchService from "../service/FetchService";
 
+/**
+ * @author Niklas Nguyen
+ * @description holds the editUser form and send the data to the server if it succeds the user will get a msg and closes the components again
+ */
+
 function EditUserPage({ setEditUser }) {
   const { defaults, formData, setFormData } = useFormDefaults();
   const { loading, err, data } = useFetchData(`/profile/user`);

@@ -2,6 +2,15 @@ import React from "react";
 import { Col, Form } from "react-bootstrap";
 import FormBtns from "./FormBtns";
 
+/**
+ * @author Niklas Nguyen
+ * @param defaults is the object with attributes for inputs
+ * @param handleSubmit is the submit funktion when a user presses the submit btn
+ * @param setFormData is for to in this case reset the useState from the customhook
+ * @param userData is the data the user has, if the name is null nothing shows in the place holder else it shows the email exc
+ * @description this is a finnished form for login
+ */
+
 function EditUserForm({ defaults, handleSubmit, setFormData, userData }) {
   return (
     <Form className="p-0" onSubmit={handleSubmit}>
