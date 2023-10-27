@@ -18,7 +18,7 @@ function DetailPage() {
   return (
     <>
       <Container fluid className="detail-page-container m-0 p-0">
-      {err && <p>Ett fel har inträffat</p>}
+      {err && <p>Filmdetaljer kunde inte visas, försök igen senare</p>}
       {loading ? <p>laddar...</p> : (
         <>
           <TrailerComponent movie={data?.movie} />
@@ -26,7 +26,7 @@ function DetailPage() {
         </>
       )}
      </Container>
-     {err && <p>Ett fel har inträffat</p>}
+     {err && <p>Filmdetaljer kunde inte visas, försök igen senare</p>}
       {loading ? <p>laddar...</p> : (
         <ScreeningsList movie={data?.movie} movieId={movieId}/>
       )}

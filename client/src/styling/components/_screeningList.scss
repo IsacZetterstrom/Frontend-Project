@@ -7,15 +7,18 @@
             padding: 1em 0;
         }
         td {
-            margin: 2em 0;
+            padding: 0.5em;
             border-bottom: 1px solid #BD9060;
+            background-color: transparent;
+            color: #fff;            
         }
         
         button {
             background-color: #BD9060;
             border: none;
-            border-radius: 20px;
-            padding: 0.5em;
+            border-radius: 999px;
+            padding: 0.5em 1em;
+            color: #000;
         }
     }
     h2 {
@@ -39,5 +42,34 @@
         //     right: 20px;
         //     }
         // }
+    }
+    .date-picker-container {
+        input {
+            border-radius: 999px;
+            padding: 0.5em;
+            background-color: #BD9060;
+            text-align: center;
+        }
+        h3 {
+            font-size: 15px;
+            color: #BD9060;
+            font-family: 'Playfair Display';
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .screenig-list {
+        .screening-table{
+            tr {
+                padding: 1em 0;
+            }
+            td {
+                padding: 2em 1em;
+                border-bottom: 1px solid #BD9060;
+                background-color: transparent;
+                color: #fff;            
+            }
+        }
     }
 }
