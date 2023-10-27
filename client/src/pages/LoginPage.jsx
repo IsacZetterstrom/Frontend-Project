@@ -32,9 +32,7 @@ function LoginPage() {
   return (
     <Container className="form-wrapper">
       <Row>
-        <Col className="d-flex justify-content-center align-items-center">
-          <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5">Logga in</h1> <Container className="navline d-md-block" />
-        </Col>
+        <h1 className="p-0 text-nowrap mt-5 mb-5 pb-2 line">Logga in</h1>
         <LoginForm {...{ defaults, handleSubmit, setFormData }} />
         {msg !== "" && <p className="text-center">{msg}</p>}
         <p className="text-center">
