@@ -2,6 +2,11 @@ import { Form, Row, Col } from "react-bootstrap"
 import SearchBar from "./SearchBar"
 import SortForm from "./SortForm"
 import FilterForm from "./FilterForm"
+
+/**
+ * @author Oskar dahlberg
+ * @Description Search, filter and sort for libarypage.
+ */
 function LibaryForm({ setSearch, setSort, setFilter }) {
     return (
             <Form>

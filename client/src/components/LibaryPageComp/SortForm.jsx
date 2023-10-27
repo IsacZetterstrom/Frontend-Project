@@ -1,6 +1,9 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
-
+/**
+ * @author Oskar dahlberg
+ * @Description Sort on date or rating
+ */
 function SortForm({ setSort }) {
 
     const handleSort = (event) => {

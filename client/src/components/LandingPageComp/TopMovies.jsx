@@ -1,6 +1,9 @@
 
 import GlobalMovieCard from '../GlobalMovieCard';
-
+/**
+ * @author Oskar dahlberg
+ * @Description The most booked movies right now
+ */
 function TopMovies({data}) {
 
 

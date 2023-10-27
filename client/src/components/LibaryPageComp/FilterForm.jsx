@@ -1,6 +1,9 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
-
+/**
+ * @author Oskar dahlberg
+ * @Description Filter on age.
+ */
 function FilterForm({ setFilter }) {
     const handleFilter = (event) => {
         setFilter(event.target.value)
