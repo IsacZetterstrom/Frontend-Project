@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
+import { formatDateString } from '../../utils/dateUtils';
 
 /**
  * @author Louise Johansson
@@ -7,6 +8,10 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
  */
 
 function MovieDesc({ movie }) {
+  // Calculate hours and minutes from the runtime in minutes
+  const hours = Math.floor(movie.Runtime / 60);
+  const minutes = movie.Runtime % 60;
+
   return (
     <Container className='movie-desc-container mt-2'>
         <Row>
@@ -21,13 +26,13 @@ function MovieDesc({ movie }) {
                 <h2>Beskrivning</h2>
                 <p>{movie.About}</p>
                 <h2>Längd</h2>
-                <p>{movie.Runtime}</p>
+                <p>{hours}h {minutes} min</p>
                 <h2>Skådespelare</h2>
                 <p>{movie.Actor}</p>
                 <h2>Språk</h2>
                 <p>{movie.Lang}</p>
                 <h2>Släppt</h2>
-                <p>{movie.Release_date}</p>
+                <p>{formatDateString(movie.Release_date)}</p>
             </Col>
         </Row>
     </Container>
