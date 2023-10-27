@@ -2,9 +2,11 @@
 
 .seat-wrapper {
     display: flex;
-
+    align-items: center;
     flex-direction: column;
     gap: .7rem;
+
+    margin-top: 2rem;
 
 
     .seat-row {
@@ -54,12 +56,12 @@
     .seat {
         background-color: #d9d9d9;
         color: $blackColor;
-        padding: .8rem .7rem;
+        padding: .7rem .6rem;
 
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 9px;
+        border-bottom-right-radius: 9px;
 
 
         cursor: pointer;

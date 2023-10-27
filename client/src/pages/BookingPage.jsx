@@ -2,6 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SeatPicker from "../components/SeatPicker";
+import TicketSelector from "../components/TicketSelector";
+import { Container } from "react-bootstrap";
+
+import '../styling/components/_bookingPage.scss'
 
 /**
  * @author Oliver Andersson
@@ -15,7 +19,15 @@ function BookingPage() {
   const [screeningData, setScreeningData] = useState({});
   
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [maxSeats, setMaxSeats] = useState(3);
+  const [maxSeats, setMaxSeats] = useState(2);
+
+
+  // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type 
+  const [tickets, setTickets] = useState({
+    1: 0,
+    2: 0,
+    3: 2
+  });
 
 
 
@@ -49,8 +61,36 @@ function BookingPage() {
     setSelectedSeats(seats);
   }
 
+  function handleTicketChange(action, type) {
+    let newTickets;
+    let ticketCount = 0;
 
-  return <>
+    if(action == "+") {
+      newTickets = {...tickets, [type]: tickets[type] + 1}
+    } else if (action === "-" && tickets[type] > 0) {
+      newTickets = {...tickets, [type]: tickets[type] - 1}
+    }
+
+    for (const [key, value] of Object.entries(newTickets)) {
+      ticketCount += value;
+    }
+
+    setTickets(newTickets)
+    setMaxSeats(ticketCount)
+  }
+
+
+  return <Container fluid className="booking-page-wrapper p-4">
+  
+    <h5>Välj antal biljetter</h5>
+
+    <TicketSelector
+      tickets={tickets}
+      handleTicketChange={handleTicketChange}
+    />
+
+    <h5>Välj platser</h5>
+
     <SeatPicker
       screeningData={screeningData}
       addOneSeat={addOneSeat}
@@ -58,7 +98,7 @@ function BookingPage() {
       selectedSeats={selectedSeats}
       maxSeats={maxSeats}
     />
-  </>;
+  </Container>;
 }
 
 export default BookingPage;

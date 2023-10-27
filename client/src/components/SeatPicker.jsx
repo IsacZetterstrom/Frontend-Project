@@ -4,6 +4,11 @@ import "../styling/components/_seatPicker.scss"
 
 /**
  * @author Oliver Andersson
+ * @param screeningData data about the select screening, comes from bookingPage
+ * @param addOneSeat function for adding a single seat 
+ * @param addSeveralSeats function for adding several seats
+ * @param selectedSeats state containing the select seats, comes from bookingPage
+ * @param maxSeats state containing the amount of tickets chosen, comes from bookingPage
  * @description Renders seats based on provided screeningData and updates selectedSeats in bookingPage.
  */
 
@@ -17,22 +22,23 @@ function SeatPicker(props) {
 
     // Take seats and put them in an array for each row to make rendering them out easier
     props.screeningData.allSeats && props.screeningData.allSeats.forEach((seat) => {
-        if(rows[seat.Number_row] === undefined) {
-            rows[seat.Number_row] = []
+        if(rows[seat.Number_row -1] === undefined) {
+            rows[seat.Number_row - 1] = [seat]
         } else {
-            rows[seat.Number_row].push(seat)
+            rows[seat.Number_row - 1].push(seat)
         };
     })
 
 
-    function onHover(seat, row) {
+    // Returns seats if they fit on the row and are not booked 
+    function getSeatsInRow(seat, row) {
         const rowLength = row.length
         const seatIndex = row.indexOf(seat)
         const maxSeats = props.maxSeats
         
         // Check so all seats fit to the right on the row
         if(maxSeats + seatIndex > rowLength || seat.Booked === true) {
-            setHoveringSeats([])
+            return []
         } else {
 
             let newArr = [];
@@ -40,31 +46,42 @@ function SeatPicker(props) {
             for (let i = 0; i < maxSeats; i++) {
                 // Check if any seat to the right is booked
                 if(row[seatIndex + i].Booked) {
-                    setHoveringSeats([])
-                    return
+                    return []
                 }
                 
                 newArr.push(row[seatIndex + i])
             }
             
-            setHoveringSeats(newArr)
+            return newArr
             
         }
     }
 
 
-    function handleSeatClick(seat) {
+    function handleSeatClick(seat, row) {
         if (selectSeveralSeats) {
-            props.addSeveralSeats(hoveringSeats)
+            const seats = getSeatsInRow(seat, row);
+            props.addSeveralSeats(seats)
         } else {
             props.addOneSeat(seat)
         }
     }
 
+    function handleHover(seat, row) {
+
+        if(selectSeveralSeats) {
+            const seats = getSeatsInRow(seat, row);
+            setHoveringSeats(seats)
+        } else {
+            setHoveringSeats([seat])
+        } 
+
+    }
+
 
     return (
         
-    <Container className='seat-wrapper d-flex justify-content-center align-items-center'>
+    <div className='seat-wrapper'>
         {rows.map((row,i) => {
             return (
                 <div className='seat-row' key={i}>
@@ -77,8 +94,8 @@ function SeatPicker(props) {
                             ${props.selectedSeats.includes(seat) ? "selected" : ""}
                             ${hoveringSeats.includes(seat) ? "hover" : ""}
                         `}
-                        onClick={!seat.Booked ? () => handleSeatClick(seat) : undefined}
-                        onMouseEnter={selectSeveralSeats ? () => onHover(seat, row) : () => setHoveringSeats([seat])}
+                        onClick={!seat.Booked ? () => handleSeatClick(seat, row) : undefined}
+                        onMouseEnter={!seat.Booked ? () => handleHover(seat, row) : undefined}
                         onMouseLeave={() => setHoveringSeats([])}
                         ></div>
                     ))}
@@ -88,14 +105,13 @@ function SeatPicker(props) {
         
 
         <Form.Check
+        className='pt-2'
         label="Välj enskilda platser"
-        name="group1"
         checked={!selectSeveralSeats}
         onChange={() => setSelectSeveralSeats(!selectSeveralSeats)}
-        id={`reverse-checkbox-1`}
         />
 
-    </Container>
+    </div>
   )
 }
 
