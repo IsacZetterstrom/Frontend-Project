@@ -1,0 +1,45 @@
+@use "../abstract/variables" as *;
+
+.active-booking-card{
+    border-radius: 10px;
+    background-color: $navyBlueColor;
+    box-shadow: 0 3px 4px black;
+    min-height: 150px;
+    width: 350px;
+    .expired-booking-card{
+        background-color: $navyBlueColor;
+        height: 160px;
+        width: 350px;
+    }
+    .profile-poster{
+        border-radius: 10px 0 0 10px;
+        height: 100%;
+        min-width: 100%;
+        
+    }
+    .cancel-booking{
+        font-size: .6rem;
+        border-radius: 9999px;
+        border: none;
+        background-color: $OrangeColor;
+        color: $blackColor;
+        font-weight: 600;
+    }
+    .booking-title{
+
+        color: $goldColor;
+    }
+    .ref-number{
+        font-size: .8rem;
+        font-weight: 500;
+    }
+    p{
+        font-size: .9rem;
+    }
+
+}
+
+
+
+
+
