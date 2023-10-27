@@ -1,8 +1,21 @@
 @use "./abstract/variables" as *;
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "./components/trailer";
+@import "./components/movieDesc";
 @import "./components/formPage";
 @import "./components/navbar";
 @import "./abstract/line";
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('../fonts/NotoSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+
 
 
 body {
