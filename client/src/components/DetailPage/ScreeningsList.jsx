@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Button, Container, Table } from 'react-bootstrap';
 import useFetchData from '../../hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';
-import { formatDate, formatTime } from '../../utils/dateUtils';
 import { MdKeyboardArrowDown } from 'react-icons/md';
+import { formatDateOrTime, formatDateString } from '../../utils/dateUtils';
 
 function ScreeningsList({ movieId, movie }) {
     const navigate = useNavigate();
     const today = new Date();
-    const formattedDate = today.toISOString().split('T')[0];
+    const formattedDate = formatDateString(today);
     const [selectedDate, setSelectedDate] = useState(formattedDate);
     const [showMore, setShowMore] = useState(false); // State to control the "Show More" button
-    const [screeningsToShow, setScreeningsToShow] = useState(5); // Number of screenings to initially display
+    const [screeningsToShow, setScreeningsToShow] = useState(4); // Number of screenings to initially display
 
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
@@ -20,7 +20,8 @@ function ScreeningsList({ movieId, movie }) {
     const { loading, err, data } = useFetchData(`/api/movies/${movieId}/screenings/${selectedDate}`);
 
     const handleShowMore = () => {
-        setScreeningsToShow(screeningsToShow + 5);
+        // Increment the number of screenings to show
+        setScreeningsToShow(screeningsToShow + 2);
         setShowMore(true);
     };
 
@@ -52,31 +53,30 @@ function ScreeningsList({ movieId, movie }) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data.slice(0, screeningsToShow).map((screening) => (
-                                    <tr key={screening.Screening_id}>
-                                        <td>{formatDate(screening.Screening_startime)}</td>
-                                        <td>{screening.Theater_name} - {formatTime(screening.Screening_startime)}</td>
-                                        <td>{movie.Lang} tal - Sve text</td>
-                                        <td>
-                                            <Button
-                                                className='screening-btn'
-                                                onClick={() => navigate(`/film/${movie.Movie_id}/boka/${screening.Screening_id}`)}
-                                            >
-                                                Välj plats
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                ))}
+                            {data.slice(0, screeningsToShow).map((screening) => (
+                                <tr key={screening.Screening_id}>
+                                    <td>{formatDateOrTime(screening.Screening_date, "date")}</td>
+                                    <td>{screening.Theater_name} - {formatDateOrTime(screening.Screening_startime, "time")}</td>
+                                    <td>{movie.Lang} tal, Sve text</td>
+                                    <td>
+                                        <Button
+                                            className='screening-btn'
+                                            onClick={() => navigate(`/film/${movie.Movie_id}/boka/${screening.Screening_id}`)}
+                                        >
+                                            Välj plats
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
                             </tbody>
                         </Table>
-                        {showMore && screeningsToShow < data.length && (
-                            <Container className='text-center'>
-                                <Button className='show-more' onClick={handleShowMore}>Visa mer <MdKeyboardArrowDown/></Button>
-                            </Container>
-                        )}
+                        <Container className='text-center'>
+                            <Button className='show-more' onClick={handleShowMore}><p>Visa mer</p><MdKeyboardArrowDown/></Button>
+                        </Container>
+                        
                     </>
                     ) : (
-                        <p>Inga spelningar på valt datum.</p>
+                        <p className='text-center mt-4'>Inga spelningar på valt datum.</p>
                     )}
                 </>
             )}
