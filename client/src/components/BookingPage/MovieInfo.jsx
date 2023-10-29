@@ -14,16 +14,16 @@ function MovieInfo({screeningData}) {
     const { loading, err, data } = useFetchData(`/api/movies/${movieId}`);
     
     return (
-        <Container className='movieContainer mt-4 mb-4 flex-column'>
+        <Container className='movie-container mt-4 mb-4 mx-auto ml-0'>
             <Row>
             {err && <p>Ett fel har inträffat</p>}
             {loading ? <p>Laddar...</p> : (
                 <>
-                    <Col xs={4} md={4} className='moviePoster'>
+                    <Col xs={4} md={4} className='movie-poster'>
                     <Image src={data?.movie.Poster} alt='' fluid />
                     </Col>
                     <Col xs={8} md={8}>
-                        <h2 className='movieTitle mb-2'>{screeningData.Title}</h2>
+                        <h2 className='movie-title mb-2'>{screeningData.Title}</h2>
                         <p className='text-sm mb-0'>{formatDateToSwedish(screeningData.Screening_date)}</p>
                         <p className='text-sm mb-0'>{getMovieEndTime(screeningData.Screening_startime, data?.movie.Runtime)}</p>
                         <p className='text-sm mb-0'>{screeningData.Theater_name}</p>
