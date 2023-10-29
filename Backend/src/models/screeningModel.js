@@ -46,7 +46,7 @@ async function getScreening(screeningId) {
     // Only the booked seats for correct screening and theater
     const [bookedSeats] = await connection.execute(
       `
-        SELECT Seat.Number_row, Seat.Number_seat
+        SELECT Seat.Number_row, Seat.Number_seat, Seat.Seat_id
         FROM Screening
         INNER JOIN Ticket ON Ticket.Screening_id = Screening.Screening_id
         INNER JOIN Seat ON Seat.Seat_id = Ticket.Seat_id
@@ -60,7 +60,7 @@ async function getScreening(screeningId) {
 
     const [freeSeats] = await connection.execute(
       `
-        SELECT Seat.Number_row, Seat.Number_seat
+        SELECT Seat.Number_row, Seat.Number_seat, Seat.Seat_id
         FROM Seat
         INNER JOIN Screening ON Seat.Theater_id = Screening.Theater_id
         LEFT JOIN Ticket ON Ticket.Seat_id = Seat.Seat_id AND Ticket.Screening_id = Screening.Screening_id
@@ -73,7 +73,7 @@ async function getScreening(screeningId) {
 
     const [allSeats] = await connection.execute(
       `
-        SELECT Seat.Number_row, Seat.Number_seat
+        SELECT Seat.Number_row, Seat.Number_seat, Seat.Seat_id
         FROM Seat
         INNER JOIN Screening ON Seat.Theater_id = Screening.Theater_id
         WHERE Screening.Screening_id=?

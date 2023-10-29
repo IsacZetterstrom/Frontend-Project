@@ -1,24 +1,104 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import SeatPicker from "../components/SeatPicker";
+import TicketSelector from "../components/TicketSelector";
+import { Container } from "react-bootstrap";
+
+import '../styling/components/_bookingPage.scss'
+
+/**
+ * @author Oliver Andersson
+ * @description Page for chosing tickets, selecting seats and booking a screening
+ */
 
 function BookingPage() {
-  const [json, setJson] = useState("");
+  
+  const { screeningId } = useParams();
+
+  const [screeningData, setScreeningData] = useState({});
+  
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [maxSeats, setMaxSeats] = useState(2);
+
+
+  // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type 
+  const [tickets, setTickets] = useState({
+    1: 0,
+    2: 0,
+    3: 2
+  });
+
+
 
   useEffect(() => {
-    // koppla på routen
-    const eventSource = new EventSource("http://localhost:3050/api/movies/screenings/1");
+    const eventSource = new EventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
 
-    // Ta emot data från server här
     eventSource.onmessage = (event) => {
-      setJson(JSON.parse(event.data)); // Spara ny data i state
+      setScreeningData(JSON.parse(event.data));
     };
 
     return () => eventSource.close();
   }, []);
 
-  // console.log(json);
 
-  return <>BookingPage</>;
+
+  function addOneSeat(seat) {
+    if(selectedSeats.includes(seat)) {
+      setSelectedSeats(selectedSeats.filter((x) => x !== seat))
+    } else {
+
+      if (selectedSeats.length >= maxSeats) {
+        const updatedSeats = selectedSeats.slice(1);
+        setSelectedSeats([...updatedSeats, seat]);
+      } else {
+        setSelectedSeats([...selectedSeats, seat]);
+      }
+    }
+  }
+
+  function addSeveralSeats(seats) {
+    setSelectedSeats(seats);
+  }
+
+  function handleTicketChange(action, type) {
+    let newTickets;
+    let ticketCount = 0;
+
+    if(action == "+") {
+      newTickets = {...tickets, [type]: tickets[type] + 1}
+    } else if (action === "-" && tickets[type] > 0) {
+      newTickets = {...tickets, [type]: tickets[type] - 1}
+    }
+
+    for (const [key, value] of Object.entries(newTickets)) {
+      ticketCount += value;
+    }
+
+    setTickets(newTickets)
+    setMaxSeats(ticketCount)
+  }
+
+
+  return <Container fluid className="booking-page-wrapper p-4">
+  
+    <h5>Välj antal biljetter</h5>
+
+    <TicketSelector
+      tickets={tickets}
+      handleTicketChange={handleTicketChange}
+    />
+
+    <h5>Välj platser</h5>
+
+    <SeatPicker
+      screeningData={screeningData}
+      addOneSeat={addOneSeat}
+      addSeveralSeats={addSeveralSeats}
+      selectedSeats={selectedSeats}
+      maxSeats={maxSeats}
+    />
+  </Container>;
 }
 
 export default BookingPage;
