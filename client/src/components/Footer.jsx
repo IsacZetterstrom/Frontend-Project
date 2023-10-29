@@ -5,12 +5,12 @@ import '../styling/components/_footer.scss';
 
 /**
  * @author Sara Johansson
- * @Description Footer with address and social media links
+ * @Description Footer with address and social media links.
  */
 
 function Footer() {
   return (
-    <Container fluid className="custom-footer fixed-bottom">
+    <Container fluid className="custom-footer">
       <Row className="icon-row text-center">
         <Col xs={1} className="icon-col"> 
           <a href="https://www.twitter.com/" className="icon fs-3">
@@ -34,7 +34,7 @@ function Footer() {
             <BsTelephone /> 12-34 56 78 91
           </a>
         </Col>
-        <Col md={12} className=''>
+        <Col md={12} className='footer-adress'>
           <a>Springavägen 420, 133 37 Rymden</a>
         </Col>
       </Row>
