@@ -5,13 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { formatDateOrTime, formatDateString } from '../../utils/dateUtils';
 
+/**
+ * @author Louise Johansson
+ * @description Displays movie screening information, allowing users to select a date and view available showtimes.
+ * movieId - The unique identifier of the movie, comes from parents params
+ * movie - Information about the selected movie, comes from fetch in the parent.
+ */
+
 function ScreeningsList({ movieId, movie }) {
     const navigate = useNavigate();
     const today = new Date();
     const formattedDate = formatDateString(today);
     const [selectedDate, setSelectedDate] = useState(formattedDate);
-    const [showMore, setShowMore] = useState(false); // State to control the "Show More" button
-    const [screeningsToShow, setScreeningsToShow] = useState(4); // Number of screenings to initially display
+    const [screeningsToShow, setScreeningsToShow] = useState(4);
 
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
@@ -20,9 +26,8 @@ function ScreeningsList({ movieId, movie }) {
     const { loading, err, data } = useFetchData(`/api/movies/${movieId}/screenings/${selectedDate}`);
 
     const handleShowMore = () => {
-        // Increment the number of screenings to show
-        setScreeningsToShow(screeningsToShow + 2);
-        setShowMore(true);
+        // Increment the number of screenings to show, initially its 4
+        setScreeningsToShow(screeningsToShow + 4);
     };
 
     return (
@@ -70,10 +75,11 @@ function ScreeningsList({ movieId, movie }) {
                             ))}
                             </tbody>
                         </Table>
-                        <Container className='text-center'>
-                            <Button className='show-more' onClick={handleShowMore}><p>Visa mer</p><MdKeyboardArrowDown/></Button>
-                        </Container>
-                        
+                        {data.length > screeningsToShow && (
+                            <Container className='text-center'>
+                                <Button className='show-more' onClick={handleShowMore}><p>Visa mer</p><MdKeyboardArrowDown/></Button>
+                            </Container>
+                        )}
                     </>
                     ) : (
                         <p className='text-center mt-4'>Inga spelningar på valt datum.</p>
