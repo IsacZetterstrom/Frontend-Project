@@ -8,8 +8,9 @@ import ScreeningsList from '../components/DetailPage/ScreeningsList';
 
 /**
  * @author Louise Johansson
- * @description Renders the information about the film based on the movie id. Movie id comes from params, fetches with useFetchData hook.
- */
+ * @description Renders the information about the film based on the movie id. Movie id comes from params, 
+ * fetches with useFetchData hook.Fetches similar movie to send as props to CarouselComponent
+*/
 
 function DetailPage() {
   const { movieId } = useParams();
