@@ -3,7 +3,7 @@
  * @description formats a datestring to swedish format with year as "Fredag 24 januari 2020"
  */
 
-function getDateWithDay(date) {
+export default function getDateWithDay(date) {
   const options = {
     weekday: "long",
     year: "numeric",
@@ -37,9 +37,26 @@ export function getMovieEndTime(startTimeISO, duration) {
   return `${startTimeString} - ${endTimeString}`;
 }
 
-const dateUtils = {
-  getDateWithDay,
-  getMovieEndTime,
-};
+// Format a date or time based on the formatType ("date" or "time") e.g. "15/04"
+export function formatDateOrTime(dateTime, formatType) {
+  const date = new Date(dateTime);
+  const options = {
+    date: { day: "2-digit", month: "2-digit" },
+    time: { hour: "2-digit", minute: "2-digit" },
+  };
+  return date.toLocaleString("sv-SE", options[formatType]);
+}
 
-export default dateUtils;
+// Format a date string to exclude time and time zone information eg
+export function formatDateString(dateString) {
+  const date = new Date(dateString);
+  const formattedDate = date.toISOString().split("T")[0];
+  return formattedDate;
+}
+
+// Format a date string to a Swedish date format. e.g., "Fredag 24 oktober"
+export function formatDateStringToSwedish(dateString) {
+  const date = new Date(dateString);
+  const options = { weekday: "long", day: "numeric", month: "long" };
+  return date.toLocaleDateString("sv-SE", options);
+}

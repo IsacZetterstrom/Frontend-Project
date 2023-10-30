@@ -5,6 +5,7 @@ import ActiveBookings from "../components/ProfilePage/ActiveBookings";
 import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
+import EditUserPage from "./EditUserPage";
 
 /**
  * @author Isac Zetterström
@@ -13,6 +14,10 @@ import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 
 function ProfilePage() {
   const { loading, err, data } = useFetchData("profile/user/bookings");
+  const [editUser, setEditUser] = useState(false);
+  const toggleEditUser = () => {
+    setEditUser((editUser) => !editUser);
+  };
 
   return (
     <Container className="profile-container">
@@ -32,7 +37,7 @@ function ProfilePage() {
               <ExpiredBookings expiredBookings={data?.expired} />
             </Col>
             <Col lg={3}>
-              <UserInfoCard />
+              {editUser && <UserInfoCard {...{ setEditUser }} />}
             </Col>
           </Row>
         </>
@@ -40,5 +45,3 @@ function ProfilePage() {
     </Container>
   );
 }
-
-export default ProfilePage;
