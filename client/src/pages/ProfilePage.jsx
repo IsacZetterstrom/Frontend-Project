@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import useFetchData from "../hooks/useFetchData";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import ActiveBookings from "../components/ProfilePage/ActiveBookings";
 import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 
+/**
+ * @author Isac Zetterström
+ * @description Renders components for profilepage
+ */
+
 function ProfilePage() {
   const { loading, err, data } = useFetchData("profile/user/bookings");
-  // console.log(data);
+
   return (
     <Container className="profile-container">
+      {err && <p>Fel vid hämtning av profilsidan har inträffat</p>}
       {loading ? (
         <LoadingGif />
       ) : (
