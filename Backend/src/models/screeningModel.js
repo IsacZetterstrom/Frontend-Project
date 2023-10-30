@@ -106,7 +106,10 @@ Author: Louise Johansson
 Description: Model to get specific screening based on date
 */
 async function getScreeningsByDate(movieId, date) {
-  const [movie] = await connection.execute(
+  const endDate = new Date(date);
+  endDate.setDate(endDate.getDate() + 7);
+
+  const [screenings] = await connection.execute(
     `
     SELECT 
       Screening.Screening_id, 
@@ -122,12 +125,12 @@ async function getScreeningsByDate(movieId, date) {
     WHERE 
       Screening.movie_id=? 
     AND 
-      Screening.Screening_date=?
+      Screening.Screening_date BETWEEN ? AND ?
     `,
-    [movieId, date]
+    [movieId, date, endDate.toISOString().slice(0, 10)]
   );
 
-  return movie;
+  return screenings;
 }
 
 export default { getScreenings, getScreening, getScreeningsByDate };

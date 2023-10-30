@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 import SeatPicker from "../components/SeatPicker";
 import TicketSelector from "../components/TicketSelector";
 import { Container } from "react-bootstrap";
-
 import '../styling/components/_bookingPage.scss'
+import PriceSummary from "../components/PriceSummary";
+import useEventSource from "../hooks/useEventSource";
 
 /**
  * @author Oliver Andersson
@@ -15,11 +16,10 @@ import '../styling/components/_bookingPage.scss'
 function BookingPage() {
   
   const { screeningId } = useParams();
-
-  const [screeningData, setScreeningData] = useState({});
-  
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [maxSeats, setMaxSeats] = useState(2);
+  const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId )
+
 
 
   // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type 
@@ -28,20 +28,6 @@ function BookingPage() {
     2: 0,
     3: 2
   });
-
-
-
-  useEffect(() => {
-    const eventSource = new EventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
-
-    eventSource.onmessage = (event) => {
-      setScreeningData(JSON.parse(event.data));
-    };
-
-    return () => eventSource.close();
-  }, []);
-
-
 
   function addOneSeat(seat) {
     if(selectedSeats.includes(seat)) {
@@ -57,12 +43,15 @@ function BookingPage() {
     }
   }
 
+
   function addSeveralSeats(seats) {
     setSelectedSeats(seats);
   }
 
+
+  // Runs when + or - in ticketSelector gets pressed
   function handleTicketChange(action, type) {
-    let newTickets;
+    let newTickets = tickets;
     let ticketCount = 0;
 
     if(action == "+") {
@@ -75,29 +64,53 @@ function BookingPage() {
       ticketCount += value;
     }
 
+
     setTickets(newTickets)
     setMaxSeats(ticketCount)
+    setSelectedSeats([])
   }
 
 
+  // Runs when "book" button gets pressed
+  function handleBookingClick() {
+    const data = {
+      tickets: [
+
+      ]
+    };
+
+    // Put ticket and seat data into correct structure for post request
+    for (const [key, value] of Object.entries(tickets)) {
+      for (let i = 0; i < value; i++) {
+        if (selectedSeats[i] === undefined) return
+    
+        data.tickets.push({
+          Screening_id: screeningId,
+          Ticket_Type_id: key,
+          Seat_id: selectedSeats[i].Seat_id
+        })
+      } 
+    }
+
+    console.log(data)
+  }
+
   return <Container fluid className="booking-page-wrapper p-4">
-  
-    <h5>Välj antal biljetter</h5>
+    
 
-    <TicketSelector
-      tickets={tickets}
-      handleTicketChange={handleTicketChange}
-    />
+    <PriceSummary {...{handleBookingClick,tickets}}/>
 
-    <h5>Välj platser</h5>
+    <h5 className="line pb-1">Välj antal biljetter</h5>
 
-    <SeatPicker
-      screeningData={screeningData}
-      addOneSeat={addOneSeat}
-      addSeveralSeats={addSeveralSeats}
-      selectedSeats={selectedSeats}
-      maxSeats={maxSeats}
-    />
+    <TicketSelector {...{tickets,handleTicketChange}} />
+
+    <h5 className="line pb-1">Välj platser</h5>
+
+    {err && <p>err</p> || <SeatPicker {...{screeningData,addOneSeat, addSeveralSeats, selectedSeats, maxSeats}} />}
+    
+
+    
+
   </Container>;
 }
 

@@ -1,48 +1,32 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import LibaryForm from '../components/LibaryPageComp/LibaryForm';
-import GlobalMovieCard from '../components/GlobalMovieCard';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import GlobalMovieCard from "../components/GlobalMovieCard";
+import useQuaryMovie from "../hooks/useQuaryMovie";
+import { useFormDefaults } from "../hooks/useFormDefaults";
+import SearchFilterSortQuary from "../components/LibaryPageComp/SearchFilterSortQuary";
 
 /**
  * @author Oskar dahlberg
  * @Description Sort / search/fiter movies that are on screen.
  */
 function LibraryPage() {
-
-  const [data, setData] = useState([]);
-  const [query, setSearch] = useState('');
-  const [sort, setSort] = useState('');
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(`/api/movies?filter=${filter}&sort=${sort}&search=${query}`);
-      if (response.ok) {
-        const data = await response.json();
-        setData(data);
-      } else {
-        console.error('Failed to fetch data');
-      }
-    })();
-  }, [query, sort, filter])
+  const { defaults, formData: quary } = useFormDefaults();
+  const { loading, err, data } = useQuaryMovie(quary.search, quary.sort, quary.filter);
 
   return (
     <>
-      <Container className="mt-5">
-        <LibaryForm setSearch={setSearch} setSort={setSort} setFilter={setFilter}> </LibaryForm>
-      </Container>
-      <Container>
-      <h1>Visas just nu på bio</h1>
+      <Container className="mt-5 library-page">
+        <SearchFilterSortQuary {...{ defaults }} />
         <Row>
-          {data.map((movie) => (
-            <GlobalMovieCard xs={6} md={4} id={movie.Movie_id} img={movie.Poster} title={movie.Title} />
-          ))}
+          <h1 className="line pb-2">På bio nu</h1>
+          {(loading && <p>laddar....</p>) ||
+            (err && <p>Hittade inte filmerna</p>) ||
+            data?.map((movie) => <GlobalMovieCard key={movie.Movie_id} xs={6} md={3} id={movie.Movie_id} img={movie.Poster} title={movie.Title} />)}
         </Row>
       </Container>
     </>
-  )
+  );
 }
 
-export default LibraryPage
+export default LibraryPage;
