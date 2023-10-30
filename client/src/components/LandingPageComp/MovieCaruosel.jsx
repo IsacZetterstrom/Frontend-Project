@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
  * @description this component fetches and group the movie depending the screen size
  */
 
-function MovieCaruosel({ url }) {
+function MovieCaruosel({ url, movieId }) {
   const { loading, err, data } = useFetchData(url);
   const [index, setIndex] = useState(0);
   const [screen, setScreen] = useState(window.innerWidth);
@@ -31,19 +31,22 @@ function MovieCaruosel({ url }) {
   };
 
   const renderCarouselItems = () => {
-    const itemsToShow = screen < 576 ? 2 : screen < 768 ? 3 : 4;
+    let movies = data;
+    if (movieId !== undefined) movies = data?.filter((movie) => movie.Movie_id !== parseInt(movieId));
 
-    return data.map((movie, index) => {
+    const itemsToShow = screen < 576 ? 2 : screen < 768 ? 2 : 4;
+
+    return movies.map((movie, index) => {
       if (index % itemsToShow === 0) {
-        const itemsInSlide = data.slice(index, index + itemsToShow);
+        const itemsInSlide = movies.slice(index, index + itemsToShow);
         return (
           <Carousel.Item key={index}>
-            <Row className="justify-content-center align-items-center">
+            <Row className="justify-content-center align-items-strech">
               {itemsInSlide.map((movieItem) => (
                 <Col xs={4} md={2} key={movieItem.Movie_id}>
-                  <Link to={`/film/${movieItem.Movie_id}`}>
+                  <Link to={`/film/${movieItem.Movie_id}`} className="img-wrapper">
                     <Image src={movieItem.Poster} alt="" fluid rounded />
-                    <p className="lh-1">{movieItem.Title}</p>
+                    <p>{movieItem.Title}</p>
                   </Link>
                 </Col>
               ))}
@@ -56,7 +59,7 @@ function MovieCaruosel({ url }) {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
+    <Carousel activeIndex={index} onSelect={handleSelect} interval={null} indicators={false} className="movie-carousel">
       {(loading && <p>laddar....</p>) || (err && <p>404 hittade inte filmerna</p>) || renderCarouselItems()}
     </Carousel>
   );
