@@ -19,7 +19,7 @@ export function getMovieEndTime(startTimeISO, duration) {
   return `${startTimeString} - ${endTimeString}`;
 }
 
-// Format a date or time based on the formatType ("date" or "time")
+// Format a date or time based on the formatType ("date" or "time") e.g. "15/04"
 export function formatDateOrTime(dateTime, formatType) {
   const date = new Date(dateTime);
   const options = {
@@ -29,14 +29,14 @@ export function formatDateOrTime(dateTime, formatType) {
   return date.toLocaleString("sv-SE", options[formatType]);
 }
 
-// Format a date string to exclude time and time zone information
+// Format a date string to exclude time and time zone information eg
 export function formatDateString(dateString) {
   const date = new Date(dateString);
   const formattedDate = date.toISOString().split("T")[0];
   return formattedDate;
 }
 
-// Format a date string to a Swedish date format (e.g., "Fredag 24 oktober")
+// Format a date string to a Swedish date format. e.g., "Fredag 24 oktober"
 export function formatDateStringToSwedish(dateString) {
   const date = new Date(dateString);
   const options = { weekday: "long", day: "numeric", month: "long" };
