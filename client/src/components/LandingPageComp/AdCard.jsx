@@ -1,6 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
+/**
+ * @author Niklas Nguyen
+ * @description this component is holding the ad for the applikation
+ */
+
 function AdCard() {
   return (
     <Card className="ad-card">
