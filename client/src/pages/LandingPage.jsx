@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import TopList from '../components/LandingPageComp/TopMovies';
 import UpcomingList from '../components/LandingPageComp/UpcomingMovies';
 import Hero from '../components/LandingPageComp/Hero';
+import useFetchData from '../hooks/useFetchData';
 /**
  * @author Oskar dahlberg
  * @Description Toplist for most booked movies and unreleased movies. 

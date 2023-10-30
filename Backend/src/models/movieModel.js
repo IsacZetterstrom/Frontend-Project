@@ -168,7 +168,7 @@ async function getGenre(query) {
     FROM 
     Movie
   JOIN Movie_Information ON Movie.Movie_id = Movie_Information.Movie_id
-  WHERE Movie.Genre LIKE ?;`,
+  WHERE Movie.Genre LIKE ?`,
     [`%${query}%`]
   );
   return byGenre;
