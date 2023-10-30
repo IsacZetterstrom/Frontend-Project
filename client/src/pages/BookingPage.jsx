@@ -7,6 +7,7 @@ import { Container } from "react-bootstrap";
 import '../styling/components/_bookingPage.scss'
 import PriceSummary from "../components/PriceSummary";
 import useEventSource from "../hooks/useEventSource";
+import BookingForm from "../components/BookingPage/BookingForm";
 
 /**
  * @author Oliver Andersson
@@ -20,7 +21,9 @@ function BookingPage() {
   const [maxSeats, setMaxSeats] = useState(2);
   const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId )
 
-
+  // State variable to control the visibility of BookingForm
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [bookingInfo, setBookingInfo] = useState({tickets: []})
 
   // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type 
   const [tickets, setTickets] = useState({
@@ -43,11 +46,9 @@ function BookingPage() {
     }
   }
 
-
   function addSeveralSeats(seats) {
     setSelectedSeats(seats);
   }
-
 
   // Runs when + or - in ticketSelector gets pressed
   function handleTicketChange(action, type) {
@@ -64,54 +65,45 @@ function BookingPage() {
       ticketCount += value;
     }
 
-
     setTickets(newTickets)
     setMaxSeats(ticketCount)
     setSelectedSeats([])
   }
 
-
   // Runs when "book" button gets pressed
   function handleBookingClick() {
-    const data = {
-      tickets: [
-
-      ]
-    };
 
     // Put ticket and seat data into correct structure for post request
     for (const [key, value] of Object.entries(tickets)) {
       for (let i = 0; i < value; i++) {
         if (selectedSeats[i] === undefined) return
     
-        data.tickets.push({
+        bookingInfo.tickets.push({
           Screening_id: screeningId,
           Ticket_Type_id: key,
           Seat_id: selectedSeats[i].Seat_id
         })
       } 
     }
-
-    console.log(data)
+    setShowBookingForm(true);
   }
 
-  return <Container fluid className="booking-page-wrapper p-4">
-    
 
-    <PriceSummary {...{handleBookingClick,tickets}}/>
-
-    <h5 className="line pb-1">Välj antal biljetter</h5>
-
-    <TicketSelector {...{tickets,handleTicketChange}} />
-
-    <h5 className="line pb-1">Välj platser</h5>
-
-    {err && <p>err</p> || <SeatPicker {...{screeningData,addOneSeat, addSeveralSeats, selectedSeats, maxSeats}} />}
-    
-
-    
-
-  </Container>;
+  return (
+    <Container fluid className="booking-page-wrapper p-4">
+    {showBookingForm ? (
+      <BookingForm bookingInfo={bookingInfo} />
+    ) : (
+      <>
+        <PriceSummary {...{ handleBookingClick, tickets }} />
+        <h5 className="line pb-1">Välj antal biljetter</h5>
+        <TicketSelector {...{ tickets, handleTicketChange }} />
+        <h5 className="line pb-1">Välj platser</h5>
+        {err && <p>err</p> || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
+      </>
+    )}
+  </Container>
+  )
 }
 
 export default BookingPage;
