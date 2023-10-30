@@ -10,12 +10,15 @@ import dateUtils, { getMovieEndTime } from "../../utils/dateUtils.js";
 function ActiveBookings({ activeBookings }) {
   return (
     <>
-      <h6 className="mb-2">Mina nuvarande bokningar</h6>
+      <h6 className="offset-sm-2 offset-md-3 offset-lg-0">
+        Mina nuvarande bokningar
+      </h6>
       <Row>
-        <Container className=" d-flex flex-column align-items-center">
+        <Container className="d-flex flex-column align-items-center flex-lg-row flex-lg-wrap gap-3 m-0">
           {activeBookings.map((booking) => {
             return (
               <Col
+                lg={12}
                 className="active-booking-card d-flex flex-shrink-0 mb-2"
                 key={booking.referenceNumber}>
                 <Col xs={3} sm={3} lg={3}>
@@ -26,7 +29,7 @@ function ActiveBookings({ activeBookings }) {
                   />
                 </Col>
                 <Col>
-                  <h6 className="my-2 mx-2 booking-title">
+                  <h6 className="my-1 mx-2 booking-title">
                     {booking.movieTitle}
                   </h6>
                   <p className="mb-0 mx-2">
@@ -44,9 +47,11 @@ function ActiveBookings({ activeBookings }) {
                     <span className="ref-number mx-2">
                       Bokningsnummer: {booking.referenceNumber}
                     </span>
-                    <Button size="sm" className="cancel-booking mx-2 mb-1">
-                      Avboka
-                    </Button>
+                    <Col xs={3} className="card-btn-container ">
+                      <Button size="sm" className="mx-2 mb-1">
+                        Avboka
+                      </Button>
+                    </Col>
                   </Col>
                 </Col>
               </Col>
