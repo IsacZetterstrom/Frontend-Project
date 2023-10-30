@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "../components/Forms/LoginForm";
 import { useFormDefaults } from "../hooks/useFormDefaults";
 import fetchService from "../service/FetchService";
 import cacheService from "../service/CacheService";
 import { useOutletContext } from "react-router-dom";
+
+/**
+ * @author Niklas Nguyen
+ * @description holds the login form and send the data to the server if the user succeds the login the user will be directed to landingpage and change the navbar
+ *  And saved the jwt in local storage
+ */
 
 function LoginPage() {
   const { defaults, formData, setFormData } = useFormDefaults();

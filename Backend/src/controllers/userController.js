@@ -55,7 +55,14 @@ async function getProfile(req, res) {
  */
 async function editUser(req, res) {
   const userId = req.decoded.id;
-  const { email, firstname, lastname, phone } = req.body;
+  let { email, firstname, lastname, phone } = req.body;
+
+
+   if (email === "") return email = null
+    if (firstname === "") firstname = null;
+    if (lastname === "") lastname = null;
+    if (phone === "") phone = null;
+
   try {
     await userModel.editUser(userId, email, firstname, lastname, phone);
     res.status(200).send({ message: "Information edited!" });

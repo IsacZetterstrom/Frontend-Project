@@ -9,19 +9,21 @@ import fetchService from "../service/FetchService";
  */
 
 function useFetchData(url) {
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(false);
   const [data, setData] = useState();
   useEffect(() => {
     (async function () {
       try {
-        setloading(true);
+        setErr(false);
+        setLoading(true);
         const response = await fetchService.fetchJson(url, "GET");
+        if (response.error !== undefined) setErr(true);
         setData(response);
       } catch (err) {
         setErr(true);
       } finally {
-        setloading(false);
+        setLoading(false);
       }
     })();
   }, [url]);
