@@ -1,10 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
-import dateUtils from "../../utils/dateUtils.js";
+import dateUtils, { getMovieEndTime } from "../../utils/dateUtils.js";
+
+/**
+ * @author Isac Zetterström
+ * @description Renders card for active bookings
+ */
 
 function ActiveBookings({ activeBookings }) {
-  console.log(activeBookings);
-
   return (
     <>
       <h6 className="mb-2">Mina nuvarande bokningar</h6>
@@ -29,7 +32,12 @@ function ActiveBookings({ activeBookings }) {
                   <p className="mb-0 mx-2">
                     {dateUtils.getDateWithDay(booking.screeningStartTime)}
                   </p>
-                  <p className="mb-0 mx-2">{booking.screeningStartTime}</p>
+                  <p className="mb-0 mx-2">
+                    {getMovieEndTime(
+                      booking.screeningStartTime,
+                      booking.runTime
+                    )}
+                  </p>
                   <p className="mb-0 mx-2">{`${booking.theaterName}, Plats-Stol: ${booking.seats}`}</p>
                   <p className="mb-1 mx-2">{`Pris: ${booking.priceSum} Kr`}</p>
                   <Col className="d-flex justify-content-between">
