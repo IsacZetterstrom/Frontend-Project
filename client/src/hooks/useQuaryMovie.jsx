@@ -18,7 +18,7 @@ function useQuaryMovie(search, sort, filter) {
       try {
         setErr(false);
         setLoading(true);
-        const response = await fetchService.fetchJson(`/api/movies?filter=${filter}&sort=${sort}&search=${search}`, "GET");
+        const response = await fetchService.fetchJson(`/api/movies?filter=${filter}&sort=${sort}&search=${search}`);
         if (response.error !== undefined) setErr(true);
         setData(response);
       } catch (err) {

@@ -1,34 +1,21 @@
-import Image from 'react-bootstrap/Image';
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 /**
  * @author Oskar dahlberg
  * @Description Temporary hero banner for landingpage, maybe use trailercomponent?
  */
-function Hero({ data }) {
-    const background = {
-        color: '#BD9060',
-    };
-
-
-    if (data) {
-        return (
-            <Card style={background} className=" p-0 mb-4" >
-                <Card.Img
-                    src={data.Image}
-                    alt="Card image"
-                />
-                <Card.ImgOverlay>
-                    <div className="d-flex flex-column align-items-center justify-content-end h-100">
-                        <Card.Title >
-                            {data.Title}
-                        </Card.Title>
-                    </div>
-                </Card.ImgOverlay>
-
-            </Card>
-        )
-    }
-
+function Hero({ heroData }) {
+  return (
+    <>
+      <Card className=" p-0 mb-4 hero-card">
+        <Link to={`/film/${heroData.movie.Movie_id}`}>
+          <div className="overlay"></div>
+          <Card.Img src={heroData?.movie.Image} alt="Card image" />
+        </Link>
+      </Card>
+    </>
+  );
 }
 
-export default Hero
+export default Hero;
