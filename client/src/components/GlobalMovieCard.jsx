@@ -1,9 +1,9 @@
 import { Col, Image } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 function GlobalMovieCard(props) {
   return (
     <>
-      <Col xs={props.xs} md={props.md} key={props.id}>
+      <Col xs={props.xs} md={props.md} key={props.id} className="movie-card">
         <p>{props.index}</p>
         <Link to={`/film/${props.id}`}>
           <Image src={`${props.img}`} fluid rounded />
