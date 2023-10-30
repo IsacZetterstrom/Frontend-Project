@@ -11,7 +11,7 @@ function BookingForm({ bookingInfo }) {
     const { loading, err, data } = useFetchData("/profile/user");
     const { movieId, screeningId } = useParams();
     const [confirmationData, setConfirmationData] = useState(null);
-    const [error, setError] = useState(null); // State for error message
+    const [msg, setMsg] = useState(null); // State for error message
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -35,14 +35,15 @@ function BookingForm({ bookingInfo }) {
   
         if (response.ok) {
             const responseData = await response.json(); 
+            console.log('Booking was successful', responseData); 
             setConfirmationData(responseData);
           } else {
-            const errorData = await response.json();
-            setError(errorData.error); 
+            const errorData = await response.json(); // Get error response data
+            setMsg(errorData.error); // Set the error message
           }
       } catch (error) {
         console.error('Error:', error);
-        setError("An error occurred during booking.");
+        setMsg("An error occurred during booking."); // Set a generic error message
       }
     };
   
@@ -57,7 +58,7 @@ function BookingForm({ bookingInfo }) {
       <Container className="form-wrapper">
         <Row>
           <h1 className="p-0 text-nowrap mt-5 mb-5 pb-2 line">Bekräfta din bokning</h1>
-          {error && <p className="text-danger">{error}</p>}
+          {msg && <p className="text-danger">{msg}</p>}
           <Form className="p-0" onSubmit={handleSubmit}>
             <Col className="mt-3">
               <label className="p-0 text-nowrap line d-block">E-Post</label>
