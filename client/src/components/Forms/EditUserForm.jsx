@@ -20,11 +20,11 @@ function EditUserForm({ defaults, handleSubmit, setFormData, userData }) {
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Förnamn</label>
-        <input {...defaults("firstname", userData !== undefined && userData.firstName, { required: false, type: "text" })} />
+        <input {...defaults("firstname", userData !== undefined && userData.firstName, { required: false })} />
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Efternamn</label>
-        <input {...defaults("lastname", userData !== undefined && userData.lastName, { required: false, type: "text" })} />
+        <input {...defaults("lastname", userData !== undefined && userData.lastName, { required: false })} />
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Telefon</label>
