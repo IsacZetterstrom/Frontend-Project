@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import LibaryForm from '../components/LibaryPageComp/LibaryForm';
 import GlobalMovieCard from '../components/GlobalMovieCard';
-import useFetchData from '../hooks/useFetchData';
 
 /**
  * @author Oskar dahlberg

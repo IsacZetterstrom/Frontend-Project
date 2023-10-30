@@ -12,6 +12,7 @@ function useFetchData(url) {
   const [loading, setloading] = useState(true);
   const [err, setErr] = useState(false);
   const [data, setData] = useState();
+
   useEffect(() => {
     (async function () {
       try {
