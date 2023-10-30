@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
-import dateUtils, { getMovieEndTime } from "../../utils/dateUtils.js";
+import { getMovieEndTime } from "../../utils/dateUtils.js";
+import getDateWithDay from "../../utils/dateUtils.js";
 
 /**
  * @author Isac Zetterström
@@ -33,7 +34,7 @@ function ActiveBookings({ activeBookings }) {
                     {booking.movieTitle}
                   </h6>
                   <p className="mb-0 mx-2">
-                    {dateUtils.getDateWithDay(booking.screeningStartTime)}
+                    {getDateWithDay(booking.screeningStartTime)}
                   </p>
                   <p className="mb-0 mx-2">
                     {getMovieEndTime(

@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import LoadingGif from "../misc/loadingGif";
 
-function UserInfoCard() {
+function UserInfoCard({ setEditUser }) {
   const { loading, err, data } = useFetchData("/profile/user");
   return (
     <>

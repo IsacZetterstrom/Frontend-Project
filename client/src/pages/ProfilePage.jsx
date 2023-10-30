@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import useFetchData from "../hooks/useFetchData";
 import { Container, Row, Col } from "react-bootstrap";
 import ActiveBookings from "../components/ProfilePage/ActiveBookings";
 import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
-import EditUserPage from "./EditUserPage";
 
 /**
  * @author Isac Zetterström
@@ -37,7 +36,7 @@ function ProfilePage() {
               <ExpiredBookings expiredBookings={data?.expired} />
             </Col>
             <Col lg={3}>
-              {editUser && <UserInfoCard {...{ setEditUser }} />}
+              {!editUser && <UserInfoCard {...{ setEditUser }} />}
             </Col>
           </Row>
         </>
@@ -45,3 +44,5 @@ function ProfilePage() {
     </Container>
   );
 }
+
+export default ProfilePage;
