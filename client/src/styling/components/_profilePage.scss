@@ -4,41 +4,78 @@
     border-radius: 10px;
     background-color: $navyBlueColor;
     box-shadow: 0 3px 4px black;
-    min-height: 150px;
-    width: 350px;
+    width: 330px;
+    gap: .5em;
     .expired-booking-card{
         background-color: $navyBlueColor;
         height: 160px;
-        width: 350px;
+        width: 400px;
     }
     .profile-poster{
+        object-fit: fill;
         border-radius: 10px 0 0 10px;
-        height: 100%;
-        min-width: 100%;
-        
     }
-    .cancel-booking{
-        font-size: .6rem;
-        border-radius: 9999px;
-        border: none;
-        background-color: $OrangeColor;
-        color: $blackColor;
-        font-weight: 600;
+    .card-btn-container{
+        height: 20px;
+        padding: 0;
+        Button{
+            font-size: .6rem;
+            border-radius: 9999px;
+            border: none;
+            background-color: $OrangeColor;
+            color: $blackColor;
+            font-weight: 600;
+        }
     }
+ 
     .booking-title{
-
+        text-overflow: ellipsis;
         color: $goldColor;
     }
     .ref-number{
-        font-size: .8rem;
+        font-size: .7rem;
         font-weight: 500;
+        text-wrap: nowrap;
     }
     p{
-        font-size: .9rem;
+        font-size: .7rem;
     }
-
+    
 }
+.user-info-card{
+    height: 150px;
+    max-width: 290px;
+    box-shadow: 0 0 10px $blackColor;
+    border-radius: 10px;
+    text-overflow: ellipsis;
 
+    table{
+        thead,tbody{
+            tr{
+                font-size: .8rem;
+            }
+        }
+        tbody{
+            overflow:hidden;
+            white-space:nowrap;
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
+        }
+    }
+    .card-btn-container{
+        height: 20px;
+        Button{
+            width:20%;
+            font-size: .6rem;
+            border-radius: 9999px;
+            border: none;
+            background-color: $OrangeColor;
+            color: $blackColor;
+            font-weight: 600;
+        }
+    }
+ 
+}
 
 
 
