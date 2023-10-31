@@ -92,32 +92,57 @@ function BookingPage() {
 
 
   return (
-    <Container fluid className="booking-page-wrapper w-100 p-0 m-0">
-      <Row className="p-4 m-0">
-        <Col sm={6} className="movie-col">
+    // <Container fluid className="booking-page-wrapper w-100 p-0 m-0">
+    //   <Row className="p-4 m-0">
+    //     <Col sm={6} className="movie-col">
+    //       <Row>
+    //         {(err && <p>err</p>) || <MovieInfo {...{ screeningData }} />}
+    //       </Row>
+    //     </Col>
+    //     {showBookingForm ? (
+    //       <BookingForm bookingInfo={bookingInfo} sum={sum} />
+    //     ) : (
+    //     <Col sm={6}>
+    //       <h5 className="line pb-1">Välj antal biljetter</h5>
+    //       <TicketSelector {...{ tickets, handleTicketChange }} />
+    //       <h5 className="line pb-1">Välj platser</h5>
+    //       {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
+    //     </Col>
+    //     )}
+    //   </Row>
+    //   {showBookingForm ? <></>
+    //   : 
+    //   <Row className="m-0">
+    //     <Col className="p-0">
+    //       <PriceSummary {...{ handleBookingClick, tickets, setSum, sum }} />
+    //     </Col>
+    //   </Row>
+    //   }
+    // </Container>
+    <Container fluid className="mt-4 p-4 booking-page-wrapper">
+      <Row>
+        <Col sm={12} md={6}>
           <Row>
-            {/* {(err && <p>err</p>) || <MovieInfo {...{ screeningData }} />} */}
-            <p>saras komponent</p>
+            {(err && <p>err</p>) || <MovieInfo {...{ screeningData }} />}
+            Movie card here...
+          </Row>
+          {showBookingForm ? <></>
+            : 
+            <Row>
+              <PriceSummary {...{ handleBookingClick, tickets, setSum, sum }}/>
             </Row>
+            }
         </Col>
         {showBookingForm ? (
-      <BookingForm bookingInfo={bookingInfo} sum={sum} />
+          <BookingForm bookingInfo={bookingInfo} sum={sum} />
         ) : (
-        <Col sm={6}>
+        <Col sm={12} md={6}>
           <h5 className="line pb-1">Välj antal biljetter</h5>
-
           <TicketSelector {...{ tickets, handleTicketChange }} />
-
           <h5 className="line pb-1">Välj platser</h5>
-
           {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
         </Col>
         )}
-      </Row>
-      <Row className="m-0">
-        <Col className="p-0">
-          <PriceSummary {...{ handleBookingClick, tickets, setSum, sum }} />
-        </Col>
       </Row>
     </Container>
   )
