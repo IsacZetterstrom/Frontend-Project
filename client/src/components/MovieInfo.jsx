@@ -1,29 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import useFetchData from '../hooks/useFetchData';
-import '../styling/components/_movieInfo.scss'
+import React from 'react';
+import { useParams } from "react-router-dom";
+import useFetchData from '../../hooks/useFetchData'
 import { Container, Row, Col, Image } from 'react-bootstrap';
+import { getMovieEndTime, formatDateToSwedish } from '../../utils/dateUtils';
 
 /**
  * @author Sara Johansson
- * @description lalala
+ * @description Fetches info about movie with hook useFetchData and renders it. 
  */
 
-
-function MovieInfo({movie}) {
-
+function MovieInfo({screeningData}) {
+    const { movieId } = useParams();
+    const { loading, err, data } = useFetchData(`/api/movies/${movieId}`);
+    
     return (
-        <Container className='movieContainer mt-4 flex-column'>
+        <Container className='movie-container mt-4 mb-4 mx-auto ml-0'>
             <Row>
-                <Col xs={6} md={6} className='moviePoster d-lg-none'>
-                    <Image src='' alt='' fluid className="max-200 max-300" /><p>BILD</p>
-                </Col>
-                <Col xs={6} md={6}>
-                    <h2 className='movieTitle mb-2'>Oppenheimer</h2>
-                    <p className='text-sm mb-0'>Fredag, 24 oktober</p>
-                    <p className='text-sm mb-0'>Kl. 17.00 - 18.45</p>
-                    <p className='text-sm mb-0'></p>
-                    <p className='text-sm mb-0'>Salong 7</p>
-                </Col>
+            {err && <p>Ett fel har inträffat</p>}
+            {loading ? <p>Laddar...</p> : (
+                <>
+                    <Col xs={4} md={4} className='movie-poster'>
+                    <Image src={data?.movie.Poster} alt='' fluid />
+                    </Col>
+                    <Col xs={8} md={8}>
+                        <h2 className='movie-title mb-2'>{screeningData.Title}</h2>
+                        <p className='text-sm mb-0'>{formatDateToSwedish(screeningData.Screening_date)}</p>
+                        <p className='text-sm mb-0'>{getMovieEndTime(screeningData.Screening_startime, data?.movie.Runtime)}</p>
+                        <p className='text-sm mb-0'>{screeningData.Theater_name}</p>
+                    </Col>
+                </>
+            )}                
             </Row>
         </Container>
     );
