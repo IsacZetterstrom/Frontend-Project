@@ -6,7 +6,7 @@ import FormBtns from "../Forms/FormBtns";
 import useFetchData from '../../hooks/useFetchData';
 import fetchService from "../../service/FetchService";
 
-function BookingForm({ bookingInfo }) {
+function BookingForm({ bookingInfo, sum }) {
     const { defaults, formData, setFormData } = useFormDefaults();
     const { loading, err, data } = useFetchData("/profile/user");
     const { movieId, screeningId } = useParams();
@@ -58,6 +58,10 @@ function BookingForm({ bookingInfo }) {
       <Container className="form-wrapper">
         <Row>
           <h1 className="p-0 text-nowrap mt-5 mb-5 pb-2 line">Bekräfta din bokning</h1>
+          <h2>Movie titel</h2>
+          <p>Tisdag, 24 oktober</p>
+          <p>Salong Stora rummet</p>
+          <p>Totalsumma: {sum}</p>
           {msg && <p className="text-danger">{msg}</p>}
           <Form className="p-0" onSubmit={handleSubmit}>
             <Col className="mt-3">

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SeatPicker from "../components/SeatPicker";
 import TicketSelector from "../components/TicketSelector";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import '../styling/components/_bookingPage.scss'
 import PriceSummary from "../components/PriceSummary";
 import useEventSource from "../hooks/useEventSource";
@@ -18,6 +18,7 @@ function BookingPage() {
   
   const { screeningId } = useParams();
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [sum,setSum] = useState(0)
   const [maxSeats, setMaxSeats] = useState(2);
   const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId )
 
@@ -92,17 +93,17 @@ function BookingPage() {
   return (
     <Container fluid className="booking-page-wrapper p-4">
     {showBookingForm ? (
-      <BookingForm bookingInfo={bookingInfo} />
+      <BookingForm bookingInfo={bookingInfo} sum={sum} />
     ) : (
       <>
-        <PriceSummary {...{ handleBookingClick, tickets }} />
+        <PriceSummary {...{ handleBookingClick, tickets, setSum, sum }} />
         <h5 className="line pb-1">Välj antal biljetter</h5>
         <TicketSelector {...{ tickets, handleTicketChange }} />
         <h5 className="line pb-1">Välj platser</h5>
         {err && <p>err</p> || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
       </>
     )}
-  </Container>
+    </Container>
   )
 }
 

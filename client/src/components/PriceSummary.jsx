@@ -3,9 +3,9 @@ import "../styling/components/_priceSummary.scss"
 import Button from 'react-bootstrap/Button'
 import { Col, Container, Row } from 'react-bootstrap'
 
-function PriceSummary({ handleBookingClick, tickets }) {
+function PriceSummary({ handleBookingClick, tickets, setSum, sum }) {
     
-    const [sum,setSum] = useState(0)
+    
 
     useEffect(() => {
         let total = 0
