@@ -1,0 +1,39 @@
+@use "../abstract/variables" as *;
+
+.search-filter-sort{
+    width: clamp(400px,50%,600px);
+    .search-container{
+        position: relative;
+        .icon{
+            width: 10%;
+            height: 100%;
+            position: absolute;
+            padding: 0;
+            left: 0;
+            top: 0;
+            color: $mainColor;
+        }
+        input{
+            text-align: center;
+            border-radius: 999999999999px;
+        }
+    }
+    
+    .select-container{
+        .form-select:focus{
+            box-shadow: 0 0 5px $goldColor;
+            border-color: $goldColor;
+        }
+        .form-select{
+            option{
+                background-color: $mainColor;
+                border: 0;
+            }
+            width: 25%;
+            text-align: center;
+            background-color: transparent;
+            border: 0;
+            color: $whiteColor;
+        }
+    }
+}

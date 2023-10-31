@@ -8,10 +8,11 @@ import fetchService from "../service/FetchService";
  * @returns loading, err, data
  */
 
-function useFetchData(url) {
+function useFetchData(url, update) {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(false);
   const [data, setData] = useState();
+
   useEffect(() => {
     (async function () {
       try {
@@ -26,7 +27,7 @@ function useFetchData(url) {
         setLoading(false);
       }
     })();
-  }, [url]);
+  }, [url, update]);
   return { loading, err, data };
 }
 export default useFetchData;

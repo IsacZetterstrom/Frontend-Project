@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Form } from "react-bootstrap";
 import FormBtns from "./FormBtns";
-
+import { useNavigate } from "react-router-dom";
 /**
  * @author Niklas Nguyen
  * @param defaults is the object with attributes for inputs
@@ -11,7 +11,17 @@ import FormBtns from "./FormBtns";
  * @description this is a finnished form for register
  */
 
-export default function RegisterForm({ defaults, formData, handleSubmit, setFormData }) {
+export default function RegisterForm({
+  defaults,
+  formData,
+  handleSubmit,
+  setFormData,
+}) {
+  const navigate = useNavigate();
+
+  const handleCancelBtn = () => {
+    navigate("/");
+  };
   return (
     <Form className="p-0" onSubmit={handleSubmit}>
       <Col className="mt-3">
@@ -31,7 +41,9 @@ export default function RegisterForm({ defaults, formData, handleSubmit, setForm
         />
       </Col>
       <Col className="mt-3">
-        <label className="p-0 text-nowrap d-block line">Bekräfta lösenord</label>
+        <label className="p-0 text-nowrap d-block line">
+          Bekräfta lösenord
+        </label>
         <input
           {...defaults(
             "confirmPassword",
@@ -42,7 +54,15 @@ export default function RegisterForm({ defaults, formData, handleSubmit, setForm
           )}
         />
       </Col>
-      <FormBtns {...{ submitBtn: "Registrera", cancelBtn: "Avbryt", showCancelBtn: true, setFormData }} />
+      <FormBtns
+        {...{
+          submitBtn: "Registrera",
+          cancelBtn: "Avbryt",
+          showCancelBtn: true,
+          setFormData,
+          runFunction: handleCancelBtn,
+        }}
+      />
     </Form>
   );
 }
