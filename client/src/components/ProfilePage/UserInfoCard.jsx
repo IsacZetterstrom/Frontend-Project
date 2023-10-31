@@ -3,6 +3,11 @@ import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import LoadingGif from "../misc/loadingGif";
 
+/**
+ * @author Isac Zetterström
+ * @description renders card for userinformation
+ */
+
 function UserInfoCard({ setEditUser }) {
   const { loading, err, data } = useFetchData("/profile/user");
   return (
@@ -46,7 +51,13 @@ function UserInfoCard({ setEditUser }) {
               </tbody>
             </table>
             <Col className="d-flex justify-content-start card-btn-container my-3">
-              <Button className="p-0">Redigera</Button>
+              <Button
+                className="p-0"
+                onClick={() => {
+                  setEditUser(true);
+                }}>
+                Redigera
+              </Button>
             </Col>
           </Row>
         )}
