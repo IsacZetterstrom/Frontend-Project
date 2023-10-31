@@ -41,7 +41,7 @@ export function getMovieEndTime(startTimeISO, duration) {
 export function formatDateOrTime(dateTime, formatType) {
   const date = new Date(dateTime);
   const options = {
-    date: { year:"numeric",day: "2-digit", month: "2-digit" },
+    date: { year: "numeric", day: "2-digit", month: "2-digit" },
     time: { hour: "2-digit", minute: "2-digit" },
   };
   return date.toLocaleString("sv-SE", options[formatType]);
