@@ -21,7 +21,7 @@ function SeatPicker(props) {
     const [selectSeveralSeats, setSelectSeveralSeats] = useState(true);
 
     // Take seats and put them in an array for each row to make rendering them out easier
-    props.screeningData.allSeats && props.screeningData.allSeats.forEach((seat) => {
+    props.screeningData && props.screeningData.allSeats.forEach((seat) => {
         if(rows[seat.Number_row -1] === undefined) {
             rows[seat.Number_row - 1] = [seat]
         } else {

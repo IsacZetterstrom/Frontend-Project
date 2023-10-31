@@ -11,9 +11,10 @@ async function getScreenings(movieId) {
   const [screenings] = await connection.execute(
     `
     SELECT Screening.Screening_id, Movie.Title, Theater.Theater_name,
-    Screening.Screening_startime, Screening.Screening_date
+    Screening.Screening_startime, Screening.Screening_date,Subtitle.Subtitle
     
     FROM Screening
+    INNER JOIN Subtitle ON Screening.Subtitle_id = Subtitle.Subtitle_id
     INNER JOIN Theater ON Theater.Theater_id = Screening.Theater_id
     INNER JOIN Movie ON Movie.Movie_id = Screening.Movie_id
     WHERE Screening.movie_id=?
@@ -105,15 +106,20 @@ Author: Louise Johansson
 Description: Model to get specific screening based on date
 */
 async function getScreeningsByDate(movieId, date) {
-  const [movie] = await connection.execute(
+  const endDate = new Date(date);
+  endDate.setDate(endDate.getDate() + 7);
+
+  const [screenings] = await connection.execute(
     `
     SELECT 
       Screening.Screening_id, 
       Movie.Title, 
       Theater.Theater_name,
       Screening.Screening_startime, 
-      Screening.Screening_date
+      Screening.Screening_date,
+      Subtitle.Subtitle
     FROM Screening
+    INNER JOIN Subtitle ON Screening.Subtitle_id = Subtitle.Subtitle_id
     INNER JOIN 
       Theater ON Theater.Theater_id = Screening.Theater_id
     INNER JOIN 
@@ -121,12 +127,12 @@ async function getScreeningsByDate(movieId, date) {
     WHERE 
       Screening.movie_id=? 
     AND 
-      Screening.Screening_date=?
+      Screening.Screening_date BETWEEN ? AND ?
     `,
-    [movieId, date]
+    [movieId, date, endDate.toISOString().slice(0, 10)]
   );
 
-  return movie;
+  return screenings;
 }
 
 export default { getScreenings, getScreening, getScreeningsByDate };

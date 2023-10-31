@@ -13,7 +13,7 @@ import "../styling/components/_ticketSelector.scss"
 function TicketSelector({ tickets, handleTicketChange }) {
 
   return (
-    <Container>
+    <Container className='ticket-selector-wrapper'>
       <Row>
         <Col xs={8} className='ps-0'>
           <p>Ordinarie (140 sek)</p>

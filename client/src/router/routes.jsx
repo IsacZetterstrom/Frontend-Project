@@ -3,7 +3,6 @@ import App from "../App";
 import LandingPage from "../pages/LandingPage";
 import BookingPage from "../pages/BookingPage";
 import DetailPage from "../pages/DetailPage";
-import EditUserPage from "../pages/EditUserPage";
 import LibraryPage from "../pages/LibraryPage";
 import LoginPage from "../pages/LoginPage";
 import ProfilePage from "../pages/ProfilePage";
@@ -30,13 +29,6 @@ export const pages = [
     inNav: false,
     rightNav: false,
     element: <DetailPage />,
-  },
-  {
-    path: "/redigera-profil",
-    label: "Redigera",
-    inNav: false,
-    rightNav: false,
-    element: <EditUserPage />,
   },
   {
     path: "/filmer",

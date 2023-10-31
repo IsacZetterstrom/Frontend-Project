@@ -6,7 +6,6 @@
 import cacheService from "./CacheService";
 
 async function fetchOptions(url, method, data) {
-  // const token = cacheService.getLocalValue("jwtToken")
 
   const options = {
     method: method,

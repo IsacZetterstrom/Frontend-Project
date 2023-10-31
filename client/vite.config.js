@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
@@ -16,7 +15,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-      "/user": {
+      "/profile": {
         target: "http://localhost:3050/",
         changeOrigin: true,
         secure: false,
