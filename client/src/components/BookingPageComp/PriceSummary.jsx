@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import "../styling/components/_priceSummary.scss"
+import "../../styling/components/_priceSummary.scss"
 import Button from 'react-bootstrap/Button'
 import { Col, Container, Row } from 'react-bootstrap'
 
