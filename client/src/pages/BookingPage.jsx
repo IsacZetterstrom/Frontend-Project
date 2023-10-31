@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 import SeatPicker from "../components/SeatPicker";
 import TicketSelector from "../components/TicketSelector";
 import MovieInfo from "../components/BookingPage/MovieInfo";
-import { Container } from "react-bootstrap";
-import '../styling/components/_bookingPage.scss'
+import { Container, Col, Row } from "react-bootstrap";
+import '../styling/components/_bookingPage.scss';
+
 
 /**
  * @author Oliver Andersson
@@ -82,7 +83,13 @@ function BookingPage() {
 
   return (
     <Container fluid className="booking-page-wrapper p-4">
-      <MovieInfo screeningData={screeningData}/>
+      <Row>
+       <Col sm={6} className="lala"> <Row>
+       <MovieInfo screeningData={screeningData}/>
+       </Row>
+       </Col>
+     
+       <Col sm={6}>
       <h5>Välj antal biljetter</h5>
 
       <TicketSelector
@@ -99,7 +106,15 @@ function BookingPage() {
         selectedSeats={selectedSeats}
         maxSeats={maxSeats}
       />
+      </Col>
+      </Row>
     </Container>
+    
+
+
+
+
+
   )
 }
 
