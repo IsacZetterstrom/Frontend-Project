@@ -6,12 +6,7 @@
 
 .price-summary-wrapper {
 
-    position: fixed;
-
-    bottom: 0;
-    left: 0;
-
-    width: 100vw;
+    width: 100%;
 
     padding: 1rem 2.5rem;
 
@@ -51,19 +46,9 @@
 
 }
 @include media-breakpoint-up(md) { 
-
-}
-@include media-breakpoint-up(lg) {
-
-
-}
-@include media-breakpoint-up(xl) { 
-
-}
-@include media-breakpoint-up(xxl) { 
     .price-summary-wrapper {
-        position: static;
-        width: auto;
+        margin: 0 2em auto;
+        width: 25%;
 
         border-radius: 15px;
 
@@ -75,4 +60,14 @@
         }
 
     }
+
+}
+@include media-breakpoint-up(lg) {
+
+
+}
+@include media-breakpoint-up(xl) { 
+
+}
+@include media-breakpoint-up(xxl) { 
 }
