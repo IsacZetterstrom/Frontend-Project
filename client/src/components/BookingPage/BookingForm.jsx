@@ -75,9 +75,10 @@ function BookingForm({ bookingInfo, sum }) {
           <h2 className="movie-title">Movie titel</h2>
           <p>Tisdag, 24 oktober</p>
           <p>Salong Stora rummet</p>
-          <hr />
-          <b>Totalsumma: {sum} kr</b>
-          <p>Betalning sker i på plats</p>
+          <Container className="border-top border-secondary mt-2 pt-4">
+            <b>Totalsumma: {sum} kr</b>
+            <p>Betalning sker i på plats</p>
+          </Container>
           {msg && <p className="text-danger">{msg}</p>}
           <Form className="p-0" onSubmit={handleSubmit}>
             <Col className="mt-3">
