@@ -72,7 +72,7 @@ function BookingForm({ bookingInfo, sum }) {
         <Row>
           <Container className="border-top border-secondary mt-2 pt-4">
             <b>Totalsumma: {sum} kr</b>
-            <p>Betalning sker i på plats</p>
+            <p>Betalning sker på plats</p>
           </Container>
           <h1 className="p-0 text-nowrap mt-5 pb-2 line">Bekräfta din bokning</h1>
           <p>Fyll in e-post nedan för att ta emot dina biljetter</p>

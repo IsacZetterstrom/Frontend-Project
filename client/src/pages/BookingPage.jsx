@@ -8,6 +8,7 @@ import '../styling/components/_bookingPage.scss'
 import PriceSummary from "../components/PriceSummary";
 import useEventSource from "../hooks/useEventSource";
 import BookingForm from "../components/BookingPage/BookingForm";
+import MovieInfo from "../components/BookingPage/MovieInfo";
 
 /**
  * @author Oliver Andersson
@@ -94,9 +95,14 @@ function BookingPage() {
     <Container fluid className="booking-page-wrapper w-100 p-0 m-0">
       <Row className="p-4 m-0">
         <Col sm={6} className="movie-col">
-          <Row>{(err && <p>err</p>) || <MovieInfo {...{ screeningData }} />}</Row>
+          <Row>
+            {/* {(err && <p>err</p>) || <MovieInfo {...{ screeningData }} />} */}
+            <p>saras komponent</p>
+            </Row>
         </Col>
-
+        {showBookingForm ? (
+      <BookingForm bookingInfo={bookingInfo} sum={sum} />
+        ) : (
         <Col sm={6}>
           <h5 className="line pb-1">Välj antal biljetter</h5>
 
@@ -106,10 +112,11 @@ function BookingPage() {
 
           {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
         </Col>
+        )}
       </Row>
       <Row className="m-0">
         <Col className="p-0">
-          <PriceSummary {...{ handleBookingClick, tickets }} />
+          <PriceSummary {...{ handleBookingClick, tickets, setSum, sum }} />
         </Col>
       </Row>
     </Container>
