@@ -1,6 +1,7 @@
 @use "../abstract/variables" as *;
 
 .custom-footer {  
+  background-color: $blueColor;
   a {
     color: #fff;
     text-decoration: none;
@@ -33,31 +34,11 @@
   }
   
   .icon-row {
-    position: relative;
     justify-content: center;
+    align-items: center;
     max-width: 100%;
     margin: 0 auto; // Center the row
-    text-align: center; // Center the child elements
-  
-    &:before,
-    &:after {
-      content: " ";
-      display: block;
-      height: 2px;
-      width: 109px;
-      position: absolute;
-      top: 50%;
-      background: $lineGradient;
-    }
-  
-    &:before {
-      left: 30px;
-    }
-  
-    &:after {
-      right: 20px;
-    }
-  
+
     
   }
   
@@ -66,21 +47,6 @@
     text-decoration: none;
   }
   
-
-  @media screen and (min-width: 992px) {
-  
-    .icon-row {
-      &:before {
-         
-        
-      }
-
-      &:after {
-         
-      }
-     
-    }
-  }
 
   
 }  
