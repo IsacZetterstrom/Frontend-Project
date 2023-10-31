@@ -1,60 +1,44 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import TopList from '../components/LandingPageComp/TopMovies';
-import UpcomingList from '../components/LandingPageComp/UpcomingMovies';
-import Hero from '../components/LandingPageComp/Hero';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import MovieCaruosel from "../components/LandingPageComp/MovieCaruosel";
+import TrailerComponent from "../components/DetailPage/TrailerComponent";
+import useFetchData from "../hooks/useFetchData";
+import { Card } from "react-bootstrap";
+import AdCard from "../components/LandingPageComp/AdCard";
+
 /**
  * @author Oskar dahlberg
- * @Description Toplist for most booked movies and unreleased movies. 
+ * @Description Toplist for most booked movies and unreleased movies.
  */
 
 function LandingPage() {
-
-  const [TopMovies, setTopMovies] = useState([]);
-  const [UpcomingMovies, setUpcomingMovies] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(`/api/filter?query=toplist`);
-      if (response.ok) {
-        const data = await response.json();
-        setTopMovies(data);
-      } else {
-        console.error('Failed to fetch data');
-      }
-    })();
-    (async () => {
-      const response = await fetch(`/api/filter?query=upcoming`);
-      if (response.ok) {
-        const data = await response.json();
-        setUpcomingMovies(data);
-      } else {
-        console.error('Failed to fetch data');
-      }
-    })();
-
-  }, [])
+  const { loading, err, data } = useFetchData("api/movies/1");
   return (
     <>
-      <Container>
-        <Row className="justify-content-center text-center mt-4" md={2} >
-          <Hero data={TopMovies[0]}></Hero>
+      <Container fluid className="m-0 p-0 landing-page">
+        <Row className="justify-content-center w-100 m-0 p-0">
+          {(loading && <p>laddar...</p>) || (err && <p>Ett fel har inträffat</p>) || (
+            <>
+              <TrailerComponent movie={data?.movie} />
+              <h1 className="text-center m-0 p-0">{data.movie.Title}</h1>
+            </>
+          )}
         </Row>
-      </Container>
-      <Container>
-        <Row className="justify-content-center text-center mt-4">
-          <h2>Topplistan just nu</h2>
-          <TopList data={TopMovies} ></TopList>
+        <Row className="justify-content-center w-100 mt-5 mb-5 p-0">
+          <AdCard />
         </Row>
-        <h2>Kommade filmer</h2>
-        <Row>
-          <UpcomingList data={UpcomingMovies}></UpcomingList>
+        <Row className="justify-content-center w-100 m-0 p-0">
+          <div className="w-75">
+            <h2 className="line pb-1">Nyheter</h2>
+            <MovieCaruosel {...{ url: `/api/filter?query=toplist` }} />
+            <h2 className="line pb-1">Kommade</h2>
+            <MovieCaruosel {...{ url: `/api/filter?query=upcoming` }} />
+          </div>
         </Row>
       </Container>
     </>
-  )
+  );
 }
 
-export default LandingPage
+export default LandingPage;

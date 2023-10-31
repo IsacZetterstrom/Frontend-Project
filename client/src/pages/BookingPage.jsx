@@ -6,7 +6,7 @@ import TicketSelector from "../components/TicketSelector";
 import MovieInfo from "../components/BookingPage/MovieInfo";
 import { Container, Col, Row } from "react-bootstrap";
 import '../styling/components/_bookingPage.scss';
-
+import'../styling/components/_movieInfo.scss';
 
 /**
  * @author Oliver Andersson
