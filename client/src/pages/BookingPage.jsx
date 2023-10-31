@@ -115,7 +115,7 @@ function BookingPage() {
 
   return <Container fluid className="booking-page-wrapper p-4">
     
-    {true && <ConfirmPopUpModal {...{popUpData}}></ConfirmPopUpModal>}
+    {/* {true && <ConfirmPopUpModal {...{popUpData}}></ConfirmPopUpModal>} */}
 
     <PriceSummary {...{handleBookingClick,tickets}}/>
 
