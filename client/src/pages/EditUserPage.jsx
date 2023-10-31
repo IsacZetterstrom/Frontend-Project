@@ -10,7 +10,7 @@ import fetchService from "../service/FetchService";
  * @description holds the editUser form and send the data to the server if it succeds the user will get a msg and closes the components again
  */
 
-function EditUserPage({ setEditUser }) {
+function EditUserPage({ setEditUser, setData, setDataValue, runFunction }) {
   const { defaults, formData, setFormData } = useFormDefaults();
   const { loading, err, data } = useFetchData(`/profile/user`);
   const [msg, setMsg] = useState("");
@@ -35,10 +35,21 @@ function EditUserPage({ setEditUser }) {
   return (
     <Container className="form-wrapper">
       <Row>
-        <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5 line pb-2">Redigera uppgifter</h1>
-        {(loading && <p className="text-center">loading...</p>) || (err && <p className="text-center">An Error occured</p>) || (
-          <EditUserForm {...{ defaults, handleSubmit, setFormData, userData: data }} />
-        )}
+        <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5 line pb-2">
+          Redigera uppgifter
+        </h1>
+        {(loading && <p className="text-center">loading...</p>) ||
+          (err && <p className="text-center">An Error occured</p>) || (
+            <EditUserForm
+              {...{
+                defaults,
+                handleSubmit,
+                setFormData,
+                userData: data,
+                runFunction,
+              }}
+            />
+          )}
         {msg !== "" && <p className="text-center">{msg}</p>}
       </Row>
     </Container>
