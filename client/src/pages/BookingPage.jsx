@@ -5,8 +5,9 @@ import SeatPicker from "../components/SeatPicker";
 import TicketSelector from "../components/TicketSelector";
 import { Col, Container, Row } from "react-bootstrap";
 import '../styling/components/_bookingPage.scss'
-import PriceSummary from "../components/PriceSummary";
+import PriceSummary from "../components/BookingPageComp/PriceSummary";
 import useEventSource from "../hooks/useEventSource";
+import ConfirmPopUpModal from "../components/Modals/ConfirmPopUpModal";
 import BookingForm from "../components/BookingPage/BookingForm";
 import MovieInfo from "../components/BookingPage/MovieInfo";
 
@@ -33,6 +34,7 @@ function BookingPage() {
     2: 0,
     3: 2
   });
+
 
   function addOneSeat(seat) {
     if(selectedSeats.includes(seat)) {
@@ -89,6 +91,23 @@ function BookingPage() {
     }
     setShowBookingForm(true);
   }
+
+
+
+  
+  const popUpData = {
+    title: "Jack Reacher: Never Go Back",
+    dateAndTime: "2024-04-10T15:00:00.000Z",
+    priceSum: 120,
+    bookingRef: "DBA45C",
+    saloon: "Stora salongen",
+    seats: "Rad 5 Stol 41",
+
+
+    runtime: 118,
+    email: "oliver.andersson101@gmail.com"
+  } 
+
 
 
   return (

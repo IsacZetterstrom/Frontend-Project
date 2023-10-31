@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Col, Container, Form, Row} from 'react-bootstrap'
-import "../styling/components/_seatPicker.scss"
+import "../../styling/components/_seatPicker.scss"
 
 /**
  * @author Oliver Andersson
