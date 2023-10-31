@@ -1,5 +1,6 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { AiOutlineSearch } from "react-icons/ai";
 
 /**
  * @author Niklas Nguyen
@@ -10,24 +11,29 @@ import { Col, Row } from "react-bootstrap";
 function SearchFilterSortQuary({ defaults }) {
   return (
     <>
-      <Row className="p-0 m-0 search-filter-sort">
-        <input {...defaults("search", "Sök på film", { required: false })} />
-        <Col className="p-0 d-flex gap-3 justify-content-center">
-          <select {...defaults("sort", "", { className: "form-select mt-3 w-25 " })}>
-            <option value="">Sortera</option>
-            <option value="dateHigh">Datum nya</option>
-            <option value="dateLow">Datum äldre</option>
-            <option value="ratingHigh">Betyg högt</option>
-            <option value="ratingLow">Betyg lågt</option>
-          </select>
-          <select {...defaults("filter", "", { className: "form-select mt-3 w-25" })}>
-            <option value="">Välj åldersgräns</option>
-            <option value="7">7</option>
-            <option value="11">11</option>
-            <option value="15">15</option>
-          </select>
-        </Col>
-      </Row>
+      <Container className="p-0 m-0 search-filter-sort">
+        <Row className="search-container">
+          <AiOutlineSearch className="icon" />
+          <input {...defaults("search", "Sök på film", { required: false })} />
+        </Row>
+        <Row>
+          <Col className="p-0 d-flex gap-3 justify-content-center select-container">
+            <select {...defaults("sort", "", { className: "form-select mt-3 select " })}>
+              <option value="">Sortera</option>
+              <option value="dateHigh">Datum nya</option>
+              <option value="dateLow">Datum äldre</option>
+              <option value="ratingHigh">Betyg högt</option>
+              <option value="ratingLow">Betyg lågt</option>
+            </select>
+            <select {...defaults("filter", "", { className: "form-select mt-3 select" })}>
+              <option value="">Filtera</option>
+              <option value="7">Från 7år</option>
+              <option value="11">Från 11år</option>
+              <option value="15">Från 15år</option>
+            </select>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

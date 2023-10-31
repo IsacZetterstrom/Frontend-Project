@@ -116,8 +116,10 @@ async function getScreeningsByDate(movieId, date) {
       Movie.Title, 
       Theater.Theater_name,
       Screening.Screening_startime, 
-      Screening.Screening_date
+      Screening.Screening_date,
+      Subtitle.Subtitle
     FROM Screening
+    INNER JOIN Subtitle ON Screening.Subtitle_id = Subtitle.Subtitle_id
     INNER JOIN 
       Theater ON Theater.Theater_id = Screening.Theater_id
     INNER JOIN 
