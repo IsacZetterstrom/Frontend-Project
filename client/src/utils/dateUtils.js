@@ -1,4 +1,22 @@
 /**
+ * @author Isac Zetterström
+ * @description formats a datestring to swedish format with year as "Fredag 24 januari 2020"
+ */
+
+export default function getDateWithDay(date) {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  //   const newDate = date.split(/[- :]/);
+
+  return new Date(date).toLocaleDateString("sv-SE", options);
+}
+
+/**
  * @author Louise Johansson
  * @description Helper functions to format date and time to swedish standards.
  */
