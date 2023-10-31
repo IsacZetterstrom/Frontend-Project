@@ -91,18 +91,27 @@ function BookingPage() {
 
 
   return (
-    <Container fluid className="booking-page-wrapper p-4">
-    {showBookingForm ? (
-      <BookingForm bookingInfo={bookingInfo} sum={sum} />
-    ) : (
-      <>
-        <PriceSummary {...{ handleBookingClick, tickets, setSum, sum }} />
-        <h5 className="line pb-1">Välj antal biljetter</h5>
-        <TicketSelector {...{ tickets, handleTicketChange }} />
-        <h5 className="line pb-1">Välj platser</h5>
-        {err && <p>err</p> || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
-      </>
-    )}
+    <Container fluid className="booking-page-wrapper w-100 p-0 m-0">
+      <Row className="p-4 m-0">
+        <Col sm={6} className="movie-col">
+          <Row>{(err && <p>err</p>) || <MovieInfo {...{ screeningData }} />}</Row>
+        </Col>
+
+        <Col sm={6}>
+          <h5 className="line pb-1">Välj antal biljetter</h5>
+
+          <TicketSelector {...{ tickets, handleTicketChange }} />
+
+          <h5 className="line pb-1">Välj platser</h5>
+
+          {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
+        </Col>
+      </Row>
+      <Row className="m-0">
+        <Col className="p-0">
+          <PriceSummary {...{ handleBookingClick, tickets }} />
+        </Col>
+      </Row>
     </Container>
   )
 }
