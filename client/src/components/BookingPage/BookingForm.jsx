@@ -5,13 +5,23 @@ import { Container, Row, Form, Col } from "react-bootstrap";
 import FormBtns from "../Forms/FormBtns";
 import useFetchData from '../../hooks/useFetchData';
 import fetchService from "../../service/FetchService";
+import { useNavigate } from 'react-router-dom';
+
+/**
+ * @author Louise Johansson
+ * @description Booking form component for a movie screening. Allows users to confirm their booking and handles form submission. 
+ * Fetches user email if there is a logged-in user.
+ * @param {Object} bookingInfo - Information about the booking (SeatId, Screening_id, Ticket_Type_id).
+ * @param {number} sum - The total sum for the booking.
+ */
 
 function BookingForm({ bookingInfo, sum }) {
     const { defaults, formData, setFormData } = useFormDefaults();
     const { loading, err, data } = useFetchData("/profile/user");
     const { movieId, screeningId } = useParams();
     const [confirmationData, setConfirmationData] = useState(null);
-    const [msg, setMsg] = useState(null); // State for error message
+    const [msg, setMsg] = useState(null);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -32,36 +42,42 @@ function BookingForm({ bookingInfo, sum }) {
           'POST',
           data
         );
-  
+        // handle response if ok, save response data in state, set error message otherwise
         if (response.ok) {
             const responseData = await response.json(); 
-            console.log('Booking was successful', responseData); 
             setConfirmationData(responseData);
           } else {
-            const errorData = await response.json(); // Get error response data
-            setMsg(errorData.error); // Set the error message
+            const errorData = await response.json();
+            setMsg(errorData.error);
           }
       } catch (error) {
-        console.error('Error:', error);
-        setMsg("An error occurred during booking."); // Set a generic error message
+        setMsg("Ett fel har inträffat vid bokningen.");
       }
     };
   
     // Ensure data is fetched before rendering the form
     useEffect(() => {
-      if (data && data.email) {
+      if (!loading && !err && data && data.email) {
         setFormData({ email: data.email });
       }
-    }, [data, setFormData]);
+    }, [data, loading, err, setFormData]);
   
+    // Navigate the user back to the movie page
+    const handleCancel = () => {
+      navigate(`/film/${movieId}`);
+    };
+
     return (
       <Container className="form-wrapper">
         <Row>
-          <h1 className="p-0 text-nowrap mt-5 mb-5 pb-2 line">Bekräfta din bokning</h1>
-          <h2>Movie titel</h2>
+          <h1 className="p-0 text-nowrap mt-5 pb-2 line">Bekräfta din bokning</h1>
+          <p>Fyll in e-post nedan för att ta emot dina biljetter</p>
+          <h2 className="movie-title">Movie titel</h2>
           <p>Tisdag, 24 oktober</p>
           <p>Salong Stora rummet</p>
-          <p>Totalsumma: {sum}</p>
+          <hr />
+          <b>Totalsumma: {sum} kr</b>
+          <p>Betalning sker i på plats</p>
           {msg && <p className="text-danger">{msg}</p>}
           <Form className="p-0" onSubmit={handleSubmit}>
             <Col className="mt-3">
@@ -72,7 +88,7 @@ function BookingForm({ bookingInfo, sum }) {
               />
             </Col>
             <FormBtns
-              {...{ submitBtn: "Boka", cancelBtn: "Avbryt", showCancelBtn: true, setFormData }}
+              {...{ submitBtn: "Boka", cancelBtn: "Avbryt", showCancelBtn: true, setFormData, runFunction: handleCancel }}
             />
           </Form>
         </Row>
