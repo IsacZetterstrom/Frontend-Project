@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import useFetchData from '../../hooks/useFetchData'
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import { getMovieEndTime, formatDateToSwedish } from '../../utils/dateUtils';
+import { getMovieEndTime, formatDateStringToSwedish } from '../../utils/dateUtils';
 
 /**
  * @author Sara Johansson
@@ -24,7 +24,7 @@ function MovieInfo({screeningData}) {
                     </Col>
                     <Col xs={8} md={8}>
                         <h2 className='movie-title mb-2'>{screeningData.Title}</h2>
-                        <p className='text-sm mb-0'>{formatDateToSwedish(screeningData.Screening_date)}</p>
+                        <p className='text-sm mb-0'>{formatDateStringToSwedish(screeningData.Screening_date)}</p>
                         <p className='text-sm mb-0'>{getMovieEndTime(screeningData.Screening_startime, data?.movie.Runtime)}</p>
                         <p className='text-sm mb-0'>{screeningData.Theater_name}</p>
                     </Col>
