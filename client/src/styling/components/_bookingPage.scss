@@ -1,5 +1,6 @@
 .booking-page-wrapper {
-    max-width: 30rem;
+    
+    width: clamp(500px,50%,500px);
 
     h5 {
         margin-bottom: 1rem;
