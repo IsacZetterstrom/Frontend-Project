@@ -1,0 +1,94 @@
+@use "../abstract/variables" as *;
+
+.custom-footer {  
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  
+  .footer-adress {
+      font-size: 12px;
+  }
+  
+  .footer-text {
+    color: #f8f3f383;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    
+    &:before {
+      content: " ";
+      display: block;
+      height: 2px;
+      width: 120px;
+      position: absolute;
+      background: $lineGradient;
+      
+    }
+
+  }
+  
+  .icon-row {
+    position: relative;
+    justify-content: center;
+    max-width: 100%;
+    margin: 0 auto; // Center the row
+    text-align: center; // Center the child elements
+  
+    &:before,
+    &:after {
+      content: " ";
+      display: block;
+      height: 2px;
+      width: 109px;
+      position: absolute;
+      top: 50%;
+      background: $lineGradient;
+    }
+  
+    &:before {
+      left: 30px;
+    }
+  
+    &:after {
+      right: 20px;
+    }
+  
+    
+  }
+  
+  .icon {
+    color: white;
+    text-decoration: none;
+  }
+  
+
+  @media screen and (min-width: 992px) {
+  
+    .icon-row {
+      &:before {
+         
+        
+      }
+
+      &:after {
+         
+      }
+     
+    }
+  }
+
+  
+}  
+    
+    
+    
+    
+    
+
+    
+     
