@@ -11,20 +11,44 @@ import FormBtns from "./FormBtns";
  * @description this is a finnished form for login
  */
 
-function EditUserForm({ defaults, handleSubmit, setFormData, userData }) {
+function EditUserForm({
+  defaults,
+  handleSubmit,
+  setFormData,
+  userData,
+  runFunction,
+}) {
   return (
     <Form className="p-0" onSubmit={handleSubmit}>
       <Col className="mt-3">
         <label className="p-0 text-nowrap line d-block">E-Post</label>
-        <input {...defaults("email", userData !== undefined && userData.email, { required: false, minLength: 8, type: "email" })} />
+        <input
+          {...defaults("email", userData !== undefined && userData.email, {
+            required: false,
+            minLength: 8,
+            type: "email",
+          })}
+        />
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Förnamn</label>
-        <input {...defaults("firstname", userData !== undefined && userData.firstName, { required: false })} />
+        <input
+          {...defaults(
+            "firstname",
+            userData !== undefined && userData.firstName,
+            { required: false }
+          )}
+        />
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Efternamn</label>
-        <input {...defaults("lastname", userData !== undefined && userData.lastName, { required: false })} />
+        <input
+          {...defaults(
+            "lastname",
+            userData !== undefined && userData.lastName,
+            { required: false }
+          )}
+        />
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Telefon</label>
@@ -38,7 +62,15 @@ function EditUserForm({ defaults, handleSubmit, setFormData, userData }) {
           )}
         />
       </Col>
-      <FormBtns {...{ submitBtn: "Spara", cancelBtn: "Avbryt", showCancelBtn: true, setFormData }} />
+      <FormBtns
+        {...{
+          submitBtn: "Spara",
+          cancelBtn: "Avbryt",
+          showCancelBtn: true,
+          setFormData,
+          runFunction,
+        }}
+      />
     </Form>
   );
 }
