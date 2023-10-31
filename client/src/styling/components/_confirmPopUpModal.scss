@@ -1,0 +1,75 @@
+@use "../abstract/variables" as *;
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+.confirm-wrapper-bg {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100svh;
+    width: 100svw;
+
+    backdrop-filter: brightness(50%) blur(2px);
+
+    z-index: 1;
+
+    .confirm-wrapper {
+
+        position: absolute;
+        top: 50%; 
+        left: 50%;
+
+        transform: translate(-50%, -50%); 
+
+        background-color: $mainColor;
+        
+        width: 100%;
+        max-width: 30em;
+
+        z-index: 1;
+    
+        .btn-custom {
+            width: 80%;
+            border-radius: 20px;
+            background-color: $goldColor;
+        }
+
+        .btn-custom:hover {
+            background-color: $goldColor;
+            color: $blackColor;
+        }
+        
+        .bold {
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: bold;
+
+            color: $goldColor;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        p {
+            margin: 0;
+            font-size: .8rem;
+        }
+    
+    }
+}

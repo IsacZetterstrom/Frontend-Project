@@ -1,13 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import SeatPicker from "../components/SeatPicker";
-import TicketSelector from "../components/TicketSelector";
+import SeatPicker from "../components/BookingPageComp/SeatPicker";
+import TicketSelector from "../components/BookingPageComp/TicketSelector";
 import { Col, Container, Row } from "react-bootstrap";
 import "../styling/components/_bookingPage.scss";
-import PriceSummary from "../components/PriceSummary";
+import PriceSummary from "../components/BookingPageComp/PriceSummary";
 import useEventSource from "../hooks/useEventSource";
 import MovieInfo from "../components/MovieInfo";
+import ConfirmPopUpModal from "../components/Modals/ConfirmPopUpModal";
 
 /**
  * @author Oliver Andersson
@@ -86,6 +87,18 @@ function BookingPage() {
     console.log(data);
   }
 
+  const popUpData = {
+    title: "Jack Reacher: Never Go Back",
+    dateAndTime: "2024-04-10T15:00:00.000Z",
+    priceSum: 120,
+    bookingRef: "DBA45C",
+    saloon: "Stora salongen",
+    seats: "Rad 5 Stol 41",
+
+    runtime: 118,
+    email: "oliver.andersson101@gmail.com",
+  };
+
   return (
     <Container fluid className="booking-page-wrapper w-100 p-0 m-0">
       <Row className="p-4 m-0">
@@ -104,6 +117,7 @@ function BookingPage() {
           {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
         </Col>
       </Row>
+      {/* {true && <ConfirmPopUpModal {...{popUpData}}/>} */}
     </Container>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { FiPlus, FiMinus } from "react-icons/fi"
-import "../styling/components/_ticketSelector.scss"
+import "../../styling/components/_ticketSelector.scss"
 
 /**
  * @author Oliver Andersson
