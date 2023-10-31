@@ -6,7 +6,6 @@ import FormBtns from "../Forms/FormBtns";
 import useFetchData from '../../hooks/useFetchData';
 import fetchService from "../../service/FetchService";
 import { useNavigate } from 'react-router-dom';
-
 /**
  * @author Louise Johansson
  * @description Booking form component for a movie screening. Allows users to confirm their booking and handles form submission. 
@@ -68,7 +67,7 @@ function BookingForm({ bookingInfo, sum }) {
     };
 
     return (
-      <Container className="form-wrapper">
+      <Container className="form-wrapper booking-form">
         <Row>
           <Container className="border-top border-secondary mt-2 pt-4">
             <b>Totalsumma: {sum} kr</b>
