@@ -1,11 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import SeatPicker from "../components/BookingPageComp/SeatPicker";
-import TicketSelector from "../components/BookingPageComp/TicketSelector";
+import SeatPicker from "../components/BookingPage/SeatPicker";
+import TicketSelector from "../components/BookingPage/TicketSelector";
 import { Col, Container, Row } from "react-bootstrap";
-import "../styling/components/_bookingPage.scss";
-import PriceSummary from "../components/BookingPageComp/PriceSummary";
+import PriceSummary from "../components/BookingPage/PriceSummary";
 import useEventSource from "../hooks/useEventSource";
 import MovieInfo from "../components/MovieInfo";
 import ConfirmPopUpModal from "../components/Modals/ConfirmPopUpModal";
@@ -20,6 +19,7 @@ function BookingPage() {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [maxSeats, setMaxSeats] = useState(2);
   const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
+  const [toggle, setToggle] = useState(false);
 
   // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type
   const [tickets, setTickets] = useState({
@@ -83,7 +83,7 @@ function BookingPage() {
         });
       }
     }
-
+    setToggle((val) => !val);
     console.log(data);
   }
 
@@ -117,7 +117,7 @@ function BookingPage() {
           {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
         </Col>
       </Row>
-      {/* {true && <ConfirmPopUpModal {...{popUpData}}/>} */}
+      {toggle && <ConfirmPopUpModal {...{ popUpData, setToggle }} />}
     </Container>
   );
 }
