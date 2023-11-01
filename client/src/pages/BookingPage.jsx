@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import SeatPicker from "../components/SeatPicker";
-import TicketSelector from "../components/TicketSelector";
+import SeatPicker from "../components/BookingPageComp/SeatPicker";
+import TicketSelector from "../components/BookingPageComp/TicketSelector";
 import { Col, Container, Row } from "react-bootstrap";
 import '../styling/components/_bookingPage.scss'
 import PriceSummary from "../components/BookingPageComp/PriceSummary";
