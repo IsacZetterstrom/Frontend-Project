@@ -8,6 +8,8 @@ async function getBooking(bookingId) {
   const [booking] = await connection.execute(
     `SELECT
     Movie.Title AS title,
+    Movie_Information.Runtime AS runtime,
+    Movie_Information.Poster AS poster,
     Screening.Screening_startime AS dateAndTime,
     Booking.Total_price AS priceSum,
     Booking.Ref_num AS bookingRef,
@@ -22,9 +24,12 @@ async function getBooking(bookingId) {
     JOIN Screening ON Screening.Screening_id = Ticket.Screening_id
     JOIN Movie ON Movie.Movie_id = Screening.Movie_id
     JOIN Theater ON Theater.Theater_id = Screening.Theater_id
+    JOIN Movie_Information ON Movie_Information.Movie_id = Movie.Movie_id
     WHERE Booking.Booking_id = ?
     GROUP BY
     Movie.Title,
+    Movie_Information.Runtime,
+    Movie_Information.Poster,
     Screening.Screening_startime,
     Booking.Total_price,
     Booking.Ref_num,

@@ -1,5 +1,5 @@
 import { Carousel, Col, Image, Row } from "react-bootstrap";
-import useFetchData from "../../hooks/useFetchData";
+import useFetchData from "../hooks/useFetchData";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
