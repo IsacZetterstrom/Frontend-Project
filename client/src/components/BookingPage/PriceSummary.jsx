@@ -22,16 +22,16 @@ function PriceSummary({ handleBookingClick, tickets }) {
       <Container fluid>
         <Row className="justify-content-center">
           <Col xs="12" md="6" xl="4" xxl="12">
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between text-nowrap">
               <h4>Totalt att betala</h4>
 
-              <span>
+              <span className="text-nowrap">
                 <span>{sum}</span>
                 <span> kr</span>
               </span>
             </div>
 
-            <p>Betalning sker på plats</p>
+            <p className="text-nowrap">Betalning sker på plats</p>
 
             <Button variant="custom" onClick={() => handleBookingClick()}>
               Boka

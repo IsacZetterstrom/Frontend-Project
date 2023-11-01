@@ -1,10 +1,9 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import MovieCaruosel from "../components/LandingPageComp/MovieCaruosel";
-import TrailerComponent from "../components/DetailPage/TrailerComponent";
+import MovieCaruosel from "../components/MovieCaruosel";
+import TrailerComponent from "../components/TrailerComponent";
 import useFetchData from "../hooks/useFetchData";
-import { Card } from "react-bootstrap";
 import AdCard from "../components/LandingPageComp/AdCard";
 
 /**
@@ -18,13 +17,12 @@ function LandingPage() {
     <>
       <Container fluid className="m-0 p-0 landing-page">
         <Row className="justify-content-center w-100 m-0 p-0">
-          {(loading && <p>laddar...</p>) ||
-            (err && <p>Ett fel har inträffat</p>) || (
-              <>
-                <TrailerComponent movie={data?.movie} />
-                <h1 className="text-center m-0 p-0">{data.movie.Title}</h1>
-              </>
-            )}
+          {(loading && <p>laddar...</p>) || (err && <p>Ett fel har inträffat</p>) || (
+            <>
+              <TrailerComponent movie={data?.movie} />
+              <h1 className="text-center m-0 p-0">{data.movie.Title}</h1>
+            </>
+          )}
         </Row>
         <Row className="justify-content-center w-100 mt-5 mb-5 p-0">
           <AdCard />

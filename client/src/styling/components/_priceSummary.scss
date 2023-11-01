@@ -3,19 +3,16 @@
 @import 'node_modules/bootstrap/scss/variables';
 @import 'node_modules/bootstrap/scss/mixins';
 
-
 .price-summary-wrapper {
-
-    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-
     padding: 1rem 2.5rem;
-
     background-color: $blueColor;
+    position: absolute;
+    border-radius: 0;
+    padding: 1rem;
     
-
     h4 {
         font-size: 1rem;
         font-weight: bold;
@@ -28,12 +25,9 @@
         margin-bottom: 1rem;
     }
 
-
     .btn-custom {
         width: 100%;
-        
         border-radius: 20px;
-
         background-color: $goldColor;
         color: $blackColor;
     }
@@ -42,38 +36,14 @@
         background-color: $goldColor;
         color: $blackColor;
     }
-
 }
 
-@include media-breakpoint-up(sm) { 
-
-}
 @include media-breakpoint-up(md) { 
-
-}
-@include media-breakpoint-up(lg) {
     .price-summary-wrapper {
-        // display: none;
-        position: static;
-        width: 50%;
-        
-        // margin: 0 1em auto;
-        margin-bottom: 1em;
+        max-width: 320px !important;
+        position: initial;
         border-radius: 15px;
-
-        padding: 1rem;
-        
-        p {
-            font-size: .8rem;
-            margin-bottom: 2rem;
-        }
-
     }
+}
 
 
-}
-@include media-breakpoint-up(xl) { 
-
-}
-@include media-breakpoint-up(xxl) { 
-}

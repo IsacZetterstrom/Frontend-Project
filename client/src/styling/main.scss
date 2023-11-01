@@ -18,6 +18,7 @@
 @import "./components/confirmPopUpModal";
 @import "./components/priceSummary";
 @import "./components/ticketSelector";
+@import "./components/bookingForm";
 
 @font-face {
     font-family: 'Noto Sans';
@@ -44,4 +45,15 @@
 body {
     background-color: $mainColor;
     color: white;
+}
+
+// Playfair gold header, bold weight
+.movie-title {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Playfair Display';
+    color: #BD9060;
+    margin-top: 0.5em;
+    font-size: 30px;
+    font-weight: bold;
 }

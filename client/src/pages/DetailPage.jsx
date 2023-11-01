@@ -1,11 +1,11 @@
 import React from "react";
-import TrailerComponent from "../components/DetailPage/TrailerComponent";
 import MovieDesc from "../components/DetailPage/MovieDesc";
 import { useParams } from "react-router-dom";
 import useFetchData from "../hooks/useFetchData";
 import { Container } from "react-bootstrap";
 import ScreeningsList from "../components/DetailPage/ScreeningsList";
-import MovieCaruosel from "../components/LandingPageComp/MovieCaruosel";
+import MovieCaruosel from "../components/MovieCaruosel";
+import TrailerComponent from "../components/TrailerComponent";
 
 /**
  * @author Louise Johansson
