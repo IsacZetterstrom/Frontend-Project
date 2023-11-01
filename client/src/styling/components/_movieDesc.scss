@@ -3,14 +3,14 @@
 }
 
 .movie-desc-container {
-    h2 {
+    h2, .movie-title {
         font-size: 25px;
         font-weight: bold;
         font-family: 'Playfair Display';
         color: #BD9060;
         margin-top: 0.5em;
     }
-    .movieTitle {
+    .movie-title {
         font-size: 30px;
         font-weight: bold;
     }
@@ -38,7 +38,7 @@
       margin: 0;
       padding: 1em;
 
-        .movieTitle {
+        .movie-title {
             border-bottom: 0.5px solid #BD9060;
         }
 
