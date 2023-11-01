@@ -27,7 +27,7 @@ function ActiveBookings({ activeBookings, setUpDate }) {
                   <h6 className="my-1 mx-2 booking-title">{booking.movieTitle}</h6>
                   <p className="mb-0 mx-2">{getDateWithDay(booking.screeningStartTime)}</p>
                   <p className="mb-0 mx-2">{getMovieEndTime(booking.screeningStartTime, booking.runTime)}</p>
-                  <p className="mb-0 mx-2">{`${booking.theaterName}, Plats-Stol: ${booking.seats}`}</p>
+                  <p className="mb-0 mx-2">{`${booking.theaterName}, Rad-Stol: ${booking.seats}`}</p>
                   <p className="mb-1 mx-2">{`Pris: ${booking.priceSum} Kr`}</p>
                   <Col className="d-flex justify-content-between">
                     <span className="ref-number mx-2">Bokningsnummer: {booking.referenceNumber}</span>

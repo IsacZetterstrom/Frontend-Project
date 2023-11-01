@@ -19,7 +19,7 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum }) {
     <div className="price-summary-wrapper">
       <Container fluid>
         <Row className="justify-content-center">
-          <Col xs="12" md="6" xl="4" xxl="12">
+          <Col>
             <div className="d-flex justify-content-between text-nowrap">
               <h4>Totalt att betala</h4>
 
