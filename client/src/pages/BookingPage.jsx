@@ -20,6 +20,7 @@ function BookingPage() {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [sum, setSum] = useState(0);
   const [maxSeats, setMaxSeats] = useState(2);
+  const [confirmationData, setConfirmationData] = useState(null);
   const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
 
   // State variable to control the visibility of BookingForm
@@ -75,34 +76,24 @@ function BookingPage() {
 
   // Runs when "book" button gets pressed
   function handleBookingClick() {
+    const data = {
+      tickets: [],
+    };
     // Put ticket and seat data into correct structure for post request
     for (const [key, value] of Object.entries(tickets)) {
       for (let i = 0; i < value; i++) {
         if (selectedSeats[i] === undefined) return;
 
-        bookingInfo.tickets.push({
+        data.tickets.push({
           Screening_id: screeningId,
           Ticket_Type_id: key,
           Seat_id: selectedSeats[i].Seat_id,
         });
       }
     }
-    setToggle((val) => !val);
-    console.log(data);
+    setBookingInfo(data);
     setShowBookingForm(true);
   }
-
-  const popUpData = {
-    title: "Jack Reacher: Never Go Back",
-    dateAndTime: "2024-04-10T15:00:00.000Z",
-    priceSum: 120,
-    bookingRef: "DBA45C",
-    saloon: "Stora salongen",
-    seats: "Rad 5 Stol 41",
-
-    runtime: 118,
-    email: "oliver.andersson101@gmail.com",
-  };
 
   return (
     <Container fluid className="mt-4 p-4 booking-page-wrapper">
@@ -118,7 +109,7 @@ function BookingPage() {
           )}
         </Col>
         {showBookingForm ? (
-          <BookingForm bookingInfo={bookingInfo} sum={sum} />
+          <BookingForm {...{ bookingInfo, sum, setToggle, setConfirmationData }} />
         ) : (
           <Col sm={12} md={6}>
             <h5 className="line pb-1">Välj antal biljetter</h5>
@@ -128,7 +119,7 @@ function BookingPage() {
           </Col>
         )}
       </Row>
-      {toggle && <ConfirmPopUpModal {...{ popUpData, setToggle }} />}
+      {toggle && <ConfirmPopUpModal {...{ confirmationData, setToggle }} />}
     </Container>
   );
 }
