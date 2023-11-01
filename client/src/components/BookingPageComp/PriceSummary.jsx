@@ -25,8 +25,8 @@ function PriceSummary({ handleBookingClick, tickets }) {
     return (
     <div className='price-summary-wrapper'>
         <Container fluid>
-            <Row className='justify-content-center'>
-                <Col xs="12" md="6" xl="4" xxl="12">
+            <Row>
+                <Col>
                     <div className='d-flex justify-content-between'>
                         <h4>Totalt att betala</h4>
 
