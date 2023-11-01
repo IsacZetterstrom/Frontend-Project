@@ -27,9 +27,7 @@
 
     .btn-custom {
         width: 100%;
-        
         border-radius: 20px;
-
         background-color: $goldColor;
         color: $blackColor;
     }
@@ -38,7 +36,6 @@
         background-color: $goldColor;
         color: $blackColor;
     }
-
 }
 
 @include media-breakpoint-up(md) { 
@@ -46,7 +43,6 @@
         max-width: 320px !important;
         position: initial;
         border-radius: 15px;
-        padding: 1rem;
     }
 }
 
