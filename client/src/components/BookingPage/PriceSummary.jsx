@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Col, Container, Row } from "react-bootstrap";
 
-function PriceSummary({ handleBookingClick, tickets }) {
-  const [sum, setSum] = useState(0);
-
+function PriceSummary({ handleBookingClick, tickets, sum, setSum }) {
   useEffect(() => {
     let total = 0;
 
