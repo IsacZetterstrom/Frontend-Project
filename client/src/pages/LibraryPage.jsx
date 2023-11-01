@@ -5,8 +5,8 @@ import GlobalMovieCard from "../components/GlobalMovieCard";
 import useQuaryMovie from "../hooks/useQuaryMovie";
 import { useFormDefaults } from "../hooks/useFormDefaults";
 import SearchFilterSortQuary from "../components/LibaryPageComp/SearchFilterSortQuary";
-import Hero from "../components/LandingPageComp/Hero";
 import useFetchData from "../hooks/useFetchData";
+import Hero from "../components/LibaryPageComp/Hero";
 
 /**
  * @author Oskar dahlberg

@@ -15,9 +15,9 @@ async function delBooking(req, res) {
 
   try {
     const result = await bookingModel.deleteBooking(bookingId, userId);
-
     if(result.length === 0) return res.status(400).json({ error: "Booking does not exist" })
-
+    
+    clientsHandler.broadcastTo(result[2][0].Screening_id)
     return res.status(200).json({ error: `The booking been deleted` })
   } catch (error) { 
     return res.status(400).json(error.message);

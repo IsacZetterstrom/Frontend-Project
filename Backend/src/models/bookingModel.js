@@ -8,6 +8,8 @@ async function getBooking(bookingId) {
   const [booking] = await connection.execute(
     `SELECT
     Movie.Title AS title,
+    Movie_Information.Runtime AS runtime,
+    Movie_Information.Poster AS poster,
     Screening.Screening_startime AS dateAndTime,
     Booking.Total_price AS priceSum,
     Booking.Ref_num AS bookingRef,
@@ -22,9 +24,12 @@ async function getBooking(bookingId) {
     JOIN Screening ON Screening.Screening_id = Ticket.Screening_id
     JOIN Movie ON Movie.Movie_id = Screening.Movie_id
     JOIN Theater ON Theater.Theater_id = Screening.Theater_id
+    JOIN Movie_Information ON Movie_Information.Movie_id = Movie.Movie_id
     WHERE Booking.Booking_id = ?
     GROUP BY
     Movie.Title,
+    Movie_Information.Runtime,
+    Movie_Information.Poster,
     Screening.Screening_startime,
     Booking.Total_price,
     Booking.Ref_num,
@@ -74,6 +79,11 @@ async function deleteBooking(bookingId, userId) {
     if(bookingData.length === 0) return bookingData
   if (bookingData[0].User_id !== userId)
     throw new Error("You dont have permission to remove this booking");
+    
+  const [screeningId] = await connection.execute(
+    "SELECT Screening_id FROM Ticket WHERE Ticket.Booking_id =?",
+    [bookingId]
+  );
 
   //Delete tickets based on booking id
   const [ticketRows] = await connection.execute(
@@ -85,7 +95,7 @@ async function deleteBooking(bookingId, userId) {
     "DELETE FROM Booking WHERE Booking.Booking_id =?",
     [bookingId]
   );
-  return [ticketRows, bookingRows];
+  return [ticketRows, bookingRows, screeningId];
 }
 
 export default { deleteBooking, createBooking, getBooking };

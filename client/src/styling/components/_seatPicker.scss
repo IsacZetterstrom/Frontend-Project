@@ -1,4 +1,8 @@
 @use "../abstract/variables" as *;
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
 
 .seat-wrapper {
     display: flex;
@@ -7,6 +11,7 @@
     gap: .7rem;
 
     margin-top: 2rem;
+    margin-bottom: 10rem;
 
 
     .seat-row {
@@ -67,5 +72,76 @@
         cursor: pointer;
     }
 
+}
+
+
+@include media-breakpoint-up(sm) { 
+    .seat-wrapper {
+    
+        .seat {
+            background-color: #d9d9d9;
+            color: $blackColor;
+            padding: .7rem .6rem;
+    
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border-bottom-left-radius: 9px;
+            border-bottom-right-radius: 9px;
+    
+    
+            cursor: pointer;
+        }
+    
+    }
+
+}
+@include media-breakpoint-up(md) { 
+    .seat-wrapper {
+       
+    
+        .seat {
+            background-color: #d9d9d9;
+            color: $blackColor;
+            padding: .8rem .7rem;
+    
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+    
+    
+            cursor: pointer;
+        }
+    
+    }
+
+}
+@include media-breakpoint-up(lg) {
+    .seat-wrapper {
+       
+        margin-bottom: 0rem;
+    
+        .seat {
+            background-color: #d9d9d9;
+            color: $blackColor;
+            padding: 1.1rem 1rem;
+    
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+    
+    
+            cursor: pointer;
+        }
+    
+    }
+
+
+}
+@include media-breakpoint-up(xl) { 
+
+}
+@include media-breakpoint-up(xxl) { 
 }
 
