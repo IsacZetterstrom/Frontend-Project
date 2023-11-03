@@ -3,7 +3,7 @@ import { Button, Container, Table } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { formatDateOrTime, formatDateString } from "../../utils/dateUtils";
+import getDateWithDay, { formatDateOrTime, formatDateString } from "../../utils/dateUtils";
 
 /**
  * @author Louise Johansson
@@ -43,26 +43,26 @@ function ScreeningsList({ movieId, movie }) {
         <>
           {data && data.length > 0 ? (
             <>
-              <Table className="screening-table mt-5 text-center">
+              <Table className="screening-table mt-5">
                 <thead>
                   <tr>
-                    <th>Starttid</th>
-                    <th>Salong</th>
-                    <th>Språk och text</th>
+                    <th>Startar</th>
+                    <th>Salong, Språk och textning</th>
                     <th>Boka platser</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.slice(0, screeningsToShow).map((screening) => (
                     <tr key={screening.Screening_id}>
-                      <td className="text-nowrap">{formatDateOrTime(screening.Screening_date, "date")}</td>
-                      <td className="text-nowrap">
-                        {screening.Theater_name} - {formatDateOrTime(screening.Screening_startime, "time")}
+                      <td className="text-nowrap text-left">
+                        <p className="m-0">{getDateWithDay(screening.Screening_date)}</p>
+                        <p>{formatDateOrTime(screening.Screening_startime, "time")}</p>
                       </td>
-                      <td className="text-nowrap">
-                        {(movie.Lang === "EN" && "En") || movie.Lang} tal, {(screening.Subtitle === "Svenska" && "Sve") || screening.Subtitle} text
+                      <td className="text-nowrap text-left">
+                        <p className="m-0">{screening.Theater_name}</p>
+                        <p>{(movie.Lang === "EN" && "En") || movie.Lang} tal, {(screening.Subtitle === "Svenska" && "Sve") || screening.Subtitle} text</p>
                       </td>
-                      <td>
+                      <td className="text-center">
                         <Button
                           className="screening-btn text-nowrap"
                           onClick={() => navigate(`/film/${movie.Movie_id}/boka/${screening.Screening_id}`)}
