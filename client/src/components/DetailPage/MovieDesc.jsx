@@ -19,7 +19,7 @@ function MovieDesc({ movie }) {
           <Image src={movie.Poster} alt={movie.Title} fluid className="max-200 max-300 poster" />
         </Col>
         <Col xs={7} sm={6} md={6} lg={12}>
-          <p className="movie-title">{movie.Title}</p>
+          <p className="movie-title m-0">{movie.Title}</p>
           <h2>Genre</h2>
           <p>{movie.Genre}</p>
           <h2>Beskrivning</h2>
