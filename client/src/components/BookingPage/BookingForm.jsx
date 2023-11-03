@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
  * @param {number} sum - The total sum for the booking.
  */
 
-function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData }) {
+function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData, setShowBookingForm }) {
   const { defaults, formData, setFormData } = useFormDefaults();
   const { loading, err, data } = useFetchData("/profile/user");
   const { movieId, screeningId } = useParams();
@@ -59,7 +59,7 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData }) {
 
   // Navigate the user back to the movie page
   const handleCancel = () => {
-    navigate(`/film/${movieId}`);
+    setShowBookingForm(false);
   };
 
   return (
