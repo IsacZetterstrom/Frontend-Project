@@ -12,7 +12,7 @@ function expiredBookings({ expiredBookings }) {
     <>
       <h6 className="offset-sm-2 offset-md-3 offset-lg-0">Bokningshistorik</h6>
       {expiredBookings === undefined ? (
-        <p>Det finns inga historiken</p>
+        <p>Du har inga bokningar i historiken</p>
       ) : (
         <Row>
           <Container className="d-flex flex-column align-items-center flex-lg-row flex-lg-wrap">
