@@ -23,7 +23,6 @@ function EditUserPage({ setEditUser, runFunction }) {
     if (formData.phone === undefined) formData.phone = null;
 
     const res = await fetchService.fetchRes("/profile/user", "PATCH", formData);
-    console.log(res);
     if (res.status >= 400) {
       setMsg("Det blev fel vid uppdateringen");
       return false;
