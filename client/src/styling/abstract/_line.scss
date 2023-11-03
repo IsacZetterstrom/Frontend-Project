@@ -1,0 +1,37 @@
+@use "../abstract/variables" as *;
+.line {
+    position: relative;
+    overflow: hidden;
+
+    &::after{
+        position: absolute;
+        top: 50%;
+        content: "";
+        height: 2px;
+        width: 100000%;
+        background-image: $lineGradient;
+        margin-left: .5em;
+    }
+}
+
+.line-center {
+    white-space: nowrap; 
+    position: relative;
+
+    &::before, &::after {
+        content: "";
+        height: 2px;
+        width: calc(20% - 0.25em);
+        background-image: $lineGradient;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &::before {
+        margin-right: 0.5em;
+    }
+
+    &::after {
+        margin-left: 0.5em;
+    }
+}
