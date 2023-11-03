@@ -5,9 +5,9 @@
 
 export default function getDateWithDay(date) {
   const options = {
-    weekday: "long",
+    weekday: "short",
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   };
 
@@ -47,14 +47,14 @@ export function formatDateOrTime(dateTime, formatType) {
   return date.toLocaleString("sv-SE", options[formatType]);
 }
 
-// Format a date string to exclude time and time zone information eg
+// Format a date string to exclude time and time zone information e.g. "2016-10-19"
 export function formatDateString(dateString) {
   const date = new Date(dateString);
   const formattedDate = date.toISOString().split("T")[0];
   return formattedDate;
 }
 
-// Format a date string to a Swedish date format. e.g., "Fredag 24 oktober"
+// Format a date string to a Swedish date format. e.g. "Fredag 24 oktober"
 export function formatDateStringToSwedish(dateString) {
   const date = new Date(dateString);
   const options = { weekday: "long", day: "numeric", month: "long" };
