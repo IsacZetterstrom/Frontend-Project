@@ -3,7 +3,8 @@ import { useFormDefaults } from "../hooks/useFormDefaults";
 import RegisterForm from "../components/Forms/RegisterForm";
 import fetchService from "../service/FetchService";
 import { Container, Row } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import cacheService from "../service/CacheService";
 
 /**
  * @author Niklas Nguyen
@@ -12,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   const { defaults, formData, setFormData } = useFormDefaults();
+  const [isLoggedIn, setIsLoggedIn] = useOutletContext();
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
@@ -20,11 +22,15 @@ function RegisterPage() {
     if (formData.email === "" || formData.password === "") return false;
     const res = await fetchService.fetchRes("auth/register", "POST", formData);
     if (res.status >= 400) {
+      console.log(await res.json());
       setMsg("Blev fel vid registreringen");
       return false;
     } else {
-      setMsg("Du kommer nu bli dirigerad för att logga in");
-      setTimeout(() => navigate("/logga-in"), 2000);
+      const jwt = await res.json();
+      cacheService.saveLocalValue("token", jwt);
+      setMsg("Du är nu inloggad och kommer nu bli dirigerad till startsidan");
+      setIsLoggedIn((isLoggedIn) => !isLoggedIn);
+      setTimeout(() => navigate("/"), 2000);
     }
   };
 
