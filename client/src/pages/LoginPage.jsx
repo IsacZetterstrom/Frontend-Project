@@ -29,7 +29,7 @@ function LoginPage() {
     } else {
       const jwt = await res.json();
       cacheService.saveLocalValue("token", jwt);
-      setMsg("Du är nu inloggad och kommer nu bli dirigerad till start sidan");
+      setMsg("Du är nu inloggad och kommer nu bli dirigerad till startsidan");
       setIsLoggedIn((isLoggedIn) => !isLoggedIn);
       setTimeout(() => navigate("/"), 2000);
     }
