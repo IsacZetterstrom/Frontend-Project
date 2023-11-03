@@ -18,15 +18,21 @@ function SearchFilterSortQuary({ defaults }) {
         </Row>
         <Row>
           <Col className="p-0 d-flex gap-3 justify-content-center select-container">
-            <select {...defaults("sort", "", { className: "form-select mt-3 select " })}>
+            <select
+              {...defaults("sort", "", {
+                className: "form-select mt-3 select ",
+              })}>
               <option value="">Sortera</option>
               <option value="dateHigh">Datum nya</option>
               <option value="dateLow">Datum äldre</option>
               <option value="ratingHigh">Betyg högt</option>
               <option value="ratingLow">Betyg lågt</option>
             </select>
-            <select {...defaults("filter", "", { className: "form-select mt-3 select" })}>
-              <option value="">Filtera</option>
+            <select
+              {...defaults("filter", "", {
+                className: "form-select mt-3 select",
+              })}>
+              <option value="">Filtrera</option>
               <option value="7">Från 7år</option>
               <option value="11">Från 11år</option>
               <option value="15">Från 15år</option>
