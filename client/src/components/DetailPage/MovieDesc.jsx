@@ -26,7 +26,7 @@ function MovieDesc({ movie }) {
           <p>{movie.About}</p>
           <h2>Längd</h2>
           <p>
-            {hours}h {minutes} min
+            {hours} tim {minutes} min
           </p>
           <h2>Skådespelare</h2>
           <p>{movie.Actor_names}</p>
