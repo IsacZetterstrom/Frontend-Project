@@ -46,7 +46,6 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData, setShow
         setMsg(errorData.error);
       }
     } catch (error) {
-      console.log(error);
       setMsg("Ett fel har inträffat vid bokningen.");
     }
   };

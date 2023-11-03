@@ -22,7 +22,6 @@ function RegisterPage() {
     if (formData.email === "" || formData.password === "") return false;
     const res = await fetchService.fetchRes("auth/register", "POST", formData);
     if (res.status >= 400) {
-      console.log(await res.json());
       setMsg("Blev fel vid registreringen");
       return false;
     } else {
