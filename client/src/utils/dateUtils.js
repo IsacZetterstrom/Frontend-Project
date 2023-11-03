@@ -11,9 +11,13 @@ export default function getDateWithDay(date) {
     day: "numeric",
   };
 
-  //   const newDate = date.split(/[- :]/);
+  const formattedDate = new Date(date).toLocaleDateString("sv-SE", options);
 
-  return new Date(date).toLocaleDateString("sv-SE", options);
+  // Capitalize the first letter of the formatted date
+  const capitalizedFormattedDate =
+    formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
+  return capitalizedFormattedDate;
 }
 
 /**
