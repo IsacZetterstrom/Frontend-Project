@@ -43,7 +43,7 @@ function ScreeningsList({ movieId, movie }) {
         <>
           {data && data.length > 0 ? (
             <>
-              <Table className="screening-table mt-5">
+              <Table className="screening-table mt-5 text-center">
                 <thead>
                   <tr>
                     <th>Startar</th>
@@ -54,15 +54,15 @@ function ScreeningsList({ movieId, movie }) {
                 <tbody>
                   {data.slice(0, screeningsToShow).map((screening) => (
                     <tr key={screening.Screening_id}>
-                      <td className="text-nowrap text-left">
+                      <td className="text-nowrap">
                         <p className="m-0">{getDateWithDay(screening.Screening_date)}</p>
                         <p>{formatDateOrTime(screening.Screening_startime, "time")}</p>
                       </td>
-                      <td className="text-nowrap text-left">
+                      <td className="text-nowrap">
                         <p className="m-0">{screening.Theater_name}</p>
                         <p>{(movie.Lang === "EN" && "En") || movie.Lang} tal, {(screening.Subtitle === "Svenska" && "Sve") || screening.Subtitle} text</p>
                       </td>
-                      <td className="text-center">
+                      <td>
                         <Button
                           className="screening-btn text-nowrap"
                           onClick={() => navigate(`/film/${movie.Movie_id}/boka/${screening.Screening_id}`)}
