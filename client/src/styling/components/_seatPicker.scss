@@ -12,24 +12,31 @@
     flex-direction: column;
     gap: .7rem;
 
-    margin-top: 5rem;
+    margin-top: 2rem;
     margin-bottom: 10rem;
 
-    &:before {
-        content: "";
+    // &:before {
+    //     content: "";
 
-        position: absolute;
-        top: -2.5rem;
-        left: 5%;
-        width: 90%;
-        height: 6px;
+    //     position: absolute;
+    //     top: -3.5rem;
 
-        background-color: #d9d9d9;
+    //     width: 90%;
+    //     max-width: 20rem;
+    //     height: 6px;
 
-        box-shadow: 0px 10px 5px 0px rgba(255, 255, 255, 0.555);
-        // -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-        // -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    //     background-color: #d9d9d9;
 
+    //     box-shadow: 0px 10px 5px 0px rgba(255, 255, 255, 0.555);
+    //     // -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    //     // -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+    // }
+
+    .screen-svg {
+        width: 100%;
+        max-width: 20rem;
+        margin-bottom: 1rem;
     }
 
 
@@ -139,7 +146,11 @@
     .seat-wrapper {
        
         margin-bottom: 0rem;
-    
+
+        .screen-svg {
+            max-width: none;
+        }
+
         .seat {
             background-color: #d9d9d9;
             color: $blackColor;

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Col, Container, Form, Row} from 'react-bootstrap'
-import "../../styling/components/_seatPicker.scss"
+
+import svg from "../../assets/screen.svg"
 
 /**
  * @author Oliver Andersson
@@ -86,6 +87,7 @@ function SeatPicker(props) {
     return (
         
     <div className='seat-wrapper'>
+        <img src={svg} className='screen-svg'/>
         {rows.map((row,i) => {
             return (
                 <div className='seat-row' key={i}>
