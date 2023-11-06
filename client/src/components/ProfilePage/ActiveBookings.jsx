@@ -12,7 +12,7 @@ import Cancelbooking from "./CancelBooking.js";
 function ActiveBookings({ activeBookings, setUpDate }) {
   return (
     <>
-      <h6 className="offset-sm-2 offset-md-3 offset-lg-0">
+      <h6 className="offset-sm-2 offset-md-3 offset-lg-0 small-header">
         Mina nuvarande bokningar
       </h6>
       {activeBookings === undefined ? (

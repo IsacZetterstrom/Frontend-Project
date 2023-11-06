@@ -37,7 +37,7 @@ function DetailPage() {
         <>
           <ScreeningsList movie={data?.movie} movieId={movieId} />
 
-          <h2 className="mt-5 line-center text-center title-header-light">Liknande filmer</h2>
+          <h2 className="mt-5 line-center text-center header-light">Liknande filmer</h2>
           <MovieCarousel {...{ url: `/api/filter?query=${data?.movie.Genre}`, movieId }} />
         </>
       )}

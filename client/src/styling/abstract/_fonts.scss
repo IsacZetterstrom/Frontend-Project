@@ -10,6 +10,10 @@
     src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
 }
 
+a, a:hover, a:active, a:visited, a:focus {
+    color: inherit;
+}
+
 // Mobile font styling
 .gold {
     color: $goldColor;
@@ -21,15 +25,15 @@
     font-size: 24px;
 }
 
+.header-light {
+    font-family: 'Playfair Display';
+    font-size: 24px;
+}
+
 .small-header {
     font-family: 'Playfair Display';
     font-weight: bold;
     font-size: 16px;
-}
-
-.title-header-light {
-    font-family: 'Playfair Display';
-    font-size: 24px;
 }
 
 .large-header {
@@ -38,4 +42,10 @@
     font-weight: bold;
 }
 
+.movie-title {
+    font-family: 'Playfair Display';
+    margin-top: 0.5em;
+    font-size: 30px;
+    font-weight: bold;
+}
 

@@ -20,7 +20,7 @@ function LandingPage() {
           {(loading && <p>laddar...</p>) || (err && <p>Ett fel har inträffat</p>) || (
             <>
               <TrailerComponent movie={data?.movie} />
-              <h1 className="text-center m-0 p-0">{data.movie.Title}</h1>
+              <h2 className="text-center m-0 p-0 movie-title gold">{data.movie.Title}</h2>
             </>
           )}
         </Row>
