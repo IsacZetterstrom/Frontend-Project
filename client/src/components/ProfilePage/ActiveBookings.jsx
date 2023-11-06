@@ -21,10 +21,11 @@ function ActiveBookings({ activeBookings, setUpDate }) {
         </p>
       ) : (
         <Row>
-          <Container className="d-flex flex-column align-items-center flex-lg-row flex-lg-wrap gap-3 m-0">
+          <Container
+            col={12}
+            className="d-flex flex-column align-items-center flex-lg-row flex-lg-wrap gap-3 m-0">
             {activeBookings?.map((booking, i) => (
               <Col
-                lg={12}
                 className="booking-card d-flex flex-shrink-0 mb-2 align-items-center"
                 key={booking.referenceNumber + i}>
                 <Col xs={3} sm={3} lg={3}>
@@ -47,7 +48,7 @@ function ActiveBookings({ activeBookings, setUpDate }) {
                       booking.runTime
                     )}
                   </p>
-                  <p className="mb-0 mx-2">{`${booking.theaterName}, Rad-Stol: ${booking.seats}`}</p>
+                  <p className="card-seats mb-0">{`${booking.theaterName}, Rad-Stol: ${booking.seats}`}</p>
                   <p className="mb-1 mx-2">{`Pris: ${booking.priceSum} Kr`}</p>
                   <Col className="d-flex justify-content-between">
                     <span className="ref-number mx-2">
