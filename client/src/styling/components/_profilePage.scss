@@ -7,6 +7,9 @@
     gap: .5em;
     min-width: 350px;
     max-width: 49%;
+    .booking-info-container{
+        max-width: 260px;
+    }
     .expired-booking-card{
         background-color: $navyBlueColor;
         height: 160px;
@@ -30,7 +33,10 @@
     }
  
     .booking-title{
+        overflow:hidden;
+        white-space:nowrap;
         text-overflow: ellipsis;
+        text-wrap: nowrap;
         color: $goldColor;
     }
     .ref-number{
@@ -50,7 +56,7 @@
     border-radius: 10px;
 }
 .user-info-card{
-    height: 150px;
+    padding: .3em;
     text-overflow: ellipsis;
 
     table{
@@ -68,7 +74,9 @@
     }
     .card-btn-container{
         height: 20px;
+        margin: 10px 0 10px 0 !important;
         Button{
+            
             width:50px;
             font-size: .6rem;
             border-radius: 9999px;
