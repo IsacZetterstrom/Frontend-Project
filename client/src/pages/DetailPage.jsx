@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import useFetchData from "../hooks/useFetchData";
 import { Container } from "react-bootstrap";
 import ScreeningsList from "../components/DetailPage/ScreeningsList";
-import MovieCaruosel from "../components/MovieCaruosel";
+import MovieCarousel from "../components/MovieCarousel";
 import TrailerComponent from "../components/TrailerComponent";
 
 /**
@@ -38,7 +38,7 @@ function DetailPage() {
           <ScreeningsList movie={data?.movie} movieId={movieId} />
 
           <h2 className="mt-5 line-center text-center">Liknande filmer</h2>
-          <MovieCaruosel {...{ url: `/api/filter?query=${data?.movie.Genre}`, movieId }} />
+          <MovieCarousel {...{ url: `/api/filter?query=${data?.movie.Genre}`, movieId }} />
         </>
       )}
     </>
