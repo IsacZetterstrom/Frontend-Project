@@ -108,7 +108,7 @@ function BookingPage() {
           )}
         </Col>
         {showBookingForm ? (
-          <BookingForm {...{ bookingInfo, sum, setToggle, setConfirmationData }} />
+          <BookingForm {...{ bookingInfo, sum, setToggle, setConfirmationData, setShowBookingForm }} />
         ) : (
           <Col sm={12} md={6}>
             <h5 className="line pb-1">Välj antal biljetter</h5>
