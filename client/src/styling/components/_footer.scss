@@ -21,6 +21,8 @@
     text-align: center;
     
     
+    
+    
     &:before {
       content: " ";
       display: block;
@@ -37,16 +39,34 @@
     justify-content: center;
     align-items: center;
     max-width: 100%;
-    margin: 0 auto; // Center the row
+    margin: 0 auto; 
+
+    &::before, &::after {
+      content: "";
+      height: 2px;
+      width: calc(20% - 0.25em);
+      background-image: $lineGradient;
+      display: inline-block;
+      vertical-align: middle;
+  }
+
+    &::before {
+      margin-right: 0.2em;
+    }
+
+    &::after {
+      margin-left: 0.9em;
+    }
 
     
-  }
+    }
   
-  .icon {
+    .icon {
     color: white;
     text-decoration: none;
-  }
+    }
   
+ 
 
   
 }  
