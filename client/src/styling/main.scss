@@ -20,15 +20,7 @@
 @import "./components/ticketSelector";
 @import "./components/bookingForm";
 
-@font-face {
-    font-family: 'Noto Sans';
-    src: url('../fonts/NotoSans-Light.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
-}
+@import "./abstract/fonts";
 
 #root {
     display: flex;

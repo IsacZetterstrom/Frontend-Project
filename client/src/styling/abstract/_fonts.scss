@@ -1,0 +1,21 @@
+@use "../abstract/variables" as *;
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('../fonts/NotoSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+
+.header_bold {
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.gold {
+    color: $goldColor;
+}
