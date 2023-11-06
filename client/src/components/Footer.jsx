@@ -11,7 +11,7 @@ import "../styling/components/_footer.scss";
 function Footer() {
   return (
     <Container fluid className="custom-footer mt-5">
-      <Row className="icon-row text-center line-center mt-3">
+      <Row className="icon-row text-center mt-3">
         <Col xs={1} md-auto className="icon-col">
           <a href="https://www.twitter.com/" className="icon fs-3">
             <BsTwitter />
