@@ -12,13 +12,13 @@ function expiredBookings({ expiredBookings }) {
     <>
       <h6 className="offset-sm-2 offset-md-3 offset-lg-0">Bokningshistorik</h6>
       {expiredBookings === undefined ? (
-        <p>Du har inga bokningar i historiken</p>
+        <p className="d-flex flex-column align-items-center flex-lg-row flex-lg-wrap gap-3 m-0">Du har inga bokningar i historiken</p>
       ) : (
         <Row>
           <Container className="d-flex flex-column align-items-center flex-lg-row flex-lg-wrap">
             {expiredBookings?.map((booking) => {
               return (
-                <Col lg={12} className="active-booking-card d-flex flex-shrink-0 mb-2 " key={booking.referenceNumber}>
+                <Col lg={12} className="booking-card d-flex flex-shrink-0 mb-2 " key={booking.referenceNumber}>
                   <Col xs={3} sm={3} lg={3}>
                     <Image src={booking.poster} fluid className="profile-poster" />
                   </Col>
