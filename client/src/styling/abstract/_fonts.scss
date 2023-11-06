@@ -10,12 +10,32 @@
     src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
 }
 
-.header_bold {
+// Mobile font styling
+.gold {
+    color: $goldColor;
+}
+
+.header-bold {
     font-family: 'Playfair Display';
     font-weight: bold;
     font-size: 24px;
 }
 
-.gold {
-    color: $goldColor;
+.small-header {
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    font-size: 16px;
 }
+
+.title-header-light {
+    font-family: 'Playfair Display';
+    font-size: 24px;
+}
+
+.large-header {
+    font-family: 'Playfair Display';
+    font-size: 46px;
+    font-weight: bold;
+}
+
+
