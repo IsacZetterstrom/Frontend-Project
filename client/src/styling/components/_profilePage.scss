@@ -1,11 +1,12 @@
 @use "../abstract/variables" as *;
 
-.active-booking-card{
+.booking-card{
     border-radius: 10px;
     background-color: $navyBlueColor;
     box-shadow: 0 3px 4px black;
-    width: 330px;
     gap: .5em;
+    min-width: 350px;
+    max-width: 49%;
     .expired-booking-card{
         background-color: $navyBlueColor;
         height: 160px;
@@ -42,11 +43,14 @@
     }
     
 }
+
+.user-info-card, .note-card{
+    box-shadow: 0 0 10px $blackColor;
+    max-width: 290px;
+    border-radius: 10px;
+}
 .user-info-card{
     height: 150px;
-    max-width: 290px;
-    box-shadow: 0 0 10px $blackColor;
-    border-radius: 10px;
     text-overflow: ellipsis;
 
     table{
@@ -74,7 +78,25 @@
             font-weight: 600;
         }
     }
+
  
+}
+.note-card{
+    border: 1px solid $OrangeColor;
+    .note-icon{
+        color: $OrangeColor;
+        font-size: 2rem;
+    }
+    .profile-note{
+        .note-whisper, .note-information{
+            font-size: .7rem;
+        }
+        Button{
+            background-color: $OrangeColor;
+            border: none;
+            color: black;
+        }
+    }
 }
 
 
