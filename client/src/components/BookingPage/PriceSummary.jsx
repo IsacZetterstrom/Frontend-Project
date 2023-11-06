@@ -15,7 +15,6 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum, selectedSeats,
     setSum(total);
   }, [tickets]);
 
-  console.log(maxSeats)
 
   return (
     <div className="price-summary-wrapper">
