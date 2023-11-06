@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import MovieCaruosel from "../components/MovieCaruosel";
+import MovieCarousel from "../components/MovieCarousel";
 import TrailerComponent from "../components/TrailerComponent";
 import useFetchData from "../hooks/useFetchData";
 import AdCard from "../components/LandingPageComp/AdCard";
@@ -30,9 +30,9 @@ function LandingPage() {
         <Row className="justify-content-center w-100 m-0 p-0">
           <div className="w-75">
             <h2 className="line pb-1 header-bold">Nyheter</h2>
-            <MovieCaruosel {...{ url: `/api/filter?query=toplist` }} />
+            <MovieCarousel {...{ url: `/api/filter?query=toplist` }} />
             <h2 className="line pb-1 header-bold">Kommande</h2>
-            <MovieCaruosel {...{ url: `/api/filter?query=upcoming` }} />
+            <MovieCarousel {...{ url: `/api/filter?query=upcoming` }} />
           </div>
         </Row>
       </Container>

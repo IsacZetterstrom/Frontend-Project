@@ -33,20 +33,24 @@ function SeatPicker(props) {
     // Returns seats if they fit on the row and are not booked 
     function getSeatsInRow(seat, row) {
         const rowLength = row.length
-        const seatIndex = row.indexOf(seat)
+        let seatIndex = row.indexOf(seat)
         const maxSeats = props.maxSeats
         
-        // Check so all seats fit to the right on the row
+
+        // Check so all seats fit to the right on the row    
         if(maxSeats + seatIndex > rowLength || seat.Booked === true) {
-            return []
+            // if not, go left one step
+            return getSeatsInRow(row[seatIndex-1], row)
         } else {
 
             let newArr = [];
 
+            // Check if any seat to the right is booked
             for (let i = 0; i < maxSeats; i++) {
-                // Check if any seat to the right is booked
+                
+                // If seat to right is booked, go left one step
                 if(row[seatIndex + i].Booked) {
-                    return []
+                    return seatIndex === 0 ? [] : getSeatsInRow(row[seatIndex-1], row)
                 }
                 
                 newArr.push(row[seatIndex + i])

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
  * @description this component fetches and group the movie depending the screen size
  */
 
-function MovieCaruosel({ url, movieId }) {
+function MovieCarousel({ url, movieId }) {
   const { loading, err, data } = useFetchData(url);
   const [index, setIndex] = useState(0);
   const [screen, setScreen] = useState(window.innerWidth);
@@ -46,7 +46,7 @@ function MovieCaruosel({ url, movieId }) {
                 <Col xs={4} md={2} key={movieItem.Movie_id}>
                   <Link to={`/film/${movieItem.Movie_id}`} className="img-wrapper">
                     <Image src={movieItem.Poster} alt="" fluid rounded />
-                    <p>{movieItem.Title}</p>
+                    <p className="">{movieItem.Title}</p>
                   </Link>
                 </Col>
               ))}
@@ -65,4 +65,4 @@ function MovieCaruosel({ url, movieId }) {
   );
 }
 
-export default MovieCaruosel;
+export default MovieCarousel;
