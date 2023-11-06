@@ -8,7 +8,7 @@ import { AiOutlineSearch } from "react-icons/ai";
  * @description this component can search/sort and filter the age for movies
  */
 
-function SearchFilterSortQuary({ defaults }) {
+function SearchFilterSortQuery({ defaults }) {
   return (
     <>
       <Container className="p-0 m-0 search-filter-sort">
@@ -21,7 +21,8 @@ function SearchFilterSortQuary({ defaults }) {
             <select
               {...defaults("sort", "", {
                 className: "form-select mt-3 select ",
-              })}>
+              })}
+            >
               <option value="">Sortera</option>
               <option value="dateHigh">Datum nya</option>
               <option value="dateLow">Datum äldre</option>
@@ -31,7 +32,8 @@ function SearchFilterSortQuary({ defaults }) {
             <select
               {...defaults("filter", "", {
                 className: "form-select mt-3 select",
-              })}>
+              })}
+            >
               <option value="">Filtrera</option>
               <option value="7">Från 7år</option>
               <option value="11">Från 11år</option>
@@ -44,4 +46,4 @@ function SearchFilterSortQuary({ defaults }) {
   );
 }
 
-export default SearchFilterSortQuary;
+export default SearchFilterSortQuery;
