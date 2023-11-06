@@ -28,7 +28,7 @@ function Footer() {
           </a>
         </Col>
       </Row>
-      <Row className="justify-content-center text-center mt-3">
+      <Row className="justify-content-center text-center mt-2">
         <Col md={12} className="phone-col">
           <a href="tel:+1234567891" className="icon">
             <BsTelephone /> 12-34 56 78 91
