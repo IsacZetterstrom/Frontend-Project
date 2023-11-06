@@ -15,6 +15,7 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum, selectedSeats,
     setSum(total);
   }, [tickets]);
 
+
   return (
     <div className="price-summary-wrapper">
       <Container fluid>
@@ -32,7 +33,7 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum, selectedSeats,
             <p className="text-nowrap">Betalning sker på plats</p>
 
             <Button
-              disabled={selectedSeats.length < maxSeats}
+              disabled={selectedSeats.length < maxSeats || maxSeats === 0}
               variant="custom"
               onClick={() => handleBookingClick()}
             >
