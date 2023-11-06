@@ -15,7 +15,7 @@ async function getRecommended(req, res) {
 		selectedCategories || specificDescriptors
 			? `If you do not have 5 recommendations that fit these criteria perfectly, do your best to suggest other ${cinemaType}'s that I might like.`
 			: ''
-	} Please return this response as a numbered list with the ${cinemaType}'s title, followed by a colon, and then a brief description of the ${cinemaType}. There should be a line of whitespace between each item in the list.`;
+	} Please return this response as a numbered list with the ${cinemaType}'s title, followed by the imdb link to the {cinemaType} `;
 	
 	const payload = {
 		model: 'text-davinci-003',
