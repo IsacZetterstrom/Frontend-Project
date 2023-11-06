@@ -60,14 +60,7 @@ function SeatPicker(props) {
             
         }
     }
-    // for (let i = 0; i < maxSeats; i++) {
-                
-    //     if(row[seatIndex + i].Booked) {
-    //         return []
-    //     }
-        
-    //     newArr.push(row[seatIndex + i])
-    // }
+
 
     function handleSeatClick(seat, row) {
         if (selectSeveralSeats) {
