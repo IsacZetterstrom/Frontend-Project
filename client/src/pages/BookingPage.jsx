@@ -27,7 +27,6 @@ function BookingPage() {
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [bookingInfo, setBookingInfo] = useState({ tickets: [] });
 
-  // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type
   const [toggle, setToggle] = useState(false);
 
   // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type
@@ -104,7 +103,7 @@ function BookingPage() {
             <></>
           ) : (
             <Row>
-              <PriceSummary {...{ handleBookingClick, tickets, setSum, sum }} />
+              <PriceSummary {...{ handleBookingClick, tickets, setSum, sum, selectedSeats, maxSeats }} />
             </Row>
           )}
         </Col>
