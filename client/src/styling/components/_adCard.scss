@@ -1,0 +1,8 @@
+@use "../abstract/variables" as *;
+.ad-card{
+    width: clamp(300px,25%,500px);
+    background-color: transparent;
+    color: $goldColor;
+    border: 1px solid $goldColor;
+
+}

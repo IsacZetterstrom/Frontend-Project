@@ -1,0 +1,49 @@
+@use "../abstract/variables" as *;
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+.price-summary-wrapper {
+    bottom: -3rem;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2.5rem;
+    background-color: $blueColor;
+    position: absolute;
+    border-radius: 0;
+    padding: 1rem;
+    
+    h4 {
+        font-size: 1rem;
+        font-weight: bold;
+
+        margin: 0;
+    }
+
+    p {
+        font-size: .8rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn-custom {
+        width: 100%;
+        border-radius: 20px;
+        background-color: $goldColor;
+        color: $blackColor;
+    }
+
+    .btn-custom:hover {
+        background-color: $goldColor;
+        color: $blackColor;
+    }
+}
+
+@include media-breakpoint-up(md) { 
+    .price-summary-wrapper {
+        max-width: 320px !important;
+        position: initial;
+        border-radius: 15px;
+    }
+}
+
+

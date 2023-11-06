@@ -11,7 +11,7 @@ publicRoutes.post("/ai", aiController.getRecommended);
 //MOVIE ROUTES
 publicRoutes.get("/movies", movieController.getMovies);
 publicRoutes.get("/movies/:movieId", movieController.getOneMovie);
-
+publicRoutes.get("/filter", movieController.filterMovies);
 //SCREENING ROUTES
 publicRoutes.get(
   "/movies/:movieId/screenings",

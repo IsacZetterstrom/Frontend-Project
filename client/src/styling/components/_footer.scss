@@ -1,0 +1,80 @@
+@use "../abstract/variables" as *;
+
+.custom-footer {  
+  background-color: $blueColor;
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  
+  .footer-adress {
+      font-size: 12px;
+  }
+  
+  .footer-text {
+    color: #f8f3f383;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    
+    
+    
+    &:before {
+      content: " ";
+      display: block;
+      height: 2px;
+      width: 120px;
+      position: absolute;
+      background: $lineGradient;
+      
+    }
+
+  }
+  
+  .icon-row {
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto; 
+
+    &::before, &::after {
+      content: "";
+      height: 2px;
+      width: calc(20% - 0.20em);
+      background-image: $lineGradient;
+      display: inline-block;
+      vertical-align: middle;
+  }
+
+    &::before {
+      margin-right: 0.2em;
+    }
+
+    &::after {
+      margin-left: 0.9em;
+    }
+
+    
+    }
+  
+    .icon {
+    color: white;
+    text-decoration: none;
+    }
+  
+ 
+
+  
+}  
+    
+    
+    
+    
+    
+
+    
+     
