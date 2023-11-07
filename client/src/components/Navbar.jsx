@@ -76,9 +76,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
             id="navbar-fixed-top"
             className=""
             style={{ width: "50%" }}>
-            <Nav
-              className="navbar-fixed-top justify-content-between"
-              style={{ width: "100%" }}>
+            <Nav className="navbar-fixed-top" style={{ width: "100%" }}>
               {pages.map(({ label, path, inNav, rightNav }) => {
                 return (
                   inNav &&
