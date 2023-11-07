@@ -2,7 +2,7 @@
 * @author Oskar Dahlberg
 * @Description Cleans the AI text output into movie title and a imdb link.
 */
-async function resultClean(result){
+ function resultClean(result){
     const titles = [];
     const imdbLinks = []; 
     const titleRegex = /\d+\.\s(.*?)\s\(\d+\)/g;

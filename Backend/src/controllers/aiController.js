@@ -4,11 +4,11 @@ import tmdbModel from "../models/tmdbModel.js";
 
 /**
 * @author Oskar Dahlberg
-* @Description First it gets movieinformation based on user bookings then calls AI to give movie suggestions.
-  Uses Movie API and datacleaning to struct a dataset.
+* @Description Gets movieinformation based on user bookings then calls AI to give movie suggestions.
+  Uses Movie API and datacleaning to struct a dataset with poster pic and title.
 */
 async function getRecommended(req, res) {
-	const userId = 1;
+	const userId = 17;
 	try {
 		//Collect screeningsids based on user bookings(LIMIT 5)	
 		const ScreeningIds = await aiModel.collectScreenings(userId)
@@ -20,7 +20,7 @@ async function getRecommended(req, res) {
 		//Call open AI to get 5 recommended movies.
 		const recommendedData = await aiModel.getRecommended(payload);
 		//Clean the text result from AI, seperate the titles and imdb links
-		const titles = await aiConfig.resultClean(recommendedData.choices[0].text)
+		const titles =  aiConfig.resultClean(recommendedData.choices[0].text)
 		//Get movie posters from api call (API Slows down the querytime abit)
 		const moviePoster = await tmdbModel.getMovieInfo(titles.titles)
 		const data = { titles, moviePoster }
