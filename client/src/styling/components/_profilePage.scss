@@ -1,5 +1,7 @@
 @use "../abstract/variables" as *;
-
+.booking-history-header{
+    padding-top: 1em;
+}
 .booking-card{
     border-radius: 10px;
     background-color: $navyBlueColor;
@@ -16,17 +18,13 @@
         object-fit: fill;
         border-radius: 10px 0 0 10px;
     }
-    .card-btn-container{
-        height: 20px;
-        padding: 0;
-        Button{
-            font-size: .6rem;
-            border-radius: 9999px;
-            border: none;
-            background-color: $OrangeColor;
-            color: $blackColor;
-            font-weight: 600;
-        }
+    .card-btn{
+        font-size: .7rem;
+        border-radius: 9999px;
+        border: none;
+        background-color: $OrangeColor;
+        color: $blackColor;
+        font-weight: 600;
     }
  
     .booking-title{
@@ -109,6 +107,13 @@
     .booking-card{
         .booking-info-container{
             max-width: 290px;
+            p{
+                font-size: .9rem;
+                font-weight: 500;
+            }
+            Button{
+                font-size: .9rem;
+            }
         }
     }
 
