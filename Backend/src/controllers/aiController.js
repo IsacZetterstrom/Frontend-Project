@@ -1,4 +1,4 @@
-import aiModel from "../models/AiModel.js";
+import aiModel from "../models/aiModel.js";
 import aiConfig from "../config/aiConfig.js";
 import tmdbModel from "../models/tmdbModel.js";
 async function getRecommended(req, res) {
@@ -16,10 +16,17 @@ async function getRecommended(req, res) {
 
 	//Clean the text result from AI, seperate the titles and imdb links
 	const titles = await aiConfig.resultClean(recommendedData.choices[0].text)
-	console.log(titles)
+	//Get movie posters from api call (This api is very slow, might remove)
 	const moviePoster = await tmdbModel.getMovieInfo(titles.titles)
-	console.log(moviePoster)
-	res.status(200).json({ message: "Ok" } );
+	const data = {titles, moviePoster}
+	const combinedArray = data.titles.titles.map((title, index) => ({
+		title,
+		imdbLink: data.titles.imdbLinks[index],
+		posterURL: data.moviePoster.moviesArray[index]
+	  }));
+	  
+	  console.log(combinedArray);
+	res.status(200).json({combinedArray} );
 	}catch(error){
 		res.status(500).json({ error: "Problem with collecting the data" });
 	}

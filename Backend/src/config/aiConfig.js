@@ -1,3 +1,16 @@
+async function arrayStruct(movieData){
+    console.log(titles)
+    for (let i = 0; i < movieData.titles.length; i++) {
+        structuredArray.push({
+          title: movieData.titles[i],
+          link: movieData.imdbLinks[i],
+          poster: movieData.posterURLs[i]
+        });
+      }
+    
+}
+
+
 async function resultClean(result){
     const titles = [];
     const imdbLinks = []; 

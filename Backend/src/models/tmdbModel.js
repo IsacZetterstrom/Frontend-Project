@@ -14,7 +14,7 @@ async function getMovieInfo(titles) {
             moviesArray.push(null)
         }
     }
-    return moviesArray;
+    return {moviesArray};
 }
 
 export default { getMovieInfo };
