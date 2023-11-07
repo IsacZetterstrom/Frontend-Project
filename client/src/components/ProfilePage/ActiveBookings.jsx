@@ -46,14 +46,7 @@ function ActiveBookings({ activeBookings, setUpDate }) {
                       booking.screeningStartTime,
                       booking.runTime
                     )} `}
-                    {/* {getDateWithDay(booking.screeningStartTime)} */}
                   </p>
-                  {/* <p className="mb-0 mx-2">
-                    {getMovieEndTime(
-                      booking.screeningStartTime,
-                      booking.runTime
-                    )}
-                  </p> */}
                   <p className="card-seats mb-0">{`${booking.theaterName}, Rad-Stol: ${booking.seats}`}</p>
                   <p className="mb-1 mx-2">{`Pris: ${booking.priceSum} Kr`}</p>
                   <Col className="d-flex justify-content-between">
