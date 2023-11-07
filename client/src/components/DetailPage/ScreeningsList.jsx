@@ -77,7 +77,7 @@ function ScreeningsList({ movieId, movie }) {
               {data.length > screeningsToShow && (
                 <Container className="text-center">
                   <Button className="show-more lh-1" onClick={handleShowMore}>
-                    <p>Visa mer</p>
+                    <p className="m-0">Visa mer</p>
                     <MdKeyboardArrowDown />
                   </Button>
                 </Container>
