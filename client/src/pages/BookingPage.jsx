@@ -111,9 +111,9 @@ function BookingPage() {
           <BookingForm {...{ bookingInfo, sum, setToggle, setConfirmationData, setShowBookingForm }} />
         ) : (
           <Col sm={12} md={6}>
-            <h5 className="line pb-1">Välj antal biljetter</h5>
+            <h3 className="line pb-1 small-header">Välj antal biljetter</h3>
             <TicketSelector {...{ tickets, handleTicketChange }} />
-            <h5 className="line pb-1">Välj platser</h5>
+            <h3 className="line pb-1 small-header">Välj platser</h3>
             {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
           </Col>
         )}

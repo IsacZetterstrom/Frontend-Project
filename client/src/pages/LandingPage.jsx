@@ -20,7 +20,7 @@ function LandingPage() {
           {(loading && <p>laddar...</p>) || (err && <p>Ett fel har inträffat</p>) || (
             <>
               <TrailerComponent movie={data?.movie} />
-              <h1 className="text-center m-0 p-0">{data.movie.Title}</h1>
+              <h2 className="text-center m-0 p-0 movie-title gold">{data.movie.Title}</h2>
             </>
           )}
         </Row>
@@ -29,9 +29,9 @@ function LandingPage() {
         </Row>
         <Row className="justify-content-center w-100 m-0 p-0">
           <div className="w-75">
-            <h2 className="line pb-1">Nyheter</h2>
+            <h2 className="line pb-1 header-bold">Nyheter</h2>
             <MovieCarousel {...{ url: `/api/filter?query=toplist` }} />
-            <h2 className="line pb-1">Kommande</h2>
+            <h2 className="line pb-1 header-bold">Kommande</h2>
             <MovieCarousel {...{ url: `/api/filter?query=upcoming` }} />
           </div>
         </Row>

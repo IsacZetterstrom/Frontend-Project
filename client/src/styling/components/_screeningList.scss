@@ -1,15 +1,8 @@
 .screenig-list {
-    h2 {
-        color: #fff;
-        font-size: 48;
-        font-weight: bold;
-        font-family: 'Playfair Display';
-    }
-    .show-more {
+    .show-more{
         background-color: transparent;
-        color: #BD9060;
+        color: $goldColor;
         border: none;
-        line-height: 0;
         font-size: 20px;
         font-family: 'Playfair Display';
 
@@ -25,7 +18,7 @@
         }
         td {
             padding: 2em 0;
-            border-bottom: 1px solid #BD9060;
+            border-bottom: 1px solid $goldColor;
             background-color: transparent;
             color: #fff;
             vertical-align: middle; 
@@ -38,7 +31,7 @@
         }
         
         .screening-btn {
-            background-color: #BD9060;
+            background-color: $goldColor;
             border: none;
             border-radius: 999px;
             padding: 0.8em 1.3em;
@@ -46,7 +39,7 @@
             font-size: 12px;
             &:hover {
                 color: #fff;
-                background-color: #BD9060;
+                background-color: $goldColor;
             }
         }
     }
@@ -54,15 +47,10 @@
         input {
             border-radius: 999px;
             padding: 0.5em;
-            background-color: #BD9060;
+            background-color: $goldColor;
             text-align: center;
             font-size: 12px;
             border: none;
-        }
-        h3 {
-            font-size: 24px;
-            color: #BD9060;
-            font-family: 'Playfair Display';
         }
     }
 }

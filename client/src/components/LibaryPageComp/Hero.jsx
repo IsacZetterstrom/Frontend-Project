@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Hero({ heroData }) {
   return (
     <>
-      <Card className=" p-0 mb-4 hero-card">
+      <Card className=" p-0 hero-card">
         <Link to={`/film/${heroData.movie.Movie_id}`}>
           <div className="overlay"></div>
           <Card.Img src={heroData?.movie.Image} alt="Card image" />
