@@ -67,7 +67,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
   return (
     <>
       <BootStrapNav expand="md" className="navbar">
-        <Container className="justify-content-between">
+        <Container>
           <BootStrapNav.Brand className="d-md-none" href="/">
             <img src={Logotype} alt="" width="100px" />
           </BootStrapNav.Brand>
@@ -91,7 +91,6 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                 );
               })}
               <Container className="flex-row align-items-center justify-content-center d-none d-md-flex desktop-logo-container">
-                {/* <BootStrapNav.Brand href="/" className="desktop-nav-brand"> */}
                 <img
                   className="logo"
                   src={Logotype}
@@ -99,7 +98,6 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                     navigate("/");
                   }}
                 />
-                {/* </BootStrapNav.Brand> */}
               </Container>
 
               {renderUserMenu()}
