@@ -35,10 +35,12 @@ function DetailPage() {
         <p>laddar...</p>
       ) : (
         <>
+        
           <ScreeningsList movie={data?.movie} movieId={movieId} />
-
-          <h2 className="mt-5 line-center text-center header-light">Liknande filmer</h2>
-          <MovieCarousel {...{ url: `/api/filter?query=${data?.movie.Genre}`, movieId }} />
+          <Container>
+            <h2 className="mt-5 line-center text-center header-light mb-5">Liknande filmer</h2>
+            <MovieCarousel {...{ url: `/api/filter?query=${data?.movie.Genre}`, movieId }} />
+          </Container>
         </>
       )}
     </>
