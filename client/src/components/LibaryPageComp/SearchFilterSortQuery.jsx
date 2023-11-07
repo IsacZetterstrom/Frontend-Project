@@ -14,30 +14,35 @@ function SearchFilterSortQuery({ defaults }) {
       <Container className="p-0 m-0 search-filter-sort">
         <Row className="search-container">
           <AiOutlineSearch className="icon" />
-          <input {...defaults("search", "Sök på film", { required: false })} />
+          <input {...defaults("search", "Sök på film titel", { required: false })} />
         </Row>
-        <Row>
-          <Col className="p-0 d-flex gap-3 justify-content-center select-container">
+        <Row className="p-0 d-flex  justify-content-space select-container">
+          <Col className="d-flex flex-column flex-lg-row justify-content-start align-items-center p-0 mt-3">
+            <label className="text-nowrap">Sortera på:</label>
             <select
               {...defaults("sort", "", {
-                className: "form-select mt-3 select ",
+                className: "form-select text-center text-md-start",
+                required: false,
               })}
             >
-              <option value="">Sortera</option>
-              <option value="dateHigh">Datum nya</option>
-              <option value="dateLow">Datum äldre</option>
-              <option value="ratingHigh">Betyg högt</option>
-              <option value="ratingLow">Betyg lågt</option>
+              <option value="dateHigh">Nyast överst</option>
+              <option value="dateLow">Äldst överst</option>
+              <option value="ratingHigh">Betyg Högt till Lågt</option>
+              <option value="ratingLow">Betyg Lågt till Högt</option>
             </select>
+          </Col>
+          <Col className="d-flex flex-column flex-lg-row justify-content-end align-items-center p-0 mt-3">
+            <label className="text-nowrap">Åldersgräns:</label>
             <select
               {...defaults("filter", "", {
-                className: "form-select mt-3 select",
+                className: "form-select text-center text-md-start",
+                required: false,
               })}
             >
-              <option value="">Filtrera</option>
-              <option value="7">Från 7år</option>
-              <option value="11">Från 11år</option>
-              <option value="15">Från 15år</option>
+              <option value="">Alla åldrar</option>
+              <option value="7">Från 7 år</option>
+              <option value="11">Från 11 år</option>
+              <option value="15">Från 15 år</option>
             </select>
           </Col>
         </Row>

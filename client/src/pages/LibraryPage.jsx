@@ -32,8 +32,8 @@ function LibraryPage() {
         <SearchFilterSortQuery {...{ defaults }} />
         <Row className="w-75">
           <h1 className="line pb-2">På bio nu</h1>
-          {(loading && <p>laddar....</p>) ||
-            (err && <p>Hittade inte filmerna</p>) ||
+          {(loading && <p>laddar...</p>) ||
+            (err && <p>Hittade ingen film som matchar {query.search}</p>) ||
             data?.map((movie) => <GlobalMovieCard key={movie.Movie_id} xs={6} md={3} id={movie.Movie_id} img={movie.Poster} title={movie.Title} />)}
         </Row>
       </Container>
