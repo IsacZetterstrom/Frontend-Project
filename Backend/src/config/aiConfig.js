@@ -1,13 +1,19 @@
 async function resultClean(result){
-    const titles = []; 
+    const titles = [];
+    const imdbLinks = []; 
     const titleRegex = /\d+\.\s(.*?)\s\(\d+\)/g;
+    const linkRegex = /https:\/\/www\.imdb\.com\/title\/(tt\d+)\//g;
+
     let titleMatch;
-  
     while ((titleMatch = titleRegex.exec(result)) !== null) {
-      titles.push(titleMatch[1].trim());
+        titles.push(titleMatch[1].trim());
+    }
+    let linkMatch;
+    while ((linkMatch = linkRegex.exec(result)) !== null) {
+        imdbLinks.push(`https://www.imdb.com/title/${linkMatch[1]}/`);
     }
   
-    return titles; 
+    return {titles, imdbLinks}; 
 }
 
 async function dataClean(movieDataArray) {
@@ -35,6 +41,7 @@ async function dataClean(movieDataArray) {
 
 async function getPayload(movieData) {
     const data = await dataClean(movieData);
+    //can switch to tv-shows exc if wanted
     let cinemaType = 'Movie';
     let selectedCategories = data.genresArray;
     let specificDescriptors = data.actorsArray;
@@ -47,6 +54,7 @@ async function getPayload(movieData) {
             : ''
         } Please return this response as a numbered list with the ${cinemaType}'s title, followed by the imdb link to the ${cinemaType} `;
 
+    //Config to select what AI model and what to send
     const payload = {
         model: 'text-davinci-003',
         prompt: fullSearchCriteria,
