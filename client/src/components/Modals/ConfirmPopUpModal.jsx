@@ -13,7 +13,7 @@ function ConfirmPopUpPage({ confirmationData, setToggle }) {
   return (
     <div className="confirm-wrapper-bg w-100">
       <div className="confirm-wrapper d-flex flex-column  p-4">
-        <h1 className="mb-4 line-center">Tack för din bokning</h1>
+        <h1 className="mb-4 line-center header-bold">Tack för din bokning</h1>
 
         <Row>
           <Col xs={4}>

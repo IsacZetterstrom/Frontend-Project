@@ -25,7 +25,7 @@ function MovieInfo({ screeningData }) {
               <Image src={data?.movie.Poster} alt="" fluid rounded />
             </Col>
             <Col xs={8} md={8}>
-              <h2 className="movie-title mt-0 mb-2">{screeningData.Title}</h2>
+              <h2 className="header-bold gold mt-0 mb-2">{screeningData.Title}</h2>
               <p className="text-sm mb-0">{getDateWithDay(screeningData.Screening_date)}</p>
               <p className="text-sm mb-0">{getMovieEndTime(screeningData.Screening_startime, data?.movie.Runtime)}</p>
               <p className="text-sm mb-0">{screeningData.Theater_name}</p>
