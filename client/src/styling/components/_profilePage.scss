@@ -60,7 +60,7 @@
     table{
         thead,tbody{
             tr{
-                font-size: .8rem;
+                font-size: .9rem;
                 td{
                     margin: 0 0 0 .5em;
                 }
@@ -74,14 +74,15 @@
         }
     }
     .profile-btn{
-        width: 70px;
+        width: 100px;
         margin: 10px 0 10px 0 !important;
-        font-size: .6rem;
+        
         border-radius: 9999px;
         border: none;
         background-color: $OrangeColor;
         color: $blackColor;
         font-weight: 600;
+        font-size: .9rem;
     }
 
  
@@ -93,11 +94,15 @@
         font-size: 2rem;
     }
     .profile-note{
+        h6{
+            font-weight: 600;
+        }
         .note-whisper, .note-information{
-            font-size: .7rem;
+            font-size: .8rem;
         }
         Button{
             background-color: $OrangeColor;
+            font-weight: 600;
             border: none;
             color: black;
         }
