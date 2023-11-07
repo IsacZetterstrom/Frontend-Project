@@ -1,4 +1,4 @@
-@use "../abstract/variables" as *;
+@use '../abstract/variables' as *;
 
 @font-face {
     font-family: 'Noto Sans';
@@ -10,15 +10,24 @@
     src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
 }
 
-a, a:hover, a:active, a:visited, a:focus {
+* {
+    font-family: 'Noto Sans';
+}
+
+a,
+a:hover,
+a:active,
+a:visited,
+a:focus {
     color: inherit;
 }
 
-// Mobile font styling
+/* Custom text color */
 .gold {
     color: $goldColor;
 }
 
+/* Header styles */
 .header-bold {
     font-family: 'Playfair Display';
     font-weight: bold;
@@ -42,10 +51,10 @@ a, a:hover, a:active, a:visited, a:focus {
     font-weight: bold;
 }
 
+/* Movie title style */
 .movie-title {
     font-family: 'Playfair Display';
     margin-top: 0.5em;
     font-size: 30px;
     font-weight: bold;
 }
-
