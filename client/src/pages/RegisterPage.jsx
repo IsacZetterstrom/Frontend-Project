@@ -36,10 +36,10 @@ function RegisterPage() {
   return (
     <Container className="form-wrapper">
       <Row>
-        <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5 line pb-2">Bli medlem</h1>
+        <h1 className="p-0 text-nowrap mt-5 mb-5 line pb-2 large-header">Bli medlem</h1>
         <RegisterForm {...{ defaults, formData, handleSubmit, setFormData }} />
         {msg !== "" && <p className="text-center">{msg}</p>}
-        <p className="text-center">
+        <p className="text-center my-4">
           Har du redan ett konto? <Link to={"/logga-in"}>Logga in här!</Link>
         </p>
       </Row>

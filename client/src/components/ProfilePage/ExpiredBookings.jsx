@@ -10,9 +10,7 @@ import getDateWithDay, { getMovieEndTime } from "../../utils/dateUtils.js";
 function expiredBookings({ expiredBookings }) {
   return (
     <>
-      <h6 className="offset-sm-2 offset-md-3 offset-lg-0 my-2">
-        Bokningshistorik
-      </h6>
+      <h6 className="offset-sm-2 offset-md-3 offset-lg-0 small-header">Bokningshistorik</h6>
       {expiredBookings === undefined ? (
         <p className="d-flex flex-column align-items-center flex-lg-row flex-lg-wrap gap-3 m-0">
           Du har inga bokningar i historiken

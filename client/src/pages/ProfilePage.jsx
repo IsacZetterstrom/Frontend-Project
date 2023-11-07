@@ -28,7 +28,7 @@ function ProfilePage() {
           <Container className="profile-container">
             <Row>
               <Col className="offset-sm-2 offset-md-3 offset-lg-3">
-                <h1 className="line pb-1 my-3">Min Sida</h1>
+                <h1 className="line pb-1 my-3 large-header">Min Sida</h1>
               </Col>
             </Row>
             <Row className="d-flex flex-column flex-lg-row-reverse justify-content-lg-between">

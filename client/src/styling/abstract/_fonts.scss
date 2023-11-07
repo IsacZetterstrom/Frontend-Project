@@ -1,0 +1,60 @@
+@use '../abstract/variables' as *;
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('../fonts/NotoSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+
+* {
+    font-family: 'Noto Sans';
+}
+
+a,
+a:hover,
+a:active,
+a:visited,
+a:focus {
+    color: inherit;
+}
+
+/* Custom text color */
+.gold {
+    color: $goldColor;
+}
+
+/* Header styles */
+.header-bold {
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.header-light {
+    font-family: 'Playfair Display';
+    font-size: 24px;
+}
+
+.small-header {
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.large-header {
+    font-family: 'Playfair Display';
+    font-size: 46px;
+    font-weight: bold;
+}
+
+/* Movie title style */
+.movie-title {
+    font-family: 'Playfair Display';
+    margin-top: 0.5em;
+    font-size: 30px;
+    font-weight: bold;
+}
