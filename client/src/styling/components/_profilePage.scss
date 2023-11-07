@@ -1,16 +1,17 @@
 @use "../abstract/variables" as *;
 
-.active-booking-card{
+.booking-card{
     border-radius: 10px;
     background-color: $navyBlueColor;
     box-shadow: 0 3px 4px black;
-    width: 330px;
     gap: .5em;
-    .expired-booking-card{
-        background-color: $navyBlueColor;
-        height: 160px;
-        width: 400px;
+    min-width: 340px;
+    max-width: 49%;
+    margin: 0 !important;
+    .booking-info-container{
+        max-width: 240px;
     }
+
     .profile-poster{
         object-fit: fill;
         border-radius: 10px 0 0 10px;
@@ -29,7 +30,11 @@
     }
  
     .booking-title{
+        width: 100%;
+        overflow:hidden;
+        white-space:nowrap;
         text-overflow: ellipsis;
+        text-wrap: nowrap;
         color: $goldColor;
     }
     .ref-number{
@@ -40,13 +45,19 @@
     p{
         font-size: .7rem;
     }
+    .card-seats{
+        margin-left: 8px;
+    }
     
 }
-.user-info-card{
-    height: 150px;
-    max-width: 290px;
+
+.user-info-card, .note-card{
     box-shadow: 0 0 10px $blackColor;
+    max-width: 290px;
     border-radius: 10px;
+}
+.user-info-card{
+    padding: .3em;
     text-overflow: ellipsis;
 
     table{
@@ -64,7 +75,9 @@
     }
     .card-btn-container{
         height: 20px;
+        margin: 10px 0 10px 0 !important;
         Button{
+            
             width:50px;
             font-size: .6rem;
             border-radius: 9999px;
@@ -74,7 +87,33 @@
             font-weight: 600;
         }
     }
+
  
+}
+.note-card{
+    border: 1px solid $OrangeColor;
+    .note-icon{
+        color: $OrangeColor;
+        font-size: 2rem;
+    }
+    .profile-note{
+        .note-whisper, .note-information{
+            font-size: .7rem;
+        }
+        Button{
+            background-color: $OrangeColor;
+            border: none;
+            color: black;
+        }
+    }
+}
+@include media-breakpoint-up(xl) { 
+    .booking-card{
+        .booking-info-container{
+            max-width: 290px;
+        }
+    }
+
 }
 
 

@@ -14,7 +14,7 @@ function TicketSelector({ tickets, handleTicketChange }) {
     <Container className="ticket-selector-wrapper">
       <Row>
         <Col xs={8} className="ps-0">
-          <p>Ordinarie (140 sek)</p>
+          <p>Ordinarie (140 kr)</p>
         </Col>
         <Col xs={4}>
           <div className="btn-wrapper d-flex justify-content-end align-items-center">
@@ -31,7 +31,7 @@ function TicketSelector({ tickets, handleTicketChange }) {
 
       <Row>
         <Col xs={8} className="ps-0">
-          <p>Pensionär (120 sek)</p>
+          <p>Pensionär (120 kr)</p>
         </Col>
         <Col xs={4}>
           <div className="btn-wrapper d-flex justify-content-end align-items-center">
@@ -48,7 +48,7 @@ function TicketSelector({ tickets, handleTicketChange }) {
 
       <Row>
         <Col xs={8} className="ps-0">
-          <p>Barn t.o.m 11 år (80 sek)</p>
+          <p>Barn t.o.m 11 år (80 kr)</p>
         </Col>
         <Col xs={4}>
           <div className="btn-wrapper d-flex justify-content-end align-items-center">

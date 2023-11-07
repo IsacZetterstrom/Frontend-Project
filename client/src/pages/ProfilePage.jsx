@@ -22,9 +22,7 @@ function ProfilePage() {
   }
   return (
     <>
-      {(editUser && (
-        <EditUserPage {...{ setEditUser, runFunction: toggle }} />
-      )) ||
+      {(editUser && <EditUserPage {...{ setEditUser, runFunction: toggle }} />) ||
         (loading && <LoadingGif />) ||
         (err && <p>Fel vid hämtning av profilsidan har inträffat</p>) || (
           <Container className="profile-container">
@@ -35,10 +33,7 @@ function ProfilePage() {
             </Row>
             <Row className="d-flex flex-column flex-lg-row-reverse justify-content-lg-between">
               <Col lg={9}>
-                <ActiveBookings
-                  activeBookings={data?.active}
-                  setUpDate={setUpDate}
-                />
+                <ActiveBookings activeBookings={data?.active} setUpDate={setUpDate} />
                 <ExpiredBookings expiredBookings={data?.expired} />
               </Col>
               <Col lg={3}>

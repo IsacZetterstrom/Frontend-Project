@@ -44,7 +44,7 @@
     &::before, &::after {
       content: "";
       height: 2px;
-      width: calc(20% - 0.25em);
+      width: calc(20% - 0.20em);
       background-image: $lineGradient;
       display: inline-block;
       vertical-align: middle;

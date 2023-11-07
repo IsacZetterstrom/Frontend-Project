@@ -33,18 +33,12 @@ async function createBooking(req, res) {
   let {tickets,email} = req.body
   const screeningId = req.params.screeningId
 
-  const test = await (screeningModel.getScreening(screeningId))
-
-  for(let seats of test[0].bookedSeats){
-    if(seats.Seat_id === tickets[0].Seat_id){
-      return res.status(400).json({ error: "Dina platser blev tyvärr upptagna, vänligen välj andra platser" })
-    }else if(seats.Seat_id === tickets[1].Seat_id){
-      return res.status(400).json({ error: "Dina platser blev tyvärr upptagna, vänligen välj andra platser" })
-    }
-    
-  }
-
   try {
+    //Check if tickets exists
+    const exists = await ticketModel.ticketsExist(tickets);
+    if (exists) {
+      return res.status(400).json({ error: "Dina platser blev tyvärr upptagna, vänligen välj andra platser" })
+    } else {
     //Get the total price for all tickets combined
     const totalPrice = await ticketModel.getTotalPrice(tickets);
     //Create one booking for all the tickets
@@ -62,6 +56,7 @@ async function createBooking(req, res) {
     clientsHandler.broadcastTo(screeningId)
 
     res.status(200).json(bookingData)
+  }
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
