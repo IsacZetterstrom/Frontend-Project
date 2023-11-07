@@ -1,16 +1,7 @@
-async function arrayStruct(movieData){
-    console.log(titles)
-    for (let i = 0; i < movieData.titles.length; i++) {
-        structuredArray.push({
-          title: movieData.titles[i],
-          link: movieData.imdbLinks[i],
-          poster: movieData.posterURLs[i]
-        });
-      }
-    
-}
-
-
+/**
+* @author Oskar Dahlberg
+* @Description Cleans the AI text output into movie title and a imdb link.
+*/
 async function resultClean(result){
     const titles = [];
     const imdbLinks = []; 
@@ -28,7 +19,10 @@ async function resultClean(result){
   
     return {titles, imdbLinks}; 
 }
-
+/**
+* @author Oskar Dahlberg
+* @Description Struct the movie dataset based on the user watched movies. 
+*/
 async function dataClean(movieDataArray) {
     const actorsTable = new Set();
     const directorsTable = new Set();
@@ -50,7 +44,12 @@ async function dataClean(movieDataArray) {
     return { actorsArray, directorsArray, genresArray }
 }
 
-
+/**
+* @author Oskar Dahlberg
+* @Description Sets the payload for the AI. 
+    This can be heavely modified to get tv shows or suggest other stuff to the user based on data.
+    Current model  text-davinci-003 but can be changed to get other results.
+*/
 
 async function getPayload(movieData) {
     const data = await dataClean(movieData);
