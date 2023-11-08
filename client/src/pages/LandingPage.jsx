@@ -24,7 +24,7 @@ function LandingPage() {
             </>
           )}
         </Row>
-        <Row className="justify-content-center w-100 mt-5 mb-5 p-0">
+        <Row className="justify-content-center mt-5 mb-5 p-0">
           <AdCard />
         </Row>
         <Row className="justify-content-center w-100 m-0 p-0">
