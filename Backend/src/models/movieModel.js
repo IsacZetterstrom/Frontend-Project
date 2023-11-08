@@ -139,7 +139,10 @@ async function getPopular(query) {
     );
     return popMovies;
 }
-
+/**
+* @author Oskar Dahlberg
+* @Description Returns unreleased movies
+*/
 async function getUpcoming(query) {
   const [upcomingMovies] = await connection.execute(
     `  SELECT 
@@ -157,6 +160,10 @@ async function getUpcoming(query) {
   );
   return upcomingMovies;
 }
+/**
+* @author Oskar Dahlberg
+* @Description Gets movies based on genre by query
+*/
 async function getGenre(query) {
   const [byGenre] = await connection.execute(
     `SELECT 

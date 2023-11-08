@@ -2,9 +2,9 @@
 * @author Oskar Dahlberg
 * @Description Cleans the AI text output into movie title and a imdb link.
 */
- function resultClean(result){
+function resultClean(result) {
     const titles = [];
-    const imdbLinks = []; 
+    const imdbLinks = [];
     const titleRegex = /\d+\.\s(.*?)\s\(\d+\)/g;
     const linkRegex = /https:\/\/www\.imdb\.com\/title\/(tt\d+)\//g;
 
@@ -16,14 +16,13 @@
     while ((linkMatch = linkRegex.exec(result)) !== null) {
         imdbLinks.push(`https://www.imdb.com/title/${linkMatch[1]}/`);
     }
-  
-    return {titles, imdbLinks}; 
+    return { titles, imdbLinks };
 }
 /**
 * @author Oskar Dahlberg
 * @Description Struct the movie dataset based on the user watched movies. 
 */
-async function dataClean(movieDataArray) {
+function dataClean(movieDataArray) {
     const actorsTable = new Set();
     const directorsTable = new Set();
     const genresTable = new Set();
@@ -52,16 +51,17 @@ async function dataClean(movieDataArray) {
 */
 
 async function getPayload(movieData) {
-    const data = await dataClean(movieData);
+    const data = dataClean(movieData);
     //can switch to tv-shows exc if wanted
     let cinemaType = 'Movie';
     let selectedCategories = data.genresArray;
-    let specificDescriptors = data.actorsArray;
+    let specificActors = data.actorsArray
+    let specificDirectors = data.directorsArray;
     let fullSearchCriteria = `Give me a list of 5 ${cinemaType} recommendations ${selectedCategories ? `that fit all of the following categories: ${selectedCategories}` : ''
-        }. ${specificDescriptors
-            ? `Make sure it fits the following actors and directors: ${specificDescriptors}.`
+        }. ${specificActors
+            ? `Make sure it fits the following actors: ${specificActors} or directors: ${specificDirectors}.`
             : ''
-        } ${selectedCategories || specificDescriptors
+        } ${selectedCategories || specificActors
             ? `If you do not have 5 recommendations that fit these criteria perfectly, do your best to suggest other ${cinemaType}'s that I might like.`
             : ''
         } Please return this response as a numbered list with the ${cinemaType}'s title, followed by the imdb link to the ${cinemaType} `;
@@ -81,4 +81,4 @@ async function getPayload(movieData) {
     return payload
 }
 
-export default { getPayload,resultClean }
+export default { getPayload, resultClean }

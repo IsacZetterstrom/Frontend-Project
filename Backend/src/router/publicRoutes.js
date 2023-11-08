@@ -6,8 +6,7 @@ import aiController from "../controllers/aiController.js";
 const publicRoutes = Router();
 
 
-//MOVIE ROUTES
-publicRoutes.post("/ai", aiController.getRecommended);
+
 //MOVIE ROUTES
 publicRoutes.get("/movies", movieController.getMovies);
 publicRoutes.get("/movies/:movieId", movieController.getOneMovie);
