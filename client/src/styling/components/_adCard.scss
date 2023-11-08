@@ -1,8 +1,30 @@
 @use "../abstract/variables" as *;
-.ad-card{
-    width: clamp(300px,25%,500px);
-    background-color: transparent;
-    color: $goldColor;
-    border: 1px solid $goldColor;
 
+
+.ad-card{
+    max-width: 700px;
+    background-color: white;
+    color: white;
+    
+    .card-body {
+        
+    }
+
+    .card-title {
+        // position: "absolute";
+        // top: "30%";
+        // left: "37%";
+        // transform: "translate(-50%, -50%)";
+        // z-index: 1;
+        color: #000;
+        font-family: 'Playfair Display';
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .card-image {
+        border-radius: "10px";
+        top: 0;
+        right: 0;
+    }
 }

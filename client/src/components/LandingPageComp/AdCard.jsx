@@ -1,5 +1,8 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import Popcorn from "../../assets/Popcorn.svg"
+
+
 
 /**
  * @author Niklas Nguyen
@@ -8,10 +11,15 @@ import { Card } from "react-bootstrap";
 
 function AdCard() {
   return (
-    <Card className="ad-card">
-      <Card.Body>
-        <Card.Title className="text-center">Rabatt</Card.Title>
-        <Card.Text className="text-center">25% rabatt på popcorn!</Card.Text>
+    <Card className="ad-card p-0">
+        <img
+          className="card-image card-img-top"
+          src={Popcorn} alt="reklam" 
+        />
+      <Card.Body className="card-body p-0" style={{ position: "relative" }}>
+        <Card.Title className="text-center card-title">
+          25% rabatt på popcorn när du är medlem!
+        </Card.Title>
       </Card.Body>
     </Card>
   );
