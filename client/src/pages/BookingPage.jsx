@@ -9,6 +9,7 @@ import useEventSource from "../hooks/useEventSource";
 import ConfirmPopUpModal from "../components/Modals/ConfirmPopUpModal";
 import BookingForm from "../components/BookingPage/BookingForm";
 import MovieInfo from "../components/BookingPage/MovieInfo";
+import { createTicketStructure } from "../utils/bookingPageUtils";
 
 /**
  * @author Oliver Andersson
@@ -36,6 +37,7 @@ function BookingPage() {
     3: 2,
   });
 
+  // Add one seat
   function addOneSeat(seat) {
     if (selectedSeats.includes(seat)) {
       setSelectedSeats(selectedSeats.filter((x) => x !== seat));
@@ -49,6 +51,7 @@ function BookingPage() {
     }
   }
 
+  // Add several seats
   function addSeveralSeats(seats) {
     setSelectedSeats(seats);
   }
@@ -75,21 +78,8 @@ function BookingPage() {
 
   // Runs when "book" button gets pressed
   function handleBookingClick() {
-    const data = {
-      tickets: [],
-    };
-    // Put ticket and seat data into correct structure for post request
-    for (const [key, value] of Object.entries(tickets)) {
-      for (let i = 0; i < value; i++) {
-        if (selectedSeats[i] === undefined) return;
+    const data = createTicketStructure(tickets, selectedSeats, screeningId)
 
-        data.tickets.push({
-          Screening_id: screeningId,
-          Ticket_Type_id: key,
-          Seat_id: selectedSeats[i].Seat_id,
-        });
-      }
-    }
     setBookingInfo(data);
     setShowBookingForm(true);
   }
@@ -111,9 +101,9 @@ function BookingPage() {
           <BookingForm {...{ bookingInfo, sum, setToggle, setConfirmationData, setShowBookingForm }} />
         ) : (
           <Col sm={12} md={6}>
-            <h5 className="line pb-1">Välj antal biljetter</h5>
+            <h3 className="line pb-1 small-header">Välj antal biljetter</h3>
             <TicketSelector {...{ tickets, handleTicketChange }} />
-            <h5 className="line pb-1">Välj platser</h5>
+            <h3 className="line pb-1 small-header">Välj platser</h3>
             {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
           </Col>
         )}

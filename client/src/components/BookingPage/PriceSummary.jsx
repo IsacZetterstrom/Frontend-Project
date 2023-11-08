@@ -15,14 +15,14 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum, selectedSeats,
     setSum(total);
   }, [tickets]);
 
+
   return (
     <div className="price-summary-wrapper">
       <Container fluid>
         <Row className="justify-content-center">
           <Col>
             <div className="d-flex justify-content-between text-nowrap">
-              <h4>Totalt att betala</h4>
-
+              <h3 className="small-header">Totalt att betala</h3>
               <span className="text-nowrap">
                 <span>{sum}</span>
                 <span> kr</span>
@@ -32,7 +32,7 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum, selectedSeats,
             <p className="text-nowrap">Betalning sker på plats</p>
 
             <Button
-              disabled={selectedSeats.length < maxSeats}
+              disabled={selectedSeats.length < maxSeats || maxSeats === 0}
               variant="custom"
               onClick={() => handleBookingClick()}
             >
