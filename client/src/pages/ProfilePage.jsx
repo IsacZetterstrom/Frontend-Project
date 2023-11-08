@@ -6,7 +6,7 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
-
+import RecMovies from "../components/ProfilePage/RecMovies";
 /**
  * @author Isac Zetterström
  * @description Renders components for profilepage
@@ -15,8 +15,7 @@ import EditUserPage from "../pages/EditUserPage";
 function ProfilePage() {
   const [update, setUpDate] = useState(0);
   const { loading, err, data } = useFetchData("profile/user/bookings", update);
-  const [editUser, setEditUser] = useState(false);
-
+  const [editUser, setEditUser] = useState(false)
   function toggle() {
     setEditUser((editUser) => !editUser);
   }
@@ -44,6 +43,9 @@ function ProfilePage() {
               <Col lg={3}>
                 <UserInfoCard {...{ setEditUser }} />
               </Col>
+            </Row>
+            <Row>
+                <RecMovies/>
             </Row>
           </Container>
         )}

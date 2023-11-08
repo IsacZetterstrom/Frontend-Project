@@ -9,10 +9,12 @@ import tmdbModel from "../models/tmdbModel.js";
 */
 async function getRecommended(req, res) {
 	const userId = req.decoded.id;
+
 	try {
 		//Collect screeningsids based on user bookings(LIMIT 5)	
 		const ScreeningIds = await aiModel.collectScreenings(userId)
 		if (ScreeningIds && ScreeningIds.length > 0) {
+			console.log("Now running..")
 			//Collect movie information about movies on screening
 			const movieData = await aiModel.collectMovieInformation(ScreeningIds)
 			//Configure the payload for AI based on actors,genre,directors
