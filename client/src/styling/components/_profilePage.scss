@@ -1,5 +1,7 @@
 @use "../abstract/variables" as *;
-
+.booking-history-header{
+    padding-top: 1em;
+}
 .booking-card{
     border-radius: 10px;
     background-color: $navyBlueColor;
@@ -16,17 +18,13 @@
         object-fit: fill;
         border-radius: 10px 0 0 10px;
     }
-    .card-btn-container{
-        height: 20px;
-        padding: 0;
-        Button{
-            font-size: .6rem;
-            border-radius: 9999px;
-            border: none;
-            background-color: $OrangeColor;
-            color: $blackColor;
-            font-weight: 600;
-        }
+    .card-btn{
+        font-size: .7rem;
+        border-radius: 9999px;
+        border: none;
+        background-color: $OrangeColor;
+        color: $blackColor;
+        font-weight: 600;
     }
  
     .booking-title{
@@ -57,13 +55,15 @@
     border-radius: 10px;
 }
 .user-info-card{
-    padding: .3em;
     text-overflow: ellipsis;
 
     table{
         thead,tbody{
             tr{
-                font-size: .8rem;
+                font-size: .9rem;
+                td{
+                    margin: 0 0 0 .5em;
+                }
             }
         }
         tbody{
@@ -73,19 +73,16 @@
             text-wrap: nowrap;
         }
     }
-    .card-btn-container{
-        height: 20px;
+    .profile-btn{
+        width: 100px;
         margin: 10px 0 10px 0 !important;
-        Button{
-            
-            width:50px;
-            font-size: .6rem;
-            border-radius: 9999px;
-            border: none;
-            background-color: $OrangeColor;
-            color: $blackColor;
-            font-weight: 600;
-        }
+        
+        border-radius: 9999px;
+        border: none;
+        background-color: $OrangeColor;
+        color: $blackColor;
+        font-weight: 600;
+        font-size: .9rem;
     }
 
  
@@ -97,11 +94,16 @@
         font-size: 2rem;
     }
     .profile-note{
+        h6{
+            font-weight: 600;
+        }
         .note-whisper, .note-information{
-            font-size: .7rem;
+            font-size: .8rem;
         }
         Button{
+            font-size: .9rem;
             background-color: $OrangeColor;
+            font-weight: 600;
             border: none;
             color: black;
         }
@@ -111,6 +113,13 @@
     .booking-card{
         .booking-info-container{
             max-width: 290px;
+            p{
+                font-size: .9rem;
+                font-weight: 500;
+            }
+            Button{
+                font-size: .9rem;
+            }
         }
     }
 

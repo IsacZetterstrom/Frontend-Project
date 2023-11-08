@@ -12,7 +12,7 @@ import Cancelbooking from "./CancelBooking.js";
 function ActiveBookings({ activeBookings, setUpDate }) {
   return (
     <>
-      <h6 className="offset-sm-2 offset-md-3 offset-lg-0 small-header">
+      <h6 className="offset-1 offset-sm-2 offset-md-3 offset-lg-0 small-header">
         Mina nuvarande bokningar
       </h6>
       {activeBookings === undefined ? (
@@ -40,13 +40,12 @@ function ActiveBookings({ activeBookings, setUpDate }) {
                     {booking.movieTitle}
                   </h6>
                   <p className="mb-0 mx-2">
-                    {getDateWithDay(booking.screeningStartTime)}
-                  </p>
-                  <p className="mb-0 mx-2">
-                    {getMovieEndTime(
+                    {`${getDateWithDay(
+                      booking.screeningStartTime
+                    )}, Kl: ${getMovieEndTime(
                       booking.screeningStartTime,
                       booking.runTime
-                    )}
+                    )} `}
                   </p>
                   <p className="card-seats mb-0">{`${booking.theaterName}, Rad-Stol: ${booking.seats}`}</p>
                   <p className="mb-1 mx-2">{`Pris: ${booking.priceSum} Kr`}</p>
@@ -54,16 +53,14 @@ function ActiveBookings({ activeBookings, setUpDate }) {
                     <span className="ref-number mx-2">
                       Bokningsnummer: {booking.referenceNumber}
                     </span>
-                    <Col xs={3} className="card-btn-container">
-                      <Button
-                        size="sm"
-                        className="mx-2 mb-1"
-                        onClick={() => {
-                          Cancelbooking(booking.bookingId, setUpDate);
-                        }}>
-                        Avboka
-                      </Button>
-                    </Col>
+                    <Button
+                      size="md"
+                      className="mx-2 mb-1 card-btn"
+                      onClick={() => {
+                        Cancelbooking(booking.bookingId, setUpDate);
+                      }}>
+                      Avboka
+                    </Button>
                   </Col>
                 </Col>
               </Col>
