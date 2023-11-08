@@ -36,7 +36,7 @@ function EditUserPage({ setEditUser, runFunction }) {
     <Container className="form-wrapper">
       <Row>
         <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5 line pb-2">Redigera uppgifter</h1>
-        {(loading && <p className="text-center">loading...</p>) || (err && <p className="text-center">An Error occured</p>) || (
+        {(loading && <p className="text-center">loading...</p>) || (err && <p className="text-center">Ett problem uppstod</p>) || (
           <EditUserForm
             {...{
               defaults,
