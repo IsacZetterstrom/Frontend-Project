@@ -7,7 +7,7 @@ function resultClean(result) {
     const titles = [];
     const imdbLinks = [];
     const titleRegex = /\d+\.\s(.*?)\s\(\d+\)/g;   
-    const linkRegex = /https:\/\/www\.imdb\.com\/title\/(tt\d+)\//g;
+     const linkRegex = /https:\/\/www\.imdb\.com\/title\/(tt\d+)\//g;
     console.log(result)
     const titleMatches = result.match(titleRegex);
     const imdbLinkMatches = result.match(linkRegex);
@@ -68,7 +68,7 @@ async function getPayload(movieData) {
         } ${selectedCategories || specificActors
             ? `If you do not have 5 recommendations that fit these criteria perfectly, do your best to suggest other ${cinemaType}'s that I might like.`
             : ''
-        } Please return this response as a numbered list with the ${cinemaType}'s title, followed by the imdb link to the ${cinemaType}. Do not include any other information in the response. `;
+        } Please return this response as a numbered list with the ${cinemaType}'s title, followed by the imdb link to the ${cinemaType}.`;
 
     //Config to select what AI model and what to send
     const payload = {
