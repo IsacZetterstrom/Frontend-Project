@@ -22,18 +22,23 @@ function ProfilePage() {
   }
   return (
     <>
-      {(editUser && <EditUserPage {...{ setEditUser, runFunction: toggle }} />) ||
+      {(editUser && (
+        <EditUserPage {...{ setEditUser, runFunction: toggle }} />
+      )) ||
         (loading && <LoadingGif />) ||
         (err && <p>Fel vid hämtning av profilsidan har inträffat</p>) || (
           <Container className="profile-container">
             <Row>
-              <Col className="offset-sm-2 offset-md-3 offset-lg-3">
-                <h1 className="line pb-1 my-3">Min Sida</h1>
+              <Col className="offset-1 offset-sm-2 offset-md-3 offset-lg-3">
+                <h1 className="line pb-1 my-3 large-header">Min Sida</h1>
               </Col>
             </Row>
             <Row className="d-flex flex-column flex-lg-row-reverse justify-content-lg-between">
               <Col lg={9}>
-                <ActiveBookings activeBookings={data?.active} setUpDate={setUpDate} />
+                <ActiveBookings
+                  activeBookings={data?.active}
+                  setUpDate={setUpDate}
+                />
                 <ExpiredBookings expiredBookings={data?.expired} />
               </Col>
               <Col lg={3}>

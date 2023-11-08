@@ -2,19 +2,19 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import GlobalMovieCard from "../components/GlobalMovieCard";
-import useQuaryMovie from "../hooks/useQuaryMovie";
 import { useFormDefaults } from "../hooks/useFormDefaults";
-import SearchFilterSortQuary from "../components/LibaryPageComp/SearchFilterSortQuary";
 import useFetchData from "../hooks/useFetchData";
 import Hero from "../components/LibaryPageComp/Hero";
+import useQueryMovie from "../hooks/useQuaryMovie";
+import SearchFilterSortQuery from "../components/LibaryPageComp/SearchFilterSortQuery";
 
 /**
  * @author Oskar dahlberg
  * @Description Sort / search/fiter movies that are on screen.
  */
 function LibraryPage() {
-  const { defaults, formData: quary } = useFormDefaults();
-  const { loading, err, data } = useQuaryMovie(quary.search, quary.sort, quary.filter);
+  const { defaults, formData: query } = useFormDefaults();
+  const { loading, err, data } = useQueryMovie(query.search, query.sort, query.filter);
   const { loading: isLoading, err: error, data: heroData } = useFetchData("api/movies/1");
 
   return (
@@ -23,17 +23,17 @@ function LibraryPage() {
         <Row className="justify-content-center p0 m-0 w-75 hero-container">
           {(isLoading && <p>laddar...</p>) || (error && <p>Error</p>) || (
             <>
-              <h1 className="line pb-2">Populär just nu</h1>
+              <h2 className="line pb-1 header-bold">Populär just nu</h2>
               <Hero {...{ heroData }} />
-              <h1 className="text-center mb-5 p-1 hero-title">{heroData.movie.Title}</h1>
+              <h2 className="text-center mb-5 p-1 movie-title gold">{heroData.movie.Title}</h2>
             </>
           )}
         </Row>
-        <SearchFilterSortQuary {...{ defaults }} />
+        <SearchFilterSortQuery {...{ defaults }} />
         <Row className="w-75">
-          <h1 className="line pb-2">På bio nu</h1>
-          {(loading && <p>laddar....</p>) ||
-            (err && <p>Hittade inte filmerna</p>) ||
+          <h1 className="line header-bold">På bio nu</h1>
+          {(loading && <p>laddar...</p>) ||
+            (err && <p>Hittade ingen film som matchar {query.search}</p>) ||
             data?.map((movie) => <GlobalMovieCard key={movie.Movie_id} xs={6} md={3} id={movie.Movie_id} img={movie.Poster} title={movie.Title} />)}
         </Row>
       </Container>

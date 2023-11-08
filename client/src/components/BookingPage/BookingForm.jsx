@@ -69,7 +69,7 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData, setShow
           <b>Totalsumma: {sum} kr</b>
           <p>Betalning sker på plats</p>
         </Container>
-        <h1 className="p-0 text-nowrap mt-5 pb-2 line">Bekräfta din bokning</h1>
+        <h2 className="p-0 text-nowrap mt-5 pb-2 line header-bold">Bekräfta din bokning</h2>
         <p>Fyll in e-post nedan för att ta emot dina biljetter</p>
         {msg && <p className="text-danger">{msg}</p>}
         <Form className="p-0" onSubmit={handleSubmit}>

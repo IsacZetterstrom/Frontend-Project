@@ -3,17 +3,6 @@
 }
 
 .movie-desc-container {
-    h2, .movie-title {
-        font-size: 25px;
-        font-weight: bold;
-        font-family: 'Playfair Display';
-        color: #BD9060;
-        margin-top: 0.5em;
-    }
-    .movie-title {
-        font-size: 30px;
-        font-weight: bold;
-    }
     p {
         font-size: 14px;
         font-family: 'Noto Sans', sans-serif;
@@ -39,16 +28,9 @@
       padding: 1em;
 
         .movie-title {
-            border-bottom: 0.5px solid #BD9060;
+            border-bottom: 0.5px solid $goldColor;
         }
 
-        .movie-title {
-            color: #BD9060;
-            font-size: 30px;
-            font-weight: bold;
-            font-family: 'Playfair Display';
-            border-bottom: 0.5px solid #BD9060;
-        }
         h2 {
             font-size: 20px;
         }

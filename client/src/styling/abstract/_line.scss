@@ -14,17 +14,22 @@
     }
 }
 
-.line-center {
-    white-space: nowrap; 
-    position: relative;
 
-    &::before, &::after {
+
+.line-center {
+    white-space: nowrap;
+    position: relative;
+    display: flex; 
+    align-items: center;
+    width: 100%;
+
+    &::before,
+    &::after {
         content: "";
+        flex: 1;
         height: 2px;
-        width: calc(20% - 0.25em);
         background-image: $lineGradient;
         display: inline-block;
-        vertical-align: middle;
     }
 
     &::before {
