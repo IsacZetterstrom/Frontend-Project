@@ -1,3 +1,9 @@
+/**
+ * @author Oliver Andersson
+ * @description Utility files with Helper functions for bookingPage
+ */
+
+// Takes in tickets, selectedSeats and screeningId and returns a object with correct structure
 export function createTicketStructure(tickets, selectedSeats, screeningId) {
 
     const data = {
