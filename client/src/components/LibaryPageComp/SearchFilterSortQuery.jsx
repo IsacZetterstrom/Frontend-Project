@@ -12,7 +12,7 @@ function SearchFilterSortQuery({ defaults }) {
   return (
     <>
       <Container className="p-0 m-0 search-filter-sort">
-        <Row className="search-container">
+        <Row className="search-container px-4">
           <AiOutlineSearch className="icon" />
           <input {...defaults("search", "Sök på film titel", { required: false })} />
         </Row>
