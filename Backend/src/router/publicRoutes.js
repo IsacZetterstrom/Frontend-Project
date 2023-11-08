@@ -2,7 +2,6 @@ import { Router } from "express";
 import screeningController from "../controllers/screeningController.js";
 import movieController from "../controllers/movieController.js";
 import bookingController from "../controllers/bookingController.js";
-import aiController from "../controllers/aiController.js";
 const publicRoutes = Router();
 
 
