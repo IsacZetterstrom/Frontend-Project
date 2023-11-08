@@ -72,8 +72,11 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
             <img src={Logotype} alt="" width="100px" />
           </BootStrapNav.Brand>
           <BootStrapNav.Toggle aria-controls="navbar-nav"></BootStrapNav.Toggle>
-          <BootStrapNav.Collapse id="navbar-fixed-top" style={{ width: "50%" }}>
-            <Nav className="navbar-fixed-top">
+          <BootStrapNav.Collapse
+            id="navbar-fixed-top"
+            className=""
+            style={{ width: "50%" }}>
+            <Nav className="navbar-fixed-top" style={{ width: "100%" }}>
               {pages.map(({ label, path, inNav, rightNav }) => {
                 return (
                   inNav &&
@@ -87,14 +90,14 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   )
                 );
               })}
-              <Container className="d-flex flex-row justify-content-center align-items-center">
-                <Container className="navline d-none d-md-block" />
-                <BootStrapNav.Brand
-                  href="/"
-                  className="d-none d-md-block mx-auto px-2">
-                  <img className="logo" src={Logotype} alt="" />
-                </BootStrapNav.Brand>
-                <Container className="navline d-none d-md-block" />
+              <Container className="flex-row align-items-center justify-content-center d-none d-md-flex desktop-logo-container">
+                <img
+                  className="logo"
+                  src={Logotype}
+                  onClick={() => {
+                    navigate("/");
+                  }}
+                />
               </Container>
 
               {renderUserMenu()}

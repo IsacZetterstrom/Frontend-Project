@@ -3,10 +3,10 @@ import fetchService from "../service/FetchService";
 
 /**
  * @author Niklas Nguyen
- * @description this hook fetches movie depending on quary and if the user havnt type or changed anything for a second it fetches
+ * @description this hook fetches movie depending on query and if the user havnt type or changed anything for a second it fetches
  */
 
-function useQuaryMovie(search, sort, filter) {
+function useQueryMovie(search, sort, filter) {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(false);
   const [data, setData] = useState();
@@ -34,4 +34,4 @@ function useQuaryMovie(search, sort, filter) {
   }, [search, sort, filter]);
   return { loading, err, data };
 }
-export default useQuaryMovie;
+export default useQueryMovie;

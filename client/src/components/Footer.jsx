@@ -1,6 +1,11 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { BsInstagram, BsLinkedin, BsTwitter, BsTelephone } from "react-icons/bs";
+import {
+  BsInstagram,
+  BsLinkedin,
+  BsTwitter,
+  BsTelephone,
+} from "react-icons/bs";
 import "../styling/components/_footer.scss";
 
 /**
@@ -12,17 +17,17 @@ function Footer() {
   return (
     <Container fluid className="custom-footer mt-5">
       <Row className="icon-row text-center mt-3">
-        <Col xs={1} md-auto className="icon-col">
-          <a href="https://www.twitter.com/" className="icon fs-3">
+        <Col xs={1} md-auto className="icon-col p-0">
+          <a href="https://www.twitter.com/" className="icon fs-3 ">
             <BsTwitter />
           </a>
         </Col>
-        <Col xs={1} md-auto className="icon-col">
+        <Col xs={1} md-auto className="icon-col p-0">
           <a href="https://www.linkedin.com/" className="icon fs-3">
             <BsLinkedin />
           </a>
         </Col>
-        <Col xs={1} className="icon-col">
+        <Col xs={1} className="icon-col p-0">
           <a href="https://www.instagram.com/" className="icon fs-3">
             <BsInstagram />
           </a>
