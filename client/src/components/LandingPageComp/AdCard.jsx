@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import Popcorn from "../../assets/Popcorn.svg"
+import popcorn from "../../assets/popcorn.jpg"
 
 
 
@@ -12,11 +12,11 @@ import Popcorn from "../../assets/Popcorn.svg"
 function AdCard() {
   return (
     <Card className="ad-card p-0">
-        <img
-          className="card-image card-img-top"
-          src={Popcorn} alt="reklam" 
-        />
-      <Card.Body className="card-body p-0" style={{ position: "relative" }}>
+      <img
+        className="card-image card-img-top"
+        src={popcorn} alt="reklam" 
+      />
+      <Card.Body className="card-body p-0">
         <Card.Title className="text-center card-title">
           25% rabatt på popcorn när du är medlem!
         </Card.Title>
