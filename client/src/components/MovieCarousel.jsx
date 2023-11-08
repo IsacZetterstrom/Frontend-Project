@@ -37,7 +37,7 @@ function MovieCarousel({ url, movieId }) {
     const itemsToShow = screen < 576 ? 2 : screen < 768 ? 2 : 4;
 
     if (movies.length === 0) {
-      return <p className="text-center">Det finns inga filmer att visa.</p>;
+      return <p className="text-center">Det finns inga liknande filmer just nu.</p>;
     }
 
     return movies.map((movie, index) => {
