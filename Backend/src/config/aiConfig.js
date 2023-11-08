@@ -21,7 +21,7 @@ function resultClean(result) {
 * @author Oskar Dahlberg
 * @Description Struct the movie dataset based on the user watched movies. 
 */
-function dataClean(movieDataArray) {
+async function dataClean(movieDataArray) {
     const actorsTable = new Set();
     const directorsTable = new Set();
     const genresTable = new Set();
@@ -50,7 +50,8 @@ function dataClean(movieDataArray) {
 */
 
 async function getPayload(movieData) {
-    const data = dataClean(movieData);
+    const data = await dataClean(movieData);
+    console.log("Current dataset:", data)
     //can switch to tv-shows exc if wanted
     let cinemaType = 'Movie';
     let selectedCategories = data.genresArray;
