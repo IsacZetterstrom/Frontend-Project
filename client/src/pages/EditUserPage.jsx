@@ -4,6 +4,7 @@ import EditUserForm from "../components/Forms/EditUserForm";
 import { Container, Row } from "react-bootstrap";
 import useFetchData from "../hooks/useFetchData";
 import fetchService from "../service/FetchService";
+import { Navigate } from "react-router-dom";
 
 /**
  * @author Niklas Nguyen
@@ -36,7 +37,7 @@ function EditUserPage({ setEditUser, runFunction }) {
     <Container className="form-wrapper">
       <Row>
         <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5 line pb-2">Redigera uppgifter</h1>
-        {(loading && <p className="text-center">loading...</p>) || (err && <p className="text-center">Ett problem uppstod</p>) || (
+        {(loading && <p className="text-center">loading...</p>) || (err && <Navigate to="/" />) || (
           <EditUserForm
             {...{
               defaults,
