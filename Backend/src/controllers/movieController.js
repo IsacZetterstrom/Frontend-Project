@@ -52,6 +52,9 @@ async function filterMovies(req, res) {
     }else if(query == "upcoming"){
       const upcoming = await movieModel.getUpcoming(query)
       res.send(upcoming).status(200);
+    }else if(query === "newest"){
+      const newest = await movieModel.getNewestMovie()
+      res.send(newest).status(200);
     }
     else {
       const byGenre = await movieModel.getGenre(query)
