@@ -6,6 +6,7 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
+import { Navigate, useOutletContext } from "react-router-dom";
 
 /**
  * @author Isac Zetterström
@@ -16,15 +17,15 @@ function ProfilePage() {
   const [update, setUpDate] = useState(0);
   const { loading, err, data } = useFetchData("profile/user/bookings", update);
   const [editUser, setEditUser] = useState(false);
+  const { isLoggedIn } = useOutletContext();
+  if (!isLoggedIn) return <Navigate to={"/"} />;
 
   function toggle() {
     setEditUser((editUser) => !editUser);
   }
   return (
     <>
-      {(editUser && (
-        <EditUserPage {...{ setEditUser, runFunction: toggle }} />
-      )) ||
+      {(editUser && <EditUserPage {...{ setEditUser, runFunction: toggle }} />) ||
         (loading && <LoadingGif />) ||
         (err && <p>Fel vid hämtning av profilsidan har inträffat</p>) || (
           <Container className="profile-container">
@@ -35,10 +36,7 @@ function ProfilePage() {
             </Row>
             <Row className="d-flex flex-column flex-lg-row-reverse justify-content-lg-between">
               <Col lg={9}>
-                <ActiveBookings
-                  activeBookings={data?.active}
-                  setUpDate={setUpDate}
-                />
+                <ActiveBookings activeBookings={data?.active} setUpDate={setUpDate} />
                 <ExpiredBookings expiredBookings={data?.expired} />
               </Col>
               <Col lg={3}>
