@@ -6,7 +6,7 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
-import RecMovies from "../components/ProfilePage/RecMovies";
+import RecMovies from "../components/aiComp/RecMovies";
 /**
  * @author Isac Zetterström
  * @description Renders components for profilepage
@@ -44,7 +44,8 @@ function ProfilePage() {
                 <UserInfoCard {...{ setEditUser }} />
               </Col>
             </Row>
-            <Row>
+            
+            <Row className="justify-content-md-center">
                 <RecMovies/>
             </Row>
           </Container>
