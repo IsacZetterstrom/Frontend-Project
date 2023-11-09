@@ -1,12 +1,13 @@
 import React from "react";
-import { Container, Row , Image, Col } from "react-bootstrap";
+import { Container, Row , Image, Col, Spinner } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import RecMovieCard from "./RecMovieCard";
 
 function RecMovies() {
    //const { loading, err, data } = useFetchData("profile/recommended");
-   // console.log(data);
-   const data = [
+  //console.log(data);
+  const loading = false;
+  const data = [
     {
       "title": "Mission: Impossible III",
       "imdbLink": "https://www.imdb.com/title/tt0317919/",
@@ -35,15 +36,32 @@ function RecMovies() {
   ];
 
 
+  if (loading) {
+    return (
+        <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
+
     if (data) {
       return (
         <>
-          {data.map((movie) => (
+            <h2 className="line pb-1 header-bold">Dina film rekommendationer</h2>
+            <section>
+                <p> Vi använder Open-AI för att rekommendera filmer åt våra användare. 
+                Rekommendationerna är baserade på dina bokningar och vill du göra inställningar så klicka här.
+                </p>
+            </section>
+             {data.map((movie) => (
             <RecMovieCard key={movie.title} movie={movie} />
           ))}
         </>
       );
-    } else {
+    } 
+    
+    
+    else {
       return (
         <p>För att ta del av våran AI tjänst måste du ha bokat en film.</p>
       );
