@@ -9,7 +9,7 @@ function RecMovieCard(props) {
 
     const imageStyle = {
         objectFit: 'cover',
-        height: '300px', 
+        height: '260px', 
         width: '100%',
       };
     

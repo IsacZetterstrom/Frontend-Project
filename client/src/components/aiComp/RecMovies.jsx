@@ -4,10 +4,10 @@ import useFetchData from "../../hooks/useFetchData";
 import RecMovieCard from "./RecMovieCard";
 
 function RecMovies() {
-   //const { loading, err, data } = useFetchData("profile/recommended");
+   const { loading, err, data } = useFetchData("profile/recommended");
   //console.log(data);
-  const loading = false;
-  const data = [
+  //const loading = false;
+  /* const data = [
     {
       "title": "Mission: Impossible III",
       "imdbLink": "https://www.imdb.com/title/tt0317919/",
@@ -33,7 +33,7 @@ function RecMovies() {
       "imdbLink": "https://www.imdb.com/title/tt1506999/",
       "posterURL": "https://m.media-amazon.com/images/M/MV5BNjEyYWViNjEtMjVkNy00YzA2LTllMTctZjViOGRjMDQ2Njk5XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg"
     }
-  ];
+  ]; */
 
 
   if (loading) {
@@ -47,13 +47,13 @@ function RecMovies() {
     if (data) {
       return (
         <>
-            <h2 className="line pb-1 header-bold">Dina film rekommendationer</h2>
+            <h2 className="line pb-1 header-bold mt-3">Dina filmrekommendationer</h2>
             <section>
                 <p> Vi använder Open-AI för att rekommendera filmer åt våra användare. 
                 Rekommendationerna är baserade på dina bokningar och vill du göra inställningar så klicka här.
                 </p>
             </section>
-             {data.map((movie) => (
+             {data.result.map((movie) => (
             <RecMovieCard key={movie.title} movie={movie} />
           ))}
         </>
