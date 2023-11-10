@@ -35,7 +35,7 @@ async function collectScreenings(userId) {
 
 /**
 * @author Oskar Dahlberg
-* @Description Calls the AI and gets recommended movies based on payload.
+* @Description Calls the AI and gets recommended movies based on input.
 */
 
 
