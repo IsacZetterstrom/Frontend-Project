@@ -2,8 +2,10 @@
 
 
 .ad-card{
-    max-width: 700px;
-    height: 250px;
+    padding: 0;
+    margin: 1em;
+    max-width: 500px;
+    height: 150px;
     overflow: hidden;
     border: none;
     
@@ -15,11 +17,11 @@
     .card-title {
         color: #000;
         font-family: 'Playfair Display';
-        font-size: 30px;
+        font-size: 25px;
         font-weight: bold;
         position: absolute;
-        top: 20%;
-        left: 2em;
+        top: 10%;
+        left: 1em;
         max-width: 200px;
     }
 
