@@ -43,7 +43,7 @@
 
     &::before, &::after {
       content: "";
-      height: 2px;
+      height: 3px;
       width: calc(20% - 0.20em);
       background-image: $lineGradient;
       display: inline-block;
