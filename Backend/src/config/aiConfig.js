@@ -2,7 +2,7 @@
 * @author Oskar Dahlberg
 * @Description Cleans the AI text output into movie title and a imdb link.
 */
-function resultClean(result) {
+async function resultClean(result) {
     const titles = [];
     const imdbLinks = [];
     const titleRegex = /\d+\.\s(.*?)\s\(\d+\)/g;
@@ -22,9 +22,11 @@ function resultClean(result) {
 * @Description Struct the movie dataset based on the user watched movies. 
 */
 async function dataClean(movieDataArray) {
+    console.log(movieDataArray)
     const actorsTable = new Set();
     const directorsTable = new Set();
     const genresTable = new Set();
+    const titleTable = new Set();
     //Clean the data and takes no duplicates
     for (const movieData of movieDataArray) {
         for (const movie of movieData) {
@@ -34,12 +36,14 @@ async function dataClean(movieDataArray) {
             }
             directorsTable.add(movie.Director);
             genresTable.add(movie.Genre);
+            titleTable.add(movie.Title)
         }
     }
     const actorsArray = Array.from(actorsTable);
     const directorsArray = Array.from(directorsTable);
     const genresArray = Array.from(genresTable);
-    return { actorsArray, directorsArray, genresArray }
+    const titleArray = Array.from(titleTable)
+    return { actorsArray, directorsArray, genresArray,titleArray }
 }
 
 /**
@@ -57,7 +61,9 @@ async function getPayload(movieData) {
     let selectedCategories = data.genresArray;
     let specificActors = data.actorsArray
     let specificDirectors = data.directorsArray;
-    let fullSearchCriteria = `Give me a list of 5 ${cinemaType} recommendations ${selectedCategories ? `that fit all of the following categories: ${selectedCategories}` : ''
+    let specificMovies = data.titleArray;
+    let fullSearchCriteria = `Give me a list of 5 ${cinemaType} recommendations 
+    ${selectedCategories ? `that fit all of the following categories: ${selectedCategories}. Dont include ${specificMovies}.  ` : ''
         }. ${specificActors
             ? `Make sure it fits the following actors: ${specificActors} or directors: ${specificDirectors}.`
             : ''
@@ -67,18 +73,7 @@ async function getPayload(movieData) {
         } Please return this response as a numbered list with the ${cinemaType}'s title, followed by the imdb link to the ${cinemaType} `;
 
     //Config to select what AI model and what to send
-    const payload = {
-        model: 'text-davinci-003',
-        prompt: fullSearchCriteria,
-        temperature: 0.7,
-        max_tokens: 500,
-        top_p: 1.0,
-        frequency_penalty: 0.0,
-        stream: false,
-        presence_penalty: 0.0,
-        n: 1
-    };
-    return payload
+    return fullSearchCriteria
 }
 
 export default { getPayload, resultClean }

@@ -1,7 +1,6 @@
 import connection from "../config/database.js";
-
 import "dotenv/config";
-
+import OpenAI from 'openai';
 /**
 * @author Oskar Dahlberg
 * @Description Collects all movie information about screenings the user has been watching. 
@@ -38,22 +37,58 @@ async function collectScreenings(userId) {
 * @author Oskar Dahlberg
 * @Description Calls the AI and gets recommended movies based on payload.
 */
-async function getRecommended(payload) {
-  const res = await fetch('https://api.openai.com/v1/completions', {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-    },
-    method: 'POST',
-    body: JSON.stringify(payload)
+
+
+async function getRecommended(input) {
+
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
   });
-  if (res.ok) {
-    const data = await res.json();
-    return data;
-  } else {
-    console.error('API request failed:', res.statusText);
-    return null;
-  }
+
+  const response = await openai.chat.completions.create(
+    {
+      model: "gpt-4-1106-preview",
+      messages: [
+        {
+          role: "user",
+          content: input,
+        },
+      ],
+      functions: [
+        {
+          name: "get_movielist",
+          description: "Get a list of movies from query.",
+          parameters: {
+            type: "object",
+            properties: {
+              movielist: {
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    imdb: {
+                      type: "string",
+                      description: "The imdb link to the movie.",
+                    },
+                    title: {
+                      type: "string",
+                      description: "The title of the movie.",
+                    },
+                  },
+                },
+              },
+            },
+            required: ["movielist"],
+          },
+        },
+      ],
+      function_call: "auto",
+    }
+
+  )
+const functionCall = response.choices[0].message.function_call;
+const json = JSON.parse(functionCall.arguments);
+return json
 }
 
 export default { getRecommended, collectScreenings, collectMovieInformation };
