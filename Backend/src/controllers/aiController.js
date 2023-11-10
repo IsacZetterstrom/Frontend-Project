@@ -20,10 +20,9 @@ async function getRecommended(req, res) {
 			const movieData = await aiModel.collectMovieInformation(ScreeningIds)
 			//Configure the payload for AI based on actors,genre,directors
 			const payload = await aiConfig.getPayload(movieData)
-			//Call open AI to get 5 recommended movies.
+			//Call open AI to get 5 recommended movies, now returns a json file.
 			const recommendedData = await aiModel.getRecommended(payload);
-			//Clean the text result from AI, seperate the titles and imdb links
-			//Get movie posters from api call (API Slows down the querytime abit)
+			//Get all details about the movie.
 			const movieDetails = await tmdbModel.getMovieInfo(recommendedData)
 			
 			res.status(200).json(movieDetails);

@@ -1,22 +1,4 @@
-/**
-* @author Oskar Dahlberg
-* @Description Cleans the AI text output into movie title and a imdb link.
-*/
-async function resultClean(result) {
-    const titles = [];
-    const imdbLinks = [];
-    const titleRegex = /\d+\.\s(.*?)\s\(\d+\)/g;
-    const linkRegex = /https:\/\/www\.imdb\.com\/title\/(tt\d+)\//g;
-    let titleMatch;
-    while ((titleMatch = titleRegex.exec(result)) !== null) {
-        titles.push(titleMatch[1].trim());
-    }
-    let linkMatch;
-    while ((linkMatch = linkRegex.exec(result)) !== null) {
-        imdbLinks.push(`https://www.imdb.com/title/${linkMatch[1]}/`);
-    }
-    return { titles, imdbLinks };
-}
+
 /**
 * @author Oskar Dahlberg
 * @Description Struct the movie dataset based on the user watched movies. 
@@ -50,7 +32,6 @@ async function dataClean(movieDataArray) {
 * @author Oskar Dahlberg
 * @Description Sets the payload for the AI. 
     This can be heavely modified to get tv shows or suggest other stuff to the user based on data.
-    Current model  text-davinci-003 but can be changed to get other results.
 */
 
 async function getPayload(movieData) {
@@ -71,9 +52,8 @@ async function getPayload(movieData) {
             ? `If you do not have 5 recommendations that fit these criteria perfectly, do your best to suggest other ${cinemaType}'s that I might like.`
             : ''
         } Please return this response as a numbered list with the ${cinemaType}'s title, followed by the imdb link to the ${cinemaType} `;
-
-    //Config to select what AI model and what to send
-    return fullSearchCriteria
+   
+        return fullSearchCriteria
 }
 
-export default { getPayload, resultClean }
+export default { getPayload }
