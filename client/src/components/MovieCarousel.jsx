@@ -36,6 +36,10 @@ function MovieCarousel({ url, movieId }) {
 
     const itemsToShow = screen < 576 ? 2 : screen < 768 ? 2 : 4;
 
+    if (movies.length === 0) {
+      return <p className="text-center">Det finns inga liknande filmer just nu.</p>;
+    }
+
     return movies.map((movie, index) => {
       if (index % itemsToShow === 0) {
         const itemsInSlide = movies.slice(index, index + itemsToShow);

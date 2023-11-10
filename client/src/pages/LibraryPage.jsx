@@ -5,7 +5,7 @@ import GlobalMovieCard from "../components/GlobalMovieCard";
 import { useFormDefaults } from "../hooks/useFormDefaults";
 import useFetchData from "../hooks/useFetchData";
 import Hero from "../components/LibaryPageComp/Hero";
-import useQueryMovie from "../hooks/useQuaryMovie";
+import useQueryMovie from "../hooks/useQueryMovie";
 import SearchFilterSortQuery from "../components/LibaryPageComp/SearchFilterSortQuery";
 
 /**

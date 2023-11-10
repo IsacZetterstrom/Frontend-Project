@@ -12,7 +12,7 @@ function SearchFilterSortQuery({ defaults }) {
   return (
     <>
       <Container className="p-0 m-0 search-filter-sort">
-        <Row className="search-container">
+        <Row className="search-container px-4">
           <AiOutlineSearch className="icon" />
           <input {...defaults("search", "Sök på film titel", { required: false })} />
         </Row>
@@ -39,10 +39,11 @@ function SearchFilterSortQuery({ defaults }) {
                 required: false,
               })}
             >
-              <option value="">Alla åldrar</option>
-              <option value="7">Från 7 år</option>
-              <option value="11">Från 11 år</option>
-              <option value="15">Från 15 år</option>
+              <option value="">Alla filmer</option>
+              <option value="15">15 år</option>
+              <option value="11">11 år</option>
+              <option value="7">7 år</option>
+              <option value="0">Barntillåten</option>
             </select>
           </Col>
         </Row>
