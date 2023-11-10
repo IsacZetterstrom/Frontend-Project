@@ -22,11 +22,7 @@ function AdCard() {
 
   return (
     <Card className="ad-card p-0" onClick={handleCardClick}>
-      <img
-        className="card-image card-img-top"
-        src={popcorn}
-        alt="reklam"
-      />
+      <img className="card-image card-img-top" src={popcorn} alt="reklam" />
       <Card.Body className="card-body p-0">
         <Card.Title className="card-title">
           25% rabatt på popcorn när du är medlem!
