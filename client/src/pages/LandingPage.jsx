@@ -30,7 +30,7 @@ function LandingPage() {
         <Row className="justify-content-center w-100 m-0 p-0">
           <div className="w-75">
             <h2 className="line pb-1 header-bold">Nyheter</h2>
-            <MovieCarousel {...{ url: `/api/filter?query=toplist` }} />
+            <MovieCarousel {...{ url: `/api/filter?query=newest` }} />
             <h2 className="line pb-1 header-bold">Kommande</h2>
             <MovieCarousel {...{ url: `/api/filter?query=upcoming` }} />
           </div>

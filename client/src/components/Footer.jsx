@@ -12,12 +12,12 @@ function Footer() {
   return (
     <Container fluid className="custom-footer mt-5">
       <Row className="icon-row text-center mt-3">
-        <Col xs={1} md-auto className="icon-col p-0">
+        <Col xs={1} className="icon-col p-0">
           <a href="https://www.twitter.com/" className="icon fs-3 ">
             <BsTwitter />
           </a>
         </Col>
-        <Col xs={1} md-auto className="icon-col p-0">
+        <Col xs={1} className="icon-col p-0">
           <a href="https://www.linkedin.com/" className="icon fs-3">
             <BsLinkedin />
           </a>

@@ -6,6 +6,7 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
+import { Navigate, useOutletContext } from "react-router-dom";
 
 /**
  * @author Isac Zetterström
@@ -16,6 +17,8 @@ function ProfilePage() {
   const [update, setUpDate] = useState(0);
   const { loading, err, data } = useFetchData("profile/user/bookings", update);
   const [editUser, setEditUser] = useState(false);
+  const { isLoggedIn } = useOutletContext();
+  if (!isLoggedIn) return <Navigate to={"/"} />;
 
   function toggle() {
     setEditUser((editUser) => !editUser);

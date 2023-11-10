@@ -13,7 +13,7 @@ import cacheService from "../service/CacheService";
 
 function RegisterPage() {
   const { defaults, formData, setFormData } = useFormDefaults();
-  const [isLoggedIn, setIsLoggedIn] = useOutletContext();
+  const { setIsLoggedIn } = useOutletContext();
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ function RegisterPage() {
       const jwt = await res.json();
       cacheService.saveLocalValue("token", jwt);
       setMsg("Du är nu inloggad och kommer nu bli dirigerad till startsidan");
-      setIsLoggedIn((isLoggedIn) => !isLoggedIn);
+      setIsLoggedIn(true);
       setTimeout(() => navigate("/"), 2000);
     }
   };

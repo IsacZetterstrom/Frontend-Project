@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { pages } from "../router/routes";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import BootStrapNav from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Logotype from "../assets/Logotype.svg";
 import cacheService from "../service/CacheService";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 /**
  * @author Isac Zetterström
@@ -15,27 +13,15 @@ import { useEffect } from "react";
  */
 
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
-  const [hasToken, setHasToken] = useState();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setHasToken(cacheService.isLoggedIn());
-    if (hasToken) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [isLoggedIn]);
-
   function logoutUser() {
-    setHasToken(null);
     cacheService.removeLocalValue("token");
-    setIsLoggedIn((isLoggedIn) => !isLoggedIn);
+    setIsLoggedIn(false);
     navigate("/");
   }
 
   function renderUserMenu() {
-    if (hasToken) {
+    if (isLoggedIn) {
       return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
         if (loggedIn) {
           return (
@@ -95,7 +81,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
               </Container>
 
               {renderUserMenu()}
-              {hasToken && (
+              {isLoggedIn && (
                 <NavLink key={"logout"} onClick={() => logoutUser()} className="nav-link text-nowrap logout-btn">
                   Logga Ut
                 </NavLink>
