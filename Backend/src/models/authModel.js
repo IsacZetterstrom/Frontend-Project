@@ -6,10 +6,7 @@ import connection from "../config/database.js";
  */
 
 async function registerUser(email, pass) {
-  const [rows] = await connection.execute(
-    "INSERT INTO User (Email, Password) VALUES (?, ?)",
-    [email, pass]
-  );
+  const [rows] = await connection.execute("INSERT INTO User (Email, Password) VALUES (?, ?)", [email, pass]);
   return rows;
 }
 

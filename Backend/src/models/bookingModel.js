@@ -71,30 +71,21 @@ async function createBooking(totalPrice, userInfo) {
 
 async function deleteBooking(bookingId, userId) {
   //Get user id from booking,
-  const [bookingData] = await connection.execute(
-    "SELECT Booking.User_id FROM Booking WHERE Booking.Booking_id = ?",
-    [bookingId]
-  );
+  const [bookingData] = await connection.execute("SELECT Booking.User_id FROM Booking WHERE Booking.Booking_id = ?", [
+    bookingId,
+  ]);
 
-    if(bookingData.length === 0) return bookingData
-  if (bookingData[0].User_id !== userId)
-    throw new Error("You dont have permission to remove this booking");
-    
-  const [screeningId] = await connection.execute(
-    "SELECT Screening_id FROM Ticket WHERE Ticket.Booking_id =?",
-    [bookingId]
-  );
+  if (bookingData.length === 0) return bookingData;
+  if (bookingData[0].User_id !== userId) throw new Error("You dont have permission to remove this booking");
+
+  const [screeningId] = await connection.execute("SELECT Screening_id FROM Ticket WHERE Ticket.Booking_id =?", [
+    bookingId,
+  ]);
 
   //Delete tickets based on booking id
-  const [ticketRows] = await connection.execute(
-    "DELETE FROM Ticket WHERE Ticket.Booking_id =?",
-    [bookingId]
-  );
+  const [ticketRows] = await connection.execute("DELETE FROM Ticket WHERE Ticket.Booking_id =?", [bookingId]);
   //Delete the boooking  based on booking id
-  const [bookingRows] = await connection.execute(
-    "DELETE FROM Booking WHERE Booking.Booking_id =?",
-    [bookingId]
-  );
+  const [bookingRows] = await connection.execute("DELETE FROM Booking WHERE Booking.Booking_id =?", [bookingId]);
   return [ticketRows, bookingRows, screeningId];
 }
 

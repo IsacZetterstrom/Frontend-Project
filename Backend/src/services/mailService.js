@@ -2,10 +2,10 @@ import nodemailer from "nodemailer";
 
 /**
  * @Author  Louise Johansson
- * @Descriptions model to send booking confirmation email using Nodemailer. The function takes in user specific booking details and the users email. 
+ * @Descriptions model to send booking confirmation email using Nodemailer. The function takes in user specific booking details and the users email.
  */
 
-// Nodemailer transporter 
+// Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "hotmail",
   auth: {
@@ -16,13 +16,13 @@ const transporter = nodemailer.createTransport({
 
 async function sendBookingConfirmationEmail(bookingData, email) {
   // Format date string to swedish format
-  const formattedDateTime = new Date(bookingData.dateAndTime).toLocaleString('sv-SE', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+  const formattedDateTime = new Date(bookingData.dateAndTime).toLocaleString("sv-SE", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
   return new Promise((resolve, reject) => {
     const mailOptions = {

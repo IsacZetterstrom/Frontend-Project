@@ -1,11 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import {
-  BsInstagram,
-  BsLinkedin,
-  BsTwitter,
-  BsTelephone,
-} from "react-icons/bs";
+import { BsInstagram, BsLinkedin, BsTwitter, BsTelephone } from "react-icons/bs";
 import "../styling/components/_footer.scss";
 
 /**

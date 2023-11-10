@@ -60,7 +60,10 @@ function ScreeningsList({ movieId, movie }) {
                       </td>
                       <td className="text-nowrap">
                         <p className="m-0">{screening.Theater_name}</p>
-                        <p>{(movie.Lang === "EN" && "En") || movie.Lang} tal, {(screening.Subtitle === "Svenska" && "Sve") || screening.Subtitle} text</p>
+                        <p>
+                          {(movie.Lang === "EN" && "En") || movie.Lang} tal,{" "}
+                          {(screening.Subtitle === "Svenska" && "Sve") || screening.Subtitle} text
+                        </p>
                       </td>
                       <td>
                         <Button

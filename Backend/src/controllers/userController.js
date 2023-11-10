@@ -56,20 +56,17 @@ async function getProfile(req, res) {
 async function editUser(req, res) {
   const userId = req.decoded.id;
   let { email, firstname, lastname, phone } = req.body;
-  
 
-   if (email === "") email = null
-    if (firstname === "") firstname = null;
-    if (lastname === "") lastname = null;
-    if (phone === "") phone = null;
+  if (email === "") email = null;
+  if (firstname === "") firstname = null;
+  if (lastname === "") lastname = null;
+  if (phone === "") phone = null;
 
   try {
     await userModel.editUser(userId, email, firstname, lastname, phone);
     res.status(200).send({ message: "Information edited!" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "A problem when editing users credentials occured." });
+    res.status(500).json({ error: "A problem when editing users credentials occured." });
   }
 }
 

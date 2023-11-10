@@ -6,7 +6,6 @@
 import cacheService from "./CacheService";
 
 async function fetchOptions(url, method, data) {
-
   const options = {
     method: method,
     headers: {

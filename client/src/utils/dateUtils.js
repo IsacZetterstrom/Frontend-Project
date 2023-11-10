@@ -14,8 +14,7 @@ export default function getDateWithDay(date) {
   const formattedDate = new Date(date).toLocaleDateString("sv-SE", options);
 
   // Capitalize the first letter of the formatted date
-  const capitalizedFormattedDate =
-    formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+  const capitalizedFormattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 
   return capitalizedFormattedDate;
 }
@@ -31,12 +30,8 @@ export function getMovieEndTime(startTimeISO, duration) {
   const endTime = new Date(startTime.getTime() + duration * 60 * 1000);
 
   const formatTimePart = (time) => time.toString().padStart(2, "0");
-  const startTimeString = `${formatTimePart(
-    startTime.getHours()
-  )}:${formatTimePart(startTime.getMinutes())}`;
-  const endTimeString = `${formatTimePart(endTime.getHours())}:${formatTimePart(
-    endTime.getMinutes()
-  )}`;
+  const startTimeString = `${formatTimePart(startTime.getHours())}:${formatTimePart(startTime.getMinutes())}`;
+  const endTimeString = `${formatTimePart(endTime.getHours())}:${formatTimePart(endTime.getMinutes())}`;
 
   return `${startTimeString} - ${endTimeString}`;
 }

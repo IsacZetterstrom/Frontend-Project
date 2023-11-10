@@ -36,17 +36,18 @@ function EditUserPage({ setEditUser, runFunction }) {
     <Container className="form-wrapper">
       <Row>
         <h1 className="p-0 text-nowrap fs-1 mt-5 mb-5 line pb-2">Redigera uppgifter</h1>
-        {(loading && <p className="text-center">loading...</p>) || (err && <p className="text-center">An Error occured</p>) || (
-          <EditUserForm
-            {...{
-              defaults,
-              handleSubmit,
-              setFormData,
-              userData: data,
-              runFunction,
-            }}
-          />
-        )}
+        {(loading && <p className="text-center">loading...</p>) ||
+          (err && <p className="text-center">An Error occured</p>) || (
+            <EditUserForm
+              {...{
+                defaults,
+                handleSubmit,
+                setFormData,
+                userData: data,
+                runFunction,
+              }}
+            />
+          )}
         {msg !== "" && <p className="text-center">{msg}</p>}
       </Row>
     </Container>

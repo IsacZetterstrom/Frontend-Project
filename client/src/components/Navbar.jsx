@@ -72,19 +72,13 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
             <img src={Logotype} alt="" width="100px" />
           </BootStrapNav.Brand>
           <BootStrapNav.Toggle aria-controls="navbar-nav"></BootStrapNav.Toggle>
-          <BootStrapNav.Collapse
-            id="navbar-fixed-top"
-            className=""
-            style={{ width: "50%" }}>
+          <BootStrapNav.Collapse id="navbar-fixed-top" className="" style={{ width: "50%" }}>
             <Nav className="navbar-fixed-top" style={{ width: "100%" }}>
               {pages.map(({ label, path, inNav, rightNav }) => {
                 return (
                   inNav &&
                   !rightNav && (
-                    <NavLink
-                      key={path}
-                      className="nav-link text-nowrap"
-                      to={path}>
+                    <NavLink key={path} className="nav-link text-nowrap" to={path}>
                       {label}
                     </NavLink>
                   )
@@ -102,10 +96,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
               {renderUserMenu()}
               {hasToken && (
-                <NavLink
-                  key={"logout"}
-                  onClick={() => logoutUser()}
-                  className="nav-link text-nowrap logout-btn">
+                <NavLink key={"logout"} onClick={() => logoutUser()} className="nav-link text-nowrap logout-btn">
                   Logga Ut
                 </NavLink>
               )}
