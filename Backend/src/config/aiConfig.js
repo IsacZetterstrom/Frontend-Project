@@ -44,15 +44,15 @@ async function getPayload(movieData) {
     let specificDirectors = data.directorsArray;
     let specificMovies = data.titleArray;
     let fullSearchCriteria = `Give me a list of 5 ${cinemaType} recommendations 
-    ${selectedCategories ? `that fit all of the following categories: ${selectedCategories}. Dont include ${specificMovies}.  ` : ''
+    ${selectedCategories ? ` ` : ''
         }. ${specificActors
-            ? `Make sure it fits the following actors: ${specificActors} or directors: ${specificDirectors}.`
+            ? `Actors I like: ${specificActors}.
+            Directors I like: ${specificDirectors}.
+            Do not recommend any of these ${cinemaType}'s: ${specificMovies}.
+            `
             : ''
-        } ${selectedCategories || specificActors
-            ? `If you do not have 5 recommendations that fit these criteria perfectly, do your best to suggest other ${cinemaType}'s that I might like.`
-            : ''
-        } Please return this response as a numbered list with the ${cinemaType}'s title, followed by the imdb link to the ${cinemaType} `;
-   
+        } `;
+        console.log(fullSearchCriteria)
         return fullSearchCriteria
 }
 

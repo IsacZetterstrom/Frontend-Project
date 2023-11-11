@@ -40,7 +40,7 @@ async function collectScreenings(userId) {
 
 
 async function getRecommended(input) {
-
+console.log(input)
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
@@ -66,10 +66,6 @@ async function getRecommended(input) {
                 items: {
                   type: "object",
                   properties: {
-                    imdb: {
-                      type: "string",
-                      description: "The imdb link to the movie.",
-                    },
                     title: {
                       type: "string",
                       description: "The title of the movie.",
@@ -86,8 +82,10 @@ async function getRecommended(input) {
     }
 
   )
+  console.log(response)
 const functionCall = response.choices[0].message.function_call;
 const json = JSON.parse(functionCall.arguments);
+console.log(json)
 return json
 }
 
