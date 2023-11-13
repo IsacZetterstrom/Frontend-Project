@@ -40,48 +40,12 @@ async function collectMovieIds(userId) {
 */
 
 
-async function getRecommended(input) {
+async function getRecommended(payload) {
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
 
-  const response = await openai.chat.completions.create(
-    {
-      model: "gpt-4-1106-preview",
-      messages: [
-        {
-          role: "user",
-          content: input,
-        },
-      ],
-      functions: [
-        {
-          name: "get_movielist",
-          description: "Get a list of movies from query.",
-          parameters: {
-            type: "object",
-            properties: {
-              movielist: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    title: {
-                      type: "string",
-                      description: "The title of the movie.",
-                    },
-                  },
-                },
-              },
-            },
-            required: ["movielist"],
-          },
-        },
-      ],
-      function_call: "auto",
-    }
-
-  )
+  const response = await openai.chat.completions.create(payload)
 const functionCall = response.choices[0].message.function_call;
 const json = JSON.parse(functionCall.arguments);
 console.log("Here are 5 movies you might like:", json)

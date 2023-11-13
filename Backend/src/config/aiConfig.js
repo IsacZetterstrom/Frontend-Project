@@ -52,8 +52,44 @@ async function getPayload(movieData) {
             `
             : ''
         } `;
-        console.log(fullSearchCriteria)
-        return fullSearchCriteria
+
+
+
+       const payLoad = {
+            model: "gpt-4-1106-preview",
+            messages: [
+              {
+                role: "user",
+                content: fullSearchCriteria,
+              },
+            ],
+            functions: [
+              {
+                name: "get_movielist",
+                description: "Get a list of movies from query.",
+                parameters: {
+                  type: "object",
+                  properties: {
+                    movielist: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          title: {
+                            type: "string",
+                            description: "The title of the movie.",
+                          },
+                        },
+                      },
+                    },
+                  },
+                  required: ["movielist"],
+                },
+              },
+            ],
+            function_call: "auto",
+          }
+        return payLoad
 }
 
 export default { getPayload }

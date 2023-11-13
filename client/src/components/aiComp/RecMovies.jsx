@@ -7,7 +7,7 @@ import RecMovieForm from "./RecMovieForm";
 function RecMovies() {
     const { loading, err, data } = useFetchData("profile/recommended");
     console.log(data);
-   /*  const loading = false;
+/*    const loading = false;
 
     const data = [
         {
@@ -210,8 +210,8 @@ function RecMovies() {
             "Website": "N/A",
             "Response": "True"
         }
-    ] */
-
+    ] 
+ */
 
     if (loading) {
         return (

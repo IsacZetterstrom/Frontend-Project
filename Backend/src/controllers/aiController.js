@@ -12,9 +12,7 @@ async function getMovieInfo(req,res){
 	console.log(userId)
 	try{
 		const movieIds = await aiModel.collectMovieIds(userId)
-		console.log(movieIds)
 		const movieData = await aiModel.collectMovieInformation(movieIds)
-		console.log(movieData)
 		res.status(200).json(movieData);
 
 
