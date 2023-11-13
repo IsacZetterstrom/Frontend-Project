@@ -33,7 +33,7 @@ function MovieDesc({ movie }) {
           <h2 className="header-light gold">Språk</h2>
           <p>{(movie.Lang === "EN" && "Engelska") || movie.Lang}</p>
           <h2 className="header-light gold">Släppt</h2>
-          <p>{formatDateString(movie.Release_date).split('-')[0]}</p>
+          <p>{formatDateString(movie.Release_date).split("-")[0]}</p>
         </Col>
       </Row>
     </Container>

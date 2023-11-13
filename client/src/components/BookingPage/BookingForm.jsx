@@ -35,7 +35,11 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData, setShow
 
     // Send the post request to the backend
     try {
-      const response = await fetchService.fetchRes(`/api/movies/${movieId}/screenings/${screeningId}/booking`, "POST", data);
+      const response = await fetchService.fetchRes(
+        `/api/movies/${movieId}/screenings/${screeningId}/booking`,
+        "POST",
+        data
+      );
       // handle response if ok, save response data in state, set error message otherwise
       if (response.ok) {
         const responseData = await response.json();
@@ -75,9 +79,14 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData, setShow
         <Form className="p-0" onSubmit={handleSubmit}>
           <Col className="mt-3">
             <label className="p-0 text-nowrap line d-block">E-Post</label>
-            <input {...defaults("email", formData?.email || "", { minLength: 8, type: "email" })} value={formData?.email || ""} />
+            <input
+              {...defaults("email", formData?.email || "", { minLength: 8, type: "email" })}
+              value={formData?.email || ""}
+            />
           </Col>
-          <FormBtns {...{ submitBtn: "Boka", cancelBtn: "Avbryt", showCancelBtn: true, setFormData, runFunction: handleCancel }} />
+          <FormBtns
+            {...{ submitBtn: "Boka", cancelBtn: "Avbryt", showCancelBtn: true, setFormData, runFunction: handleCancel }}
+          />
         </Form>
       </Row>
     </Container>

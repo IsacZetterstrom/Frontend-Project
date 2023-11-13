@@ -92,9 +92,7 @@ async function filterAllMovies(filter, sort, search) {
   }
 
   const query = `SELECT DISTINCT Movie.Movie_id,
-  ${
-    sort === "" ? "MAX" : sort.order
-  }(Screening.Screening_date) AS Screening_date,
+  ${sort === "" ? "MAX" : sort.order}(Screening.Screening_date) AS Screening_date,
   Movie.Title,
   Movie.Genre,
   Movie.Rating,
@@ -123,8 +121,8 @@ async function filterAllMovies(filter, sort, search) {
  */
 
 async function getNewestMovie() {
-    const [popMovies] = await connection.execute(
-      `SELECT
+  const [popMovies] = await connection.execute(
+    `SELECT
       Movie.Movie_id,
       Movie.Title,
       Movie.Release_date,
@@ -134,9 +132,9 @@ async function getNewestMovie() {
     JOIN Movie_Information ON Movie.Movie_id = Movie_Information.Movie_id
     WHERE Movie.Release_date < current_date()
     ORDER BY Movie.Release_date DESC
-    LIMIT 5;`,
-    );
-    return popMovies;
+    LIMIT 5;`
+  );
+  return popMovies;
 }
 
 async function getPopular(query) {
@@ -155,7 +153,7 @@ async function getPopular(query) {
     Movie.Movie_id, Movie.title, Movie_Information.Poster,Movie_Information.Image
     ORDER BY 
     TicketCount DESC
-LIMIT 5;`,
+LIMIT 5;`
   );
   return popMovies;
 }
@@ -194,5 +192,12 @@ async function getGenre(query) {
   return byGenre;
 }
 
-
-export default { getMovieInformation, currentMovies, filterAllMovies,getPopular,getUpcoming,getGenre,getNewestMovie };
+export default {
+  getMovieInformation,
+  currentMovies,
+  filterAllMovies,
+  getPopular,
+  getUpcoming,
+  getGenre,
+  getNewestMovie,
+};

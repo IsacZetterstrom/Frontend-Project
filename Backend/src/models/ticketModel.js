@@ -36,18 +36,17 @@ async function getTotalPrice(tickets) {
   return priceSum;
 }
 
-
 async function ticketsExist(tickets) {
   for (const ticket of tickets) {
-  const [rows] = await connection.execute(
-    "SELECT * FROM Ticket WHERE Ticket.Screening_id = ? AND Seat_id = ?",
-    [ticket.Screening_id, ticket.Seat_id]
-  );
-  if (rows.length > 0) {
-    return true; 
-  }
-  return false;
+    const [rows] = await connection.execute("SELECT * FROM Ticket WHERE Ticket.Screening_id = ? AND Seat_id = ?", [
+      ticket.Screening_id,
+      ticket.Seat_id,
+    ]);
+    if (rows.length > 0) {
+      return true;
+    }
+    return false;
   }
 }
 
-export default { createTicket, getTotalPrice,ticketsExist };
+export default { createTicket, getTotalPrice, ticketsExist };

@@ -15,7 +15,6 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum, selectedSeats,
     setSum(total);
   }, [tickets]);
 
-
   return (
     <div className="price-summary-wrapper">
       <Container fluid>

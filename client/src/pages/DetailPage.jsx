@@ -35,7 +35,6 @@ function DetailPage() {
         <p>laddar...</p>
       ) : (
         <>
-        
           <ScreeningsList movie={data?.movie} movieId={movieId} />
           <Container>
             <h2 className="mt-5 line-center text-center header-light mb-5">Liknande filmer</h2>

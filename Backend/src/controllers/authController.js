@@ -12,8 +12,8 @@ async function registerUser(req, res) {
   const { email, password } = req.body;
   const hashedPass = await bcrypt.hash(password, 12);
   try {
-    const userInfo = await userModel.getProfile(email)
-    if(userInfo[0] !== undefined) return res.status(401).send({ message: "A user already exist" });
+    const userInfo = await userModel.getProfile(email);
+    if (userInfo[0] !== undefined) return res.status(401).send({ message: "A user already exist" });
     await authModel.registerUser(email, hashedPass);
     const token = await jwtService.generateToken(email);
     res.status(200).json(token);

@@ -11,12 +11,7 @@ import { useNavigate } from "react-router-dom";
  * @description this is a finnished form for register
  */
 
-export default function RegisterForm({
-  defaults,
-  formData,
-  handleSubmit,
-  setFormData,
-}) {
+export default function RegisterForm({ defaults, formData, handleSubmit, setFormData }) {
   const navigate = useNavigate();
 
   const handleCancelBtn = () => {
@@ -41,9 +36,7 @@ export default function RegisterForm({
         />
       </Col>
       <Col className="mt-3">
-        <label className="p-0 text-nowrap d-block line">
-          Bekräfta lösenord
-        </label>
+        <label className="p-0 text-nowrap d-block line">Bekräfta lösenord</label>
         <input
           {...defaults(
             "confirmPassword",

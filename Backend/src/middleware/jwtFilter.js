@@ -14,9 +14,7 @@ async function verifyToken(req, res, next) {
       const payload = jwtService.verify(authToken);
       const userInfo = await userModel.getProfile(payload.email);
       if (userInfo === undefined) {
-        return res
-          .status(401)
-          .send({ error: "Email not found in the database" });
+        return res.status(401).send({ error: "Email not found in the database" });
       } else {
         payload.id = userInfo[0].User_id;
         req.decoded = payload;

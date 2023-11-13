@@ -78,7 +78,7 @@ function BookingPage() {
 
   // Runs when "book" button gets pressed
   function handleBookingClick() {
-    const data = createTicketStructure(tickets, selectedSeats, screeningId)
+    const data = createTicketStructure(tickets, selectedSeats, screeningId);
 
     setBookingInfo(data);
     setShowBookingForm(true);
@@ -104,7 +104,9 @@ function BookingPage() {
             <h3 className="line pb-1 small-header">Välj antal biljetter</h3>
             <TicketSelector {...{ tickets, handleTicketChange }} />
             <h3 className="line pb-1 small-header">Välj platser</h3>
-            {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
+            {(err && <p>err</p>) || (
+              <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />
+            )}
           </Col>
         )}
       </Row>
