@@ -8,7 +8,7 @@ import OpenAI from 'openai';
 async function collectMovieInformation(ids) {
   const movieData = [];
   for (const item of ids) {
-    const [rows] = await connection.execute('CALL collectMovie(?)', [item.Screening_id]);
+    const [rows] = await connection.execute('CALL collectMovie(?)', [item.Movie_id]);
     movieData.push(rows[0])
   }
   return movieData;
@@ -16,17 +16,18 @@ async function collectMovieInformation(ids) {
 
 /**
 * @author Oskar Dahlberg
-* @Description Collects 5 latest screenings from a user.
+* @Description Collects movie ids from movies that user watched.
 */
-async function collectScreenings(userId) {
+async function collectMovieIds(userId) {
   const [rows] = await connection.execute(
     `
-    SELECT DISTINCT Screening_id
+    SELECT DISTINCT Movie.Movie_id
     FROM User
     JOIN Booking ON User.User_id = Booking.User_id
     JOIN Ticket ON Booking.Booking_id = Ticket.Booking_id
-    WHERE User.User_id = ? 
-    LIMIT 5;
+    JOIN Screening ON Ticket.Screening_id = Screening.Screening_id
+    JOIN Movie ON Screening.Movie_id = Movie.Movie_id
+    WHERE User.User_id = ?;
   `,
     [userId]
   );
@@ -40,7 +41,6 @@ async function collectScreenings(userId) {
 
 
 async function getRecommended(input) {
-console.log(input)
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
@@ -82,11 +82,10 @@ console.log(input)
     }
 
   )
-  console.log(response)
 const functionCall = response.choices[0].message.function_call;
 const json = JSON.parse(functionCall.arguments);
-console.log(json)
+console.log("Here are 5 movies you might like:", json)
 return json
 }
 
-export default { getRecommended, collectScreenings, collectMovieInformation };
+export default { getRecommended, collectMovieIds, collectMovieInformation };

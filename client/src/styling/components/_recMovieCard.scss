@@ -87,3 +87,26 @@
     -webkit-transition-delay: 0.3s;
     transition-delay: 0.3s;
   }
+
+  .recImage{
+    object-fit: cover;
+    height: 280px;
+    width: 100%;
+  }
+  .imdbLogo{
+    width: 50%;
+    height: 'auto';
+    margin: 0 auto;
+  }
+
+  .edit-btn{
+    width: 100px;
+    margin: 10px 0 10px 0 !important;
+    
+    border-radius: 9999px;
+    border: none;
+    background-color: $OrangeColor;
+    color: $blackColor;
+    font-weight: 600;
+    font-size: .9rem;
+}

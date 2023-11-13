@@ -43,7 +43,7 @@ async function getPayload(movieData) {
     let specificActors = data.actorsArray
     let specificDirectors = data.directorsArray;
     let specificMovies = data.titleArray;
-    let fullSearchCriteria = `Give me a list of 5 ${cinemaType} recommendations 
+    let fullSearchCriteria = `Create a list of 5 ${cinemaType}'s. 
     ${selectedCategories ? ` ` : ''
         }. ${specificActors
             ? `Actors I like: ${specificActors}.

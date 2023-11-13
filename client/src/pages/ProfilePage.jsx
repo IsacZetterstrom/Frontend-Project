@@ -46,6 +46,8 @@ function ProfilePage() {
             </Row>
             
             <Row className="justify-content-md-center">
+            <h2 className="line pb-1 header-bold mt-3">Dina filmrekommendationer</h2>
+
                 <RecMovies/>
             </Row>
           </Container>

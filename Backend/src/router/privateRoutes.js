@@ -4,6 +4,8 @@ import aiController from "../controllers/aiController.js";
 import bookingController from "../controllers/bookingController.js";
 
 const privateRoutes = Router();
+privateRoutes.get("/moviedata", aiController.getMovieInfo)
+
 privateRoutes.get("/recommended", aiController.getRecommended)
 privateRoutes.get("/user", userController.getProfile);
 privateRoutes.patch("/user", userController.editUser);

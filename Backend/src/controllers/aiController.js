@@ -7,17 +7,35 @@ import tmdbModel from "../models/tmdbModel.js";
 * @Description Gets movie information based on user bookings then calls AI to give movie suggestions.
   Uses Movie API and datacleaning to struct a dataset with poster pic and title.
 */
+async function getMovieInfo(req,res){
+	const userId = req.decoded.id;
+	console.log(userId)
+	try{
+		const movieIds = await aiModel.collectMovieIds(userId)
+		console.log(movieIds)
+		const movieData = await aiModel.collectMovieInformation(movieIds)
+		console.log(movieData)
+		res.status(200).json(movieData);
+
+
+	}
+	catch (error) {
+		res.status(500).json({ error: "Problem with collecting the data" });
+	}
+
+
+}
 async function getRecommended(req, res) {
 	const userId = req.decoded.id;
 
 	try {
 		
-		//Collect screening ids based on user bookings(LIMIT 5)	
-		const ScreeningIds = await aiModel.collectScreenings(userId)
-		if (ScreeningIds && ScreeningIds.length > 0) {
+		//Collect movie ids based on user bookings.
+		const movieIds = await aiModel.collectMovieIds(userId)
+		if (movieIds && movieIds.length > 0) {
 			console.log("Now running..")
 			//Collect movie information about movies on screening
-			const movieData = await aiModel.collectMovieInformation(ScreeningIds)
+			const movieData = await aiModel.collectMovieInformation(movieIds)
 			//Configure the payload for AI based on actors,genre,directors
 			const payload = await aiConfig.getPayload(movieData)
 			//Call open AI to get 5 recommended movies, now returns a json file.
@@ -37,4 +55,4 @@ async function getRecommended(req, res) {
 
 }
 
-export default { getRecommended }
+export default { getRecommended,getMovieInfo }
