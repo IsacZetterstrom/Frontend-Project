@@ -5,7 +5,7 @@ import LoadingGif from "../misc/loadingGif";
 import { BsPatchExclamation } from "react-icons/bs";
 /**
  * @author Isac Zetterström
- * @description renders card for userinformation
+ * @description renders card for userinformation and the note to add userinfo when information is missing.
  */
 
 function UserInfoCard({ setEditUser }) {
