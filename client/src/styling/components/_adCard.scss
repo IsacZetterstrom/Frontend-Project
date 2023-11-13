@@ -1,8 +1,36 @@
 @use "../abstract/variables" as *;
-.ad-card{
-    width: clamp(300px,25%,500px);
-    background-color: transparent;
-    color: $goldColor;
-    border: 1px solid $goldColor;
+.ad-card {
+  padding: 0;
+  margin: 1em;
+  max-width: 500px;
+  height: 150px;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
 
+  .card-body {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-title {
+    color: #fff;
+    font-family: "Playfair Display";
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    text-align: left;
+    transform: translate(-50%, -50%);
+    max-width: 200px;
+  }
+
+  .card-image {
+    border-radius: "10px";
+    top: 0;
+    right: 0;
+    position: absolute;
+    object-fit: contain;
+  }
 }
