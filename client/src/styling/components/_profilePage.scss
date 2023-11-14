@@ -1,4 +1,7 @@
 @use "../abstract/variables" as *;
+.note-container{
+    overflow: hidden;
+}
 .booking-history-header{
     padding-top: 1em;
 }
@@ -59,7 +62,7 @@
 }
 
 .user-info-card, .note-card{
-    max-width: 290px;
+    max-width: 340px;
     border-radius: 10px;
 
 
@@ -124,6 +127,7 @@
         }
     }
 }
+
 @include media-breakpoint-up(xl) { 
     .booking-card{
         .booking-info-container{

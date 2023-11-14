@@ -13,6 +13,7 @@ import AdCard from "../components/LandingPageComp/AdCard";
 
 function LandingPage() {
   const { loading, err, data } = useFetchData("api/movies/1");
+
   return (
     <>
       <Container fluid className="m-0 p-0 landing-page">
@@ -25,7 +26,7 @@ function LandingPage() {
           )}
         </Row>
         <Row className="justify-content-center m-0 mt-5 mb-5 p-0">
-          <AdCard />
+          <AdCard showButton={true} />
         </Row>
         <Row className="justify-content-center w-100 m-0 p-0">
           <div className="w-75">
