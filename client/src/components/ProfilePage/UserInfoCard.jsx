@@ -5,7 +5,7 @@ import LoadingGif from "../misc/loadingGif";
 import { BsPatchExclamation } from "react-icons/bs";
 /**
  * @author Isac Zetterström
- * @description renders card for userinformation
+ * @description renders card for userinformation and the note to add userinfo when information is missing.
  */
 
 function UserInfoCard({ setEditUser }) {
@@ -13,7 +13,7 @@ function UserInfoCard({ setEditUser }) {
   return (
     <>
       {(!data?.phone || !data?.firstName || !data?.lastName) && (
-        <Row className="note-card mx-auto p-2 my-4">
+        <Row className="note-card mx-auto p-4 my-4">
           <Col className="d-flex flex-column align-items-center profile-note">
             <BsPatchExclamation className="note-icon" />
             <h6>Psst,</h6>
@@ -21,7 +21,7 @@ function UserInfoCard({ setEditUser }) {
               Visste du att du får ta del av medlemserbjudanden om du fyller i dina uppgifter?
             </p>
             <Button
-              className="p-1"
+              className="note-btn"
               onClick={() => {
                 setEditUser(true);
               }}
@@ -32,7 +32,7 @@ function UserInfoCard({ setEditUser }) {
         </Row>
       )}
       {(loading && <LoadingGif />) || (err && <p>Gick inte att hämta dina uppgifter</p>) || (
-        <Row className="user-info-card mx-auto my-4 p-3">
+        <Row className="user-info-card mx-auto my-4 p-4">
           <h6 className="line p-0">Dina uppgifter</h6>
           <table className="d-flex profile-row p-0">
             <thead>
@@ -58,15 +58,15 @@ function UserInfoCard({ setEditUser }) {
               </tr>
             </tbody>
           </table>
-
-          <Button
-            className="profile-btn"
-            onClick={() => {
-              setEditUser(true);
-            }}
-          >
-            Redigera
-          </Button>
+          <Col className="d-flex justify-content-center mt-3 profile-btn-container">
+            <Button
+              onClick={() => {
+                setEditUser(true);
+              }}
+            >
+              Redigera
+            </Button>
+          </Col>
         </Row>
       )}
     </>
