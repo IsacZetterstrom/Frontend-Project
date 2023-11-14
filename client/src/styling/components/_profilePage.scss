@@ -59,7 +59,7 @@
 }
 
 .user-info-card, .note-card{
-    max-width: 290px;
+    max-width: 340px;
     border-radius: 10px;
 
 
@@ -124,7 +124,11 @@
         }
     }
 }
+
 @include media-breakpoint-up(xl) { 
+    .user-info-card, .note-card{
+        max-width: 290px;
+    }
     .booking-card{
         .booking-info-container{
             max-width: 290px;
