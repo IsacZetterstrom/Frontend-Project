@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card } from "react-bootstrap";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import popcorn from "../../assets/popcorn.jpg";
-import FormBtns from "../Forms/FormBtns";
 
 /**
  * @author Niklas Nguyen

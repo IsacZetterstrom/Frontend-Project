@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Container, Row, Col, Button, Image } from "react-bootstrap";
+import React from "react";
+import { Row, Col, Button } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import LoadingGif from "../misc/loadingGif";
 import { BsPatchExclamation } from "react-icons/bs";
@@ -12,8 +12,6 @@ import AdCard from "../LandingPageComp/AdCard";
 
 function UserInfoCard({ setEditUser }) {
   const { loading, err, data } = useFetchData("/profile/user");
-
-
 
   return (
     <>

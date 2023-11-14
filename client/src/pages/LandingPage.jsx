@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import MovieCarousel from "../components/MovieCarousel";
 import TrailerComponent from "../components/TrailerComponent";
 import useFetchData from "../hooks/useFetchData";
 import AdCard from "../components/LandingPageComp/AdCard";
-import { useNavigate } from "react-router-dom";
 
 /**
  * @author Oskar dahlberg

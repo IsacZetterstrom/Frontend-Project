@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState,useRef } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import useFetchData from "../hooks/useFetchData";
 import { Container, Row, Col } from "react-bootstrap";
 import ActiveBookings from "../components/ProfilePage/ActiveBookings";
@@ -6,7 +6,7 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
-import { Navigate, useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import { Navigate, useLocation, useOutletContext } from "react-router-dom";
 
 /**
  * @author Isac Zetterström
