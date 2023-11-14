@@ -35,16 +35,15 @@ async function dataClean(movieDataArray) {
 */
 
 async function getPayload(movieData) {
-    const data = await dataClean(movieData);
-    console.log("Current dataset:", data)
+  console.log(movieData)
+    const data = await dataClean(movieData.movieInformation);
     //can switch to tv-shows exc if wanted
     let cinemaType = 'Movie';
-    let selectedCategories = data.genresArray;
     let specificActors = data.actorsArray
     let specificDirectors = data.directorsArray;
     let specificMovies = data.titleArray;
-    let fullSearchCriteria = `Create a list of 5 ${cinemaType}'s. 
-    ${selectedCategories ? ` ` : ''
+    let fullSearchCriteria = `Create a list of 5 ${cinemaType} titles in english that might fit my profile. 
+    ${movieData.isSwedish ? `${cinemaType}'s must be swedish` : ''
         }. ${specificActors
             ? `Actors I like: ${specificActors}.
             Directors I like: ${specificDirectors}.
@@ -53,10 +52,12 @@ async function getPayload(movieData) {
             : ''
         } `;
 
-
-
+console.log(fullSearchCriteria)
+      const temp = movieData.Temp / 100
+      console.log(temp)
        const payLoad = {
             model: "gpt-4-1106-preview",
+            temperature: temp,
             messages: [
               {
                 role: "user",

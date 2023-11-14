@@ -5,17 +5,20 @@ import IMDB_Logo from '../misc/IMDB_Logo.png'
 import tempImage from '../misc/tempImage.png'
 function RecMovieCard(props) {
 
-  const imageSrc = props.movie.Poster ? `${props.movie.Poster}` : tempImage;
+  let imageSrc = props.movie.Poster;
+  if(props.movie.Poster === "N/A"){
+   imageSrc = tempImage;
+  }
 
   return (
-    <Col xs={4} md={2}>
+    <Col xs={4} md={3} lg={2}>
       <div className="hovereffect">
         <Image src={imageSrc} fluid rounded className="recImage" />
         <div className="overlay">
           <h2>{props.movie.Title}</h2>
           <p>År: {props.movie.Year}</p>
           <p>Betyg: {props.movie.imdbRating}</p>
-          <Link to={`https://www.imdb.com/title/${props.movie.imdbID}`}>
+          <Link to={`https://www.imdb.com/title/${props.movie.imdbID}`} target="_blank">
             <Image className="imdbLogo" src={IMDB_Logo} />
           </Link>
         </div>

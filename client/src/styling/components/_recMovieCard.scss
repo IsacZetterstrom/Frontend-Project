@@ -38,7 +38,7 @@
     text-align: center;
     position: relative;
     font-size: 17px;
-    padding: 10px;
+    padding: 2px;
     background: rgba(0, 0, 0, 0.6);
   }
   
@@ -89,14 +89,17 @@
   }
 
   .recImage{
-    object-fit: cover;
-    height: 280px;
+  
+    aspect-ratio: 10/16;
     width: 100%;
   }
   .imdbLogo{
-    width: 50%;
-    height: 'auto';
+    max-width: 50%;
+    height: auto; 
     margin: 0 auto;
+  }
+  .imdbLogo:hover{
+    box-shadow: 0 0 5px #fff;
   }
 
   .edit-btn{

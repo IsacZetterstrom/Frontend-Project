@@ -25,22 +25,27 @@ async function getMovieInfo(req,res){
 }
 async function getRecommended(req, res) {
 	const userId = req.decoded.id;
-
+	const movieData = {
+		"movieIds": req.body.Movie_id,
+		"Temp": req.body.Temp,
+		"isSwedish": req.body.isSwedish
+	}
+	console.log(req.body)
 	try {
 		
 		//Collect movie ids based on user bookings.
 		const movieIds = await aiModel.collectMovieIds(userId)
-		if (movieIds && movieIds.length > 0) {
-			console.log("Now running..")
+		if (movieIds && movieIds.length > 0 && movieData.movieIds.length > 0) {
+			console.log("runnings")
 			//Collect movie information about movies on screening
-			const movieData = await aiModel.collectMovieInformation(movieIds)
+			 movieData.movieInformation = await aiModel.collectMovieInformation(movieData.movieIds)
 			//Configure the payload for AI based on actors,genre,directors
 			const payload = await aiConfig.getPayload(movieData)
+			console.log(payload)
 			//Call open AI to get 5 recommended movies, now returns a json file.
 			const recommendedData = await aiModel.getRecommended(payload);
 			//Get all details about the movie.
 			const movieDetails = await tmdbModel.getMovieInfo(recommendedData)
-			
 			res.status(200).json(movieDetails);
 
 		} else {
