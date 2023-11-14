@@ -51,7 +51,7 @@ function ProfilePage() {
                 <ActiveBookings activeBookings={data?.active} setUpDate={setUpDate} />
                 <ExpiredBookings expiredBookings={data?.expired} />
               </Col>
-              <Col ref={scrollToAdd} lg={3}>
+              <Col classname="note-container" ref={scrollToAdd} lg={3}>
                 <UserInfoCard {...{ setEditUser }} />
               </Col>
             </Row>
