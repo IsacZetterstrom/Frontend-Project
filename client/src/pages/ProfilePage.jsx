@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState,useRef } from "react";
 import useFetchData from "../hooks/useFetchData";
 import { Container, Row, Col } from "react-bootstrap";
 import ActiveBookings from "../components/ProfilePage/ActiveBookings";
@@ -6,7 +6,7 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
-import { Navigate, useOutletContext } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useOutletContext } from "react-router-dom";
 
 /**
  * @author Isac Zetterström
@@ -14,15 +14,27 @@ import { Navigate, useOutletContext } from "react-router-dom";
  */
 
 function ProfilePage() {
+  const scrollToAdd = useRef(null)
   const [update, setUpDate] = useState(0);
   const { loading, err, data } = useFetchData("profile/user/bookings", update);
   const [editUser, setEditUser] = useState(false);
   const { isLoggedIn } = useOutletContext();
+  const { hash } = useLocation();
+
   if (!isLoggedIn) return <Navigate to={"/"} />;
 
   function toggle() {
     setEditUser((editUser) => !editUser);
   }
+
+  useEffect(() => {
+    if(hash === "#ad-card"){
+        scrollToAdd.current?.scrollIntoView({ behavior: 'smooth'})
+    }
+  }, [scrollToAdd.current])
+ 
+
+
   return (
     <>
       {(editUser && <EditUserPage {...{ setEditUser, runFunction: toggle }} />) ||
@@ -39,7 +51,7 @@ function ProfilePage() {
                 <ActiveBookings activeBookings={data?.active} setUpDate={setUpDate} />
                 <ExpiredBookings expiredBookings={data?.expired} />
               </Col>
-              <Col lg={3}>
+              <Col ref={scrollToAdd} lg={3}>
                 <UserInfoCard {...{ setEditUser }} />
               </Col>
             </Row>

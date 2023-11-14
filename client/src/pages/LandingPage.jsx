@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import MovieCarousel from "../components/MovieCarousel";
 import TrailerComponent from "../components/TrailerComponent";
 import useFetchData from "../hooks/useFetchData";
 import AdCard from "../components/LandingPageComp/AdCard";
+import { useNavigate } from "react-router-dom";
 
 /**
  * @author Oskar dahlberg
@@ -13,6 +14,7 @@ import AdCard from "../components/LandingPageComp/AdCard";
 
 function LandingPage() {
   const { loading, err, data } = useFetchData("api/movies/1");
+
   return (
     <>
       <Container fluid className="m-0 p-0 landing-page">
@@ -25,7 +27,7 @@ function LandingPage() {
           )}
         </Row>
         <Row className="justify-content-center m-0 mt-5 mb-5 p-0">
-          <AdCard />
+          <AdCard showButton={true} />
         </Row>
         <Row className="justify-content-center w-100 m-0 p-0">
           <div className="w-75">

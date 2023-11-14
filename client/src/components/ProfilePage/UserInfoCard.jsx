@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import LoadingGif from "../misc/loadingGif";
 import { BsPatchExclamation } from "react-icons/bs";
+import AdCard from "../LandingPageComp/AdCard";
+
 /**
  * @author Isac Zetterström
  * @description renders card for userinformation
@@ -10,9 +12,12 @@ import { BsPatchExclamation } from "react-icons/bs";
 
 function UserInfoCard({ setEditUser }) {
   const { loading, err, data } = useFetchData("/profile/user");
+
+
+
   return (
     <>
-      {(!data?.phone || !data?.firstName || !data?.lastName) && (
+      {(!data?.phone || !data?.firstName || !data?.lastName) ? 
         <Row className="note-card mx-auto p-2 my-4">
           <Col className="d-flex flex-column align-items-center profile-note">
             <BsPatchExclamation className="note-icon" />
@@ -30,7 +35,9 @@ function UserInfoCard({ setEditUser }) {
             </Button>
           </Col>
         </Row>
-      )}
+      :
+      <AdCard showButton={false}/>
+      }
       {(loading && <LoadingGif />) || (err && <p>Gick inte att hämta dina uppgifter</p>) || (
         <Row className="user-info-card mx-auto my-4 p-3">
           <h6 className="line p-0">Dina uppgifter</h6>
