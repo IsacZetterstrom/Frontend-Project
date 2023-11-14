@@ -16,23 +16,23 @@ function UserInfoCard({ setEditUser }) {
   return (
     <>
       {(!data?.phone || !data?.firstName || !data?.lastName) ? 
-        <Row className="note-card mx-auto p-2 my-4">
-          <Col className="d-flex flex-column align-items-center profile-note">
-            <BsPatchExclamation className="note-icon" />
-            <h6>Psst,</h6>
-            <p className="text-center mt-1 note-whisper">
-              Visste du att du får ta del av medlemserbjudanden om du fyller i dina uppgifter?
-            </p>
-            <Button
-              className="note-btn"
-              onClick={() => {
-                setEditUser(true);
-              }}
-            >
-              Lägg till mina uppgifter
-            </Button>
-          </Col>
-        </Row>
+        <Row className="note-card mx-auto p-4 my-4">
+        <Col className="d-flex flex-column align-items-center profile-note">
+          <BsPatchExclamation className="note-icon" />
+          <h6>Psst,</h6>
+          <p className="text-center mt-1 note-whisper">
+            Visste du att du får ta del av medlemserbjudanden om du fyller i dina uppgifter?
+          </p>
+          <Button
+            className="note-btn"
+            onClick={() => {
+              setEditUser(true);
+            }}
+          >
+            Lägg till mina uppgifter
+          </Button>
+        </Col>
+      </Row>
       :
       <AdCard showButton={false}/>
       }
