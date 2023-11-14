@@ -5,7 +5,7 @@ import popcorn from "../../assets/popcorn.jpg";
 
 /**
  * @author Niklas Nguyen
- * @description this component is holding the ad for the applikation
+ * @description this component is holding the ad for the application
  */
 
 function AdCard({showButton}) {

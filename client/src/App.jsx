@@ -11,7 +11,7 @@ function App() {
    * @discription everytime the url changes it checks if there is a token i localstorage if it has it checks if the token is still valid
    * and send out a boolen data to check if a user is logged in with a valid token
    */
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     (async function () {
       const hasToken = cacheService.isLoggedIn();
