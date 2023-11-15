@@ -23,6 +23,7 @@ function RecMovieForm({ sendFormDataToParent }) {
                 "Temp": 0.7,
                 "isSwedish": false
             };
+            
             sendFormDataToParent(formData)
         }
     }, [data]);
@@ -40,7 +41,6 @@ function RecMovieForm({ sendFormDataToParent }) {
             ;
         sendFormDataToParent(formData);
     };
-
     if (data) {
         return (
             <>
