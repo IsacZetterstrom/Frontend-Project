@@ -6,7 +6,10 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
+import { Navigate, useLocation, useOutletContext } from "react-router-dom";
 import RecMovies from "../components/aiComp/RecMovies";
+
+
 /**
  * @author Isac Zetterström
  * @description Renders components for profilepage
@@ -16,7 +19,12 @@ function ProfilePage() {
   const scrollToAdd = useRef(null)
   const [update, setUpDate] = useState(0);
   const { loading, err, data } = useFetchData("profile/user/bookings", update);
-  const [editUser, setEditUser] = useState(false)
+  const [editUser, setEditUser] = useState(false);
+  const { isLoggedIn } = useOutletContext();
+  const { hash } = useLocation();
+
+  if (!isLoggedIn) return <Navigate to={"/"} />;
+
   function toggle() {
     setEditUser((editUser) => !editUser);
   }
@@ -49,12 +57,12 @@ function ProfilePage() {
                 <UserInfoCard {...{ setEditUser }} />
               </Col>
             </Row>
-            
-            <Row className="justify-content-md-center">
-            <h2 className="line pb-1 header-bold mt-3">Dina filmrekommendationer</h2>
+          <Row className="justify-content-md-center">
+          <h2 className="line pb-1 header-bold mt-3">Dina filmrekommendationer</h2>
+            <RecMovies/>
 
-                <RecMovies/>
-            </Row>
+          </Row>
+      
           </Container>
         )}
     </>
