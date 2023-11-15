@@ -6,12 +6,7 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/loadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
-<<<<<<< HEAD
 import RecMovies from "../components/aiComp/RecMovies";
-=======
-import { Navigate, useLocation, useOutletContext } from "react-router-dom";
-
->>>>>>> a275e85feb02ea32c5c972da630029c7d15316f1
 /**
  * @author Isac Zetterström
  * @description Renders components for profilepage
@@ -21,16 +16,7 @@ function ProfilePage() {
   const scrollToAdd = useRef(null)
   const [update, setUpDate] = useState(0);
   const { loading, err, data } = useFetchData("profile/user/bookings", update);
-<<<<<<< HEAD
   const [editUser, setEditUser] = useState(false)
-=======
-  const [editUser, setEditUser] = useState(false);
-  const { isLoggedIn } = useOutletContext();
-  const { hash } = useLocation();
-
-  if (!isLoggedIn) return <Navigate to={"/"} />;
-
->>>>>>> a275e85feb02ea32c5c972da630029c7d15316f1
   function toggle() {
     setEditUser((editUser) => !editUser);
   }
