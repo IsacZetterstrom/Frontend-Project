@@ -47,7 +47,7 @@ export const pages = [
   },
   {
     path: "/registrera",
-    label: "Registera",
+    label: "Bli Medlem",
     inNav: true,
     loggedIn: false,
     rightNav: true,

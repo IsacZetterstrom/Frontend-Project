@@ -34,8 +34,6 @@ async function getRecommended(req, res) {
 		//Collect movie ids based on user bookings.
 		const movieIds = await aiModel.collectMovieIds(userId)
 		if (movieIds && movieIds.length > 0 && movieData.movieIds.length > 0) {
-			console.log(movieData)
-			console.log("runnings")
 			//Collect movie information about movies on screening
 			 movieData.movieInformation = await aiModel.collectMovieInformation(movieData.movieIds)
 			//Configure the payload for AI based on actors,genre,directors

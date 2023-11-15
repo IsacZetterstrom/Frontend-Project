@@ -92,9 +92,7 @@ async function filterAllMovies(filter, sort, search) {
   }
 
   const query = `SELECT DISTINCT Movie.Movie_id,
-  ${
-    sort === "" ? "MAX" : sort.order
-  }(Screening.Screening_date) AS Screening_date,
+  ${sort === "" ? "MAX" : sort.order}(Screening.Screening_date) AS Screening_date,
   Movie.Title,
   Movie.Genre,
   Movie.Rating,
@@ -104,7 +102,7 @@ async function filterAllMovies(filter, sort, search) {
   JOIN Movie ON Screening.Movie_id = Movie.Movie_id
   JOIN Movie_Information ON Screening.Movie_id = Movie_Information.Movie_id
   WHERE Movie.Title LIKE ?
-  ${filter === "" ? "" : `AND Movie.Age <= ${filter}`}
+  ${filter === "" ? "" : `AND Movie.Age = ${filter}`}
   GROUP BY Movie.Movie_id,
   Movie.Title,
   Movie.Genre,
@@ -117,27 +115,47 @@ async function filterAllMovies(filter, sort, search) {
   return movies;
 }
 
-async function getPopular(query) {
-    const [popMovies] = await connection.execute(
-      `SELECT
+/**
+ * @author Niklas Nguyen, Isac zetterström
+ * @description this sorts the top 5 newest movies by relasedate
+ */
+
+async function getNewestMovie() {
+  const [popMovies] = await connection.execute(
+    `SELECT
       Movie.Movie_id,
       Movie.Title,
+      Movie.Release_date,
       Movie_Information.Poster,
-      Movie_Information.Image,
-      COUNT(Ticket.Ticket_id) AS TicketCount
-      FROM 
-      Movie
-      JOIN Screening ON Movie.Movie_id = Screening.Movie_id
-      JOIN Movie_Information ON Movie.Movie_id = Movie_Information.Movie_id
-      JOIN Ticket on Screening.Screening_id = Ticket.Screening_id
-      GROUP BY 
-      Movie.Movie_id, Movie.title, Movie_Information.Poster,Movie_Information.Image
-      ORDER BY 
-      TicketCount DESC
-      LIMIT 5;`,
-      []
-    );
-    return popMovies;
+      Movie_Information.Image
+    FROM Movie
+    JOIN Movie_Information ON Movie.Movie_id = Movie_Information.Movie_id
+    WHERE Movie.Release_date < current_date()
+    ORDER BY Movie.Release_date DESC
+    LIMIT 5;`
+  );
+  return popMovies;
+}
+
+async function getPopular(query) {
+  const [popMovies] = await connection.execute(
+    `Movie.Movie_id,
+    Movie.Title,
+    Movie_Information.Poster,
+    Movie_Information.Image,
+    COUNT(Ticket.Ticket_id) AS TicketCount
+    FROM 
+    Movie
+    JOIN Screening ON Movie.Movie_id = Screening.Movie_id
+    JOIN Movie_Information ON Movie.Movie_id = Movie_Information.Movie_id
+    JOIN Ticket on Screening.Screening_id = Ticket.Screening_id
+    GROUP BY 
+    Movie.Movie_id, Movie.title, Movie_Information.Poster,Movie_Information.Image
+    ORDER BY 
+    TicketCount DESC
+LIMIT 5;`
+  );
+  return popMovies;
 }
 /**
 * @author Oskar Dahlberg
@@ -181,5 +199,12 @@ async function getGenre(query) {
   return byGenre;
 }
 
-
-export default { getMovieInformation, currentMovies, filterAllMovies,getPopular,getUpcoming,getGenre };
+export default {
+  getMovieInformation,
+  currentMovies,
+  filterAllMovies,
+  getPopular,
+  getUpcoming,
+  getGenre,
+  getNewestMovie,
+};

@@ -5,7 +5,7 @@ import GlobalMovieCard from "../components/GlobalMovieCard";
 import { useFormDefaults } from "../hooks/useFormDefaults";
 import useFetchData from "../hooks/useFetchData";
 import Hero from "../components/LibaryPageComp/Hero";
-import useQueryMovie from "../hooks/useQuaryMovie";
+import useQueryMovie from "../hooks/useQueryMovie";
 import SearchFilterSortQuery from "../components/LibaryPageComp/SearchFilterSortQuery";
 
 /**
@@ -34,7 +34,16 @@ function LibraryPage() {
           <h1 className="line header-bold">På bio nu</h1>
           {(loading && <p>laddar...</p>) ||
             (err && <p>Hittade ingen film som matchar {query.search}</p>) ||
-            data?.map((movie) => <GlobalMovieCard key={movie.Movie_id} xs={6} md={3} id={movie.Movie_id} img={movie.Poster} title={movie.Title} />)}
+            data?.map((movie) => (
+              <GlobalMovieCard
+                key={movie.Movie_id}
+                xs={6}
+                md={3}
+                id={movie.Movie_id}
+                img={movie.Poster}
+                title={movie.Title}
+              />
+            ))}
         </Row>
       </Container>
     </>

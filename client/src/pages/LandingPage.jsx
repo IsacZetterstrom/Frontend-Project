@@ -13,6 +13,7 @@ import AdCard from "../components/LandingPageComp/AdCard";
 
 function LandingPage() {
   const { loading, err, data } = useFetchData("api/movies/1");
+
   return (
     <>
       <Container fluid className="m-0 p-0 landing-page">
@@ -24,13 +25,13 @@ function LandingPage() {
             </>
           )}
         </Row>
-        <Row className="justify-content-center w-100 mt-5 mb-5 p-0">
-          <AdCard />
+        <Row className="justify-content-center m-0 mt-5 mb-5 p-0">
+          <AdCard showButton={true} />
         </Row>
         <Row className="justify-content-center w-100 m-0 p-0">
           <div className="w-75">
             <h2 className="line pb-1 header-bold">Nyheter</h2>
-            <MovieCarousel {...{ url: `/api/filter?query=toplist` }} />
+            <MovieCarousel {...{ url: `/api/filter?query=newest` }} />
             <h2 className="line pb-1 header-bold">Kommande</h2>
             <MovieCarousel {...{ url: `/api/filter?query=upcoming` }} />
           </div>

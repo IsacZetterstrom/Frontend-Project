@@ -11,13 +11,7 @@ import FormBtns from "./FormBtns";
  * @description this is a finnished form for login
  */
 
-function EditUserForm({
-  defaults,
-  handleSubmit,
-  setFormData,
-  userData,
-  runFunction,
-}) {
+function EditUserForm({ defaults, handleSubmit, setFormData, userData, runFunction }) {
   return (
     <Form className="p-0" onSubmit={handleSubmit}>
       <Col className="mt-3">
@@ -32,23 +26,11 @@ function EditUserForm({
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Förnamn</label>
-        <input
-          {...defaults(
-            "firstname",
-            userData !== undefined && userData.firstName,
-            { required: false }
-          )}
-        />
+        <input {...defaults("firstname", userData !== undefined && userData.firstName, { required: false })} />
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Efternamn</label>
-        <input
-          {...defaults(
-            "lastname",
-            userData !== undefined && userData.lastName,
-            { required: false }
-          )}
-        />
+        <input {...defaults("lastname", userData !== undefined && userData.lastName, { required: false })} />
       </Col>
       <Col className="mt-3">
         <label className="p-0 text-nowrap d-block line">Telefon</label>

@@ -92,9 +92,7 @@ async function getScreening(screeningId) {
 
     screeningInfo[0].allSeats.forEach((seat) => {
       // Check if seat exists in bookedSeat, if so, add booked boolean
-      seat.Booked = bookedSeats.some(
-        (bookedSeat) => bookedSeat.Number_seat === seat.Number_seat
-      );
+      seat.Booked = bookedSeats.some((bookedSeat) => bookedSeat.Number_seat === seat.Number_seat);
     });
   }
 
