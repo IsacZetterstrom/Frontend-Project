@@ -10,4 +10,6 @@ const stringFormatter = {
   getLastLetter,
 };
 
+
+
 export default stringFormatter;

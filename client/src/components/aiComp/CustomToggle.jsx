@@ -1,20 +1,20 @@
-import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
- 
+import { Button } from 'react-bootstrap';
+/**
+ * @author Oskar Dahlberg
+ * @description To be able to change the colour of the button or have more Accordions .
+ */
 function CustomToggle({ children, eventKey }) {
-  const decoratedOnClick = useAccordionButton(eventKey, () =>
-    console.log('totally custom!'),
-  );
+  const decoratedOnClick = useAccordionButton(eventKey, () => {});
 
   return (
-    
-    <button
-      className="edit-btn"
+    <Button
+      className="edit-btn p-1 mt-2 mb-4"
       type="button"
       onClick={decoratedOnClick}
     >
       {children}
-    </button>
+    </Button>
   );
 }
 export default CustomToggle;

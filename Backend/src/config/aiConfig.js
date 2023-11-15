@@ -4,7 +4,6 @@
 * @Description Struct the movie dataset based on the user watched movies. 
 */
 async function dataClean(movieDataArray) {
-    console.log(movieDataArray)
     const actorsTable = new Set();
     const directorsTable = new Set();
     const genresTable = new Set();
@@ -35,7 +34,6 @@ async function dataClean(movieDataArray) {
 */
 
 async function getPayload(movieData) {
-  console.log(movieData)
     const data = await dataClean(movieData.movieInformation);
     //can switch to tv-shows exc if wanted
     let cinemaType = 'Movie';
@@ -52,9 +50,7 @@ async function getPayload(movieData) {
             : ''
         } `;
 
-console.log(fullSearchCriteria)
       const temp = movieData.Temp / 100
-      console.log(temp)
        const payLoad = {
             model: "gpt-4-1106-preview",
             temperature: temp,

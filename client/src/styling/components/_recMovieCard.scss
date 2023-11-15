@@ -103,9 +103,6 @@
   }
 
   .edit-btn{
-    width: 100px;
-    margin: 10px 0 10px 0 !important;
-    
     border-radius: 9999px;
     border: none;
     background-color: $OrangeColor;
@@ -113,3 +110,17 @@
     font-weight: 600;
     font-size: .9rem;
 }
+.render-btn{
+  font-size: .7rem;
+  border-radius: 9999px;
+  border: none;
+  background-color: $OrangeColor;
+  color: $blackColor;
+  font-weight: 600;
+}
+
+.custom-range::-webkit-slider-thumb {
+  background-color: $OrangeColor; /* Change the color of the slider thumb for WebKit browsers */
+}
+
+

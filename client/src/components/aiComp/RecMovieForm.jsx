@@ -1,107 +1,73 @@
 import React from "react";
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Alert } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import { useState, useEffect } from "react";
-function RecMovieForm({sendFormDataToParent}) {
+import FormRange from "./formComp/FormRange";
+import FormCheckBox from "./formComp/FormCheckBox";
+import FormSwitch from "./formComp/FormSwitch";
+/**
+ * @author Oskar Dahlberg
+ * @description Form for customize the input against the ai. Default values are the movies you watched at cinema .
+ */
+function RecMovieForm({ sendFormDataToParent }) {
     const { loading, err, data } = useFetchData("profile/moviedata");
-    console.log(data)
-  
-   
-
     const [selectedMovies, setSelectedMovies] = useState([]);
     const [temperature, setTemperature] = useState(70);
     const [isSwedish, setIsSwedish] = useState(false);
-    const [formData, setFormData] = useState();
-    
+
     useEffect(() => {
         if (data) {
-          const formattedIds = data.map(id => ({ "Movie_id": id[0].Movie_id }));
-    
-          const formData = {
-            "Movie_id": formattedIds,
-            "Temp": 0.7,
-            "isSwedish": false
-          };
-          sendFormDataToParent(formData)
+            const formattedIds = data.map(id => ({ "Movie_id": id[0].Movie_id }));
+            const formData = {
+                "Movie_id": formattedIds,
+                "Temp": 0.7,
+                "isSwedish": false
+            };
+            sendFormDataToParent(formData)
         }
-      }, [data]);
-   
-    const handleTemperatureChange = (e) => {
-        setTemperature(e.target.value);
-    };
-    const handleSwitchChange = () => {
-        setIsSwedish(!isSwedish);
-    };
-    const handleMovieCheckboxChange = (movieId, checked) => {
-        if (checked) {
-          setSelectedMovies((prevSelectedMovies) => [...prevSelectedMovies, movieId]);
-        } else {
-          setSelectedMovies((prevSelectedMovies) =>
-            prevSelectedMovies.filter((id) => id !== movieId)
-          );
-        }
-      };
+    }, [data]);
+
     const handleCollectInformation = () => {
-        console.log(selectedMovies)
         const formattedMovieIds = selectedMovies.map(id => {
             return { "Movie_id": id };
-          });
-        const formData = 
-            {
-            "Movie_id": formattedMovieIds ,
+        });
+        const formData =
+        {
+            "Movie_id": formattedMovieIds,
             "Temp": temperature,
             "isSwedish": isSwedish
-            }
-        ;
-        console.log(formData)
-
-        setFormData(formData);
+        }
+            ;
         sendFormDataToParent(formData);
     };
 
     if (data) {
         return (
             <>
-                <Col md={6}>
+                <Col md={8}>
                     <Form>
-                        <Form.Label>Specifiera temperatur</Form.Label>
-                        <div className="d-flex justify-content-between align-items-center">
-                            <p>Mindre oberäknelig </p>
-                            <Form.Range className="p-4"
-                                onChange={handleTemperatureChange}
-                                value={temperature}
-                                min={1}
-                                max={200}
-                            />
-                            <p>Mycket oberäknelig </p>
-                        </div>
-                        <Form.Label>Välj vilka filmer du tyckte om på bion.</Form.Label>
-                        {data.map((movie) => {
+                        <Form.Label><h4>Specificera variationen på resultatet</h4></Form.Label>
+                        <FormRange temperature={temperature} setTemperature={setTemperature}></FormRange>
+                        <Alert variant="warning">
+                            <p>
+                                Ett högre värde leder till långsammare sökningar men mer kreativa resultat. Rekomenderat värde är mellan 0.7 - 1.
+                            </p>
+                        </Alert>
+                        <Form.Label><h4>Välj filmer du tyckte om på bion</h4></Form.Label>
+                        {data.map((movie, index) => {
                             return (
-                                <div key={movie[0].Movie_id} className="mb-3">
-                                    <Form.Check
-                                        inline
-                                        label={movie[0].Title}
-                                        name="movieCheckboxes"
-                                        type="checkbox"
-                                        id={`inline-${movie[0].Movie_id}`}
-                                        onChange={(e) =>
-                                            handleMovieCheckboxChange(movie[0].Movie_id, e.target.checked)
-                                        }
-                                    />
-                                </div>
+                                <FormCheckBox setSelectedMovies={setSelectedMovies}
+                                    movie={movie}
+                                    key={`${movie[0].Movie_id}_${index}`}>
+                                </FormCheckBox>
                             );
                         })}
-
-                        <Form.Check
-                            type="switch"
-                            id="swedish"
-                            label="Sök på svenska filmer"
-                            onChange={handleSwitchChange}
-                        />
-                        <Button variant="primary" onClick={handleCollectInformation}>
-                            Spara inställningar
-                        </Button>
+                        <FormSwitch isSwedish={isSwedish} setIsSwedish={setIsSwedish} ></FormSwitch>
+                        <div className="d-flex flex-column align-items-center">
+                            <Button className="edit-btn m-4" onClick={handleCollectInformation}>
+                                Sök efter film
+                            </Button>
+                        </div>
                     </Form>
                 </Col>
             </>

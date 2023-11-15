@@ -3,6 +3,10 @@ import { Image, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import IMDB_Logo from '../misc/IMDB_Logo.png'
 import tempImage from '../misc/tempImage.png'
+/**
+ * @author Oskar Dahlberg
+ * @description Just a card to render out the movie cards.
+ */
 function RecMovieCard(props) {
 
   let imageSrc = props.movie.Poster;

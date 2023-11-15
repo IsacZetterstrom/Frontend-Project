@@ -6,7 +6,8 @@ import "dotenv/config";
 */
 async function getMovieInfo(movies) {    
     const moviesArray = [];
-    for (const movie of movies.movielist) {
+    const moviesToFetch = movies.movielist.slice(0, 5);
+    for (const movie of moviesToFetch) {
         const url = `http://www.omdbapi.com/?apikey=${process.env.OMDB_API_KEY}&t=${movie.title}`;
         const res = await fetch(url)
         const details = await res.json();

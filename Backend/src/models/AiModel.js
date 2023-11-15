@@ -48,7 +48,6 @@ async function getRecommended(payload) {
   const response = await openai.chat.completions.create(payload)
 const functionCall = response.choices[0].message.function_call;
 const json = JSON.parse(functionCall.arguments);
-console.log("Here are 5 movies you might like:", json)
 return json
 }
 
