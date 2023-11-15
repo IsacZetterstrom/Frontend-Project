@@ -14,6 +14,7 @@ function RecMovieForm({ sendFormDataToParent }) {
     const [selectedMovies, setSelectedMovies] = useState([]);
     const [temperature, setTemperature] = useState(70);
     const [isSwedish, setIsSwedish] = useState(false);
+    const [isGenre, setIsGenre] = useState(false);
 
     useEffect(() => {
         if (data) {
@@ -21,7 +22,8 @@ function RecMovieForm({ sendFormDataToParent }) {
             const formData = {
                 "Movie_id": formattedIds,
                 "Temp": 0.7,
-                "isSwedish": false
+                "isSwedish": false,
+                "isGenre": false
             };
             
             sendFormDataToParent(formData)
@@ -36,7 +38,8 @@ function RecMovieForm({ sendFormDataToParent }) {
         {
             "Movie_id": formattedMovieIds,
             "Temp": temperature,
-            "isSwedish": isSwedish
+            "isSwedish": isSwedish,
+            "isGenre": isGenre
         }
             ;
         sendFormDataToParent(formData);
@@ -62,7 +65,7 @@ function RecMovieForm({ sendFormDataToParent }) {
                                 </FormCheckBox>
                             );
                         })}
-                        <FormSwitch isSwedish={isSwedish} setIsSwedish={setIsSwedish} ></FormSwitch>
+                        <FormSwitch isSwedish={isSwedish} setIsSwedish={setIsSwedish} isGenre={isGenre} setIsGenre={setIsGenre} ></FormSwitch>
                         <div className="d-flex flex-column align-items-center">
                             <Button className="edit-btn p-2 m-4" onClick={handleCollectInformation}>
                                 Sök efter film

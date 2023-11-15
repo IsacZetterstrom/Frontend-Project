@@ -40,9 +40,13 @@ async function getPayload(movieData) {
     let specificActors = data.actorsArray
     let specificDirectors = data.directorsArray;
     let specificMovies = data.titleArray;
-    let fullSearchCriteria = `Create a list of 5 ${cinemaType} titles in english that might fit my profile. 
-    ${movieData.isSwedish ? `${cinemaType}'s must be swedish` : ''
-        }. ${specificActors
+    let specificGenres = data.genresArray;
+
+    let fullSearchCriteria = 
+    `Create a list of 5 ${cinemaType} titles in english that might fit my profile. 
+    ${movieData.isSwedish ? `${cinemaType}'s must be swedish.` : ''}
+    ${movieData.isGenre ? `${cinemaType} genres I like: ${specificGenres}.` : ''}  
+    ${specificActors
             ? `Actors I like: ${specificActors}.
             Directors I like: ${specificDirectors}.
             Do not recommend any of these ${cinemaType}'s: ${specificMovies}.

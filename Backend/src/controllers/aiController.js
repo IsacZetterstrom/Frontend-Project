@@ -27,7 +27,8 @@ async function getRecommended(req, res) {
 	const movieData = {
 		"movieIds": req.body.Movie_id,
 		"Temp": req.body.Temp,
-		"isSwedish": req.body.isSwedish
+		"isSwedish": req.body.isSwedish,
+		"isGenre": req.body.isGenre
 	}
 	try {
 		
