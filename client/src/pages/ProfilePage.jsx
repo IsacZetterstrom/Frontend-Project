@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import useFetchData from "../hooks/useFetchData";
 import { Container, Row, Col } from "react-bootstrap";
 import ActiveBookings from "../components/ProfilePage/ActiveBookings";
@@ -30,11 +30,11 @@ function ProfilePage() {
   }
 
   useEffect(() => {
-    if(hash === "#ad-card"){
-        scrollToAdd.current?.scrollIntoView({ behavior: 'smooth'})
+    if (hash === "#ad-card") {
+      scrollToAdd.current?.scrollIntoView({ behavior: 'smooth' })
     }
   }, [scrollToAdd.current])
- 
+
 
 
   return (
@@ -57,12 +57,10 @@ function ProfilePage() {
                 <UserInfoCard {...{ setEditUser }} />
               </Col>
             </Row>
-          <Row className="justify-content-md-center">
-          <h2 className="line pb-1 header-bold mt-3">Dina filmrekommendationer</h2>
-            <RecMovies/>
-
-          </Row>
-      
+            <Row className="justify-content-md-center">
+              <h2 className="line pb-1 header-bold mt-3">Dina filmrekommendationer</h2>
+              <RecMovies />
+            </Row>
           </Container>
         )}
     </>
