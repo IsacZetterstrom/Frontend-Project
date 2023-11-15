@@ -9,7 +9,7 @@ function CustomToggle({ children, eventKey }) {
 
   return (
     <Button
-      className="edit-btn p-1 mt-2 mb-4"
+      className="edit-btn p-2 mt-2 mb-4"
       type="button"
       onClick={decoratedOnClick}
     >

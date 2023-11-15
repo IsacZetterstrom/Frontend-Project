@@ -49,7 +49,6 @@ async function getPayload(movieData) {
             `
             : ''
         } `;
-
       const temp = movieData.Temp / 100
        const payLoad = {
             model: "gpt-4-1106-preview",

@@ -50,7 +50,7 @@ function RecMovieForm({ sendFormDataToParent }) {
                         <FormRange temperature={temperature} setTemperature={setTemperature}></FormRange>
                         <Alert variant="warning">
                             <p>
-                                Ett högre värde leder till långsammare sökningar men mer kreativa resultat. Rekomenderat värde är mellan 0.7 - 1.
+                                Ett högre värde leder till långsammare sökningar men mer kreativa resultat. Rekommenderat värde är mellan 0.7 - 1.
                             </p>
                         </Alert>
                         <Form.Label><h4>Välj filmer du tyckte om på bion</h4></Form.Label>
@@ -64,7 +64,7 @@ function RecMovieForm({ sendFormDataToParent }) {
                         })}
                         <FormSwitch isSwedish={isSwedish} setIsSwedish={setIsSwedish} ></FormSwitch>
                         <div className="d-flex flex-column align-items-center">
-                            <Button className="edit-btn m-4" onClick={handleCollectInformation}>
+                            <Button className="edit-btn p-2 m-4" onClick={handleCollectInformation}>
                                 Sök efter film
                             </Button>
                         </div>
