@@ -22,7 +22,7 @@ function FormSwitch({ isSwedish, setIsSwedish, isGenre, setIsGenre }) {
             <Form.Check
                 type="switch"
                 id="genre"
-                label="Inkludera film genres"
+                label="Inkludera filmernas genre"
                 onChange={handleSwitchChangeGenre}
             />
         </>
