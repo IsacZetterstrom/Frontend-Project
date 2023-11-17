@@ -1,9 +1,9 @@
 import movieModel from "../models/movieModel.js";
 
 /**
-* @author Louise Johansson
-* @Description Controller to handle return of getMovieInformation model
-*/
+ * @author Louise Johansson
+ * @Description Controller to handle return of getMovieInformation model
+ */
 async function getOneMovie(req, res) {
   try {
     const { movieId } = req.params;
@@ -45,16 +45,18 @@ async function getMovies(req, res) {
  */
 async function filterMovies(req, res) {
   try {
-    const {query} = req.query;
-    if(query === "toplist"){
-      const toplist = await movieModel.getPopular(query)
+    const { query } = req.query;
+    if (query === "toplist") {
+      const toplist = await movieModel.getPopular(query);
       res.send(toplist).status(200);
-    }else if(query == "upcoming"){
-      const upcoming = await movieModel.getUpcoming(query)
+    } else if (query == "upcoming") {
+      const upcoming = await movieModel.getUpcoming(query);
       res.send(upcoming).status(200);
-    }
-    else {
-      const byGenre = await movieModel.getGenre(query)
+    } else if (query === "newest") {
+      const newest = await movieModel.getNewestMovie();
+      res.send(newest).status(200);
+    } else {
+      const byGenre = await movieModel.getGenre(query);
       res.send(byGenre).status(200);
     }
   } catch (error) {

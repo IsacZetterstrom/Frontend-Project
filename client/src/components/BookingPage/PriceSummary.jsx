@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { Col, Container, Row } from "react-bootstrap";
 
-function PriceSummary({ handleBookingClick, tickets, sum, setSum }) {
+function PriceSummary({ handleBookingClick, tickets, sum, setSum, selectedSeats, maxSeats }) {
   useEffect(() => {
     let total = 0;
 
@@ -21,8 +21,7 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum }) {
         <Row className="justify-content-center">
           <Col>
             <div className="d-flex justify-content-between text-nowrap">
-              <h4>Totalt att betala</h4>
-
+              <h3 className="small-header">Totalt att betala</h3>
               <span className="text-nowrap">
                 <span>{sum}</span>
                 <span> kr</span>
@@ -31,7 +30,11 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum }) {
 
             <p className="text-nowrap">Betalning sker på plats</p>
 
-            <Button variant="custom" onClick={() => handleBookingClick()}>
+            <Button
+              disabled={selectedSeats.length < maxSeats || maxSeats === 0}
+              variant="custom"
+              onClick={() => handleBookingClick()}
+            >
               Boka
             </Button>
           </Col>

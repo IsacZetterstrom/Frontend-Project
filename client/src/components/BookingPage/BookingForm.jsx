@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
  * @param {number} sum - The total sum for the booking.
  */
 
-function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData }) {
+function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData, setShowBookingForm }) {
   const { defaults, formData, setFormData } = useFormDefaults();
   const { loading, err, data } = useFetchData("/profile/user");
   const { movieId, screeningId } = useParams();
@@ -35,7 +35,11 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData }) {
 
     // Send the post request to the backend
     try {
-      const response = await fetchService.fetchRes(`/api/movies/${movieId}/screenings/${screeningId}/booking`, "POST", data);
+      const response = await fetchService.fetchRes(
+        `/api/movies/${movieId}/screenings/${screeningId}/booking`,
+        "POST",
+        data
+      );
       // handle response if ok, save response data in state, set error message otherwise
       if (response.ok) {
         const responseData = await response.json();
@@ -59,7 +63,7 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData }) {
 
   // Navigate the user back to the movie page
   const handleCancel = () => {
-    navigate(`/film/${movieId}`);
+    setShowBookingForm(false);
   };
 
   return (
@@ -69,15 +73,20 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData }) {
           <b>Totalsumma: {sum} kr</b>
           <p>Betalning sker på plats</p>
         </Container>
-        <h1 className="p-0 text-nowrap mt-5 pb-2 line">Bekräfta din bokning</h1>
+        <h2 className="p-0 text-nowrap mt-5 pb-2 line header-bold">Bekräfta din bokning</h2>
         <p>Fyll in e-post nedan för att ta emot dina biljetter</p>
         {msg && <p className="text-danger">{msg}</p>}
         <Form className="p-0" onSubmit={handleSubmit}>
           <Col className="mt-3">
             <label className="p-0 text-nowrap line d-block">E-Post</label>
-            <input {...defaults("email", formData?.email || "", { minLength: 8, type: "email" })} value={formData?.email || ""} />
+            <input
+              {...defaults("email", formData?.email || "", { minLength: 8, type: "email" })}
+              value={formData?.email || ""}
+            />
           </Col>
-          <FormBtns {...{ submitBtn: "Boka", cancelBtn: "Avbryt", showCancelBtn: true, setFormData, runFunction: handleCancel }} />
+          <FormBtns
+            {...{ submitBtn: "Boka", cancelBtn: "Avbryt", showCancelBtn: true, setFormData, runFunction: handleCancel }}
+          />
         </Form>
       </Row>
     </Container>

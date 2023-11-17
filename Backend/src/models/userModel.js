@@ -49,10 +49,7 @@ GROUP BY Movie.Title,
 //Get userprofile (promise wrapper på mysql connection)
 async function getProfile(email) {
   try {
-    const [user] = await connection.execute(
-      "SELECT * FROM User WHERE Email = ?",
-      [email]
-    );
+    const [user] = await connection.execute("SELECT * FROM User WHERE Email = ?", [email]);
     return user;
   } catch (error) {
     throw error;

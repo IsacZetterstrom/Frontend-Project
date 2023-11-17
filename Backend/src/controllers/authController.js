@@ -1,6 +1,8 @@
 import authModel from "../models/authModel.js";
+import userModel from "../models/userModel.js";
 import AuthService from "../services/authService.js";
 import bcrypt from "bcrypt";
+import jwtService from "../services/jwtService.js";
 
 /**
  * @Author Isac Zetterström
@@ -10,8 +12,11 @@ async function registerUser(req, res) {
   const { email, password } = req.body;
   const hashedPass = await bcrypt.hash(password, 12);
   try {
+    const userInfo = await userModel.getProfile(email);
+    if (userInfo[0] !== undefined) return res.status(401).send({ message: "A user already exist" });
     await authModel.registerUser(email, hashedPass);
-    res.status(200).send({ message: "User registered!" });
+    const token = await jwtService.generateToken(email);
+    res.status(200).json(token);
   } catch (error) {
     res.status(500).json({ error: "A problem when registering user occured." });
   }

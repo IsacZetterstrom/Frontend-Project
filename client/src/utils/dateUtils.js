@@ -5,15 +5,18 @@
 
 export default function getDateWithDay(date) {
   const options = {
-    weekday: "long",
+    weekday: "short",
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   };
 
-  //   const newDate = date.split(/[- :]/);
+  const formattedDate = new Date(date).toLocaleDateString("sv-SE", options);
 
-  return new Date(date).toLocaleDateString("sv-SE", options);
+  // Capitalize the first letter of the formatted date
+  const capitalizedFormattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
+  return capitalizedFormattedDate;
 }
 
 /**
@@ -27,12 +30,8 @@ export function getMovieEndTime(startTimeISO, duration) {
   const endTime = new Date(startTime.getTime() + duration * 60 * 1000);
 
   const formatTimePart = (time) => time.toString().padStart(2, "0");
-  const startTimeString = `${formatTimePart(
-    startTime.getHours()
-  )}:${formatTimePart(startTime.getMinutes())}`;
-  const endTimeString = `${formatTimePart(endTime.getHours())}:${formatTimePart(
-    endTime.getMinutes()
-  )}`;
+  const startTimeString = `${formatTimePart(startTime.getHours())}:${formatTimePart(startTime.getMinutes())}`;
+  const endTimeString = `${formatTimePart(endTime.getHours())}:${formatTimePart(endTime.getMinutes())}`;
 
   return `${startTimeString} - ${endTimeString}`;
 }
@@ -47,14 +46,14 @@ export function formatDateOrTime(dateTime, formatType) {
   return date.toLocaleString("sv-SE", options[formatType]);
 }
 
-// Format a date string to exclude time and time zone information eg
+// Format a date string to exclude time and time zone information e.g. "2016-10-19"
 export function formatDateString(dateString) {
   const date = new Date(dateString);
   const formattedDate = date.toISOString().split("T")[0];
   return formattedDate;
 }
 
-// Format a date string to a Swedish date format. e.g., "Fredag 24 oktober"
+// Format a date string to a Swedish date format. e.g. "Fredag 24 oktober"
 export function formatDateStringToSwedish(dateString) {
   const date = new Date(dateString);
   const options = { weekday: "long", day: "numeric", month: "long" };

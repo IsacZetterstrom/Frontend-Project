@@ -9,6 +9,7 @@ import useEventSource from "../hooks/useEventSource";
 import ConfirmPopUpModal from "../components/Modals/ConfirmPopUpModal";
 import BookingForm from "../components/BookingPage/BookingForm";
 import MovieInfo from "../components/BookingPage/MovieInfo";
+import { createTicketStructure } from "../utils/bookingPageUtils";
 
 /**
  * @author Oliver Andersson
@@ -16,18 +17,19 @@ import MovieInfo from "../components/BookingPage/MovieInfo";
  */
 
 function BookingPage() {
+  
   const { screeningId } = useParams();
+  const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
+  
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [sum, setSum] = useState(0);
   const [maxSeats, setMaxSeats] = useState(2);
   const [confirmationData, setConfirmationData] = useState(null);
-  const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
 
   // State variable to control the visibility of BookingForm
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [bookingInfo, setBookingInfo] = useState({ tickets: [] });
 
-  // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type
   const [toggle, setToggle] = useState(false);
 
   // Keys are the Ticket_Type_id and the values are how many tickets are chosen for that ticket type
@@ -37,6 +39,7 @@ function BookingPage() {
     3: 2,
   });
 
+  // Add one seat
   function addOneSeat(seat) {
     if (selectedSeats.includes(seat)) {
       setSelectedSeats(selectedSeats.filter((x) => x !== seat));
@@ -50,6 +53,7 @@ function BookingPage() {
     }
   }
 
+  // Add several seats
   function addSeveralSeats(seats) {
     setSelectedSeats(seats);
   }
@@ -76,21 +80,8 @@ function BookingPage() {
 
   // Runs when "book" button gets pressed
   function handleBookingClick() {
-    const data = {
-      tickets: [],
-    };
-    // Put ticket and seat data into correct structure for post request
-    for (const [key, value] of Object.entries(tickets)) {
-      for (let i = 0; i < value; i++) {
-        if (selectedSeats[i] === undefined) return;
+    const data = createTicketStructure(tickets, selectedSeats, screeningId);
 
-        data.tickets.push({
-          Screening_id: screeningId,
-          Ticket_Type_id: key,
-          Seat_id: selectedSeats[i].Seat_id,
-        });
-      }
-    }
     setBookingInfo(data);
     setShowBookingForm(true);
   }
@@ -104,18 +95,20 @@ function BookingPage() {
             <></>
           ) : (
             <Row>
-              <PriceSummary {...{ handleBookingClick, tickets, setSum, sum }} />
+              <PriceSummary {...{ handleBookingClick, tickets, setSum, sum, selectedSeats, maxSeats }} />
             </Row>
           )}
         </Col>
         {showBookingForm ? (
-          <BookingForm {...{ bookingInfo, sum, setToggle, setConfirmationData }} />
+          <BookingForm {...{ bookingInfo, sum, setToggle, setConfirmationData, setShowBookingForm }} />
         ) : (
           <Col sm={12} md={6}>
-            <h5 className="line pb-1">Välj antal biljetter</h5>
+            <h3 className="line pb-1 small-header">Välj antal biljetter</h3>
             <TicketSelector {...{ tickets, handleTicketChange }} />
-            <h5 className="line pb-1">Välj platser</h5>
-            {(err && <p>err</p>) || <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />}
+            <h3 className="line pb-1 small-header">Välj platser</h3>
+            {(err && <p>err</p>) || (
+              <SeatPicker {...{ screeningData, addOneSeat, addSeveralSeats, selectedSeats, maxSeats }} />
+            )}
           </Col>
         )}
       </Row>

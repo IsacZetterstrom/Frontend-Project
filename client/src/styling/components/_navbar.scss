@@ -3,7 +3,7 @@
 .navbar {
     background-color: $mainColor;
     box-shadow: 0px 2px 4px $blackColor;
-    .container{
+
         .navbar-toggler {
             border: none;
             outline: none;
@@ -21,7 +21,6 @@
             align-items: center;
             justify-content: center;
         } 
-    }
     .nav-link{
         color: $whiteColor;
         text-wrap: nowrap;
@@ -29,17 +28,37 @@
     .nav-link.active{
         color: $goldColor;
     }
-
-    .navline {
-        background-image: $lineGradient;
-        height: 2px;
-        width: 10em;
-    }
-    .logo{
-        align-self: center;
-        margin: 0;
+    .desktop-logo-container{
         width: 100%;
-        height: 30px;
+        justify-content: center;
+        padding: 0 12px 0 12px;
+        .logo{
+            
+            cursor: pointer;
+            align-self: center;
+            margin: 0;
+            width: 200px;
+            height: 30px;
+            padding: 0 16px 0 16px;
+        }
+ 
+        &::before, &::after {
+            content: "";
+            height: 2px;
+            width: 100%;
+            background-image: $lineGradient;
+            display: inline-block;
+            vertical-align: middle;
+        }
+      
+          &::before {
+            margin-right: .5em;
+          }
+      
+          &::after {
+            margin-left: .5em;
+          }
+          
     }
     .logout-btn.active{
         color:$whiteColor;

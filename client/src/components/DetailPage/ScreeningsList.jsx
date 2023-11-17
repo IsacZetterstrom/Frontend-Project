@@ -3,7 +3,7 @@ import { Button, Container, Table } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { formatDateOrTime, formatDateString } from "../../utils/dateUtils";
+import getDateWithDay, { formatDateOrTime, formatDateString } from "../../utils/dateUtils";
 
 /**
  * @author Louise Johansson
@@ -32,9 +32,9 @@ function ScreeningsList({ movieId, movie }) {
 
   return (
     <Container className="screenig-list mt-4">
-      <h2 className="mt-5 line-center text-center">Boka platser</h2>
+      <h2 className="mt-5 line-center text-center header-light">Boka platser</h2>
       <Container className="date-picker-container text-center mt-5">
-        <h3>Välj datum</h3>
+        <h3 className="small-header gold">Välj datum</h3>
         <input type="date" onChange={handleDateChange} className="date-picker" value={selectedDate} />
       </Container>
       {loading ? (
@@ -46,21 +46,24 @@ function ScreeningsList({ movieId, movie }) {
               <Table className="screening-table mt-5 text-center">
                 <thead>
                   <tr>
-                    <th>Starttid</th>
-                    <th>Salong</th>
-                    <th>Språk och text</th>
+                    <th>Startar</th>
+                    <th>Salong, Språk och textning</th>
                     <th>Boka platser</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.slice(0, screeningsToShow).map((screening) => (
                     <tr key={screening.Screening_id}>
-                      <td className="text-nowrap">{formatDateOrTime(screening.Screening_date, "date")}</td>
                       <td className="text-nowrap">
-                        {screening.Theater_name} - {formatDateOrTime(screening.Screening_startime, "time")}
+                        <p className="m-0">{getDateWithDay(screening.Screening_date)}</p>
+                        <p>{formatDateOrTime(screening.Screening_startime, "time")}</p>
                       </td>
                       <td className="text-nowrap">
-                        {(movie.Lang === "EN" && "En") || movie.Lang} tal, {(screening.Subtitle === "Svenska" && "Sve") || screening.Subtitle} text
+                        <p className="m-0">{screening.Theater_name}</p>
+                        <p>
+                          {(movie.Lang === "EN" && "En") || movie.Lang} tal,{" "}
+                          {(screening.Subtitle === "Svenska" && "Sve") || screening.Subtitle} text
+                        </p>
                       </td>
                       <td>
                         <Button
@@ -76,8 +79,8 @@ function ScreeningsList({ movieId, movie }) {
               </Table>
               {data.length > screeningsToShow && (
                 <Container className="text-center">
-                  <Button className="show-more" onClick={handleShowMore}>
-                    <p>Visa mer</p>
+                  <Button className="show-more lh-1" onClick={handleShowMore}>
+                    <p className="m-0">Visa mer</p>
                     <MdKeyboardArrowDown />
                   </Button>
                 </Container>

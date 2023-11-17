@@ -15,11 +15,11 @@ async function delBooking(req, res) {
 
   try {
     const result = await bookingModel.deleteBooking(bookingId, userId);
-    if(result.length === 0) return res.status(400).json({ error: "Booking does not exist" })
-    
-    clientsHandler.broadcastTo(result[2][0].Screening_id)
-    return res.status(200).json({ error: `The booking been deleted` })
-  } catch (error) { 
+    if (result.length === 0) return res.status(400).json({ error: "Booking does not exist" });
+
+    clientsHandler.broadcastTo(result[2][0].Screening_id);
+    return res.status(200).json({ error: `The booking been deleted` });
+  } catch (error) {
     return res.status(400).json(error.message);
   }
 }
@@ -29,28 +29,34 @@ async function delBooking(req, res) {
  * @Descriptions Controller to handle when a user books
  */
 async function createBooking(req, res) {
-
-  let {tickets,email} = req.body
-  const screeningId = req.params.screeningId
+  let { tickets, email } = req.body;
+  const screeningId = req.params.screeningId;
 
   try {
-    //Get the total price for all tickets combined
-    const totalPrice = await ticketModel.getTotalPrice(tickets);
-    //Create one booking for all the tickets
-    const bookingId = await bookingModel.createBooking(totalPrice,req.decoded);
-    //Create the individual tickets for the booking
-    await ticketModel.createTicket(tickets, bookingId);
+    //Check if tickets exists
+    const exists = await ticketModel.ticketsExist(tickets);
+    if (exists) {
+      return res.status(400).json({ error: "Dina platser blev tyvärr upptagna, vänligen välj andra platser" });
+    } else {
+      //Get the total price for all tickets combined
+      const totalPrice = await ticketModel.getTotalPrice(tickets);
+      //Create one booking for all the tickets
+      const bookingId = await bookingModel.createBooking(totalPrice, req.decoded);
+      //Create the individual tickets for the booking
+      await ticketModel.createTicket(tickets, bookingId);
 
-    const bookingData = (await bookingModel.getBooking(bookingId))[0];
+      const bookingData = (await bookingModel.getBooking(bookingId))[0];
 
-    if(email == undefined && req.decoded == undefined) return res.status(500).json({ error: "no email or account provided" });
-    if(email == undefined) email = req.decoded.email
+      if (email == undefined && req.decoded == undefined)
+        return res.status(500).json({ error: "no email or account provided" });
+      if (email == undefined) email = req.decoded.email;
 
-    await mailService.sendBookingConfirmationEmail(bookingData,email)
+      await mailService.sendBookingConfirmationEmail(bookingData, email);
 
-    clientsHandler.broadcastTo(screeningId)
+      clientsHandler.broadcastTo(screeningId);
 
-    res.status(200).json(bookingData)
+      res.status(200).json(bookingData);
+    }
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }

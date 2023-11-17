@@ -19,16 +19,9 @@
 @import "./components/priceSummary";
 @import "./components/ticketSelector";
 @import "./components/bookingForm";
+@import "./components/seatPicker";
 
-@font-face {
-    font-family: 'Noto Sans';
-    src: url('../fonts/NotoSans-Light.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Playfair Display';
-    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
-}
+@import "./abstract/fonts";
 
 #root {
     display: flex;
@@ -47,13 +40,3 @@ body {
     color: white;
 }
 
-// Playfair gold header, bold weight
-.movie-title {
-    font-size: 25px;
-    font-weight: bold;
-    font-family: 'Playfair Display';
-    color: #BD9060;
-    margin-top: 0.5em;
-    font-size: 30px;
-    font-weight: bold;
-}

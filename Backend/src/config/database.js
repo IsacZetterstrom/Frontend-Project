@@ -4,7 +4,7 @@ import "dotenv/config";
 const connection = await mysql2.createConnection({
   host: "161.97.144.27",
   port: "8003",
-  user: "root",
+  user: process.env.USER,
   password: process.env.PASSWORD,
   database: "cinema",
   multipleStatements: true,
