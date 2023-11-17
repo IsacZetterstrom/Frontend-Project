@@ -19,7 +19,7 @@ import { createTicketStructure } from "../utils/bookingPageUtils";
 function BookingPage() {
   
   const { screeningId } = useParams();
-  const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
+  const { err, screeningData } = useEventSource("api/movies/screenings/" + screeningId);
   
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [sum, setSum] = useState(0);
