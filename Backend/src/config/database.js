@@ -1,7 +1,7 @@
 import mysql2 from "mysql2/promise";
 import "dotenv/config";
 
-const connection = await mysql2.createConnection({
+const connection =  mysql2.createPool({
   host: "161.97.144.27",
   port: "8003",
   user: process.env.USER,
