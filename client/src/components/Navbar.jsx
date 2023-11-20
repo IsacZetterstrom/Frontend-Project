@@ -52,7 +52,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
   return (
     <>
-      <BootStrapNav expand="md" className="navbar">
+      <BootStrapNav expand="md" className="navbar fixed-top">
         <Container>
           <BootStrapNav.Brand className="d-md-none" href="/">
             <img src={Logotype} alt="" width="100px" />
