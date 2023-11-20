@@ -6,7 +6,7 @@ import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
 import LoadingGif from "../components/misc/LoadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
-import { Navigate, useLocation, useOutletContext } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 
 /**
  * @author Isac Zetterström
@@ -14,6 +14,7 @@ import { Navigate, useLocation, useOutletContext } from "react-router-dom";
  */
 
 function ProfilePage() {
+  const navigate = useNavigate();
   const scrollToAd = React.createRef();
   const [update, setUpDate] = useState(0);
   const { loading, err, data } = useFetchData("profile/user/bookings", update);
@@ -21,17 +22,16 @@ function ProfilePage() {
   const { isLoggedIn } = useOutletContext();
   const { hash } = useLocation();
 
-  if (!isLoggedIn) return <Navigate to={"/"} />;
-
   function toggle() {
     setEditUser((editUser) => !editUser);
   }
 
   useEffect(() => {
+    if (isLoggedIn === false) return navigate("/");
     if (hash === "#ad-card") {
       scrollToAd.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [scrollToAd]);
+  }, [scrollToAd, isLoggedIn]);
 
   return (
     <>
