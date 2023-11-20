@@ -29,7 +29,7 @@ function ConfirmPopUpPage({ confirmationData, setToggle }) {
               </p>
               <p>
                 <span className="bold">Pris: </span>
-                {confirmationData.priceSum}kr
+                {confirmationData.priceSum.toLocaleString()}kr
               </p>
             </Row>
             <Row>
