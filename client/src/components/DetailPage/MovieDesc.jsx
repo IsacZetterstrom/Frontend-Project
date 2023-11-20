@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
-import { formatDateString } from "../../utils/dateUtils";
+import { formatDateString, formatDateStringToSwedish } from "../../utils/dateUtils";
+import isFutureRelease from "../../utils/futureReleaseDate";
 
 /**
  * @author Louise Johansson
@@ -33,7 +34,11 @@ function MovieDesc({ movie }) {
           <h2 className="header-light gold">Språk</h2>
           <p>{(movie.Lang === "EN" && "Engelska") || movie.Lang}</p>
           <h2 className="header-light gold">Släppt</h2>
-          <p>{formatDateString(movie.Release_date).split("-")[0]}</p>
+          {isFutureRelease(movie.Release_date) ? (
+            <span className="release-banner">Premiär {formatDateStringToSwedish(movie.Release_date, false)}</span>
+          )
+          : <p>{formatDateString(movie.Release_date).split("-")[0]}</p>
+          }
         </Col>
       </Row>
     </Container>

@@ -2,6 +2,8 @@ import { Carousel, Col, Image, Row } from "react-bootstrap";
 import useFetchData from "../hooks/useFetchData";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { formatDateStringToSwedish } from "../utils/dateUtils";
+import isFutureRelease from "../utils/futureReleaseDate";
 
 /**
  *@author Niklas Nguyen
@@ -47,10 +49,13 @@ function MovieCarousel({ url, movieId }) {
           <Carousel.Item key={index}>
             <Row className="justify-content-center align-items-strech">
               {itemsInSlide.map((movieItem) => (
-                <Col xs={4} md={2} key={movieItem.Movie_id}>
+                <Col className="carousel-card" xs={4} md={2} key={movieItem.Movie_id}>
                   <Link to={`/film/${movieItem.Movie_id}`} className="img-wrapper">
                     <Image src={movieItem.Poster} alt="" fluid rounded />
-                    <p className="">{movieItem.Title}</p>
+                    {isFutureRelease(movieItem.Release_date) && (
+                      <span className="release-banner">Premiär {formatDateStringToSwedish(movieItem.Release_date, false)}</span>
+                    )}
+                    <span className="mt-1">{movieItem.Title}</span>
                   </Link>
                 </Col>
               ))}
