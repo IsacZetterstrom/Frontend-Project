@@ -12,7 +12,7 @@ import ErrorPage from "../pages/ErrorPage";
 export const pages = [
   {
     path: "*",
-    label: "Hem",
+    label: "*",
     inNav: false,
     rightNav: false,
     element: <ErrorPage />,
