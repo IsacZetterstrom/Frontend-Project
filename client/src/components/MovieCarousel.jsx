@@ -53,9 +53,9 @@ function MovieCarousel({ url, movieId }) {
                   <Link to={`/film/${movieItem.Movie_id}`} className="img-wrapper">
                     <Image src={movieItem.Poster} alt="" fluid rounded />
                     {isFutureRelease(movieItem.Release_date) && (
-                      <span className="release-banner">Premiär {formatDateStringToSwedish(movieItem.Release_date, false)}</span>
+                      <p className="release-banner">Premiär {formatDateStringToSwedish(movieItem.Release_date, false)}</p>
                     )}
-                    <span className="mt-1">{movieItem.Title}</span>
+                    <p className="mt-1">{movieItem.Title}</p>
                   </Link>
                 </Col>
               ))}
