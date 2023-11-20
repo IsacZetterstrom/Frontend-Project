@@ -3,7 +3,7 @@ import useFetchData from "../hooks/useFetchData";
 import { Container, Row, Col } from "react-bootstrap";
 import ActiveBookings from "../components/ProfilePage/ActiveBookings";
 import ExpiredBookings from "../components/ProfilePage/ExpiredBookings";
-import LoadingGif from "../components/misc/loadingGif";
+import LoadingGif from "../components/misc/LoadingGif";
 import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
 import { Navigate, useLocation, useOutletContext } from "react-router-dom";

@@ -17,12 +17,14 @@ import { createTicketStructure } from "../utils/bookingPageUtils";
  */
 
 function BookingPage() {
+  
   const { screeningId } = useParams();
+  const { err, screeningData } = useEventSource("https://filmvisarna-team2.nodehill.se/api/movies/screenings/" + screeningId);
+  
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [sum, setSum] = useState(0);
   const [maxSeats, setMaxSeats] = useState(2);
   const [confirmationData, setConfirmationData] = useState(null);
-  const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
 
   // State variable to control the visibility of BookingForm
   const [showBookingForm, setShowBookingForm] = useState(false);

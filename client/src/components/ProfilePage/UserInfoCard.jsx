@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
-import LoadingGif from "../misc/loadingGif";
+import LoadingGif from "../misc/LoadingGif";
 import { BsPatchExclamation } from "react-icons/bs";
 import AdCard from "../LandingPageComp/AdCard";
 

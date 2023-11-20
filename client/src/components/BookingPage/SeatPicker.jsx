@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 
 import svg from "../../assets/screen.svg";
+import { getRecommendedSeats, getSeatsInRow } from "../../utils/bookingPageUtils";
 
 /**
  * @author Oliver Andersson
@@ -28,37 +29,16 @@ function SeatPicker(props) {
       }
     });
 
-  // Returns seats if they fit on the row and are not booked
-  function getSeatsInRow(seat, row, atFarRight) {
-    const rowLength = row.length;
-    let seatIndex = row.indexOf(seat);
-    const maxSeats = props.maxSeats;
-
-    // Check so all seats fit to the right on the row
-    if (maxSeats + seatIndex > rowLength || seat.Booked === true) {
-      // if not, go left one step
-      return seatIndex === 0 ? [] : getSeatsInRow(row[seatIndex - 1], row, true);
-    } else {
-      let newArr = [];
-
-      // Check if any seat to the right is booked
-      for (let i = 0; i < maxSeats; i++) {
-        // If seat to right is booked
-        if (row[seatIndex + i].Booked) {
-          // Only go left if not at the far left already, or if we are at the far right
-          return seatIndex === 0 || atFarRight ? [] : getSeatsInRow(row[seatIndex - 1], row);
-        }
-
-        newArr.push(row[seatIndex + i]);
-      }
-
-      return newArr;
+  useEffect(() => {
+    if (props.screeningData) {
+      props.addSeveralSeats(getRecommendedSeats(rows, props.maxSeats))
     }
-  }
+  }, [props.screeningData, props.maxSeats])
+
 
   function handleSeatClick(seat, row) {
     if (selectSeveralSeats) {
-      const seats = getSeatsInRow(seat, row);
+      const seats = getSeatsInRow(seat, row, props.maxSeats);
       props.addSeveralSeats(seats);
     } else {
       props.addOneSeat(seat);
@@ -67,7 +47,7 @@ function SeatPicker(props) {
 
   function handleHover(seat, row) {
     if (selectSeveralSeats) {
-      const seats = getSeatsInRow(seat, row);
+      const seats = getSeatsInRow(seat, row, props.maxSeats);
       setHoveringSeats(seats);
     } else {
       setHoveringSeats([seat]);
