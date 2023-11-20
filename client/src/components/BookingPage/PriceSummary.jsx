@@ -23,7 +23,7 @@ function PriceSummary({ handleBookingClick, tickets, sum, setSum, selectedSeats,
             <div className="d-flex justify-content-between text-nowrap">
               <h3 className="small-header">Totalt att betala</h3>
               <span className="text-nowrap">
-                <span>{sum}</span>
+                <span>{sum.toLocaleString()}</span>
                 <span> kr</span>
               </span>
             </div>

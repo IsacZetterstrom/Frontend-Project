@@ -4,7 +4,7 @@ import "dotenv/config";
 const connection = mysql2.createPool({
   host: "161.97.144.27",
   port: "8003",
-  user: "root",
+  user: process.env.USER,
   password: process.env.PASSWORD,
   database: "cinema",
   multipleStatements: true,

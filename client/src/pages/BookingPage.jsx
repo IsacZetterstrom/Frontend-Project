@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import SeatPicker from "../components/BookingPage/SeatPicker";
 import TicketSelector from "../components/BookingPage/TicketSelector";
 import { Col, Container, Row } from "react-bootstrap";
@@ -19,7 +19,9 @@ import { createTicketStructure } from "../utils/bookingPageUtils";
 function BookingPage() {
   
   const { screeningId } = useParams();
-  const { err, screeningData } = useEventSource("http://localhost:3050/api/movies/screenings/" + screeningId);
+  
+  const URL = location.protocol + '//' + location.host + "/api/movies/screenings/" + screeningId;
+  const { err, screeningData } = useEventSource(URL);
   
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [sum, setSum] = useState(0);
