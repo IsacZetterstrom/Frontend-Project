@@ -43,6 +43,7 @@ function EditUserForm({ defaults, handleSubmit, setFormData, userData, runFuncti
             "Använd bara nummer"
           )}
         />
+        <span className="text-secondary">Exempel: 07XXXXXXXX</span>
       </Col>
       <FormBtns
         {...{

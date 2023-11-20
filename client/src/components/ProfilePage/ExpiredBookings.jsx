@@ -37,7 +37,7 @@ function expiredBookings({ expiredBookings }) {
                     )} `}
                   </p>
                   <p className="card-seats mb-0">{`${booking.theaterName}, Rad-Stol: ${booking.seats}`}</p>
-                  <p className="mb-1 mx-2">{`Pris: ${booking.priceSum} Kr`}</p>
+                  <p className="mb-1 mx-2">{`Pris: ${booking.priceSum.toLocaleString()} Kr`}</p>
                   <Col className="d-flex justify-content-between">
                     <span className="ref-number mx-2">Bokningsnummer: {booking.referenceNumber}</span>
                   </Col>

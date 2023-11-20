@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 const distPath = path.join(__dirname, '../client', 'dist');
 
 const app = Express();
-const port = 3050;
+const port = 3051;
 
 app.use(Express.static(distPath));
 app.use(Express.json());
