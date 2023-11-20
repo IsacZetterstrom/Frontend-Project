@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
 import { Container, Row, Col } from "react-bootstrap";
 import ActiveBookings from "../components/ProfilePage/ActiveBookings";
@@ -14,7 +14,7 @@ import { Navigate, useLocation, useOutletContext } from "react-router-dom";
  */
 
 function ProfilePage() {
-  const scrollToAdd = useRef(null)
+  const scrollToAd = React.createRef();
   const [update, setUpDate] = useState(0);
   const { loading, err, data } = useFetchData("profile/user/bookings", update);
   const [editUser, setEditUser] = useState(false);
@@ -28,12 +28,10 @@ function ProfilePage() {
   }
 
   useEffect(() => {
-    if(hash === "#ad-card"){
-        scrollToAdd.current?.scrollIntoView({ behavior: 'smooth'})
+    if (hash === "#ad-card") {
+      scrollToAd.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [scrollToAdd.current])
- 
-
+  }, [scrollToAd]);
 
   return (
     <>
@@ -51,7 +49,7 @@ function ProfilePage() {
                 <ActiveBookings activeBookings={data?.active} setUpDate={setUpDate} />
                 <ExpiredBookings expiredBookings={data?.expired} />
               </Col>
-              <Col classname="note-container" ref={scrollToAdd} lg={3}>
+              <Col className="note-container" ref={scrollToAd} lg={3}>
                 <UserInfoCard {...{ setEditUser }} />
               </Col>
             </Row>
