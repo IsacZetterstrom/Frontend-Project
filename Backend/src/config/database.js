@@ -8,7 +8,7 @@ const connection =  mysql2.createPool({
   password: process.env.PASSWORD,
   database: "cinema",
   multipleStatements: true,
-  timezone: "+00:00",
+  timezone: "+00:00"
 });
 
 await connection.getConnection((error) => {
