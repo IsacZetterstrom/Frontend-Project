@@ -7,8 +7,16 @@ import LibraryPage from "../pages/LibraryPage";
 import LoginPage from "../pages/LoginPage";
 import ProfilePage from "../pages/ProfilePage";
 import RegisterPage from "../pages/RegisterPage";
+import ErrorPage from "../pages/ErrorPage";
 
 export const pages = [
+  {
+    path: "*",
+    label: "Hem",
+    inNav: false,
+    rightNav: false,
+    element: <ErrorPage />,
+  },
   {
     path: "/",
     label: "Hem",
