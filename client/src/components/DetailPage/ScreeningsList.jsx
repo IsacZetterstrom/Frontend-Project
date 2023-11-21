@@ -90,7 +90,7 @@ function ScreeningsList({ movieId, movie }) {
           ) : (
             <>
               {isFutureRelease(movie.Release_date) ? (
-                <p className="text-center mt-4">Denna film har premiär {formatDateStringToSwedish(movie.Release_date, false)}</p>
+                <p className="text-center mt-4">Denna film har premiär {formatDateStringToSwedish(movie.Release_date)}</p>
               ) : (
                 <p className="text-center mt-4">Inga spelningar på valt datum.</p>
               )}

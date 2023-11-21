@@ -35,7 +35,7 @@ function MovieDesc({ movie }) {
           <p>{(movie.Lang === "EN" && "Engelska") || movie.Lang}</p>
           <h2 className="header-light gold mt-2 mb-1">Släppt</h2>
           {isFutureRelease(movie.Release_date) ? (
-            <p>Premiär {formatDateStringToSwedish(movie.Release_date, false)}</p>
+            <p>Premiär {formatDateStringToSwedish(movie.Release_date)}</p>
           )
           : <p>{formatDateString(movie.Release_date).split("-")[0]}</p>
           }
