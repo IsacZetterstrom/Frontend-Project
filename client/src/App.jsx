@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Nav/Navbar";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import cacheService from "./service/CacheService";
