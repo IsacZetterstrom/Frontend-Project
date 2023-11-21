@@ -24,26 +24,25 @@ async function sendBookingConfirmationEmail(bookingData, email) {
     hour: "2-digit",
     minute: "2-digit",
   });
-  return new Promise((resolve, reject) => {
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Här kommer dina biobiljetter",
-      html: `
-        <html>
-        <body>
-          <h1 style="font-weight: bold;">Tack för din bokning</h1>
-          <p>${bookingData.title}</p>
-          <p>${formattedDateTime}</p>
-          <p>Stolar: ${bookingData.seats}</p>
-          <p>Salong: ${bookingData.saloon}</p>
-          <p>${bookingData.priceSum} Kr</p>
-          <p style="font-weight: bold; font-size: 20px;">Referens nummer: ${bookingData.bookingRef}</p>
-        </body>
-        </html>
-        `,
-    };
-
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: "Här kommer dina biobiljetter",
+    html: `
+      <html>
+      <body>
+        <h1 style="font-weight: bold;">Tack för din bokning</h1>
+        <p>${bookingData.title}</p>
+        <p>${formattedDateTime}</p>
+        <p>Stolar: ${bookingData.seats}</p>
+        <p>Salong: ${bookingData.saloon}</p>
+        <p>${bookingData.priceSum} Kr</p>
+        <p style="font-weight: bold; font-size: 20px;">Referens nummer: ${bookingData.bookingRef}</p>
+      </body>
+      </html>
+      `,
+  };
+  const info = await new Promise ((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error("Error sending email:", error);
