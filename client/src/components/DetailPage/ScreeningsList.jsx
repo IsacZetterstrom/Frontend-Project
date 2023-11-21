@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Container, Row, Table } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -23,6 +23,10 @@ function ScreeningsList({ movieId, movie }) {
     setSelectedDate(e.target.value);
   };
 
+  const handleClearDate = () => {
+    setSelectedDate("");
+  };
+
   const { loading, err, data } = useFetchData(`/api/movies/${movieId}/screenings/${selectedDate}`);
 
   const handleShowMore = () => {
@@ -36,6 +40,9 @@ function ScreeningsList({ movieId, movie }) {
       <Container className="date-picker-container text-center mt-5">
         <h3 className="small-header gold">Välj datum</h3>
         <input type="date" onChange={handleDateChange} className="date-picker" value={selectedDate} />
+        <button className="mt-2" onClick={() => handleClearDate()}>
+          Se alla visningar
+        </button>
       </Container>
       {loading ? (
         <p>Laddar...</p>
