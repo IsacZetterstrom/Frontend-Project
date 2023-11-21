@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { pages } from "../../router/routes";
-import { NavLink, useNavigate } from "react-router-dom";
+
 import BootStrapNav from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Logotype from "../../assets/Logotype.svg";
-import cacheService from "../../service/CacheService";
-import UserMenu from "./UserMenu";
+
+import NavLinks from "./NavLinks";
 
 /**
  * @author Isac Zetterström
@@ -14,16 +13,8 @@ import UserMenu from "./UserMenu";
  */
 
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
-  const navigate = useNavigate();
-
   const [expanded, setExpanded] = useState(false);
   const menuRef = useRef();
-
-  function logoutUser() {
-    cacheService.removeLocalValue("token");
-    setIsLoggedIn(false);
-    navigate("/");
-  }
 
   useEffect(() => {
     let clickInsideElement = (e) => {
@@ -50,38 +41,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
           ></BootStrapNav.Toggle>
           <BootStrapNav.Collapse id="navbar-fixed-top" className="" style={{ width: "50%" }}>
             <Nav className="navbar-fixed-top" style={{ width: "100%" }}>
-              {pages.map(({ label, path, inNav, rightNav }) => {
-                return (
-                  inNav &&
-                  !rightNav && (
-                    <NavLink key={path} className="nav-link text-nowrap" onClick={() => setExpanded(false)} to={path}>
-                      {label}
-                    </NavLink>
-                  )
-                );
-              })}
-              <Container className="flex-row align-items-center justify-content-center d-none d-md-flex desktop-logo-container">
-                <img
-                  className="logo"
-                  src={Logotype}
-                  onClick={() => {
-                    navigate("/");
-                  }}
-                />
-              </Container>
-
-              <UserMenu {...{ isLoggedIn }} />
-              {isLoggedIn && (
-                <NavLink
-                  key={"logout"}
-                  onClick={() => {
-                    logoutUser(), setExpanded(false);
-                  }}
-                  className="nav-link text-nowrap logout-btn"
-                >
-                  Logga Ut
-                </NavLink>
-              )}
+              <NavLinks {...{ isLoggedIn, setIsLoggedIn }} />
             </Nav>
           </BootStrapNav.Collapse>
         </Container>
