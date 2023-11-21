@@ -118,14 +118,12 @@ async function getScreeningsByDate(movieId, date) {
       Subtitle.Subtitle
     FROM Screening
     INNER JOIN Subtitle ON Screening.Subtitle_id = Subtitle.Subtitle_id
-    INNER JOIN 
-      Theater ON Theater.Theater_id = Screening.Theater_id
-    INNER JOIN 
-      Movie ON Movie.Movie_id = Screening.Movie_id
+    INNER JOIN Theater ON Theater.Theater_id = Screening.Theater_id
+    INNER JOIN Movie ON Movie.Movie_id = Screening.Movie_id
     WHERE 
       Screening.movie_id=? 
-    AND 
-      Screening.Screening_date BETWEEN ? AND ?
+      AND Screening.Screening_date BETWEEN ? AND ?
+    ORDER BY Screening.Screening_date ASC;
     `,
     [movieId, date, endDate.toISOString().slice(0, 10)]
   );
