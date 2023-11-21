@@ -3,7 +3,8 @@ import { Button, Container, Table } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import getDateWithDay, { formatDateOrTime, formatDateString } from "../../utils/dateUtils";
+import getDateWithDay, { formatDateOrTime, formatDateString, formatDateStringToSwedish } from "../../utils/dateUtils";
+import isFutureRelease from "../../utils/futureReleaseDate";
 
 /**
  * @author Louise Johansson
@@ -87,7 +88,13 @@ function ScreeningsList({ movieId, movie }) {
               )}
             </>
           ) : (
-            <p className="text-center mt-4">Inga spelningar på valt datum.</p>
+            <>
+              {isFutureRelease(movie.Release_date) ? (
+                <p className="text-center mt-4">Denna film har premiär {formatDateStringToSwedish(movie.Release_date)}</p>
+              ) : (
+                <p className="text-center mt-4">Inga spelningar på valt datum.</p>
+              )}
+            </>
           )}
         </>
       )}
