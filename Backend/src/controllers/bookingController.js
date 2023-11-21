@@ -51,7 +51,9 @@ async function createBooking(req, res) {
         return res.status(500).json({ error: "no email or account provided" });
       if (email == undefined) email = req.decoded.email;
 
-      await mailService.sendBookingConfirmationEmail(bookingData, email);
+      await mailService.sendBookingConfirmationEmail(bookingData, email).catch((error) => {
+        console.error(error);
+      })
 
       clientsHandler.broadcastTo(screeningId);
 

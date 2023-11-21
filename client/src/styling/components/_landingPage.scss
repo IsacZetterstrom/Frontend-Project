@@ -1,0 +1,13 @@
+.movie-list {
+    width: 100%;
+}
+@include media-breakpoint-up(md) {
+    .movie-list {
+        width: 90%;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .movie-list {
+        width: 75%;
+    }
+}
