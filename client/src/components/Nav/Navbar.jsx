@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { pages } from "../router/routes";
+import React, { useEffect, useRef, useState } from "react";
+import { pages } from "../../router/routes";
 import { NavLink, useNavigate } from "react-router-dom";
 import BootStrapNav from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import Logotype from "../assets/Logotype.svg";
-import cacheService from "../service/CacheService";
+import Logotype from "../../assets/Logotype.svg";
+import cacheService from "../../service/CacheService";
 
 /**
  * @author Isac Zetterström
@@ -16,12 +16,24 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const [expanded, setExpanded] = useState(false);
+  const menuRef = useRef();
 
   function logoutUser() {
     cacheService.removeLocalValue("token");
     setIsLoggedIn(false);
     navigate("/");
   }
+
+  useEffect(() => {
+    // clickInsideElement(e);
+    let clickInsideElement = (e) => {
+      if (!menuRef.current.contains(e.target)) {
+        setExpanded(false);
+      }
+    };
+
+    document.addEventListener("mousedown", clickInsideElement);
+  });
 
   function renderUserMenu() {
     if (isLoggedIn) {
@@ -55,7 +67,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
   return (
     <>
-      <BootStrapNav expanded={expanded} expand="md" className="navbar fixed-top">
+      <BootStrapNav expanded={expanded} ref={menuRef} expand="md" className="navbar fixed-top">
         <Container>
           <BootStrapNav.Brand className="d-md-none" href="/">
             <img src={Logotype} alt="" width="100px" />
