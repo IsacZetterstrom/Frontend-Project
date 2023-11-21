@@ -53,12 +53,12 @@ export function formatDateString(dateString) {
   return formattedDate;
 }
 
-// Format a date string to a Swedish date format. e.g. "Fredag 24 oktober" or "24 oktober"
+// Format a date string to a Swedish date format. e.g. "Fredag 24 oktober" or "24 okt"
 export function formatDateStringToSwedish(dateString, includeWeekday = true) {
   const date = new Date(dateString);
   const options = includeWeekday
     ? { weekday: "long", day: "numeric", month: "long" }
-    : { day: "numeric", month: "long" };
+    : { day: "numeric", month: "short" };
 
   return date.toLocaleDateString("sv-SE", options);
 }
