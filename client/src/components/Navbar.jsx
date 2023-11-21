@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { pages } from "../router/routes";
 import { NavLink, useNavigate } from "react-router-dom";
 import BootStrapNav from "react-bootstrap/Navbar";
@@ -14,6 +14,9 @@ import cacheService from "../service/CacheService";
 
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
+
+  const [expanded, setExpanded] = useState(false);
+
   function logoutUser() {
     cacheService.removeLocalValue("token");
     setIsLoggedIn(false);
@@ -27,7 +30,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
           return (
             inNav &&
             rightNav && (
-              <NavLink key={path} className="nav-link text-nowrap" to={path}>
+              <NavLink key={path} className="nav-link text-nowrap" onClick={() => setExpanded(false)} to={path}>
                 {label}
               </NavLink>
             )
@@ -40,7 +43,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
           return (
             inNav &&
             rightNav && (
-              <NavLink key={path} className="nav-link text-nowrap" to={path}>
+              <NavLink key={path} className="nav-link text-nowrap" onClick={() => setExpanded(false)} to={path}>
                 {label}
               </NavLink>
             )
@@ -52,19 +55,24 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
   return (
     <>
-      <BootStrapNav expand="md" className="navbar fixed-top">
+      <BootStrapNav expanded={expanded} expand="md" className="navbar fixed-top">
         <Container>
           <BootStrapNav.Brand className="d-md-none" href="/">
             <img src={Logotype} alt="" width="100px" />
           </BootStrapNav.Brand>
-          <BootStrapNav.Toggle aria-controls="navbar-nav"></BootStrapNav.Toggle>
+          <BootStrapNav.Toggle
+            aria-controls="navbar-nav"
+            onClick={() => {
+              setExpanded(!expanded);
+            }}
+          ></BootStrapNav.Toggle>
           <BootStrapNav.Collapse id="navbar-fixed-top" className="" style={{ width: "50%" }}>
             <Nav className="navbar-fixed-top" style={{ width: "100%" }}>
               {pages.map(({ label, path, inNav, rightNav }) => {
                 return (
                   inNav &&
                   !rightNav && (
-                    <NavLink key={path} className="nav-link text-nowrap" to={path}>
+                    <NavLink key={path} className="nav-link text-nowrap" onClick={() => setExpanded(false)} to={path}>
                       {label}
                     </NavLink>
                   )
@@ -82,7 +90,13 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
               {renderUserMenu()}
               {isLoggedIn && (
-                <NavLink key={"logout"} onClick={() => logoutUser()} className="nav-link text-nowrap logout-btn">
+                <NavLink
+                  key={"logout"}
+                  onClick={() => {
+                    logoutUser(), setExpanded(false);
+                  }}
+                  className="nav-link text-nowrap logout-btn"
+                >
                   Logga Ut
                 </NavLink>
               )}
