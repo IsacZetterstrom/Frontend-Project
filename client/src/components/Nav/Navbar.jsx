@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Logotype from "../../assets/Logotype.svg";
 import cacheService from "../../service/CacheService";
+import UserMenu from "./UserMenu";
 
 /**
  * @author Isac Zetterström
@@ -25,7 +26,6 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
   }
 
   useEffect(() => {
-    // clickInsideElement(e);
     let clickInsideElement = (e) => {
       if (!menuRef.current.contains(e.target)) {
         setExpanded(false);
@@ -34,36 +34,6 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
     document.addEventListener("mousedown", clickInsideElement);
   });
-
-  function renderUserMenu() {
-    if (isLoggedIn) {
-      return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
-        if (loggedIn) {
-          return (
-            inNav &&
-            rightNav && (
-              <NavLink key={path} className="nav-link text-nowrap" onClick={() => setExpanded(false)} to={path}>
-                {label}
-              </NavLink>
-            )
-          );
-        }
-      });
-    } else {
-      return pages.map(({ label, path, inNav, rightNav, loggedIn }) => {
-        if (!loggedIn) {
-          return (
-            inNav &&
-            rightNav && (
-              <NavLink key={path} className="nav-link text-nowrap" onClick={() => setExpanded(false)} to={path}>
-                {label}
-              </NavLink>
-            )
-          );
-        }
-      });
-    }
-  }
 
   return (
     <>
@@ -100,7 +70,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                 />
               </Container>
 
-              {renderUserMenu()}
+              <UserMenu {...{ isLoggedIn }} />
               {isLoggedIn && (
                 <NavLink
                   key={"logout"}
