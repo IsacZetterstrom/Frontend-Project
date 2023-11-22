@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
 import { Container, Row, Col } from "react-bootstrap";
 import ActiveBookings from "../components/ProfilePage/ActiveBookings";
@@ -8,7 +8,6 @@ import UserInfoCard from "../components/ProfilePage/UserInfoCard";
 import EditUserPage from "../pages/EditUserPage";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import RecMovies from "../components/aiComp/RecMovies";
-
 
 /**
  * @author Isac Zetterström
@@ -29,12 +28,11 @@ function ProfilePage() {
   }
 
   useEffect(() => {
-    if(hash === "#ad-card"){
-        scrollToAdd.current?.scrollIntoView({ behavior: 'smooth'})
+    if (isLoggedIn === false) return navigate("/");
+    if (hash === "#ad-card") {
+      scrollToAd.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [scrollToAdd.current])
- 
-
+  }, [scrollToAd, isLoggedIn]);
 
   return (
     <>
