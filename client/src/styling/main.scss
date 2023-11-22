@@ -21,6 +21,8 @@
 @import "./components/bookingForm";
 @import "./components/seatPicker";
 @import "./components/recMovieCard";
+@import "./components/landingPage";
+
 @import "./abstract/fonts";
 
 #root {
@@ -30,12 +32,14 @@
   }
   
   main {
+    padding-top: 55px;
     position: relative;
     flex: 1;
   }
 
 
 body {
+  
     background-color: $mainColor;
     color: white;
 }

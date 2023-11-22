@@ -31,13 +31,13 @@ async function getRecommended(req, res) {
 		"isGenre": req.body.isGenre
 	}
 	try {
-		
+	
 		//Collect movie ids based on user bookings.
 		const movieIds = await aiModel.collectMovieIds(userId)
 		if (movieIds && movieIds.length > 0 && movieData.movieIds.length > 0) {
 			//Collect movie information about movies on screening
 			 movieData.movieInformation = await aiModel.collectMovieInformation(movieData.movieIds)
-			//Configure the payload for AI based on actors,genre,directors
+			 //Configure the payload for AI based on actors,genre,directors
 			const payload = await aiConfig.getPayload(movieData)
 			//Call open AI to get 5 recommended movies, now returns a json file.
 			const recommendedData = await aiModel.getRecommended(payload);
