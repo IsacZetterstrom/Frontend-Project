@@ -1,149 +1,143 @@
 @use "../abstract/variables" as *;
-.note-container{
+
+.note-container {
+  overflow: hidden;
+  .hidden-header {
+    visibility: hidden;
+  }
+}
+.booking-history-header {
+  padding-top: 1em;
+}
+.profile-container {
+  Button {
+    border-radius: 9999px;
+    border: none;
+    background-color: $OrangeColor;
+    color: $blackColor;
+  }
+  Button:hover {
+    background-color: $goldColor;
+    color: $whiteColor;
+  }
+}
+.booking-card {
+  border-radius: 10px;
+  background-color: $navyBlueColor;
+  box-shadow: 0 3px 4px black;
+  gap: 0.5em;
+  min-width: 340px;
+  max-width: 49%;
+  margin: 0 !important;
+  .booking-info-container {
+    margin: 0 auto;
+    max-width: 240px;
+  }
+
+  .profile-poster {
+    object-fit: fill;
+    border-radius: 10px 0 0 10px;
+  }
+  .card-btn {
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .booking-title {
+    width: 100%;
     overflow: hidden;
-}
-.booking-history-header{
-    padding-top: 1em;
-}
-.profile-container{
-    Button{
-        border-radius: 9999px;
-        border: none;
-        background-color: $OrangeColor;
-        color: $blackColor;
-    }
-    Button:hover{
-        background-color: $goldColor;
-        color: $whiteColor;
-    }
-}
-.booking-card{
-    border-radius: 10px;
-    background-color: $navyBlueColor;
-    box-shadow: 0 3px 4px black;
-    gap: .5em;
-    min-width: 340px;
-    max-width: 49%;
-    margin: 0 !important;
-    .booking-info-container{
-        margin: 0 auto;
-        max-width: 240px;
-    }
-
-    .profile-poster{
-        object-fit: fill;
-        border-radius: 10px 0 0 10px;
-    }
-    .card-btn{
-        font-size: .7rem;
-        font-weight: 600;
-    }
- 
-    .booking-title{
-        width: 100%;
-        overflow:hidden;
-        white-space:nowrap;
-        text-overflow: ellipsis;
-        text-wrap: nowrap;
-        color: $goldColor;
-    }
-    .ref-number{
-        font-size: .8rem;
-        font-weight: 500;
-        text-wrap: nowrap;
-    }
-    p{
-        font-size: .8rem;
-    }
-    .card-seats{
-        margin-left: 8px;
-    }
-    
-}
-
-.user-info-card, .note-card{
-    max-width: 340px;
-    border-radius: 10px;
-
-
-}
-.user-info-card{
-    box-shadow: 0 0 10px $OrangeColor;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    table{
-        thead,tbody{
-            tr{
-                font-size: .9rem;
-                td{
-                    margin: 0 0 0 .5em;
-                }
-            }
-        }
-        tbody{
-            overflow:hidden;
-            white-space:nowrap;
-            text-overflow: ellipsis;
-            text-wrap: nowrap;
-        }
-    }
-    .profile-btn-container{
-        Button{
-            justify-self: center;
-            width: 100px;
-            font-weight: 600;
-            font-size: .9rem;
-        }
-
-    }
-
-
- 
-}
-.note-card{
-    box-shadow: 0 0 10px $whiteColor;
-    .note-whisper, .note-information{
-        font-size: .9rem;
-    }
-    .note-icon{
-        margin-bottom: .5em;
-        color: $OrangeColor;
-        font-size: 2rem;
-    }
-    .profile-note{
-        h6{
-            
-            font-weight: 600;
-        }
-        Button{
-            width: 180px;
-            font-size: .9rem;
-            background-color: $OrangeColor;
-            font-weight: 600;
-            color: black;
-        }
-        Button:hover{
-            background-color: $goldColor;
-            color: $whiteColor;
-        }
-    }
+    text-wrap: nowrap;
+    color: $goldColor;
+  }
+  .ref-number {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-wrap: nowrap;
+  }
+  p {
+    font-size: 0.8rem;
+  }
+  .card-seats {
+    margin-left: 8px;
+  }
 }
 
-@include media-breakpoint-up(xl) { 
-    .booking-card{
-        .booking-info-container{
-            max-width: 290px;
-            p{
-                font-size: .9rem;
-                font-weight: 500;
-            }
-            Button{
-                font-size: .9rem;
-            }
+.user-info-card,
+.note-card {
+  max-width: 340px;
+  border-radius: 10px;
+}
+.user-info-card {
+  box-shadow: 0 0 10px $OrangeColor;
+  text-overflow: ellipsis;
+  table {
+    thead,
+    tbody {
+      tr {
+        font-size: 0.9rem;
+        td {
+          margin: 0 0 0 0.5em;
         }
+      }
     }
-
+    tbody {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-wrap: nowrap;
+    }
+  }
+  .profile-btn-container {
+    Button {
+      justify-self: center;
+      width: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+}
+.note-card {
+  box-shadow: 0 0 10px $whiteColor;
+  .note-whisper,
+  .note-information {
+    font-size: 0.9rem;
+  }
+  .note-icon {
+    margin-bottom: 0.5em;
+    color: $OrangeColor;
+    font-size: 2rem;
+  }
+  .profile-note {
+    h6 {
+      font-weight: 600;
+    }
+    Button {
+      width: 180px;
+      font-size: 0.9rem;
+      background-color: $OrangeColor;
+      font-weight: 600;
+      color: black;
+    }
+    Button:hover {
+      background-color: $goldColor;
+      color: $whiteColor;
+    }
+  }
 }
 
-
-
-
+@include media-breakpoint-up(xl) {
+  .booking-card {
+    .booking-info-container {
+      max-width: 290px;
+      p {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      Button {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
