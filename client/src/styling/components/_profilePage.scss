@@ -141,7 +141,7 @@
   }
 }
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(col) {
   .note-container{
     .small-header{
     padding-top: 1em;
