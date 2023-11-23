@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import useFetchData from "../../hooks/useFetchData";
-import LoadingGif from "../misc/loadingGif";
+import LoadingGif from "../misc/LoadingGif";
 import { BsPatchExclamation } from "react-icons/bs";
 import AdCard from "../LandingPageComp/AdCard";
 
@@ -15,27 +15,33 @@ function UserInfoCard({ setEditUser }) {
 
   return (
     <>
-      {(!data?.phone || !data?.firstName || !data?.lastName) ? 
-        <Row className="note-card mx-auto p-4 my-4">
-        <Col className="d-flex flex-column align-items-center profile-note">
-          <BsPatchExclamation className="note-icon" />
-          <h6>Psst,</h6>
-          <p className="text-center mt-1 note-whisper">
-            Visste du att du får ta del av medlemserbjudanden om du fyller i dina uppgifter?
-          </p>
-          <Button
-            className="note-btn"
-            onClick={() => {
-              setEditUser(true);
-            }}
-          >
-            Lägg till mina uppgifter
-          </Button>
-        </Col>
-      </Row>
-      :
-      <AdCard showButton={false}/>
-      }
+      {!data?.phone || !data?.firstName || !data?.lastName ? (
+        <>
+          <h6 className="small-header hidden-header">Det saknas uppgifter</h6>
+          <Row className="note-card mx-auto p-4">
+            <Col className="d-flex flex-column align-items-center profile-note">
+              <BsPatchExclamation className="note-icon" />
+              <h6>Psst,</h6>
+              <p className="text-center mt-1 note-whisper">
+                Visste du att du får ta del av medlemserbjudanden om du fyller i dina uppgifter?
+              </p>
+              <Button
+                className="note-btn"
+                onClick={() => {
+                  setEditUser(true);
+                }}
+              >
+                Lägg till mina uppgifter
+              </Button>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <>
+          <h6 className="offset-1 offset-sm-2 offset-md-3 offset-lg-0 small-header">Du har erbjudande!</h6>
+          <AdCard showButton={false} />
+        </>
+      )}
       {(loading && <LoadingGif />) || (err && <p>Gick inte att hämta dina uppgifter</p>) || (
         <Row className="user-info-card mx-auto my-4 p-4">
           <h6 className="line p-0">Dina uppgifter</h6>

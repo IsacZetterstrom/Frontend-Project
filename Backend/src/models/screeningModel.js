@@ -126,6 +126,7 @@ async function getScreeningsByDate(movieId, date) {
       Screening.movie_id=? 
     AND 
       Screening.Screening_date BETWEEN ? AND ?
+    ORDER BY Screening.Screening_startime ASC;
     `,
     [movieId, date, endDate.toISOString().slice(0, 10)]
   );

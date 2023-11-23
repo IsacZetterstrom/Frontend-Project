@@ -70,7 +70,7 @@ function BookingForm({ bookingInfo, sum, setToggle, setConfirmationData, setShow
     <Container className="form-wrapper booking-form">
       <Row>
         <Container className="border-top border-secondary mt-2 pt-4">
-          <b>Totalsumma: {sum} kr</b>
+          <b>Totalsumma: {sum.toLocaleString()} kr</b>
           <p>Betalning sker på plats</p>
         </Container>
         <h2 className="p-0 text-nowrap mt-5 pb-2 line header-bold">Bekräfta din bokning</h2>
