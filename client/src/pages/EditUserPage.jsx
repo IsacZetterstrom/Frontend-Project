@@ -4,7 +4,8 @@ import EditUserForm from "../components/Forms/EditUserForm";
 import { Container, Row } from "react-bootstrap";
 import useFetchData from "../hooks/useFetchData";
 import fetchService from "../service/FetchService";
-import { Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+import cacheService from "../service/CacheService";
 
 /**
  * @author Niklas Nguyen
@@ -15,6 +16,12 @@ function EditUserPage({ setEditUser, runFunction }) {
   const { defaults, formData, setFormData } = useFormDefaults();
   const { loading, err, data } = useFetchData(`/profile/user`);
   const [msg, setMsg] = useState("");
+  const navigate = useNavigate();
+
+  function logoutUser() {
+    cacheService.removeLocalValue("token");
+    navigate("/");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,8 +35,13 @@ function EditUserPage({ setEditUser, runFunction }) {
       setMsg("Det blev fel vid uppdateringen");
       return false;
     } else {
-      setMsg("Dina uppgifter har uppdaterats");
-      setTimeout(() => setEditUser((val) => !val), 2000);
+      if (data.email !== formData.email) {
+        setMsg("Du kommer nu loggas ut");
+        setTimeout(() => logoutUser(), 2000);
+      } else {
+        setMsg("Dina uppgifter har uppdaterats");
+        setTimeout(() => setEditUser((val) => !val), 2000);
+      }
     }
   };
 
