@@ -14,7 +14,7 @@ function SearchFilterSortQuery({ defaults }) {
       <Container className="p-0 m-0 search-filter-sort">
         <Row className="search-container px-4">
           <AiOutlineSearch className="icon" />
-          <input {...defaults("search", "Sök på film titel", { required: false })} />
+          <input {...defaults("search", "Sök på filmtitel", { required: false })} />
         </Row>
         <Row className="p-0 d-flex  justify-content-space select-container">
           <Col className="d-flex flex-column flex-lg-row justify-content-start align-items-center p-0 mt-3">
