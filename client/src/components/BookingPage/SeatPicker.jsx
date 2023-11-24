@@ -77,13 +77,27 @@ function SeatPicker(props) {
           </div>
         );
       })}
-
+      
       <Form.Check
         className="pt-2"
         label="Välj enskilda platser"
         checked={!selectSeveralSeats}
         onChange={() => setSelectSeveralSeats(!selectSeveralSeats)}
       />
+
+      <div className="colors-wrapper">
+        <div className="seat-row">
+          <p>Ledig</p>
+          <div className="seat" />
+          <p>Vald</p>
+          <div className="seat selected" />
+          <p>Upptagen</p>
+          <div className="seat booked" />
+        </div>
+      </div>
+
+
+      
     </div>
   );
 }

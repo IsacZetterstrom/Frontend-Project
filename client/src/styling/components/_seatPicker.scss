@@ -27,6 +27,7 @@
 
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: .7rem;
 
 
@@ -65,6 +66,11 @@
 
         }
 
+        p {
+            margin: 0 0 0rem 1rem;
+        }
+        
+
     }
 
     .seat {
@@ -79,6 +85,10 @@
 
 
         cursor: pointer;
+    }
+
+    .colors-wrapper {
+        margin-top: 1rem;
     }
 
 }
